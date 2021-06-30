@@ -25,6 +25,7 @@
     "printWidth": 120
   },
   "dependencies": {
+    "@heroicons/react": "^1.0.1",
     "classcat": "5.0.3",
     "next": "11.0.1",
     "react": "17.0.2",
