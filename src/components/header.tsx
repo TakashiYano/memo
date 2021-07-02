@@ -17,7 +17,6 @@ export const Header: VFC = () => {
   return (
     <header>
       <div className="bg-white dark:bg-gray-800">
-        {" "}
         <h1 className="text-gray-900 dark:text-white">Title</h1>
         <button className="text-white dark:text-gray-900 bg-gray-800 dark:bg-white" onClick={handleClick}>
           Change Theme
