@@ -37,7 +37,7 @@
     "@testing-library/react": "12.1.0",
     "@types/jest": "27.0.2",
     "@types/node": "15.12.4",
-    "@types/react": "17.0.22",
+    "@types/react": "17.0.24",
     "@typescript-eslint/eslint-plugin": "4.31.2",
     "@typescript-eslint/parser": "4.31.2",
     "autoprefixer": "10.3.4",
