@@ -569,7 +569,7 @@
     "@types/yargs" "^16.0.0"
     chalk "^4.0.0"
 
-"@mswjs/cookies@^0.1.6":
+"@mswjs/cookies@^0.1.7":
   version "0.1.7"
   resolved "https://registry.yarnpkg.com/@mswjs/cookies/-/cookies-0.1.7.tgz#d334081b2c51057a61c1dd7b76ca3cac02251651"
   integrity sha512-bDg1ReMBx+PYDB4Pk7y1Q07Zz1iKIEUWQpkEXiA2lEWg9gvOZ8UBmGXilCEUvyYoRFlmr/9iXTRR69TrgSwX/Q==
@@ -4079,12 +4079,12 @@ ms@^2.1.1:
   resolved "https://registry.yarnpkg.com/ms/-/ms-2.1.3.tgz#574c8138ce1d2b5861f0b44579dbadd60c6615b2"
   integrity sha512-6FlzubTLZG3J2a/NVCAleEhjzq5oxgHyaCU9yYXvcLsvoVaHJq/s5xXI6/XXP6tz7R9xAOtHnSO/tXtF3WRTlA==
 
-msw@0.36.3:
-  version "0.36.3"
-  resolved "https://registry.yarnpkg.com/msw/-/msw-0.36.3.tgz#7feb243a5fcf563806d45edc027bc36144741170"
-  integrity sha512-Itzp/QhKaleZoslXDrNik3ramW9ynqzOdbwydX2ehBSSaZd5QoiAl/bHYcV33R6CEZcJgIX1N4s+G6XkF/bhkA==
+msw@0.36.8:
+  version "0.36.8"
+  resolved "https://registry.yarnpkg.com/msw/-/msw-0.36.8.tgz#33ff8bfb0299626a95f43d0e4c3dc2c73c17f1ba"
+  integrity sha512-K7lOQoYqhGhTSChsmHMQbf/SDCsxh/m0uhN6Ipt206lGoe81fpTmaGD0KLh4jUxCONMOUnwCSj0jtX2CM4pEdw==
   dependencies:
-    "@mswjs/cookies" "^0.1.6"
+    "@mswjs/cookies" "^0.1.7"
     "@mswjs/interceptors" "^0.12.7"
     "@open-draft/until" "^1.0.3"
     "@types/cookie" "^0.4.1"
@@ -4098,7 +4098,7 @@ msw@0.36.3:
     inquirer "^8.2.0"
     is-node-process "^1.0.1"
     js-levenshtein "^1.1.6"
-    node-fetch "^2.6.1"
+    node-fetch "^2.6.7"
     path-to-regexp "^6.2.0"
     statuses "^2.0.0"
     strict-event-emitter "^0.2.0"
@@ -4202,7 +4202,7 @@ node-fetch@2.6.1:
   resolved "https://registry.yarnpkg.com/node-fetch/-/node-fetch-2.6.1.tgz#045bd323631f76ed2e2b55573394416b639a0052"
   integrity sha512-V4aYg89jEoVRxRb2fJdAg8FHvI7cEyYdVAh94HH0UIK8oJxUfkjlDQN9RbMx+bEjP7+ggMiFRprSti032Oipxw==
 
-node-fetch@^2.6.1:
+node-fetch@^2.6.7:
   version "2.6.7"
   resolved "https://registry.yarnpkg.com/node-fetch/-/node-fetch-2.6.7.tgz#24de9fba827e3b4ae44dc8b20256a379160052ad"
   integrity sha512-ZjMPFEfVx5j+y2yF35Kzx5sF7kDzxuDj6ziH4FFbOp87zKDZNx8yExJIb05OGF4Nlt9IHFIMBkRl41VdvcNdbQ==
