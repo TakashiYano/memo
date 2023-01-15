@@ -24,7 +24,7 @@ export const Header: VFC = () => {
         <nav>
           {items.map(({ href, label }) => {
             return (
-              <Link key={href} href={href}>
+              <Link legacyBehavior key={href} href={href}>
                 <a style={{ display: "inline-block", padding: 12 }} className="text-gray-800 dark:text-gray-100">
                   {label}
                 </a>
