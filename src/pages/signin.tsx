@@ -12,10 +12,10 @@ const Signin: React.FC = () => {
       </Head>
       <div className="bg-gray-200 w-screen h-screen">
         <div className="flex justify-center mb-16">Memo</div>
-        <Button id="googleButton" color="white" StartIcon={GoogleIcon} size="large">
+        <Button id="googleButton" color="white" StartIcon={GoogleIcon} size="large" className="w-80">
           Googleでアカウント作成
         </Button>
-        <Button id="appleButton" color="black" StartIcon={AppleIcon} size="large">
+        <Button id="appleButton" color="black" StartIcon={AppleIcon} size="large" className="w-80">
           Appleでアカウント作成
         </Button>
       </div>
