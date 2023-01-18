@@ -1,9 +1,10 @@
 import Head from "next/head";
+import type { FC } from "react";
 import { AppleIcon } from "src/components/icon/AppleIcon";
 import { GoogleIcon } from "src/components/icon/GoogleIcon";
 import { Button } from "src/components/share/Button";
 
-const Signin: React.FC = () => {
+const Signin: FC = () => {
   return (
     <div>
       <Head>

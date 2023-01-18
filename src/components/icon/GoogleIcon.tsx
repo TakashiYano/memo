@@ -1,13 +1,14 @@
 /* eslint-disable react/destructuring-assignment */
 /* eslint-disable @typescript-eslint/naming-convention */
 import classcat from "classcat";
+import type { FC } from "react";
 
 type Props = {
   className?: string;
   size?: "large" | "small";
 };
 
-export const GoogleIcon: React.FC<Props> = (props) => {
+export const GoogleIcon: FC<Props> = (props) => {
   const { className = "", size = "small" } = props;
   const classes = classcat([
     {

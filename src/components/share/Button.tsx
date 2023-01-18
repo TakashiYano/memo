@@ -2,7 +2,7 @@
 /* eslint-disable @typescript-eslint/naming-convention */
 import classcat from "classcat";
 import Link from "next/link";
-import type { ReactNode } from "react";
+import type { FC, ReactNode } from "react";
 
 type Props = {
   id: string;
@@ -13,13 +13,13 @@ type Props = {
   type?: "button" | "link";
   linkProps?: string;
   className?: string;
-  StartIcon?: React.FC;
-  EndIcon?: React.FC;
+  StartIcon?: FC;
+  EndIcon?: FC;
   size?: "large" | "small";
   onClick?: (e: React.MouseEvent<HTMLElement>) => void;
 };
 
-export const Button: React.FC<Props> = (props) => {
+export const Button: FC<Props> = (props) => {
   // props受け取り、デフォルト値設定
   const {
     id,
