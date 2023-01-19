@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable react/destructuring-assignment */
 /* eslint-disable @typescript-eslint/naming-convention */
 import classcat from "classcat";
@@ -18,7 +19,8 @@ type CommonType = {
 
 type ButtonType = CommonType & {
   type: "button";
-  onClick: DOMAttributes<HTMLButtonElement>["onClick"];
+  onClick?: DOMAttributes<HTMLButtonElement>["onClick"];
+  onKeyDown?: DOMAttributes<HTMLButtonElement>["onKeyDown"];
 };
 
 type LinkType = CommonType & {
@@ -63,7 +65,7 @@ export const Button: FC<ButtonType | LinkType> = (props) => {
   return (
     <div className="mx-auto">
       {isButton(props) ? (
-        <span data-testid={props.id} className={classes} onClick={props.onClick} aria-hidden="true">
+        <span data-testid={props.id} className={classes} onClick={props.onClick} onKeyDown={props.onKeyDown}>
           {props.StartIcon && (
             <div className={iconClasses}>
               <props.StartIcon />
