@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/interactive-supports-focus */
 /* eslint-disable react/destructuring-assignment */
 /* eslint-disable @typescript-eslint/naming-convention */
 import classcat from "classcat";
@@ -62,6 +61,8 @@ export const Button: FC<ButtonType | LinkType> = (props) => {
     },
   ]);
 
+  // tabindex に正の値を指定するとESLintでtabindex-no-positiveのエラーが
+  // 発生するため、0 固定としておく（-1だとタブ入力で移動しない）
   return (
     <div className="mx-auto">
       {isButton(props) ? (
@@ -69,6 +70,7 @@ export const Button: FC<ButtonType | LinkType> = (props) => {
           data-testid={props.id}
           role="button"
           className={classes}
+          tabIndex={0}
           onClick={props.onClick}
           onKeyDown={props.onKeyDown}
         >
