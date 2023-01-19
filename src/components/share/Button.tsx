@@ -1,4 +1,4 @@
-/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/interactive-supports-focus */
 /* eslint-disable react/destructuring-assignment */
 /* eslint-disable @typescript-eslint/naming-convention */
 import classcat from "classcat";
@@ -65,7 +65,13 @@ export const Button: FC<ButtonType | LinkType> = (props) => {
   return (
     <div className="mx-auto">
       {isButton(props) ? (
-        <span data-testid={props.id} className={classes} onClick={props.onClick} onKeyDown={props.onKeyDown}>
+        <span
+          data-testid={props.id}
+          role="button"
+          className={classes}
+          onClick={props.onClick}
+          onKeyDown={props.onKeyDown}
+        >
           {props.StartIcon && (
             <div className={iconClasses}>
               <props.StartIcon />
@@ -80,7 +86,7 @@ export const Button: FC<ButtonType | LinkType> = (props) => {
         </span>
       ) : (
         <Link href={`/${props.linkProps}`}>
-          <span data-testid={props.id} className={classes}>
+          <span data-testid={props.id} role="link" className={classes}>
             {props.StartIcon && (
               <div className={iconClasses}>
                 <props.StartIcon />
