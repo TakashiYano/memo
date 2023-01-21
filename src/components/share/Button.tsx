@@ -11,28 +11,24 @@ type CommonType = {
   disabled?: boolean;
   children?: ReactNode;
   className?: string;
-  // StartIcon?: FC<any | undefined>;
   startIcon?: JSX.Element;
-  EndIcon?: FC<any | undefined>;
+  endIcon?: JSX.Element;
   size?: "large" | "small";
 };
 
 type ButtonType = CommonType & {
-  // type: "button";
   button: boolean;
   onClick?: DOMAttributes<HTMLButtonElement>["onClick"];
   onKeyDown?: DOMAttributes<HTMLButtonElement>["onKeyDown"];
 };
 
 type LinkType = CommonType & {
-  // type: "link";
   linkProps: LinkProps;
 };
 
 // props の型がbutton型かlink型かを判断する関数を定義する。
-// props にonClickを持っている場合は true
+// props に button を持っている場合は true
 const isButton = (props: ButtonType | LinkType): props is ButtonType => {
-  // return "onClick" in props;
   return "button" in props;
 };
 
@@ -70,11 +66,7 @@ export const Button: FC<ButtonType | LinkType> = (props) => {
       <button className={classes}>
         {props.startIcon && <div className={iconClasses}>{props.startIcon}</div>}
         <strong>{props.children}</strong>
-        {props.EndIcon && (
-          <div className={iconClasses}>
-            <props.EndIcon disabled={props.disabled} />
-          </div>
-        )}
+        {props.endIcon && <div className={iconClasses}>{props.endIcon}</div>}
       </button>
     );
   }
@@ -85,37 +77,17 @@ export const Button: FC<ButtonType | LinkType> = (props) => {
         <button className={classes} onClick={props.onClick} onKeyDown={props.onKeyDown}>
           {props.startIcon ? <div className={iconClasses}>{props.startIcon}</div> : null}
           <strong>{props.children}</strong>
-          {props.EndIcon ? (
-            <div className={iconClasses}>
-              <props.EndIcon />
-            </div>
-          ) : null}
+          {props.endIcon ? <div className={iconClasses}>{props.endIcon}</div> : null}
         </button>
       ) : (
         <Link {...props.linkProps} legacyBehavior>
           <a className={classes}>
             {props.startIcon ? <div className={iconClasses}>{props.startIcon}</div> : null}
             <strong>{props.children}</strong>
-            {props.EndIcon ? (
-              <div className={iconClasses}>
-                <props.EndIcon />
-              </div>
-            ) : null}
+            {props.endIcon ? <div className={iconClasses}>{props.endIcon}</div> : null}
           </a>
         </Link>
       )}
-
-      {/* {props.disabled && (
-        <button className={classes}>
-          {props.startIcon && <div className={iconClasses}>{props.startIcon}</div>}
-          <strong>{props.children}</strong>
-          {props.EndIcon && (
-            <div className={iconClasses}>
-              <props.EndIcon disabled={props.disabled} />
-            </div>
-          )}
-        </button>
-      )} */}
     </div>
   );
 };
@@ -126,6 +98,5 @@ Button.defaultProps = {
   textColor: "black",
   disabled: false,
   className: "",
-  // button: false,
   size: "small",
 };
