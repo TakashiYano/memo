@@ -8,7 +8,7 @@ type Props = {
   textColor?: "red" | "gray";
 };
 
-export const SigninOut: FC<Props> = (props) => {
+export const SignOut: FC<Props> = (props) => {
   return (
     <svg
       className={cc([{ "text-red-500": !props.disabled, "text-gray-500": props.disabled }, props.className])}
@@ -27,7 +27,7 @@ export const SigninOut: FC<Props> = (props) => {
   );
 };
 // Propsのデフォルト値
-SigninOut.defaultProps = {
+SignOut.defaultProps = {
   className: "w-5 h-5",
   disabled: false,
   textColor: "red",

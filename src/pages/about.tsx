@@ -1,6 +1,6 @@
 import Head from "next/head";
 import { useState } from "react";
-import { SigninOut } from "src/components/icon/SigninOut";
+import { SignOut } from "src/components/icon/SignOut";
 import { Layout } from "src/components/layout";
 import { Button } from "src/components/share/Button";
 
@@ -122,7 +122,7 @@ const About = () => {
               id="appleButton"
               bgColor="white"
               textColor="red"
-              startIcon={<SigninOut />}
+              startIcon={<SignOut />}
               onClick={handleAddCount}
               onKeyDown={handleAddCount}
             >
@@ -135,7 +135,7 @@ const About = () => {
               id="appleButton"
               bgColor="white"
               textColor="red"
-              startIcon={<SigninOut disabled />}
+              startIcon={<SignOut disabled />}
               onClick={handleAddCount}
               onKeyDown={handleAddCount}
               disabled
