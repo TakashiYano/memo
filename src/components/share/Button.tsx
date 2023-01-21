@@ -1,4 +1,3 @@
-/* eslint-disable react/destructuring-assignment */
 /* eslint-disable @typescript-eslint/naming-convention */
 import classcat from "classcat";
 import Link from "next/link";
@@ -11,8 +10,8 @@ type CommonType = {
   disabled?: boolean;
   children?: ReactNode;
   className?: string;
-  StartIcon?: FC;
-  EndIcon?: FC;
+  StartIcon?: FC<any | undefined>;
+  EndIcon?: FC<any | undefined>;
   size?: "large" | "small";
 };
 
@@ -66,7 +65,7 @@ export const Button: FC<ButtonType | LinkType> = (props) => {
   // 発生するため、0 固定としておく（-1だとタブ入力で移動しない）
   return (
     <div className="mx-auto">
-      {isButton(props) ? (
+      {isButton(props) && props.disabled === false && (
         <span
           data-testid={props.id}
           role="button"
@@ -87,8 +86,10 @@ export const Button: FC<ButtonType | LinkType> = (props) => {
             </div>
           )}
         </span>
-      ) : (
-        <Link href={`/${props.linkProps}`}>
+      )}
+
+      {!isButton(props) && props.disabled === false && (
+        <Link href={props.linkProps}>
           <span data-testid={props.id} role="link" className={classes}>
             {props.StartIcon && (
               <div className={iconClasses}>
@@ -103,6 +104,22 @@ export const Button: FC<ButtonType | LinkType> = (props) => {
             )}
           </span>
         </Link>
+      )}
+
+      {props.disabled && (
+        <span data-testid={props.id} className={classes}>
+          {props.StartIcon && (
+            <div className={iconClasses}>
+              <props.StartIcon disabled={props.disabled} />
+            </div>
+          )}
+          <strong>{props.children}</strong>
+          {props.EndIcon && (
+            <div className={iconClasses}>
+              <props.EndIcon disabled={props.disabled} />
+            </div>
+          )}
+        </span>
       )}
     </div>
   );
