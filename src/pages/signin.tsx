@@ -6,58 +6,22 @@ import { GoogleIcon } from "src/components/icon/GoogleIcon";
 import { Button } from "src/components/share/Button";
 
 const Signin: FC = () => {
-  // onClickイベントを渡さないとButtonコンポーネント側でlinkと
-  // 判断されるため処理は何もしないけど、渡す
-  const handleGoogleRegister = () => {
-    return null;
-  };
-  const handleAppleRegister = () => {
-    return null;
-  };
-  const handleBackClick = () => {
-    return null;
-  };
   return (
     <div>
       <Head>
-        <title>Signin</title>;
+        <title>Signin</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div className="bg-gray-200 w-screen h-screen">
-        <Button
-          type="button"
-          id="backButton"
-          color="transparent"
-          className="absolute left-2"
-          onClick={handleBackClick}
-          onKeyDown={handleBackClick}
-        >
+        <Button button id="backButton" bgColor="transparent" className="absolute left-2">
           <ChevronLeft />
         </Button>
         <div className="h-screen flex flex-col justify-center">
           <div className="flex justify-center mb-16">Memo</div>
-          <Button
-            type="button"
-            id="googleButton"
-            color="white"
-            StartIcon={GoogleIcon}
-            size="large"
-            className="w-80"
-            onClick={handleGoogleRegister}
-            onKeyDown={handleGoogleRegister}
-          >
+          <Button button id="googleButton" bgColor="white" startIcon={<GoogleIcon />} size="large" className="w-80">
             Googleでアカウント作成
           </Button>
-          <Button
-            type="button"
-            id="appleButton"
-            color="black"
-            StartIcon={AppleIcon}
-            size="large"
-            className="w-80"
-            onClick={handleAppleRegister}
-            onKeyDown={handleAppleRegister}
-          >
+          <Button button id="appleButton" bgColor="black" startIcon={<AppleIcon />} size="large" className="w-80">
             Appleでアカウント作成
           </Button>
         </div>
