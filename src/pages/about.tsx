@@ -1,8 +1,20 @@
 import type { NextPage } from "next";
 import Head from "next/head";
+import { useState } from "react";
+import { SigninOut } from "src/components/icon/SigninOut";
 import { Layout } from "src/components/layout";
+import { Button } from "src/components/share/Button";
 
 const About: NextPage = () => {
+  const [count, setCount] = useState(0);
+
+  const handleAddCount = () => {
+    // console.log(`Button ${count}`);
+    setCount((preCount) => {
+      return preCount + 1;
+    });
+  };
+
   return (
     <Layout>
       <Head>
@@ -10,6 +22,144 @@ const About: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <h2 className="text-gray-800 dark:text-white">About</h2>
+      <div className="flex flex-col">
+        <div className="my-4 ml-4">
+          <span className="m-auto">ボタンクリック テスト用のアカウント:{count}</span>
+        </div>
+        <div className="flex flex-row justify-start flex-none">
+          <div className="mx-auto">
+            <Button type="button" id="blue" color="blue" onClick={handleAddCount} onKeyDown={handleAddCount}>
+              メモを書く
+            </Button>
+          </div>
+          <div className="mx-auto">
+            <Button type="button" id="blue" color="blue" onClick={handleAddCount} onKeyDown={handleAddCount} disabled>
+              メモを書く
+            </Button>
+          </div>
+          <div className="mx-auto">
+            <Button
+              type="button"
+              id="orange"
+              color="orange"
+              className="w-auto"
+              onClick={handleAddCount}
+              onKeyDown={handleAddCount}
+            >
+              公開中
+            </Button>
+          </div>
+          <div className="mx-auto">
+            <Button
+              type="button"
+              id="orange"
+              color="orange"
+              className="w-auto"
+              onClick={handleAddCount}
+              onKeyDown={handleAddCount}
+              disabled
+            >
+              公開中
+            </Button>
+          </div>
+          <div className="mx-auto">
+            <Button
+              type="button"
+              id="gray"
+              color="gray"
+              className="w-auto"
+              onClick={handleAddCount}
+              onKeyDown={handleAddCount}
+            >
+              キャンセル
+            </Button>
+          </div>
+          <div className="mx-auto">
+            <Button type="button" id="gray" color="gray" onClick={handleAddCount} onKeyDown={handleAddCount} disabled>
+              キャンセル
+            </Button>
+          </div>
+        </div>
+        <div className="flex flex-row justify-start">
+          <div className="mx-auto">
+            <Button
+              type="button"
+              id="red"
+              color="red"
+              className="w-32"
+              onClick={handleAddCount}
+              onKeyDown={handleAddCount}
+            >
+              削除する
+            </Button>
+          </div>
+          <div className="mx-auto">
+            <Button
+              type="button"
+              id="red"
+              color="red"
+              className="w-32"
+              onClick={handleAddCount}
+              onKeyDown={handleAddCount}
+              disabled
+            >
+              削除する
+            </Button>
+          </div>
+          <div className="mx-auto">
+            <Button
+              type="button"
+              id="appleButton"
+              color="white"
+              textColor="blue"
+              onClick={handleAddCount}
+              onKeyDown={handleAddCount}
+            >
+              プロフィール設定
+            </Button>
+          </div>
+          <div className="mx-auto">
+            <Button
+              type="button"
+              id="appleButton"
+              color="white"
+              textColor="blue"
+              onClick={handleAddCount}
+              onKeyDown={handleAddCount}
+              disabled
+            >
+              プロフィール設定
+            </Button>
+          </div>
+          <div className="mx-auto">
+            <Button
+              type="button"
+              id="appleButton"
+              color="white"
+              textColor="red"
+              StartIcon={SigninOut}
+              onClick={handleAddCount}
+              onKeyDown={handleAddCount}
+            >
+              ログアウト
+            </Button>
+          </div>
+          <div className="mx-auto">
+            <Button
+              type="button"
+              id="appleButton"
+              color="white"
+              textColor="red"
+              StartIcon={SigninOut}
+              onClick={handleAddCount}
+              onKeyDown={handleAddCount}
+              disabled
+            >
+              ログアウト
+            </Button>
+          </div>
+        </div>
+      </div>
     </Layout>
   );
 };
