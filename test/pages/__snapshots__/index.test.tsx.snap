@@ -49,9 +49,6 @@ exports[`Home page matches snapshot 1`] = `
       class="mt-4 text-gray-800 dark:text-white"
     >
       <div>
-        failed to load
-      </div>
-      <div>
         loading...
       </div>
     </div>
