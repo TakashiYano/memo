@@ -26,6 +26,7 @@ export const SignOut: FC<Props> = (props) => {
     </svg>
   );
 };
+
 // Propsのデフォルト値
 SignOut.defaultProps = {
   className: "w-5 h-5",

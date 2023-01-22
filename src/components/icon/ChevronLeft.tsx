@@ -18,6 +18,7 @@ export const ChevronLeft: FC<Props> = (props) => {
     </svg>
   );
 };
+
 // Propsのデフォルト値
 ChevronLeft.defaultProps = {
   className: "w-5 h-5",
