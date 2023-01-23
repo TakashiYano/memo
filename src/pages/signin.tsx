@@ -3,7 +3,7 @@ import type { FC } from "react";
 import { AppleIcon } from "src/components/icon/AppleIcon";
 import { ChevronLeft } from "src/components/icon/ChevronLeft";
 import { GoogleIcon } from "src/components/icon/GoogleIcon";
-import { Button } from "src/components/share/Button";
+import { Button } from "src/components/shared/Button";
 
 const Signin: FC = () => {
   return (
