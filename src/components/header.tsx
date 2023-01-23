@@ -4,7 +4,8 @@ import type { FC } from "react";
 
 const items = [
   { href: "/", label: "Home" },
-  { href: "/about", label: "About" },
+  { href: "/async", label: "非同期" },
+  { href: "/button", label: "ボタン" },
 ];
 
 export const Header: FC = () => {
