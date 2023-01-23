@@ -1,13 +1,13 @@
 import Link from "next/link";
 import { useTheme } from "next-themes";
-import type { VFC } from "react";
+import type { FC } from "react";
 
 const items = [
   { href: "/", label: "Home" },
   { href: "/about", label: "About" },
 ];
 
-export const Header: VFC = () => {
+export const Header: FC = () => {
   const { theme, setTheme } = useTheme();
 
   const handleClick = () => {
