@@ -14,10 +14,10 @@ const Signin: NextPage = () => {
         <div className="h-screen flex flex-col justify-center">
           <div className="flex justify-center mb-16">Memo</div>
           <Button button id="googleButton" bgColor="white" startIcon={<GoogleIcon />} size="large" className="w-80">
-            Googleでアカウント作成
+            Googleでログイン
           </Button>
           <Button button id="appleButton" bgColor="black" startIcon={<AppleIcon />} size="large" className="w-80">
-            Appleでアカウント作成
+            Appleでログイン
           </Button>
         </div>
       </div>
