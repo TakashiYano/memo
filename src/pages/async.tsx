@@ -1,10 +1,11 @@
 /* eslint-disable no-console */
+import type { NextPage } from "next";
 import Image from "next/image";
 import { Layout } from "src/components/layout";
 import type { User, UserPutRequest } from "src/models/user";
 import useSWR from "swr";
 
-const Async = () => {
+const Async: NextPage = () => {
   const { data, error } = useSWR<User>("/users/foo");
 
   const handleClick = async () => {

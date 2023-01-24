@@ -1,10 +1,10 @@
-import type { FC } from "react";
+import type { NextPage } from "next";
 import { AppleIcon } from "src/components/icon/AppleIcon";
 import { ChevronLeft } from "src/components/icon/ChevronLeft";
 import { GoogleIcon } from "src/components/icon/GoogleIcon";
 import { Button } from "src/components/shared/Button";
 
-const Signin: FC = () => {
+const Signin: NextPage = () => {
   return (
     <div>
       <div className="bg-gray-200 w-screen h-screen">
