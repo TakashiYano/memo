@@ -2,7 +2,7 @@
 import cc from "classcat";
 import type { LinkProps } from "next/link";
 import Link from "next/link";
-import type { DOMAttributes, FC, ReactNode } from "react";
+import type { ComponentProps, FC, ReactNode } from "react";
 
 type CommonType = {
   id: string;
@@ -18,7 +18,7 @@ type CommonType = {
 
 type ButtonType = CommonType & {
   button: boolean;
-  onClick?: DOMAttributes<HTMLButtonElement>["onClick"];
+  onClick?: ComponentProps<"button">["onClick"];
 };
 
 type LinkType = CommonType & {
