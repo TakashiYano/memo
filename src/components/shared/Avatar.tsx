@@ -50,10 +50,10 @@ export const Avatar: FC<ImgType | ButtonType> = (props) => {
   return (
     <div className={circleStyle}>
       {isImg(props) ? (
-        <Image src={props.src} alt={props.alt} className="rounded-full w-full h-full" />
+        <Image src={props.src} alt={props.alt} width={500} height={500} className="rounded-full w-full h-full" />
       ) : (
         <Button id={`Avatar-${props.id}`} button className={fontStyle}>
-          <span className="m-auto">{props.alt ? props.alt.substr(0, 1) : null}</span>
+          <span className="m-auto">{props.alt ? props.alt.substring(0, 1) : null}</span>
         </Button>
       )}
     </div>
