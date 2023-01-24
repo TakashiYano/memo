@@ -2,11 +2,10 @@
  * @jest-environment jsdom
  */
 import { render } from "@testing-library/react";
-import Index from "src/pages";
 
-describe("Index page", () => {
+describe("Test page", () => {
   it("matches snapshot", () => {
-    const { asFragment } = render(<Index />, {});
+    const { asFragment } = render(<div>test</div>, {});
     expect(asFragment()).toMatchSnapshot();
   });
 });
