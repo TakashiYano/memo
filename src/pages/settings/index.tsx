@@ -16,7 +16,7 @@ const Settings: NextPage = () => {
         <span className="block text-center w-full text-xl font-bold">プロフィール設定</span>
       </p>
       <ProfileSetting />
-      <Button button className="w-full">
+      <Button button className="w-full mt-8">
         保存する
       </Button>
     </div>
