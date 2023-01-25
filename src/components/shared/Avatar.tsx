@@ -24,7 +24,7 @@ const isImg = (props: ImgType | ButtonType): props is ImgType => {
 
 export const Avatar: FC<ImgType | ButtonType> = (props) => {
   // サイズ small:36px medium:48px large:72px extralarge:100px
-  const circleStyle = cc([
+  const circleClasses = cc([
     "relative m-2",
     {
       "w-9 h-9": props.size === "small",
@@ -35,7 +35,7 @@ export const Avatar: FC<ImgType | ButtonType> = (props) => {
     props.className,
   ]);
 
-  const fontStyle = cc([
+  const fontClasses = cc([
     "rounded-full w-full h-full flex items-center justify-center bg-blue-300",
     {
       "text-2xl": props.size === "small",
@@ -46,11 +46,11 @@ export const Avatar: FC<ImgType | ButtonType> = (props) => {
   ]);
 
   return (
-    <div className={circleStyle}>
+    <div className={circleClasses}>
       {isImg(props) && props.src ? (
         <Image src={props.src} alt={props.alt} width={500} height={500} className="rounded-full w-full h-full" />
       ) : (
-        <div className={fontStyle}>
+        <div className={fontClasses}>
           <span className="m-auto">{props.alt.substr(0, 1)}</span>
         </div>
       )}
