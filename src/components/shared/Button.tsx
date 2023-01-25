@@ -5,7 +5,6 @@ import Link from "next/link";
 import type { ComponentProps, FC, ReactNode } from "react";
 
 type CommonType = {
-  id: string;
   bgColor?: "blue" | "red" | "black" | "white" | "gray" | "orange" | "transparent";
   textColor?: "black" | "red" | "blue";
   disabled?: boolean;
@@ -33,7 +32,7 @@ const isButton = (props: ButtonType | LinkType): props is ButtonType => {
 
 export const Button: FC<ButtonType | LinkType> = (props) => {
   const classes = cc([
-    "mx-auto rounded-full focus:outline-none flex flex-row justify-center",
+    "mx-auto rounded-full focus:outline-none flex flex-row justify-center whitespace-nowrap",
     {
       "py-4 px-8 my-4": props.size === "large",
       "py-2 px-4 my-4": props.size === "small",

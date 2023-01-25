@@ -3,7 +3,6 @@ import cc from "classcat";
 import type { ComponentProps, FC } from "react";
 
 type CommonType = {
-  id: string;
   title?: string;
   placeholder?: string;
   className?: string;

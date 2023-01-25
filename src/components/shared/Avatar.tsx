@@ -5,7 +5,6 @@ import type { FC } from "react";
 import { Button } from "src/components/shared/Button";
 
 type CommonType = {
-  id: string;
   alt: string;
   className?: string;
   size?: "small" | "medium" | "large" | "extralarge";
@@ -52,7 +51,7 @@ export const Avatar: FC<ImgType | ButtonType> = (props) => {
       {isImg(props) ? (
         <Image src={props.src} alt={props.alt} width={500} height={500} className="rounded-full w-full h-full" />
       ) : (
-        <Button id={`Avatar-${props.id}`} button className={fontStyle}>
+        <Button button className={fontStyle}>
           <span className="m-auto">{props.alt ? props.alt.substring(0, 1) : null}</span>
         </Button>
       )}
