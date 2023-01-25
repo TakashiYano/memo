@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/naming-convention */
 import cc from "classcat";
-import type { DOMAttributes } from "react";
+import type { DOMAttributes, FC } from "react";
 
 type CommonType = {
   label?: string;
@@ -28,7 +28,7 @@ const isTextarea = (props: TextareaType | InputType): props is TextareaType => {
   return "multiline" in props;
 };
 
-export const InputText: React.FC<TextareaType | InputType> = (props) => {
+export const InputText: FC<TextareaType | InputType> = (props) => {
   // テキストボックスにフォーカスがある場合にボーダーラインの表示を切り替える
   const divStyle = cc([
     "flex text-center my-auto outline-none transition-colors",

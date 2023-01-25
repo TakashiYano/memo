@@ -1,13 +1,13 @@
 /* eslint-disable @typescript-eslint/naming-convention */
 import cc from "classcat";
 import Image from "next/image";
-import type { FC } from "react";
+import type { FC, MouseEvent } from "react";
 
 type CommonType = {
   alt: string;
   className?: string;
   size?: "small" | "medium" | "large" | "extralarge";
-  onClick?: (e: React.MouseEvent<HTMLElement>) => void;
+  onClick?: (e: MouseEvent<HTMLElement>) => void;
 };
 
 type ImgType = CommonType & {
