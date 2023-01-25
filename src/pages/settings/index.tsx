@@ -4,6 +4,51 @@ import Link from "next/link";
 import { ChevronRight } from "src/components/icon/ChevronRight";
 import { XIcon } from "src/components/icon/XIcon";
 
+type Menu = {
+  category: string;
+  details: {
+    link: string;
+    name: string;
+  }[];
+};
+
+const MENUS: Menu[] = [
+  {
+    category: "設定",
+    details: [
+      {
+        link: "/settings/profile",
+        name: "プロフィール設定",
+      },
+      {
+        link: "/settings/account",
+        name: "アカウント設定",
+      },
+      {
+        link: "/settings/notification",
+        name: "通知設定",
+      },
+    ],
+  },
+  {
+    category: "サポート",
+    details: [
+      {
+        link: "/privacy",
+        name: "プライバシーポリシー",
+      },
+      {
+        link: "/terms",
+        name: "利用規約",
+      },
+      {
+        link: "/license",
+        name: "ライセンス",
+      },
+    ],
+  },
+];
+
 const Settings: NextPage = () => {
   return (
     <div className="max-w-screen-sm mx-auto p-4">
@@ -16,45 +61,29 @@ const Settings: NextPage = () => {
         <span className="block text-center w-full text-xl font-bold">マイページ</span>
       </p>
 
-      <p className="py-2 text-gray-400 font-bold">設定</p>
-      <Link href="/settings/profile" legacyBehavior>
-        <a className="flex justify-between items-center mb-3">
-          <div className="mt-2 font-bold text-lg">プロフィール設定</div>
-          <ChevronRight />
-        </a>
-      </Link>
-      <Link href="/settings/account" legacyBehavior>
-        <a className="flex justify-between items-center mb-3">
-          <div className="mt-2 font-bold text-lg">アカウント設定</div>
-          <ChevronRight />
-        </a>
-      </Link>
-      <Link href="/settings/notification" legacyBehavior>
-        <a className="flex justify-between items-center mb-3">
-          <div className="mt-2 font-bold text-lg">通知設定</div>
-          <ChevronRight />
-        </a>
-      </Link>
-
-      <p className="mt-6 py-2 text-gray-400 font-bold">サポート</p>
-      <Link href="/privacy" legacyBehavior>
-        <a className="flex justify-between items-center mb-3">
-          <div className="amt-3 font-bold text-lg">プライバシーポリシー</div>
-          <ChevronRight />
-        </a>
-      </Link>
-      <Link href="/terms" legacyBehavior>
-        <a className="flex justify-between items-center mb-3">
-          <div className="mt-3 font-bold text-lg">利用規約</div>
-          <ChevronRight />
-        </a>
-      </Link>
-      <Link href="/license" legacyBehavior>
-        <a className="flex justify-between items-center mb-3">
-          <div className="mt-3 font-bold text-lg">ライセンス</div>
-          <ChevronRight />
-        </a>
-      </Link>
+      <ul>
+        {MENUS.map((menu) => {
+          return (
+            <li key={menu.category}>
+              <p className="mt-6 py-2 text-gray-400 font-bold">{menu.category}</p>
+              <ul>
+                {menu.details.map((detail) => {
+                  return (
+                    <li key={detail.link}>
+                      <Link href={detail.link} legacyBehavior>
+                        <a className="flex justify-between items-center mb-3">
+                          <div className="mt-2 font-bold text-lg">{detail.name}</div>
+                          <ChevronRight />
+                        </a>
+                      </Link>
+                    </li>
+                  );
+                })}
+              </ul>
+            </li>
+          );
+        })}
+      </ul>
 
       <p className="mt-6 py-2 text-gray-400 font-bold">アクション</p>
       <div className="flex justify-between items-center mb-3">
