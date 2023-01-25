@@ -17,3 +17,8 @@ export type ListNote = {
   public: boolean;
   date: string;
 };
+
+export type SearchHistory = {
+  id: number;
+  keyword: string;
+};
