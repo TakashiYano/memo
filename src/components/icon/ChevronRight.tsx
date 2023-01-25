@@ -2,7 +2,6 @@ import type { FC } from "react";
 
 type Props = {
   className?: string;
-  disabled?: boolean;
 };
 
 export const ChevronRight: FC<Props> = (props) => {
@@ -20,5 +19,4 @@ export const ChevronRight: FC<Props> = (props) => {
 // Propsのデフォルト値
 ChevronRight.defaultProps = {
   className: "w-5 h-5",
-  disabled: false,
 };
