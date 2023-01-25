@@ -13,7 +13,7 @@ type CommonType = {
 };
 
 type TextareaType = CommonType & {
-  multiline?: boolean;
+  multiline: boolean;
   maxLength?: number;
   rows?: number;
   onChange?: DOMAttributes<HTMLTextAreaElement>["onChange"];
