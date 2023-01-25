@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/naming-convention */
 import cc from "classcat";
-import type { ComponentProps, FC } from "react";
+import type { DOMAttributes } from "react";
 
 type CommonType = {
   label?: string;
@@ -16,11 +16,10 @@ type TextareaType = CommonType & {
   multiline?: boolean;
   maxLength?: number;
   rows?: number;
-  onChange?: ComponentProps<"textarea">["onChange"];
+  onChange?: DOMAttributes<HTMLTextAreaElement>["onChange"];
 };
-
 type InputType = CommonType & {
-  onChange?: ComponentProps<"input">["onChange"];
+  onChange?: DOMAttributes<HTMLInputElement>["onChange"];
 };
 
 // props の型がinput型かtextarea型かを判断する関数を定義する。
@@ -29,12 +28,12 @@ const isTextarea = (props: TextareaType | InputType): props is TextareaType => {
   return "multiline" in props;
 };
 
-export const InputText: FC<TextareaType | InputType> = (props) => {
+export const InputText: React.FC<TextareaType | InputType> = (props) => {
   // テキストボックスにフォーカスがある場合にボーダーラインの表示を切り替える
   const divStyle = cc([
-    "flex text-center my-auto pl-3 pr-10  rounded-xl border-2 transition-colors",
+    "flex text-center my-auto pl-3 pr-10 outline-none rounded-full transition-colors",
     {
-      "bg-gray-200": props.bgColor === "gray",
+      "bg-gray-100": props.bgColor === "gray",
       "bg-white": props.bgColor === "white",
       "h-10": !isTextarea(props),
     },
@@ -43,11 +42,10 @@ export const InputText: FC<TextareaType | InputType> = (props) => {
   const inputStyle = cc([
     "w-full m-0 p-0 border-white outline-none my-auto",
     {
-      "bg-gray-200": props.bgColor === "gray",
+      "bg-gray-100": props.bgColor === "gray",
       "bg-white": props.bgColor === "white",
     },
   ]);
-
   const labelStyle = cc([
     {
       "text-black": props.textColor === "black",
@@ -80,7 +78,6 @@ export const InputText: FC<TextareaType | InputType> = (props) => {
     </div>
   );
 };
-
 // Propsのデフォルト値
 InputText.defaultProps = {
   bgColor: "gray",
