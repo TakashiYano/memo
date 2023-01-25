@@ -112,7 +112,11 @@ const Search: NextPage = () => {
   // 検索履歴表示
   const HistoryRender = () => {
     if (!searchHistory) {
-      return null;
+      return (
+        <div>
+          <strong>{keyward}</strong>に一致するメモは見つかりませんでした。
+        </div>
+      );
     }
     return (
       <div className="w-full flex flex-col h-full">
