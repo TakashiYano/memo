@@ -30,7 +30,7 @@ const isTextarea = (props: TextareaType | InputType): props is TextareaType => {
 
 export const InputText: FC<TextareaType | InputType> = (props) => {
   // テキストボックスにフォーカスがある場合にボーダーラインの表示を切り替える
-  const divStyle = cc([
+  const divClasses = cc([
     "flex text-center my-auto outline-none transition-colors",
     {
       "bg-gray-100": props.bgColor === "gray",
@@ -40,14 +40,14 @@ export const InputText: FC<TextareaType | InputType> = (props) => {
     },
     props.className,
   ]);
-  const inputStyle = cc([
+  const inputClasses = cc([
     "w-full m-0 p-0 border-white outline-none my-auto",
     {
       "bg-gray-100": props.bgColor === "gray",
       "bg-white": props.bgColor === "white",
     },
   ]);
-  const labelStyle = cc([
+  const labelClasses = cc([
     {
       "text-black": props.textColor === "black",
       "text-gray-200": props.textColor === "glay",
@@ -57,16 +57,16 @@ export const InputText: FC<TextareaType | InputType> = (props) => {
     <div className="flex flex-col">
       {props.label ? (
         <div>
-          <span className={labelStyle}>{props.label}</span>
+          <span className={labelClasses}>{props.label}</span>
         </div>
       ) : null}
-      <div className={divStyle}>
+      <div className={divClasses}>
         {/* 先頭にアイコンを表示する */}
         {props.startIcon ? props.startIcon : null}
         {/* 複数行表示と切り替える */}
         {isTextarea(props) ? (
           <textarea
-            className={inputStyle}
+            className={inputClasses}
             placeholder={props.placeholder}
             maxLength={props.maxLength}
             rows={props.rows}
@@ -76,7 +76,7 @@ export const InputText: FC<TextareaType | InputType> = (props) => {
         ) : (
           <input
             type="text"
-            className={inputStyle}
+            className={inputClasses}
             placeholder={props.placeholder}
             value={props.value}
             onChange={props.onChange}
