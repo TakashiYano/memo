@@ -12,6 +12,7 @@ type CommonType = {
   className?: string;
   startIcon?: JSX.Element;
   endIcon?: JSX.Element;
+  justifyCenter?: "justify-center" | "justify-start";
   size?: "large" | "small" | "extrasmall";
 };
 
@@ -32,7 +33,8 @@ const isButton = (props: ButtonType | LinkType): props is ButtonType => {
 
 export const Button: FC<ButtonType | LinkType> = (props) => {
   const classes = cc([
-    "mx-auto rounded-full focus:outline-none flex flex-row justify-center whitespace-nowrap",
+    "mx-auto rounded-full focus:outline-none flex flex-row whitespace-nowrap",
+    props.justifyCenter,
     {
       "py-4 px-8 my-4": props.size === "large",
       "py-2 px-4 my-4": props.size === "small",
@@ -97,4 +99,5 @@ Button.defaultProps = {
   bgColor: "blue",
   textColor: "black",
   size: "small",
+  justifyCenter: "justify-center",
 };
