@@ -5,7 +5,7 @@ import Link from "next/link";
 import type { ComponentProps, FC, ReactNode } from "react";
 
 type CommonType = {
-  bgColor?: "blue" | "red" | "black" | "white" | "gray" | "orange" | "transparent";
+  bgColor?: "blue" | "red" | "black" | "white" | "gray" | "transparent";
   textColor?: "black" | "red" | "blue";
   disabled?: boolean;
   children?: ReactNode;
@@ -43,7 +43,6 @@ export const Button: FC<ButtonType | LinkType> = (props) => {
   const colorClasses = cc({
     "text-white bg-blue-500 hover:bg-blue-600": props.bgColor === "blue",
     "text-white bg-red-500 hover:bg-red-600": props.bgColor === "red",
-    "text-white bg-yellow-500 hover:bg-yellow-600": props.bgColor === "orange",
     "text-black bg-gray-300 hover:bg-gray-400": props.bgColor === "gray",
     "text-white bg-black hover:bg-gray-500": props.bgColor === "black",
     "bg-white hover:bg-gray-300": props.bgColor === "white",
