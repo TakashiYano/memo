@@ -21,41 +21,38 @@ export const SearchHistories: FC = () => {
   }
 
   return (
-    <div className="w-full flex flex-col h-full">
-      {data.map((searchHistory) => {
+    <ul className="space-y-1">
+      {data.map((serchHistory) => {
         const handleHistoryClick = async () => {
-          // 検索結果のアイテムをクリックした時の処理
-          alert(`${searchHistory.keyword}で検索`);
+          // 検索結果のアイテムをクリックしたときの処理
+          alert(`${serchHistory.keyword}で検索`);
         };
 
-        // 検索履歴の削除
         const handleHistoryDeleteClick = async () => {
-          // deleteメソッド
-          await fetch(`/users/${user.id}/searchHistories/${searchHistory.id}`, {
+          await fetch(`/users/${user.id}/searchHistories/${serchHistory.id}`, {
             method: "delete",
           });
-          // 検索履歴を取得し直す
           await mutate();
         };
 
         return (
-          <div key={searchHistory.id} className="flex flex-row justify-between w-full my-1">
-            <div className="my-auto hover:bg-gray-100 w-full p-2 pl-6 rounded-full">
-              <Button
-                button
-                className="w-full"
-                bgColor="transparent"
-                textColor="black"
-                size="extrasmall"
-                justifyCenter="justify-start"
-                onClick={handleHistoryClick}
-              >
-                <strong>
-                  <span className="my-auto">{searchHistory.keyword}</span>
-                </strong>
-              </Button>
-            </div>
-            <div>
+          <li key={serchHistory.id}>
+            <div className="flex">
+              <div className="flex-1 my-auto p-2 pl-6 rounded-full hover:bg-gray-100 ">
+                <Button
+                  button
+                  className="w-full"
+                  bgColor="transparent"
+                  textColor="black"
+                  size="extrasmall"
+                  justifyCenter="justify-start"
+                  onClick={handleHistoryClick}
+                >
+                  <strong>
+                    <span className="my-auto">{serchHistory.keyword}</span>
+                  </strong>
+                </Button>
+              </div>
               <Button
                 button
                 className="hover:bg-gray-100 rounded-full"
@@ -67,9 +64,9 @@ export const SearchHistories: FC = () => {
                 <XIcon className="text-gray-300 my-2 w-6 h-6" />
               </Button>
             </div>
-          </div>
+          </li>
         );
       })}
-    </div>
+    </ul>
   );
 };
