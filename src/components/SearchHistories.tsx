@@ -45,7 +45,7 @@ export const SearchHistories: FC = () => {
                   bgColor="transparent"
                   textColor="black"
                   size="extrasmall"
-                  justifyCenter="justify-start"
+                  justifyContent="justify-start"
                   onClick={handleHistoryClick}
                 >
                   <strong>
