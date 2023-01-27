@@ -13,6 +13,7 @@ export const TrashIcon: FC<Props> = (props) => {
       className={cc([
         {
           "text-gray-500": props.disabled,
+          "text-red-500": !props.disabled,
         },
         props.className,
       ])}
