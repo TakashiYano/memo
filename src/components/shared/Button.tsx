@@ -67,7 +67,7 @@ export const Button: FC<ButtonType | LinkType> = (props) => {
   if (props.disabled) {
     return (
       <button
-        className={cc(["text-gray-400 bg-gray-300 cursor-not-allowed", classes, props.className])}
+        className={cc(["text-gray-400 bg-gray-200 cursor-not-allowed", classes, props.className])}
         disabled={props.disabled}
       >
         {props.startIcon ? <span className={iconClasses}>{props.startIcon}</span> : null}

@@ -14,7 +14,7 @@ export const TwitterIcon: FC<Props> = (props) => {
     {
       "w-8 h-8": props.size === "large",
       "w-6 h-6": props.size === "small",
-      "text-gray-500": props.disabled,
+      "text-gray-400": props.disabled,
       "text-blue-400": !props.disabled,
     },
     props.className,
