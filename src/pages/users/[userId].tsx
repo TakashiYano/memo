@@ -8,7 +8,6 @@ import { EXAMPLE_USER_01 } from "src/models/user";
 import type { ListNoteType } from "src/types/types";
 import useSWR from "swr";
 
-// **********************************
 // ユーザ情報はログイン時に取得している想定のため、一旦固定値にする
 // Google認証でもApple認証でもOAuth2.0ならトークンでユーザ情報取得しているはず
 const user = EXAMPLE_USER_01;
@@ -30,7 +29,7 @@ const User: NextPage = () => {
             <div className="flex-1">
               <div className="flex flex-row justify-end lg:justify-start">
                 <div className="ml-4">
-                  <Button button>メモを書く</Button>
+                  <Button linkProps={{ href: "/notes/new" }}>メモを書く</Button>
                 </div>
                 <div className="my-auto">
                   <Avatar alt={user.name} src={user.avatarUrl} />
