@@ -7,7 +7,7 @@ export const EXAMPLE_NOTE: NoteType = {
   content
   ・At architecto modi neque, laudantium quidem dicta ipsam voluptates error magnam, cum quibusdam accusamus officiis ex. Architecto minima sequi doloribus veritatis ipsum.
   `,
-  public: false,
+  public: true,
 };
 
 export const EXAMPLE_MY_NOTE_LIST: ListNoteType[] = [
