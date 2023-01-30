@@ -48,7 +48,7 @@ export const Avatar: FC<ImgType | ButtonType> = (props) => {
   return (
     <div className={circleClasses}>
       {isImg(props) && props.src ? (
-        <Image src={props.src} alt={props.alt} width={500} height={500} className="rounded-full w-full h-full" />
+        <Image src={props.src} alt={props.alt} width={500} height={500} className="w-full h-full rounded-full" />
       ) : (
         <div className={fontClasses}>
           <span className="m-auto">{props.alt.substr(0, 1)}</span>

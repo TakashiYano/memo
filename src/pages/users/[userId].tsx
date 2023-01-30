@@ -16,14 +16,14 @@ const User: NextPage = () => {
   const { data: listNote, error } = useSWR<ListNoteType[]>(`/users/${user.id}/notes`);
 
   return (
-    <div className="flex flex-col overscroll-none h-screen">
+    <div className="flex overscroll-none flex-col h-screen">
       <header>
-        <div className="w-10/12 lg:w-auto mx-auto flex flex-col">
+        <div className="flex flex-col mx-auto w-10/12 lg:w-auto">
           <div className="flex flex-row items-center">
             <div className="flex-1">
-              <div className="flex lg:justify-end mr-4">Memo</div>
+              <div className="flex mr-4 lg:justify-end">Memo</div>
             </div>
-            <div className="hidden lg:block flex-1 my-auto mx-16">
+            <div className="hidden flex-1 my-auto mx-16 lg:block">
               <InputText
                 startIcon={<MagnifyingGlassIcon className="my-auto mr-2 w-6 h-6" />}
                 placeholder="メモを検索する"
@@ -42,13 +42,13 @@ const User: NextPage = () => {
           </div>
         </div>
       </header>
-      <div className="w-10/12 lg:w-1/2 mx-auto">
+      <div className="mx-auto w-10/12 lg:w-1/2">
         <div className="flex flex-row my-4">
           <div className="flex flex-col">
             <Avatar alt={user.name} src={user.avatarUrl} size="medium" />
           </div>
           <div className="flex flex-col">
-            <span className="ml-2 my-0">{user.name}</span>
+            <span className="my-0 ml-2">{user.name}</span>
             <Button linkProps={{ href: "/settings/profile" }} size="extrasmall" bgColor="transparent" textColor="blue">
               プロフィール設定
             </Button>
@@ -62,7 +62,7 @@ const User: NextPage = () => {
         </div>
         {error ? <div>メモが登録されていません</div> : null}
         {listNote ? (
-          <div className="w-full flex flex-col h-full">
+          <div className="flex flex-col w-full h-full">
             {listNote.map((note: ListNoteType) => {
               return <MemoCard key={note.id} note={note} />;
             })}

@@ -38,7 +38,7 @@ export const SearchHistories: FC = () => {
         return (
           <li key={serchHistory.id}>
             <div className="flex">
-              <div className="flex-1 my-auto p-2 pl-6 rounded-full hover:bg-gray-100 ">
+              <div className="flex-1 p-2 pl-6 my-auto rounded-full hover:bg-gray-100">
                 <Button
                   button
                   className="w-full"
@@ -55,13 +55,13 @@ export const SearchHistories: FC = () => {
               </div>
               <Button
                 button
-                className="hover:bg-gray-100 rounded-full"
+                className="rounded-full hover:bg-gray-100"
                 bgColor="transparent"
                 textColor="black"
                 size="extrasmall"
                 onClick={handleHistoryDeleteClick}
               >
-                <XMarkIcon className="text-gray-300 my-2 w-6 h-6" />
+                <XMarkIcon className="my-2 w-6 h-6 text-gray-300" />
               </Button>
             </div>
           </li>

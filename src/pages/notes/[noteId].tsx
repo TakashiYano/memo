@@ -122,17 +122,17 @@ const Note: NextPage = () => {
   };
 
   return (
-    <div className="max-w-screen-sm mx-auto h-screen flex flex-col">
-      <div className="relative flex items-center justify-between">
+    <div className="flex flex-col mx-auto max-w-screen-sm h-screen">
+      <div className="flex relative justify-between items-center">
         <div>
           <Button button bgColor="transparent" textColor="black" onClick={handleContentSave}>
             <ChevronLeftIcon className="w-5 h-5" />
           </Button>
         </div>
 
-        <div className="ml-auto flex items-center">
+        <div className="flex items-center ml-auto">
           {data?.public ? (
-            <span className="py-1 px-2 rounded-full w-auto text-xs text-white bg-yellow-500">公開中</span>
+            <span className="py-1 px-2 w-auto text-xs text-white bg-yellow-500 rounded-full">公開中</span>
           ) : null}
           <Button button bgColor="transparent" textColor="black" onClick={handleMenuOpen}>
             <EllipsisHorizontalCircleIcon className="w-5 h-5" />
@@ -140,9 +140,9 @@ const Note: NextPage = () => {
         </div>
       </div>
 
-      <div className="h-full w-full p-4 outline-none transition-colors">
+      <div className="p-4 w-full h-full transition-colors outline-none">
         <textarea
-          className="min-h-full w-full px-2 outline-none transition-colors"
+          className="px-2 w-full min-h-full transition-colors outline-none"
           value={content}
           onChange={handleContentChange}
           placeholder="本文を入力する"
@@ -150,7 +150,7 @@ const Note: NextPage = () => {
       </div>
 
       {publicOpen ? (
-        <div className="z-50 absolute left-1/2 transform -translate-x-1/2">
+        <div className="absolute left-1/2 z-50 transform -translate-x-1/2">
           <Button button startIcon={<CheckCircleIcon className="w-5 h-5" />} onClick={handlePublicClose}>
             メモを公開しました
           </Button>
