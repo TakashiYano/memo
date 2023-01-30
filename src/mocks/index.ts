@@ -1,9 +1,15 @@
-export const setServer = () => {
+const initMocks = async () => {
   if (typeof window === "undefined") {
-    const { server } = require("./server");
+    const { server } = await import("./server");
     server.listen();
   } else {
-    const { worker } = require("./browser");
-    worker.start();
+    const { worker } = await import("./browser");
+    worker.start({
+      onUnhandledRequest: "bypass",
+    });
   }
 };
+
+initMocks();
+
+export {};
