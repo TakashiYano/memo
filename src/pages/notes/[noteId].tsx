@@ -4,6 +4,7 @@ import { useRouter } from "next/router";
 import type { ComponentProps } from "react";
 import { useEffect } from "react";
 import { useState } from "react";
+import { ConfirmDelete } from "src/components/ConfirmDelete";
 import { CheckCircle } from "src/components/icon/CheckCircle";
 import { ChevronLeft } from "src/components/icon/ChevronLeft";
 import { DotsCircleHorizontalIcon } from "src/components/icon/DotsCircleHorizontalIcon";
@@ -157,12 +158,13 @@ const Note: NextPage = () => {
           </Button>
         </div>
       ) : null}
-
-      <MemoMenu
+      <ConfirmDelete
         memoDelete={memoDelete}
         onDeleteModalClose={handleDeleteModalClose}
-        onDeleteModalOpen={handleDeleteModalOpen}
         onMemoDeleteClick={handleMemoDeleteClick}
+      />
+      <MemoMenu
+        onDeleteModalOpen={handleDeleteModalOpen}
         menuOpen={menuOpen}
         onMenuClose={handleMenuClose}
         publicFlg={publicFlg}
