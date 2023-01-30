@@ -9,7 +9,7 @@ export const hasAvatarUrl = (user: UserPutRequest): user is UserType | Pick<User
 };
 
 export const EXAMPLE_USER_01: UserType = {
-  id: "enginner",
+  id: "engineer",
   name: "エンジニア",
   avatarUrl: "/mocks/avatar01.jpg",
 };
