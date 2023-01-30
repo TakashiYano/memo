@@ -2,6 +2,7 @@ import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 import type { NextPage } from "next";
 import { Avatar } from "src/components/shared/Avatar";
 import { Button } from "src/components/shared/Button";
+import { Header } from "src/components/shared/Header";
 import { InputText } from "src/components/shared/InputText";
 import { MemoCard } from "src/components/users/MemoCard";
 import { EXAMPLE_USER_01 } from "src/models/user";
@@ -17,35 +18,12 @@ const User: NextPage = () => {
 
   return (
     <div className="flex overscroll-none flex-col h-screen">
-      <header>
-        <div className="flex flex-col mx-auto w-10/12 lg:w-auto">
-          <div className="flex flex-row items-center">
-            <div className="flex-1">
-              <div className="flex mr-4 lg:justify-end">Memo</div>
-            </div>
-            <div className="hidden flex-1 my-auto mx-16 lg:block">
-              <InputText
-                startIcon={<MagnifyingGlassIcon className="my-auto mr-2 w-6 h-6" />}
-                placeholder="メモを検索する"
-              />
-            </div>
-            <div className="flex-1">
-              <div className="flex flex-row justify-end lg:justify-start">
-                <div className="ml-4">
-                  <Button linkProps={{ href: "/notes/new" }}>メモを書く</Button>
-                </div>
-                <div className="my-auto">
-                  <Avatar alt={user.name} src={user.avatarUrl} />
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </header>
+      <Header />
+
       <div className="mx-auto w-10/12 lg:w-1/2">
         <div className="flex flex-row my-4">
           <div className="flex flex-col">
-            <Avatar alt={user.name} src={user.avatarUrl} size="medium" />
+            <Avatar alt={user.name} src={user.avatarUrl} className="w-12 h-12" />
           </div>
           <div className="flex flex-col">
             <span className="my-0 ml-2">{user.name}</span>
