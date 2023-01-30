@@ -1,13 +1,11 @@
 /* eslint-disable @typescript-eslint/naming-convention */
+import { CheckCircleIcon, ChevronLeftIcon, EllipsisHorizontalCircleIcon } from "@heroicons/react/24/outline";
 import type { NextPage } from "next";
 import { useRouter } from "next/router";
 import type { ComponentProps } from "react";
 import { useEffect } from "react";
 import { useState } from "react";
 import { ConfirmDelete } from "src/components/ConfirmDelete";
-import { CheckCircle } from "src/components/icon/CheckCircle";
-import { ChevronLeft } from "src/components/icon/ChevronLeft";
-import { DotsCircleHorizontalIcon } from "src/components/icon/DotsCircleHorizontalIcon";
 import { MemoMenu } from "src/components/MemoMenu";
 import { Button } from "src/components/shared/Button";
 import { EXAMPLE_USER_01 } from "src/models/user";
@@ -128,7 +126,7 @@ const Note: NextPage = () => {
       <div className="relative flex items-center justify-between">
         <div>
           <Button button bgColor="transparent" textColor="black" onClick={handleContentSave}>
-            <ChevronLeft />
+            <ChevronLeftIcon className="w-5 h-5" />
           </Button>
         </div>
 
@@ -137,7 +135,7 @@ const Note: NextPage = () => {
             <span className="py-1 px-2 rounded-full w-auto text-xs text-white bg-yellow-500">公開中</span>
           ) : null}
           <Button button bgColor="transparent" textColor="black" onClick={handleMenuOpen}>
-            <DotsCircleHorizontalIcon />
+            <EllipsisHorizontalCircleIcon className="w-5 h-5" />
           </Button>
         </div>
       </div>
@@ -153,7 +151,7 @@ const Note: NextPage = () => {
 
       {publicOpen ? (
         <div className="z-50 absolute left-1/2 transform -translate-x-1/2">
-          <Button button startIcon={<CheckCircle />} onClick={handlePublicClose}>
+          <Button button startIcon={<CheckCircleIcon className="w-5 h-5" />} onClick={handlePublicClose}>
             メモを公開しました
           </Button>
         </div>

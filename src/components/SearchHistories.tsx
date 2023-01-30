@@ -1,5 +1,5 @@
+import { XMarkIcon } from "@heroicons/react/24/outline";
 import type { FC } from "react";
-import { XIcon } from "src/components/icon/XIcon";
 import { Button } from "src/components/shared/Button";
 import { EXAMPLE_USER_01 } from "src/models/user";
 import type { SearchHistoryType } from "src/types/types";
@@ -61,7 +61,7 @@ export const SearchHistories: FC = () => {
                 size="extrasmall"
                 onClick={handleHistoryDeleteClick}
               >
-                <XIcon className="text-gray-300 my-2 w-6 h-6" />
+                <XMarkIcon className="text-gray-300 my-2 w-6 h-6" />
               </Button>
             </div>
           </li>

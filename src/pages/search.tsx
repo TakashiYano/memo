@@ -1,9 +1,7 @@
+import { ChevronLeftIcon, MagnifyingGlassIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import type { NextPage } from "next";
 import type { DOMAttributes } from "react";
 import { useState } from "react";
-import { ChevronLeft } from "src/components/icon/ChevronLeft";
-import { SearchIcon } from "src/components/icon/SearchIcon";
-import { XIcon } from "src/components/icon/XIcon";
 import { SearchHistories } from "src/components/SearchHistories";
 import { SearchResults } from "src/components/SearchResults";
 import { Button } from "src/components/shared/Button";
@@ -48,12 +46,12 @@ const Search: NextPage = () => {
             bgColor="transparent"
             size="extrasmall"
           >
-            <ChevronLeft />
+            <ChevronLeftIcon className="w-5 h-5" />
           </Button>
           <form className="flex-1" onSubmit={handleSubmit}>
             <InputText
               className="w-full"
-              startIcon={<SearchIcon className="my-auto mr-2 w-6 h-6 text-gray-200" />}
+              startIcon={<MagnifyingGlassIcon className="my-auto mr-2 w-6 h-6 text-gray-200" />}
               placeholder="検索"
               value={value}
               onChange={handleChange}
@@ -66,7 +64,7 @@ const Search: NextPage = () => {
             size="extrasmall"
             onClick={handleClose}
           >
-            <XIcon className="my-auto w-6 h-6" />
+            <XMarkIcon className="my-auto w-6 h-6" />
           </Button>
         </div>
       </header>

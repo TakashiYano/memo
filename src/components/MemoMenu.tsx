@@ -1,12 +1,8 @@
 import { Dialog, Transition } from "@headlessui/react";
+import { ClipboardIcon, EyeIcon, EyeSlashIcon, TrashIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import type { FC } from "react";
 import { Fragment } from "react";
-import { ClipboardCopy } from "src/components/icon/ClipboardCopy";
-import { EyeIcon } from "src/components/icon/EyeIcon";
-import { EyeOffIcon } from "src/components/icon/EyeOffIcon";
-import { TrashIcon } from "src/components/icon/TrashIcon";
 import { TwitterIcon } from "src/components/icon/TwitterIcon";
-import { XIcon } from "src/components/icon/XIcon";
 import { Button } from "src/components/shared/Button";
 
 type Props = {
@@ -62,7 +58,7 @@ const ModalContent: FC<Omit<Props, "menuOpen">> = (props) => {
           onClick={props.onMenuClose}
         >
           <span className="sr-only">Close panel</span>
-          <XIcon className="h-6 w-6" aria-hidden="true" />
+          <XMarkIcon className="h-6 w-6" aria-hidden="true" />
         </button>
       </div>
 
@@ -74,7 +70,7 @@ const ModalContent: FC<Omit<Props, "menuOpen">> = (props) => {
             bgColor="gray"
             justifyContent="justify-between"
             group="top"
-            endIcon={<EyeOffIcon />}
+            endIcon={<EyeSlashIcon className="w-5 h-5 text-blue-500" />}
             onClick={props.onPublicClick}
           >
             <strong>
@@ -88,7 +84,7 @@ const ModalContent: FC<Omit<Props, "menuOpen">> = (props) => {
             bgColor="gray"
             justifyContent="justify-between"
             group="top"
-            endIcon={<EyeIcon />}
+            endIcon={<EyeIcon className="w-5 h-5 text-blue-500" />}
             onClick={props.onPublicClick}
           >
             <strong>
@@ -102,7 +98,7 @@ const ModalContent: FC<Omit<Props, "menuOpen">> = (props) => {
           bgColor="gray"
           justifyContent="justify-between"
           group="bottom"
-          endIcon={<TrashIcon />}
+          endIcon={<TrashIcon className="w-5 h-5 text-gray-500" />}
           onClick={props.onDeleteModalOpen}
         >
           <strong>
@@ -147,7 +143,7 @@ const ModalContent: FC<Omit<Props, "menuOpen">> = (props) => {
           bgColor="gray"
           justifyContent="justify-between"
           disabled={!props.publicFlg}
-          endIcon={<ClipboardCopy disabled={!props.publicFlg} />}
+          endIcon={<ClipboardIcon className={`w-5 h-5 ${props.publicFlg ? "" : "text-gray-500"}`} />}
         >
           <strong>
             <span className="my-auto">リンクをコピーする</span>

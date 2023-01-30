@@ -1,5 +1,5 @@
+import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 import type { NextPage } from "next";
-import { SearchIcon } from "src/components/icon/SearchIcon";
 import { Avatar } from "src/components/shared/Avatar";
 import { Button } from "src/components/shared/Button";
 import { InputText } from "src/components/shared/InputText";
@@ -24,7 +24,10 @@ const User: NextPage = () => {
               <div className="flex lg:justify-end mr-4">Memo</div>
             </div>
             <div className="hidden lg:block flex-1 my-auto mx-16">
-              <InputText startIcon={<SearchIcon className="my-auto mr-2 w-6 h-6" />} placeholder="メモを検索する" />
+              <InputText
+                startIcon={<MagnifyingGlassIcon className="my-auto mr-2 w-6 h-6" />}
+                placeholder="メモを検索する"
+              />
             </div>
             <div className="flex-1">
               <div className="flex flex-row justify-end lg:justify-start">
@@ -52,7 +55,10 @@ const User: NextPage = () => {
           </div>
         </div>
         <div className="block lg:hidden">
-          <InputText startIcon={<SearchIcon className="my-auto mr-2 w-6 h-6" />} placeholder="メモを検索する" />
+          <InputText
+            startIcon={<MagnifyingGlassIcon className="my-auto mr-2 w-6 h-6" />}
+            placeholder="メモを検索する"
+          />
         </div>
         {error ? <div>メモが登録されていません</div> : null}
         {listNote ? (
