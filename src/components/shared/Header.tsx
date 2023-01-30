@@ -9,7 +9,7 @@ const user = EXAMPLE_USER_01;
 export const Header: FC = () => {
   return (
     <header>
-      <div className="flex items-center px-4 mx-auto max-w-5xl">
+      <div className="flex items-center px-4 mx-auto max-w-screen-lg">
         <Link href="/" legacyBehavior>
           <a>Memo</a>
         </Link>
