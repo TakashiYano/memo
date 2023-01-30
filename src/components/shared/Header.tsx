@@ -1,8 +1,10 @@
 /* eslint-disable @typescript-eslint/naming-convention */
-import { ChevronLeftIcon, EllipsisHorizontalCircleIcon } from "@heroicons/react/24/outline";
+import { Popover, Transition } from "@headlessui/react";
+import { ArrowLeftOnRectangleIcon, ChevronLeftIcon, EllipsisHorizontalCircleIcon } from "@heroicons/react/24/outline";
 import cc from "classcat";
 import Link from "next/link";
 import type { ComponentProps, FC } from "react";
+import { Fragment } from "react";
 import { useMemo } from "react";
 import { Avatar } from "src/components/shared/Avatar";
 import { EXAMPLE_USER_01 } from "src/models/user";
@@ -29,6 +31,7 @@ export const Header: FC<HeaderProps> = (props) => {
             {isNotePage ? <ChevronLeftIcon className="w-5 h-5 sm:hidden" /> : null}
           </a>
         </Link>
+
         <div className="flex items-center ml-auto space-x-2 sm:space-x-3">
           {isNotePage ? (
             <>
@@ -46,11 +49,57 @@ export const Header: FC<HeaderProps> = (props) => {
               </a>
             </Link>
           )}
-          <Link href="/users/foo" legacyBehavior>
-            <a className={cc({ "hidden sm:block": isNotePage })}>
-              <Avatar alt={user.name} src={user.avatarUrl} className="w-9 h-9" />
-            </a>
-          </Link>
+          <Popover className="grid">
+            {({ open }) => {
+              return (
+                <>
+                  <Popover.Button>
+                    <Avatar alt={user.name} src={user.avatarUrl} className="w-9 h-9" />
+                  </Popover.Button>
+
+                  <div className="relative">
+                    <Transition
+                      show={open}
+                      as={Fragment}
+                      enter="transition ease-out duration-200"
+                      enterFrom="opacity-0 -translate-y-1"
+                      enterTo="opacity-100 translate-y-0"
+                      leave="transition ease-in duration-150"
+                      leaveFrom="opacity-100 translate-y-0"
+                      leaveTo="opacity-0 -translate-y-1"
+                    >
+                      <Popover.Panel
+                        static
+                        className="absolute left-full z-10 pl-8 sm:pl-0 mt-2 w-screen max-w-xs transform -translate-x-full sm:px-0 sm:max-w-sm xl:-translate-x-1/2 xl:-left-full 2xl:left-1/2"
+                      >
+                        <div className="overflow-hidden p-4 space-y-2 bg-white rounded-2xl ring-1 ring-gray-400 ring-opacity-5 shadow-lg">
+                          <div>
+                            <Link href="/users/foo" legacyBehavior>
+                              <a className="flex items-center py-2 px-2 rounded-2xl transition duration-150 ease-in-out hover:bg-gray-50 focus:outline-none focus-visible:ring focus-visible:ring-orange-500 focus-visible:ring-opacity-50">
+                                <Avatar alt={user.name} src={user.avatarUrl} className="w-14 h-14" />
+                                <div className="ml-4">
+                                  <p className="text-base font-bold text-gray-900">yanot</p>
+                                  <p className="text-sm text-gray-400">@yanot</p>
+                                </div>
+                              </a>
+                            </Link>
+                          </div>
+                          <div className="grid relative gap-1 bg-white">
+                            <button className="flex items-center p-2 rounded-2xl transition duration-150 ease-in-out hover:bg-gray-50 focus:outline-none focus-visible:ring focus-visible:ring-orange-500 focus-visible:ring-opacity-50">
+                              <div className="flex flex-shrink-0 justify-center items-center">
+                                <ArrowLeftOnRectangleIcon className="w-7 h-7 text-red-500" />
+                              </div>
+                              <p className="ml-4 font-bold text-red-500">ログアウト</p>
+                            </button>
+                          </div>
+                        </div>
+                      </Popover.Panel>
+                    </Transition>
+                  </div>
+                </>
+              );
+            }}
+          </Popover>
         </div>
       </div>
     </header>
