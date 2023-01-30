@@ -1,8 +1,8 @@
 import { XMarkIcon } from "@heroicons/react/24/outline";
 import type { FC } from "react";
-import { Button } from "src/components/shared/Button";
 import { EXAMPLE_USER_01 } from "src/models/user";
 import type { SearchHistoryType } from "src/types/types";
+import type { SWRResponse } from "swr";
 import useSWR from "swr";
 
 const user = EXAMPLE_USER_01;
@@ -12,61 +12,52 @@ export const SearchHistories: FC = () => {
 
   if (error) {
     // 検索結果が取得できなかった場合のエラー処理
-    return null;
+    return <div>error</div>;
   }
 
   if (!data) {
     // 検索結果取得時のローディング処理
-    return null;
+    return <div>loading</div>;
   }
 
   return (
     <ul className="space-y-1">
       {data.map((serchHistory) => {
-        const handleHistoryClick = async () => {
-          // 検索結果のアイテムをクリックしたときの処理
-          alert(`${serchHistory.keyword}で検索`);
-        };
-
-        const handleHistoryDeleteClick = async () => {
-          await fetch(`/users/${user.id}/searchHistories/${serchHistory.id}`, {
-            method: "delete",
-          });
-          await mutate();
-        };
-
         return (
           <li key={serchHistory.id}>
-            <div className="flex">
-              <div className="flex-1 p-2 pl-6 my-auto rounded-full hover:bg-gray-100">
-                <Button
-                  button
-                  className="w-full"
-                  bgColor="transparent"
-                  textColor="black"
-                  size="extrasmall"
-                  justifyContent="justify-start"
-                  onClick={handleHistoryClick}
-                >
-                  <strong>
-                    <span className="my-auto">{serchHistory.keyword}</span>
-                  </strong>
-                </Button>
-              </div>
-              <Button
-                button
-                className="rounded-full hover:bg-gray-100"
-                bgColor="transparent"
-                textColor="black"
-                size="extrasmall"
-                onClick={handleHistoryDeleteClick}
-              >
-                <XMarkIcon className="my-2 w-6 h-6 text-gray-300" />
-              </Button>
-            </div>
+            <HistoryItem {...serchHistory} mutate={mutate} />
           </li>
         );
       })}
     </ul>
+  );
+};
+
+type HistoryItemProps = SearchHistoryType & { mutate: SWRResponse<SearchHistoryType[], Error>["mutate"] };
+
+const HistoryItem: FC<HistoryItemProps> = (props) => {
+  const handleHistoryClick = async () => {
+    // 検索結果のアイテムをクリックしたときの処理
+    alert(`${props.keyword}で検索`);
+  };
+
+  const handleHistoryDeleteClick = async () => {
+    // deleteメソッド
+    await fetch(`/users/${user.id}/searchHistories/${props.id}`, {
+      method: "delete",
+    });
+    // 検索履歴を取得し直す
+    await props.mutate();
+  };
+
+  return (
+    <div className="flex">
+      <button className="flex-1 px-2.5 h-10 text-left" onClick={handleHistoryClick}>
+        {props.keyword}
+      </button>
+      <button className="grid flex-shrink-0 place-items-center w-10 h-10" onClick={handleHistoryDeleteClick}>
+        <XMarkIcon className="w-5 h-5 text-gray-300" />
+      </button>
+    </div>
   );
 };

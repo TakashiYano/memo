@@ -21,21 +21,23 @@ export const SearchResults: FC<Props> = (props) => {
     return <div>loading</div>;
   }
 
+  if (data.length === 0) {
+    return (
+      <div>
+        <strong>{props.keyword}</strong>に一致するメモは見つかりませんでした。
+      </div>
+    );
+  }
+
   return (
-    <ul className="space-y-1">
-      {data.length > 0 ? (
-        data.map((note: ListNoteType) => {
-          return (
-            <li key={note.id}>
-              <MemoCard note={note} />
-            </li>
-          );
-        })
-      ) : (
-        <div>
-          <strong>{props.keyword}</strong>に一致するメモは見つかりませんでした。
-        </div>
-      )}
+    <ul className="space-y-5">
+      {data.map((note: ListNoteType) => {
+        return (
+          <li key={note.id}>
+            <MemoCard note={note} />
+          </li>
+        );
+      })}
     </ul>
   );
 };

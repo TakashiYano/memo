@@ -33,12 +33,14 @@ const User: NextPage = () => {
             </div>
           </div>
 
-          <div>
-            <InputText
-              startIcon={<MagnifyingGlassIcon className="my-auto mr-2 w-6 h-6 text-blue-500" />}
-              placeholder="メモを検索する"
-            />
-          </div>
+          <Link href="/search" legacyBehavior>
+            <a className="block">
+              <InputText
+                startIcon={<MagnifyingGlassIcon className="my-auto mr-2 w-5 h-5 text-blue-500" />}
+                placeholder="メモを検索する"
+              />
+            </a>
+          </Link>
 
           {error ? <div>メモが登録されていません</div> : null}
 
