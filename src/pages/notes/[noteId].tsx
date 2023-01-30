@@ -77,17 +77,14 @@ const Note: NextPage = () => {
     setMenuOpen(false);
   };
   // 公開する・しないの切替
-  const handlePublicClick = () => {
-    const feachUpdate = async () => {
-      const req: NotePutRequest = { id: data.id, public: !publicFlg };
-      // 更新
-      await fetch(`/notes/${data.id}/public`, {
-        method: "patch",
-        body: JSON.stringify(req),
-      });
-      await mutate;
-    };
-    feachUpdate();
+  const handlePublicClick = async () => {
+    const req: NotePutRequest = { id: data.id, public: !publicFlg };
+    // 更新
+    await fetch(`/notes/${data.id}/public`, {
+      method: "patch",
+      body: JSON.stringify(req),
+    });
+    await mutate();
     if (!publicFlg) {
       setPublicFlg(true);
     }
@@ -95,40 +92,34 @@ const Note: NextPage = () => {
     setMenuOpen(false);
   };
   // メモ更新
-  const handleContentSave = () => {
-    const fetchUpdate = async () => {
-      if (data?.id === "0") {
-        // 登録処理
-        const req: NotePostRequest = { content: content, public: false };
-        await fetch(`/notes`, {
-          method: "post",
+  const handleContentSave = async () => {
+    if (data?.id === "0") {
+      // 登録処理
+      const req: NotePostRequest = { content: content, public: false };
+      await fetch(`/notes`, {
+        method: "post",
+        body: JSON.stringify(req),
+      });
+    } else {
+      // 更新処理
+      if (data) {
+        const req: NotePutRequest = { id: data.id, content: content };
+        await fetch(`/notes/${data.id}`, {
+          method: "put",
           body: JSON.stringify(req),
         });
-      } else {
-        // 更新処理
-        if (data) {
-          const req: NotePutRequest = { id: data.id, content: content };
-          await fetch(`/notes/${data.id}`, {
-            method: "put",
-            body: JSON.stringify(req),
-          });
-        }
       }
-      await mutate;
-    };
-    router.push(`/users/${user.id}`);
-    fetchUpdate();
+    }
+    await mutate();
+    await router.push(`/users/${user.id}`);
   };
   // メモ削除
-  const handleMemoDeleteClick = () => {
-    const feachDelete = async () => {
-      await fetch(`/notes/${data.id}`, {
-        method: "delete",
-      });
-      await mutate;
-    };
-    router.push(`/users/${user.id}`);
-    feachDelete();
+  const handleMemoDeleteClick = async () => {
+    await fetch(`/notes/${data.id}`, {
+      method: "delete",
+    });
+    await mutate();
+    await router.push(`/users/${user.id}`);
   };
 
   return (
