@@ -1,5 +1,5 @@
+/* eslint-disable @next/next/no-img-element */
 import { UserIcon } from "@heroicons/react/24/solid";
-import Image from "next/image";
 import type { FC } from "react";
 import { Header } from "src/components/shared/Header";
 import { InputText } from "src/components/shared/InputText";
@@ -19,7 +19,7 @@ export const ProfileSetting: FC<ProfileSettingProps> = (props) => {
           <p className="text-gray-400">アイコン</p>
           <div className="flex justify-start items-center space-x-6">
             {props.user ? (
-              <Image src={props.user.avatarUrl} alt={props.user.name} width={96} height={96} className="w-24 h-24" />
+              <img src={props.user.avatarUrl} alt={props.user.name} className="w-24 h-24" />
             ) : (
               <div className="p-2 w-24 h-24 bg-gray-300">
                 <UserIcon className="text-white" />
