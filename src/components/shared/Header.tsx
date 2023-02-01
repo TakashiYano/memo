@@ -1,6 +1,11 @@
 /* eslint-disable @typescript-eslint/naming-convention */
 import { Popover, Transition } from "@headlessui/react";
-import { ArrowLeftOnRectangleIcon, ChevronLeftIcon, EllipsisHorizontalCircleIcon } from "@heroicons/react/24/outline";
+import {
+  ArrowLeftOnRectangleIcon,
+  ChevronLeftIcon,
+  CogIcon,
+  EllipsisHorizontalCircleIcon,
+} from "@heroicons/react/24/outline";
 import cc from "classcat";
 import Link from "next/link";
 import type { ComponentProps, FC } from "react";
@@ -103,7 +108,7 @@ const UserMenu = () => {
                 >
                   <div className="overflow-hidden p-4 space-y-2 bg-white rounded-2xl ring-1 ring-gray-400 ring-opacity-5 shadow-lg">
                     <div>
-                      <Link href="/users/foo" legacyBehavior>
+                      <Link href="/settings/my" legacyBehavior>
                         <a className="flex items-center py-2 px-2 rounded-2xl transition duration-150 ease-in-out hover:bg-gray-50 focus:outline-none focus-visible:ring focus-visible:ring-orange-500 focus-visible:ring-opacity-50">
                           <Avatar alt={user.name} src={user.avatarUrl} className="w-14 h-14" />
                           <div className="ml-4">
@@ -114,9 +119,17 @@ const UserMenu = () => {
                       </Link>
                     </div>
                     <div className="grid relative gap-1 bg-white">
+                      <Link href="/settings/memo" legacyBehavior>
+                        <a className="flex items-center p-2 rounded-2xl transition duration-150 ease-in-out hover:bg-gray-50 focus:outline-none focus-visible:ring focus-visible:ring-orange-500 focus-visible:ring-opacity-50">
+                          <div className="flex flex-shrink-0 justify-center items-center">
+                            <CogIcon className="w-7 h-7" />
+                          </div>
+                          <p className="ml-4 font-bold">設定</p>
+                        </a>
+                      </Link>
                       <button className="flex items-center p-2 rounded-2xl transition duration-150 ease-in-out hover:bg-gray-50 focus:outline-none focus-visible:ring focus-visible:ring-orange-500 focus-visible:ring-opacity-50">
                         <div className="flex flex-shrink-0 justify-center items-center">
-                          <ArrowLeftOnRectangleIcon className="w-7 h-7 text-red-500" />
+                          <ArrowLeftOnRectangleIcon className="ml-0.5 w-7 h-7 text-red-500" />
                         </div>
                         <p className="ml-4 font-bold text-red-500">ログアウト</p>
                       </button>
