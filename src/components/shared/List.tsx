@@ -1,4 +1,4 @@
-import { ChevronRightIcon } from "@heroicons/react/24/outline";
+import { ArrowTopRightOnSquareIcon, ChevronRightIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
 import type { FC } from "react";
 
@@ -15,12 +15,21 @@ export const List: FC<ListProps> = (props) => {
       <div className="px-2 font-bold text-gray-400">{props.title}</div>
       <ul className="mt-2">
         {props.items.map((item) => {
+          const isExternal = item.href.slice(0, 1) !== "/";
           return (
             <li key={item.href}>
               <Link href={item.href} legacyBehavior>
-                <a className="flex items-center justify-between text-lg py-3 px-2 font-bold hover:bg-gray-50">
+                <a
+                  className="flex items-center justify-between text-lg py-3 px-2 font-bold hover:bg-gray-50"
+                  target={isExternal ? "_blank" : undefined}
+                  rel={isExternal ? "noopener noreferrer" : undefined}
+                >
                   <span>{item.label}</span>
-                  <ChevronRightIcon className="w-5 h-5" />
+                  {isExternal ? (
+                    <ArrowTopRightOnSquareIcon className="w-5 h-5" />
+                  ) : (
+                    <ChevronRightIcon className="w-5 h-5" />
+                  )}{" "}
                 </a>
               </Link>
             </li>
