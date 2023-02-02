@@ -44,14 +44,14 @@ const SettingsMemoTheme: NextPage = () => {
                   return cc([
                     "cursor-pointer",
                     {
-                      "bg-gray-50 dark:bg-black": checked || active,
+                      "bg-gray-100 dark:bg-black": checked || active,
                     },
                   ]);
                 }}
               >
                 {({ checked }) => {
                   return (
-                    <div className="flex justify-between items-center py-3 px-4 text-lg hover:bg-gray-50 dark:hover:bg-black">
+                    <div className="flex justify-between items-center py-3 px-4 text-lg hover:bg-gray-100 dark:hover:bg-black">
                       <RadioGroup.Label className="ont-bold text-gray-900 dark:text-white">
                         {THEME_LANG[theme]}
                       </RadioGroup.Label>
