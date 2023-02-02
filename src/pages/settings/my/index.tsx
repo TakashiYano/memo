@@ -23,8 +23,7 @@ const SettingsMy: NextPage = () => {
             items={[
               { label: "プロフィール", href: "/settings/my/profile" },
               { label: "アカウントの連携", href: "/settings/my/account" },
-              { label: "データの削除", href: "foo" },
-              { label: "サポート", href: "bar" },
+              { label: "データの削除", href: "/settings/my/delete" },
             ]}
           />
         </div>
