@@ -19,7 +19,18 @@ const User: NextPage = () => {
 
   return (
     <div className="pb-40">
-      <Header />
+      <Header
+        left="Memo"
+        right={[
+          <Link href="/notes/new" key="write memo" legacyBehavior>
+            <a className="grid place-items-center px-4 h-9 text-sm font-bold text-white bg-blue-500 rounded-full">
+              メモを書く
+            </a>
+          </Link>,
+          "profile",
+        ]}
+      />
+
       <WidthContainer>
         <div className="space-y-7">
           <div className="flex items-center space-x-4">

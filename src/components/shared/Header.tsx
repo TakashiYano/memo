@@ -1,88 +1,95 @@
-/* eslint-disable @typescript-eslint/naming-convention */
+/* eslint-disable react/jsx-key */
 import { Popover, Transition } from "@headlessui/react";
-import {
-  ArrowLeftOnRectangleIcon,
-  ChevronLeftIcon,
-  CogIcon,
-  EllipsisHorizontalCircleIcon,
-  XMarkIcon,
-} from "@heroicons/react/24/outline";
-import cc from "classcat";
+import { ArrowLeftOnRectangleIcon, ChevronLeftIcon, CogIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
-import type { ComponentProps, FC } from "react";
+import type { FC } from "react";
 import { Fragment } from "react";
 import { Avatar } from "src/components/shared/Avatar";
 import { EXAMPLE_USER_01 } from "src/models/user";
 
 const user = EXAMPLE_USER_01;
 
-type AllOrNone<T> = T | { [Key in keyof T]?: never };
-type Note = { page: "note"; isPublic: boolean; onMenuClick: ComponentProps<"button">["onClick"] };
-type Setting = { page: "setting"; center?: string; left?: "back" | "close" };
-type HeaderProps = AllOrNone<Note> | AllOrNone<Setting>;
+type Right = "profile" | JSX.Element;
 
-const isNotePage = (props: HeaderProps): props is Note => {
-  return props.page === "note";
-};
-const isSettingPage = (props: HeaderProps): props is Setting => {
-  return props.page === "setting";
+type HeaderProps = {
+  left?: "back" | "close" | string | JSX.Element;
+  center?: string | JSX.Element;
+  right?: [Right, ...Right[]];
 };
 
 export const Header: FC<HeaderProps> = (props) => {
   return (
     <header>
       <div className="flex items-center p-4 pb-8 mx-auto max-w-screen-lg">
-        {isSettingPage(props) && props.left ? (
-          <Link href="/" legacyBehavior>
-            <a className="grid place-items-center w-9 h-9">
-              {props.left === "back" ? <ChevronLeftIcon className="w-5 h-5" /> : <XMarkIcon className="w-5 h-5" />}
-            </a>
-          </Link>
-        ) : null}
+        <Left left={props.left} />
 
-        {!isSettingPage(props) ? (
-          <Link href="/" legacyBehavior>
-            <a className={cc({ "w-9 h-9 grid place-items-center": isNotePage(props) })}>
-              <p className={isNotePage(props) ? "w-32 hidden sm:block" : "w-28 sm:w-32"}>Memo</p>
-              {isNotePage(props) ? <ChevronLeftIcon className="w-5 h-5 sm:hidden" /> : null}
-            </a>
-          </Link>
-        ) : null}
+        <div className={props.center ? "flex-1 flex justify-center" : ""}>
+          <Center center={props.center} />
+        </div>
 
-        {isSettingPage(props) ? (
-          <>
-            <div className="flex flex-1 justify-center">
-              {props.center ? (
-                <div className="text-xl font-bold">{props.center}</div>
-              ) : (
-                <p className="h-5 sm:h-6">Memo</p>
-              )}
-            </div>
-            {props.left ? <div className="w-9" /> : null}
-          </>
-        ) : (
-          <div className="flex items-center ml-auto space-x-2 sm:space-x-3">
-            {isNotePage(props) ? (
-              <>
-                {props.isPublic ? (
-                  <span className="text-xs font-bold py-1 px-2.5 text-white bg-orange-400 rounded-full">公開中</span>
-                ) : null}
-                <button className="grid place-items-center w-9 h-9" onClick={props.onMenuClick}>
-                  <EllipsisHorizontalCircleIcon className="w-5 h-5" />
-                </button>
-              </>
-            ) : (
-              <Link href="/notes/new" legacyBehavior>
-                <a className="grid place-items-center px-4 h-9 text-sm font-bold text-white bg-blue-500 rounded-full">
-                  メモを書く
-                </a>
-              </Link>
-            )}
-            <UserMenu />
+        {props.right ? (
+          <div className="ml-auto">
+            <Right right={props.right} />
           </div>
-        )}
+        ) : props.center ? (
+          <div className="w-9" />
+        ) : null}
       </div>
     </header>
+  );
+};
+
+const Left: FC<Pick<HeaderProps, "left">> = (props) => {
+  if (!props.left) {
+    return null;
+  }
+  if (props.left === "back") {
+    return (
+      <Link href="/" legacyBehavior>
+        <a className="grid place-items-center w-9 h-9">
+          <ChevronLeftIcon className="w-5 h-5" />
+        </a>
+      </Link>
+    );
+  }
+  if (props.left === "close") {
+    return (
+      <Link href="/" legacyBehavior>
+        <a className="grid place-items-center w-9 h-9">
+          <XMarkIcon className="w-5 h-5" />
+        </a>
+      </Link>
+    );
+  }
+  if (typeof props.left === "string") {
+    return <div className="text-xl font-bold">{props.left}</div>;
+  }
+  return props.left;
+};
+
+const Center: FC<Pick<HeaderProps, "center">> = (props) => {
+  if (!props.center) {
+    return null;
+  }
+  if (typeof props.center === "string") {
+    return <div className="text-xl font-bold">{props.center}</div>;
+  }
+  return props.center;
+};
+
+const Right: FC<Pick<HeaderProps, "right">> = (props) => {
+  if (!props.right) {
+    return null;
+  }
+  return (
+    <div className="flex items-center space-x-2 sm:space-x-3">
+      {props.right.map((item) => {
+        if (item === "profile") {
+          return <UserMenu />;
+        }
+        return item;
+      })}
+    </div>
   );
 };
 

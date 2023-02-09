@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/naming-convention */
-import { CheckCircleIcon } from "@heroicons/react/24/outline";
+import { CheckCircleIcon, EllipsisHorizontalCircleIcon } from "@heroicons/react/24/outline";
 import type { NextPage } from "next";
 import { useRouter } from "next/router";
 import type { ComponentProps } from "react";
@@ -119,13 +119,24 @@ const Note: NextPage = () => {
 
   return (
     <div className="flex flex-col min-h-screen">
-      <Header page="note" isPublic={true} onMenuClick={handleMenuOpen} />
-
+      <Header
+        left="Memo"
+        right={[
+          <span key="public" className="text-xs font-bold py-1 px-2.5 text-white bg-orange-400 rounded-full">
+            公開中
+          </span>,
+          <button key="menu" className="grid place-items-center w-9 h-9" onClick={handleMenuOpen}>
+            <EllipsisHorizontalCircleIcon className="w-5 h-5" />
+          </button>,
+          "profile",
+        ]}
+      />
       <WidthContainer className="flex flex-col flex-1 mt-7">
         <label htmlFor="memo" className="flex-1 pb-20 cursor-text">
           <TextareaAutosize
             id="memo"
-            className="px-2 w-full text-lg outline-none resize-none sm:text-xl"
+            style={{ caretColor: "#3B82F6" }}
+            className="px-2 w-full text-lg outline-none resize-none sm:text-2xl"
             value={content}
             onChange={handleContentChange}
             placeholder="メモを入力する"

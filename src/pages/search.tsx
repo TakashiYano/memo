@@ -1,10 +1,10 @@
-import { ChevronLeftIcon, MagnifyingGlassIcon, XMarkIcon } from "@heroicons/react/24/outline";
+import { MagnifyingGlassIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import type { NextPage } from "next";
-import Link from "next/link";
 import type { DOMAttributes } from "react";
 import { useState } from "react";
 import { SearchHistories } from "src/components/SearchHistories";
 import { SearchResults } from "src/components/SearchResults";
+import { Header } from "src/components/shared/Header";
 import { InputText } from "src/components/shared/InputText";
 import { EXAMPLE_USER_01 } from "src/models/user";
 import type { SearchHistoryType } from "src/types/types";
@@ -38,27 +38,25 @@ const Search: NextPage = () => {
 
   return (
     <div className="py-4 px-2 mx-auto space-y-7 max-w-screen-sm sm:px-4">
-      <header className="flex items-center space-x-1">
-        <Link href="/users/foo" legacyBehavior>
-          <a className="grid place-items-center w-10 h-10">
-            <ChevronLeftIcon className="w-6 h-6" />
-          </a>
-        </Link>
-
-        <form className="flex-1" onSubmit={handleSubmit}>
-          <InputText
-            className="w-full"
-            startIcon={<MagnifyingGlassIcon className="my-auto mr-2 w-6 h-6 text-gray-200" />}
-            placeholder="検索"
-            value={value}
-            onChange={handleChange}
-          />
-        </form>
-
-        <button className="grid place-items-center w-10 h-10" onClick={handleClose}>
-          <XMarkIcon className="w-6 h-6" />
-        </button>
-      </header>
+      <Header
+        left="back"
+        center={
+          <form className="flex-1" onSubmit={handleSubmit}>
+            <InputText
+              className="w-full"
+              startIcon={<MagnifyingGlassIcon className="my-auto mr-2 w-6 h-6 text-gray-200" />}
+              placeholder="検索"
+              value={value}
+              onChange={handleChange}
+            />
+          </form>
+        }
+        right={[
+          <button key="delete" type="button" className="grid place-items-center w-9 h-9" onClick={handleClose}>
+            <XMarkIcon className="w-5 h-5" />
+          </button>,
+        ]}
+      />
       <div>{keyword === "" ? <SearchHistories /> : <SearchResults keyword={keyword} />}</div>{" "}
     </div>
   );
