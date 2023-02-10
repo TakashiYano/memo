@@ -2,7 +2,7 @@ import Link from "next/link";
 import type { FC } from "react";
 import type { ListNoteType } from "src/types/types";
 
-type MemoCardProps = { note: ListNoteType };
+type NoteListItemProps = { note: ListNoteType };
 
 // タイトルの取得（改行コードまでをタイトルとする）
 const pattarn = "(^.*)(\n)";
@@ -10,7 +10,7 @@ const getTitle = (excTitle: RegExpMatchArray | null) => {
   return String(excTitle ? excTitle[0] : "");
 };
 
-export const MemoCard: FC<MemoCardProps> = (props) => {
+export const NoteListItem: FC<NoteListItemProps> = (props) => {
   const title = getTitle(props.note.excerpt.match(pattarn));
 
   return (
