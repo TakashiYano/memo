@@ -16,7 +16,7 @@ import useSWR from "swr";
 // Google認証でもApple認証でもOAuth2.0ならトークンでユーザ情報取得しているはず
 const user = EXAMPLE_USER_01;
 
-const Note: NextPage = () => {
+const MemosNoteId: NextPage = () => {
   const router = useRouter();
 
   const [content, setContent] = useState("");
@@ -165,4 +165,4 @@ const Note: NextPage = () => {
   );
 };
 
-export default Note;
+export default MemosNoteId;

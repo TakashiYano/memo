@@ -2,7 +2,7 @@ import type { NextPage } from "next";
 import { Layout } from "src/components/shared/Layout";
 import { RecursiveList } from "src/components/shared/List";
 
-const SettingsAccount: NextPage = () => {
+const SettingsDelete: NextPage = () => {
   return (
     <Layout left="back" center="account">
       <h1 className="text-xl font-bold">データの削除</h1>
@@ -33,4 +33,4 @@ const SettingsAccount: NextPage = () => {
   );
 };
 
-export default SettingsAccount;
+export default SettingsDelete;
