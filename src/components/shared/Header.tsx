@@ -96,7 +96,13 @@ const Right: FC<Pick<HeaderProps, "right">> = (props) => {
   );
 };
 
-const UserMenu = () => {
+const UserMenu: FC = () => {
+  const router = useRouter();
+  const handleSignOut = useCallback(async () => {
+    await router.push("/signin");
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return (
     <Popover className="grid">
       {({ open }) => {
@@ -142,7 +148,10 @@ const UserMenu = () => {
                           <p className="ml-4 font-bold">設定</p>
                         </a>
                       </Link>
-                      <button className="flex items-center py-2.5 px-4 transition duration-150 ease-in-out hover:bg-gray-100 focus:outline-none focus-visible:ring focus-visible:ring-orange-500 focus-visible:ring-opacity-50">
+                      <button
+                        className="flex items-center py-2.5 px-4 transition duration-150 ease-in-out hover:bg-gray-100 focus:outline-none focus-visible:ring focus-visible:ring-orange-500 focus-visible:ring-opacity-50"
+                        onClick={handleSignOut}
+                      >
                         <div className="flex flex-shrink-0 justify-center items-center">
                           <ArrowLeftOnRectangleIcon className="ml-0.5 w-7 h-7 text-red-500" />
                         </div>
