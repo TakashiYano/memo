@@ -2,25 +2,28 @@ import { ArrowTopRightOnSquareIcon, ChevronRightIcon } from "@heroicons/react/24
 import Link from "next/link";
 import type { ComponentProps, FC } from "react";
 
+export type AllOrNone<T> = T | { [Key in keyof T]?: never };
+
 type Link = {
   label: string | JSX.Element;
   href: string;
 };
-type Button = {
-  label: string | JSX.Element;
-  button: {
-    label: JSX.Element;
-    onClick: ComponentProps<"button">["onClick"];
-    clickableAll?: boolean;
-  };
-};
+
+type ComponentButton = { label: string | JSX.Element; button: JSX.Element };
+
+type AllButton = { label: string | JSX.Element; onClick: ComponentProps<"button">["onClick"] };
+
+type Button = ComponentButton | AllButton;
+
 type ListItem = Link | Button;
-type ListProps = {
-  title?: string | JSX.Element;
-  items: [ListItem, ...ListItem[]];
+
+type ListProps = { title?: string | JSX.Element; items: [ListItem, ...ListItem[]] };
+
+const isLink = (item: ListItem): item is Link => {
+  return "href" in item;
 };
 
-const isButton = (item: ListItem): item is Button => {
+const hasButton = (item: Button): item is ComponentButton => {
   return "button" in item;
 };
 
@@ -30,48 +33,49 @@ export const List: FC<ListProps> = (props) => {
       {props.title ? <div className="text-sm font-bold text-gray-400">{props.title}</div> : null}
       <ul>
         {props.items.map((item, i) => {
-          if (isButton(item)) {
-            const handleClick = item.button.onClick;
+          if (isLink(item)) {
+            const isExternal = item.href.slice(0, 1) !== "/";
             return (
               <li key={i}>
-                {item.button.clickableAll ? (
-                  <button
-                    type="button"
-                    onClick={handleClick}
+                <Link href={item.href} legacyBehavior>
+                  <a
                     className="flex justify-between items-center py-3 px-4 -mx-4 text-lg font-bold hover:bg-gray-100"
+                    target={isExternal ? "_blank" : undefined}
+                    rel={isExternal ? "noopener noreferrer" : undefined}
                   >
                     {item.label}
-                    {item.button.label}
-                  </button>
-                ) : (
-                  <div className="flex justify-between items-center py-3 px-4 -mx-4 text-lg font-bold">
-                    {item.label}
-                    <button type="button" onClick={handleClick}>
-                      {item.button.label}
-                    </button>
-                  </div>
-                )}
+                    {isExternal ? (
+                      <ArrowTopRightOnSquareIcon className="w-5 h-5" />
+                    ) : (
+                      <ChevronRightIcon className="w-5 h-5" />
+                    )}
+                  </a>
+                </Link>
               </li>
             );
           }
 
-          const isExternal = item.href.slice(0, 1) !== "/";
+          if (hasButton(item)) {
+            return (
+              <li key={i}>
+                <div className="flex justify-between items-center py-3 px-4 -mx-4 text-lg font-bold">
+                  <div className="flex-1">{item.label}</div>
+                  <div className="flex-shrink-0">{item.button}</div>
+                </div>
+              </li>
+            );
+          }
+
+          const handleClick = item.onClick;
           return (
             <li key={i}>
-              <Link href={item.href} legacyBehavior>
-                <a
-                  className="flex justify-between items-center py-3 px-4 -mx-4 text-lg font-bold hover:bg-gray-100"
-                  target={isExternal ? "_blank" : undefined}
-                  rel={isExternal ? "noopener noreferrer" : undefined}
-                >
-                  {item.label}
-                  {isExternal ? (
-                    <ArrowTopRightOnSquareIcon className="w-5 h-5" />
-                  ) : (
-                    <ChevronRightIcon className="w-5 h-5" />
-                  )}{" "}
-                </a>
-              </Link>
+              <button
+                type="button"
+                onClick={handleClick}
+                className="flex justify-between items-center py-3 px-4 -mx-4 text-lg font-bold hover:bg-gray-100"
+              >
+                {item.label}
+              </button>
             </li>
           );
         })}
