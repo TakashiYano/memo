@@ -155,8 +155,8 @@ const Terms: NextPage = () => {
           </li>
           <li>
             その他、弊サービスのプライバシーに対する考え方の詳細については、 プライバシーポリシー を参照してください。
-            <a target="_blank" rel="noopener noreferrer" href="https://memo.sh/privacy">
-              https://memo.sh/privacy
+            <a target="_blank" rel="noopener noreferrer" href="https://memo.sh/settings/memo/privacy">
+              https://memo.sh/settings/memo/privacy
             </a>
           </li>
         </ol>
