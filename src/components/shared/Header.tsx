@@ -1,7 +1,9 @@
 import { Popover, Transition } from "@headlessui/react";
 import { ArrowLeftOnRectangleIcon, ChevronLeftIcon, CogIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import type { FC } from "react";
+import { useCallback } from "react";
 import { Fragment } from "react";
 import { Avatar } from "src/components/shared/Avatar";
 import { EXAMPLE_USER_01 } from "src/models/user";
@@ -31,25 +33,27 @@ export const Header: FC<HeaderProps> = (props) => {
 };
 
 const Left: FC<Pick<HeaderProps, "left">> = (props) => {
+  const router = useRouter();
+  const handleClick = useCallback(() => {
+    const prevPath = sessionStorage.getItem("prevPath");
+    return prevPath ? router.back() : router.push("/");
+  }, [router]);
+
   if (!props.left) {
     return <div className="w-9 h-9" />;
   }
   if (props.left === "back") {
     return (
-      <Link href="/" legacyBehavior>
-        <a className="grid place-items-center w-9 h-9">
-          <ChevronLeftIcon className="w-5 h-5" />
-        </a>
-      </Link>
+      <button onClick={handleClick} className="grid place-items-center w-9 h-9">
+        <ChevronLeftIcon className="w-5 h-5" />
+      </button>
     );
   }
   if (props.left === "close") {
     return (
-      <Link href="/" legacyBehavior>
-        <a className="grid place-items-center w-9 h-9">
-          <XMarkIcon className="w-5 h-5" />
-        </a>
-      </Link>
+      <button onClick={handleClick} className="grid place-items-center w-9 h-9">
+        <XMarkIcon className="w-5 h-5" />
+      </button>
     );
   }
   if (props.left === "memo") {
