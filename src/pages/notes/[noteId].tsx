@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/naming-convention */
 import { CheckCircleIcon, EllipsisHorizontalCircleIcon } from "@heroicons/react/24/outline";
 import type { NextPage } from "next";
 import { useRouter } from "next/router";
@@ -21,10 +20,10 @@ const Note: NextPage = () => {
   const router = useRouter();
 
   const [content, setContent] = useState("");
-  const [publicFlg, setPublicFlg] = useState(false);
-  const [publicOpen, setPublicOpen] = useState(false);
-  const [menuOpen, setMenuOpen] = useState(false);
-  const [memoDelete, setMemoDelete] = useState(false);
+  const [isPublic, setIsPublic] = useState(false);
+  const [hasPublicAlert, setHasPublicAlert] = useState(false);
+  const [hasMenuDialog, setHasMenuDialog] = useState(false);
+  const [hasDeleteMemoDialog, setHasDeleteMemoDialog] = useState(false);
 
   const { data, error, mutate } = useSWR<NoteType>(`/notes/${router.query.noteId}`, {
     fallbackData: { id: "0", content: "", public: false },
@@ -32,7 +31,7 @@ const Note: NextPage = () => {
 
   useEffect(() => {
     setContent(data?.content ?? "");
-    setPublicFlg(data?.public ?? false);
+    setIsPublic(data?.public ?? false);
   }, [data?.content, data?.public]);
 
   if (error && router.query.noteId !== "new") {
@@ -51,39 +50,39 @@ const Note: NextPage = () => {
   };
   // メモ公開後のボタンクローズ
   const handlePublicClose = () => {
-    setPublicOpen(!publicOpen);
+    setHasPublicAlert(!hasPublicAlert);
   };
   // メニューオープン
   const handleMenuOpen = () => {
-    setMenuOpen(true);
+    setHasMenuDialog(true);
   };
   // メニュークローズ
   const handleMenuClose = () => {
-    setMenuOpen(false);
+    setHasMenuDialog(false);
   };
   // 削除確認画面閉じる
   const handleDeleteModalClose = () => {
-    setMemoDelete(false);
+    setHasDeleteMemoDialog(false);
   };
   // 削除確認画面起動
   const handleDeleteModalOpen = () => {
-    setMemoDelete(true);
-    setMenuOpen(false);
+    setHasDeleteMemoDialog(true);
+    setHasMenuDialog(false);
   };
   // 公開する・しないの切替
   const handlePublicClick = async () => {
-    const req: NotePutRequest = { id: data.id, public: !publicFlg };
+    const req: NotePutRequest = { id: data.id, public: !isPublic };
     // 更新
     await fetch(`/notes/${data.id}/public`, {
       method: "patch",
       body: JSON.stringify(req),
     });
     await mutate();
-    if (!publicFlg) {
-      setPublicOpen(true);
+    if (!isPublic) {
+      setHasPublicAlert(true);
     }
-    setPublicFlg(!publicFlg);
-    setMenuOpen(false);
+    setIsPublic(!isPublic);
+    setHasMenuDialog(false);
   };
   // メモ更新
   // const handleContentSave = async () => {
@@ -141,7 +140,7 @@ const Note: NextPage = () => {
             />
           </label>
 
-          {publicOpen ? (
+          {hasPublicAlert ? (
             <div className="z-50 absolute left-1/2 transform -translate-x-1/2">
               <Button button startIcon={<CheckCircleIcon className="w-5 h-5" />} onClick={handlePublicClose}>
                 メモを公開しました
@@ -151,15 +150,15 @@ const Note: NextPage = () => {
         </div>
       </Layout>
       <ConfirmDelete
-        memoDelete={memoDelete}
+        memoDelete={hasDeleteMemoDialog}
         onDeleteModalClose={handleDeleteModalClose}
         onMemoDeleteClick={handleMemoDeleteClick}
       />
       <MemoMenu
         onDeleteModalOpen={handleDeleteModalOpen}
-        menuOpen={menuOpen}
+        menuOpen={hasMenuDialog}
         onMenuClose={handleMenuClose}
-        publicFlg={publicFlg}
+        publicFlg={isPublic}
         onPublicClick={handlePublicClick}
       />
     </>
