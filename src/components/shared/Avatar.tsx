@@ -1,9 +1,7 @@
 import cc from "classcat";
 import type { FC, ImgHTMLAttributes } from "react";
 
-type AvatarProps = ImgHTMLAttributes<HTMLImageElement> & {
-  alt: string;
-};
+type AvatarProps = ImgHTMLAttributes<HTMLImageElement> & { alt: string };
 
 export const Avatar: FC<AvatarProps> = (props) => {
   // eslint-disable-next-line react/destructuring-assignment

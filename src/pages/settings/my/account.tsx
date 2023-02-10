@@ -1,17 +1,14 @@
 import type { NextPage } from "next";
 import { AppleIcon } from "src/components/icon/AppleIcon";
 import { GoogleIcon } from "src/components/icon/GoogleIcon";
-import { Header } from "src/components/shared/Header";
+import { Layout } from "src/components/shared/Layout";
 import { List } from "src/components/shared/List";
 
 const SettingsAccount: NextPage = () => {
   return (
-    <div className="pb-20">
-      <Header left="back" center="Account" />
-
+    <Layout left="back" center="account">
       <div className="mx-auto max-w-screen-sm">
-        <h1 className="px-4 text-xl font-bold">アカウントの連携</h1>
-
+        <h1 className="text-xl font-bold">アカウントの連携</h1>
         <div className="mt-4">
           <List
             items={[
@@ -49,7 +46,7 @@ const SettingsAccount: NextPage = () => {
           />
         </div>
       </div>
-    </div>
+    </Layout>
   );
 };
 

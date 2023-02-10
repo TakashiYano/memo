@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-key */
 import { Popover, Transition } from "@headlessui/react";
 import { ArrowLeftOnRectangleIcon, ChevronLeftIcon, CogIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
@@ -11,37 +10,29 @@ const user = EXAMPLE_USER_01;
 
 type Right = "profile" | JSX.Element;
 
-type HeaderProps = {
-  left?: "back" | "close" | string | JSX.Element;
-  center?: string | JSX.Element;
+export type HeaderProps = {
+  left?: "back" | "close" | "memo" | JSX.Element;
+  center?: "account" | string | JSX.Element;
   right?: [Right, ...Right[]];
 };
 
 export const Header: FC<HeaderProps> = (props) => {
   return (
-    <header>
-      <div className="flex items-center p-4 pb-8 mx-auto max-w-screen-lg">
-        <Left left={props.left} />
+    <header className="flex items-center">
+      <Left left={props.left} />
 
-        <div className={props.center ? "flex-1 flex justify-center" : ""}>
-          <Center center={props.center} />
-        </div>
-
-        {props.right ? (
-          <div className="ml-auto">
-            <Right right={props.right} />
-          </div>
-        ) : props.center ? (
-          <div className="w-9" />
-        ) : null}
+      <div className="flex flex-1 justify-center px-2">
+        <Center center={props.center} />
       </div>
+
+      <Right right={props.right} />
     </header>
   );
 };
 
 const Left: FC<Pick<HeaderProps, "left">> = (props) => {
   if (!props.left) {
-    return null;
+    return <div className="w-9 h-9" />;
   }
   if (props.left === "back") {
     return (
@@ -61,8 +52,12 @@ const Left: FC<Pick<HeaderProps, "left">> = (props) => {
       </Link>
     );
   }
-  if (typeof props.left === "string") {
-    return <div className="text-xl font-bold">{props.left}</div>;
+  if (props.left === "memo") {
+    return (
+      <Link href="/" legacyBehavior>
+        <a className="text-xl font-bold">Memo</a>
+      </Link>
+    );
   }
   return props.left;
 };
@@ -70,6 +65,13 @@ const Left: FC<Pick<HeaderProps, "left">> = (props) => {
 const Center: FC<Pick<HeaderProps, "center">> = (props) => {
   if (!props.center) {
     return null;
+  }
+  if (props.center === "account") {
+    return (
+      <Link href="/settings/my" legacyBehavior>
+        <a className="text-xl font-bold">Account</a>
+      </Link>
+    );
   }
   if (typeof props.center === "string") {
     return <div className="text-xl font-bold">{props.center}</div>;
@@ -79,15 +81,12 @@ const Center: FC<Pick<HeaderProps, "center">> = (props) => {
 
 const Right: FC<Pick<HeaderProps, "right">> = (props) => {
   if (!props.right) {
-    return null;
+    return <div className="w-9 h-9" />;
   }
   return (
     <div className="flex items-center space-x-2 sm:space-x-3">
       {props.right.map((item) => {
-        if (item === "profile") {
-          return <UserMenu />;
-        }
-        return item;
+        return <Fragment key={item.toString()}>{item === "profile" ? <UserMenu /> : item}</Fragment>;
       })}
     </div>
   );
