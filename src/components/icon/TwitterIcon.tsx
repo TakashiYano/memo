@@ -1,27 +1,8 @@
-/* eslint-disable @typescript-eslint/naming-convention */
-import cc from "classcat";
 import type { FC } from "react";
 
-type Props = {
-  className?: string;
-  size?: "large" | "small";
-  iconColor?: "white" | "black";
-  disabled?: boolean;
-};
-
-export const TwitterIcon: FC<Props> = (props) => {
-  const classes = cc([
-    {
-      "w-8 h-8": props.size === "large",
-      "w-5 h-5": props.size === "small",
-      "text-gray-400": props.disabled,
-      "text-blue-400": !props.disabled,
-    },
-    props.className,
-  ]);
-
+export const TwitterIcon: FC<{ classname?: string }> = (props) => {
   return (
-    <svg className={classes} fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+    <svg className={props.classname} fill="currentColor" viewBox="-2 -2 24 24" aria-hidden="true">
       <path
         fillRule="evenodd"
         clipRule="evenodd"
@@ -29,9 +10,4 @@ export const TwitterIcon: FC<Props> = (props) => {
       />
     </svg>
   );
-};
-
-// Propsのデフォルト値
-TwitterIcon.defaultProps = {
-  size: "small",
 };
