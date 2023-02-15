@@ -7,6 +7,7 @@ import {
 } from "@heroicons/react/24/outline";
 import { useRouter } from "next/router";
 import { useCallback, useMemo, useState } from "react";
+import { toast } from "react-hot-toast";
 import { TwitterIcon } from "src/components/icon/TwitterIcon";
 import type { NoteMenuProps } from "src/components/NoteMenu";
 import type { NotePutRequest, NoteType } from "src/types/types";
@@ -86,7 +87,14 @@ export const useNote = (note: NoteType) => {
           labelColor: "blue",
           icon: isPublic ? <EyeSlashIcon /> : <EyeIcon />,
           iconColor: "blue",
-          onClick: handleTogglePublicState,
+          onClick: () => {
+            handleTogglePublicState();
+            if (isPublic) {
+              toast("メモを非公開にしました", { duration: 3000 });
+            } else {
+              toast.success("メモを公開しました", { duration: 3000 });
+            }
+          },
         },
         {
           label: "削除する",
