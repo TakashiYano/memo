@@ -1,6 +1,7 @@
 import type { FC } from "react";
 import { AppleIcon } from "src/components/icon/AppleIcon";
 import { GoogleIcon } from "src/components/icon/GoogleIcon";
+import { Button } from "src/components/shared/Button";
 
 type SignProps = { page: "signin" | "signup" };
 
@@ -10,14 +11,14 @@ export const Sign: FC<SignProps> = (props) => {
       <div className="p-4">
         <div className="flex justify-center">Memo</div>
         <div className="mt-20 space-y-5">
-          <button className="flex justify-center items-center py-4 w-72 text-center bg-white rounded-full sm:w-80 hover:bg-opacity-80">
+          <Button className="py-4 w-72 bg-white sm:w-80">
             <GoogleIcon className="mr-3" />
             <span className="font-bold">{props.page === "signin" ? "Googleでログイン" : "Googleでアカウント作成"}</span>
-          </button>
-          <button className="flex justify-center items-center py-4 w-72 text-center text-white bg-black rounded-full sm:w-80 hover:bg-opacity-80">
+          </Button>
+          <Button className="py-4 w-72 text-white bg-black sm:w-80">
             <AppleIcon className="mr-3" />
             <span className="font-bold">{props.page === "signin" ? "Appleでログイン" : "Appleでアカウント作成"}</span>
-          </button>
+          </Button>
         </div>
       </div>
     </div>
