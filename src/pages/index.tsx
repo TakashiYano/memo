@@ -1,9 +1,8 @@
-import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 import type { NextPage } from "next";
 import Link from "next/link";
 import { UserNoteList } from "src/components/NoteList";
 import { Avatar } from "src/components/shared/Avatar";
-import { InputText } from "src/components/shared/InputText";
+import { InputSearch } from "src/components/shared/InputSearch";
 import { Layout } from "src/components/shared/Layout";
 import { EXAMPLE_USER_01 } from "src/models/user";
 
@@ -35,10 +34,7 @@ const Index: NextPage = () => {
 
         <Link href="/search" legacyBehavior>
           <a className="block">
-            <InputText
-              startIcon={<MagnifyingGlassIcon className="my-auto mr-2 w-5 h-5 text-blue-500" />}
-              placeholder="メモを検索する"
-            />
+            <InputSearch placeholder="メモを検索する" />
           </a>
         </Link>
 
