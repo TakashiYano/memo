@@ -15,7 +15,7 @@ const SettingsMy: NextPage = () => {
           alt={user.name}
           width={96}
           height={96}
-          className="overflow-hidden w-24 h-24 rounded-full"
+          className="h-24 w-24 overflow-hidden rounded-full"
         />
         <h1 className="mt-8 text-2xl font-bold">ようこそ、{user.name}さん</h1>
         <p className="mt-2 text-sm text-gray-500">アカウントに関する各種設定ができます</p>

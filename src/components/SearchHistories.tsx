@@ -55,12 +55,8 @@ const HistoryItem: FC<HistoryItemProps> = (props) => {
       <button type="button" className="flex-1 p-2.5 text-left" onClick={handleHistoryClick}>
         {props.keyword}
       </button>
-      <button
-        type="button"
-        className="grid flex-shrink-0 place-items-center w-9 h-9"
-        onClick={handleHistoryDeleteClick}
-      >
-        <XMarkIcon className="w-5 h-5 text-gray-300" />
+      <button type="button" className="grid h-9 w-9 shrink-0 place-items-center" onClick={handleHistoryDeleteClick}>
+        <XMarkIcon className="h-5 w-5 text-gray-300" />
       </button>
     </div>
   );

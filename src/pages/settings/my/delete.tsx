@@ -22,7 +22,7 @@ const SettingsDelete: NextPage = () => {
                 {
                   label: "Memoを削除",
                   button: (
-                    <Button className="py-2 px-5 text-sm text-red-500 bg-gray-200" onClick={handleDeleteQinMemo}>
+                    <Button className="bg-gray-200 py-2 px-5 text-sm text-red-500" onClick={handleDeleteQinMemo}>
                       削除する
                     </Button>
                   ),

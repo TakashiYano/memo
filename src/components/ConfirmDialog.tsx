@@ -22,7 +22,7 @@ export const ConfirmDialog: FC<Props> = (props) => {
     <Transition.Root show={props.show} as={Fragment}>
       <Dialog
         static
-        className="overflow-y-auto fixed inset-0 z-10"
+        className="fixed inset-0 z-10 overflow-y-auto"
         open={props.show}
         onClose={props.onClose}
         initialFocus={buttonRef}
@@ -53,7 +53,7 @@ export const ConfirmDialog: FC<Props> = (props) => {
             leaveFrom="opacity-100 translate-y-0 scale-100"
             leaveTo="opacity-0 translate-y-0 scale-95"
           >
-            <div className="inline-block overflow-hidden p-4 w-10/12 max-w-sm text-left align-middle bg-white rounded-2xl shadow-xl transition-all transform sm:p-6">
+            <div className="inline-block w-10/12 max-w-sm transform overflow-hidden rounded-2xl bg-white p-4 text-left align-middle shadow-xl transition-all sm:p-6">
               <div className="text-center">
                 <Dialog.Title as="h3" className="font-bold leading-6 text-gray-900">
                   {props.title}
@@ -62,10 +62,10 @@ export const ConfirmDialog: FC<Props> = (props) => {
                   <p className="text-sm text-gray-500">{props.description}</p>
                 </div>
               </div>
-              <div className="flex mt-6 space-x-3 sm:space-x-4">
+              <div className="mt-6 flex space-x-3 sm:space-x-4">
                 <button
                   type="button"
-                  className="inline-flex flex-1 justify-center py-2 w-auto text-sm font-bold text-gray-700 bg-white rounded-full border border-gray-300 shadow-sm hover:text-gray-500 focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:outline-none"
+                  className="inline-flex w-auto flex-1 justify-center rounded-full border border-gray-300 bg-white py-2 text-sm font-bold text-gray-700 shadow-sm hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
                   onClick={props.onClose}
                   ref={buttonRef}
                 >

@@ -15,14 +15,14 @@ export const NoteListItem: FC<NoteListItemProps> = (props) => {
 
   return (
     <Link href={`/memos/${props.note.id}`} legacyBehavior>
-      <a className="block py-3 px-4 w-full bg-gray-100 rounded-xl shadow sm:px-6">
-        <div className="text-sm font-bold sm:text-base truncate">{title}</div>
-        <div className="text-sm mt-0.5 truncate">{props.note.excerpt.replace(title, "")}</div>
+      <a className="block w-full rounded-xl bg-gray-100 py-3 px-4 shadow sm:px-6">
+        <div className="truncate text-sm font-bold sm:text-base">{title}</div>
+        <div className="mt-0.5 truncate text-sm">{props.note.excerpt.replace(title, "")}</div>
 
-        <div className="flex justify-between items-center mt-4">
+        <div className="mt-4 flex items-center justify-between">
           <time className="text-sm font-bold text-gray-400">{props.note.updatedOn}</time>
           {props.note.public ? (
-            <div className="text-xs font-bold py-1 px-2.5 text-white bg-orange-400 rounded-full">公開中</div>
+            <div className="rounded-full bg-orange-400 py-1 px-2.5 text-xs font-bold text-white">公開中</div>
           ) : null}
         </div>
       </a>

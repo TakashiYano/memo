@@ -14,11 +14,11 @@ export const Layout: FC<Props> = (props) => {
   return (
     <div className="pb-20">
       <div
-        className={`px-3 pt-4 pb-8 mx-auto sm:px-4 sm:pb-14 ${isHeaderNarrow ? "max-w-screen-sm" : "max-w-screen-lg"}`}
+        className={`mx-auto px-3 pt-4 pb-8 sm:px-4 sm:pb-14 ${isHeaderNarrow ? "max-w-screen-sm" : "max-w-screen-lg"}`}
       >
         <Header {...headerProps} />
       </div>
-      <div className="px-4 mx-auto w-full max-w-screen-sm">{children}</div>
+      <div className="mx-auto w-full max-w-screen-sm px-4">{children}</div>
     </div>
   );
 };

@@ -14,7 +14,7 @@ const Index: NextPage = () => {
       left="memo"
       right={[
         <Link href="/memos/new" key="write memo" legacyBehavior>
-          <a className="grid place-items-center px-4 h-9 text-sm font-bold text-white bg-blue-500 rounded-full">
+          <a className="grid h-9 place-items-center rounded-full bg-blue-500 px-4 text-sm font-bold text-white">
             メモを書く
           </a>
         </Link>,
@@ -23,7 +23,7 @@ const Index: NextPage = () => {
     >
       <div className="space-y-7">
         <div className="flex items-center space-x-4">
-          <Avatar alt={user.name} src={user.avatarUrl} className="w-16 h-16" />
+          <Avatar alt={user.name} src={user.avatarUrl} className="h-16 w-16" />
           <div className="flex flex-col">
             <span className="font-bold">{user.name}</span>
             <Link href="/settings/my/user/edit" legacyBehavior>

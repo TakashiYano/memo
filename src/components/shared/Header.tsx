@@ -39,19 +39,19 @@ const Left = memo<Pick<HeaderProps, "left">>((props) => {
   }, [router]);
 
   if (!props.left) {
-    return <div className="w-9 h-9" />;
+    return <div className="h-9 w-9" />;
   }
   if (props.left === "back") {
     return (
-      <button type="button" onClick={handleClick} className="grid place-items-center w-9 h-9">
-        <ChevronLeftIcon className="w-5 h-5" />
+      <button type="button" onClick={handleClick} className="grid h-9 w-9 place-items-center">
+        <ChevronLeftIcon className="h-5 w-5" />
       </button>
     );
   }
   if (props.left === "close") {
     return (
-      <button type="button" onClick={handleClick} className="grid place-items-center w-9 h-9">
-        <XMarkIcon className="w-5 h-5" />
+      <button type="button" onClick={handleClick} className="grid h-9 w-9 place-items-center">
+        <XMarkIcon className="h-5 w-5" />
       </button>
     );
   }
@@ -86,7 +86,7 @@ Center.displayName = "Center";
 
 const Right = memo<Pick<HeaderProps, "right">>((props) => {
   if (!props.right) {
-    return <div className="w-9 h-9" />;
+    return <div className="h-9 w-9" />;
   }
   return (
     <div className="flex items-center space-x-2 sm:space-x-3">
@@ -111,7 +111,7 @@ const UserMenu = memo(() => {
         return (
           <>
             <Popover.Button>
-              <Avatar alt={user.name} src={user.avatarUrl} className="w-9 h-9" />
+              <Avatar alt={user.name} src={user.avatarUrl} className="h-9 w-9" />
             </Popover.Button>
 
             <div className="relative">
@@ -127,13 +127,13 @@ const UserMenu = memo(() => {
               >
                 <Popover.Panel
                   static
-                  className="absolute left-full z-10 pl-8 sm:pl-0 mt-2 w-screen max-w-xs transform -translate-x-full sm:px-0 sm:max-w-sm xl:-translate-x-1/2 xl:-left-full 2xl:left-1/2"
+                  className="absolute left-full z-10 mt-2 w-screen max-w-xs -translate-x-full transform pl-8 sm:max-w-sm sm:px-0 sm:pl-0 xl:-left-full xl:-translate-x-1/2 2xl:left-1/2"
                 >
-                  <div className="overflow-hidden py-4 bg-white rounded-2xl ring-1 ring-gray-400 ring-opacity-20 shadow-lg">
+                  <div className="overflow-hidden rounded-2xl bg-white py-4 shadow-lg ring-1 ring-gray-400 ring-opacity-20">
                     <div>
                       <Link href="/settings/my" legacyBehavior>
                         <a className="flex items-center p-4 transition duration-150 ease-in-out hover:bg-gray-100 focus:outline-none focus-visible:ring focus-visible:ring-orange-500 focus-visible:ring-opacity-50">
-                          <Avatar alt={user.name} src={user.avatarUrl} className="w-14 h-14" />
+                          <Avatar alt={user.name} src={user.avatarUrl} className="h-14 w-14" />
                           <div className="ml-4">
                             <p className="text-base font-bold text-gray-900">yanot</p>
                             <p className="text-sm text-gray-400">@yanot</p>
@@ -141,11 +141,11 @@ const UserMenu = memo(() => {
                         </a>
                       </Link>
                     </div>
-                    <div className="grid relative bg-white">
+                    <div className="relative grid bg-white">
                       <Link href="/settings/memo" legacyBehavior>
                         <a className="flex items-center py-2.5 px-4 transition duration-150 ease-in-out hover:bg-gray-100 focus:outline-none focus-visible:ring focus-visible:ring-orange-500 focus-visible:ring-opacity-50">
-                          <div className="flex flex-shrink-0 justify-center items-center">
-                            <CogIcon className="w-7 h-7" />
+                          <div className="flex shrink-0 items-center justify-center">
+                            <CogIcon className="h-7 w-7" />
                           </div>
                           <p className="ml-4 font-bold">設定</p>
                         </a>
@@ -155,8 +155,8 @@ const UserMenu = memo(() => {
                         className="flex items-center py-2.5 px-4 transition duration-150 ease-in-out hover:bg-gray-100 focus:outline-none focus-visible:ring focus-visible:ring-orange-500 focus-visible:ring-opacity-50"
                         onClick={handleSignOut}
                       >
-                        <div className="flex flex-shrink-0 justify-center items-center">
-                          <ArrowLeftOnRectangleIcon className="ml-0.5 w-7 h-7 text-red-500" />
+                        <div className="flex shrink-0 items-center justify-center">
+                          <ArrowLeftOnRectangleIcon className="ml-0.5 h-7 w-7 text-red-500" />
                         </div>
                         <p className="ml-4 font-bold text-red-500">ログアウト</p>
                       </button>

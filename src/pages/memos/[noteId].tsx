@@ -39,12 +39,12 @@ const MemosNoteId: NextPage<NoteType> = (props) => {
   return (
     <>
       <Layout left="memo" right={headerRight}>
-        <div className="flex flex-col min-h-screen">
-          <label htmlFor="memo" className="flex-1 pb-20 cursor-text">
+        <div className="flex min-h-screen flex-col">
+          <label htmlFor="memo" className="flex-1 cursor-text pb-20">
             <TextareaAutosize
               id="memo"
               style={{ caretColor: "#3B82F6" }}
-              className="w-full text-lg outline-none resize-none sm:text-xl"
+              className="w-full resize-none text-lg outline-none sm:text-xl"
               value={content}
               onChange={handleChangeContent}
               placeholder="メモを入力する"

@@ -25,11 +25,11 @@ const SettingsAccount: NextPage = () => {
               label: (
                 <div className="flex items-center">
                   <GoogleIcon />
-                  <div className="flex-1 ml-3 font-bold">Google</div>
+                  <div className="ml-3 flex-1 font-bold">Google</div>
                 </div>
               ),
               button: (
-                <Button className="py-2 px-4 text-sm bg-gray-100" onClick={handleGoogle}>
+                <Button className="bg-gray-100 py-2 px-4 text-sm" onClick={handleGoogle}>
                   解除する
                 </Button>
               ),
@@ -38,11 +38,11 @@ const SettingsAccount: NextPage = () => {
               label: (
                 <div className="flex items-center">
                   <AppleIcon />
-                  <div className="flex-1 ml-3 font-bold">Apple</div>
+                  <div className="ml-3 flex-1 font-bold">Apple</div>
                 </div>
               ),
               button: (
-                <Button className="py-2 px-4 text-sm text-white bg-blue-500" onClick={handleApple}>
+                <Button className="bg-blue-500 py-2 px-4 text-sm text-white" onClick={handleApple}>
                   解除する
                 </Button>
               ),

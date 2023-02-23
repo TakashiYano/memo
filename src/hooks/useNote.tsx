@@ -63,17 +63,17 @@ export const useNote = (note: NoteType) => {
   const headerRight = useMemo(() => {
     if (isPublic) {
       return [
-        <span key="public" className="text-xs font-bold py-1 px-2.5 text-white bg-orange-400 rounded-full">
+        <span key="public" className="rounded-full bg-orange-400 py-1 px-2.5 text-xs font-bold text-white">
           公開中
         </span>,
-        <button type="button" key="menu" className="grid place-items-center w-9 h-9" onClick={handleOpenMenu}>
-          <EllipsisHorizontalCircleIcon className="w-5 h-5" />
+        <button type="button" key="menu" className="grid h-9 w-9 place-items-center" onClick={handleOpenMenu}>
+          <EllipsisHorizontalCircleIcon className="h-5 w-5" />
         </button>,
       ];
     }
     return [
-      <button type="button" key="menu" className="grid place-items-center w-9 h-9" onClick={handleOpenMenu}>
-        <EllipsisHorizontalCircleIcon className="w-5 h-5" />
+      <button type="button" key="menu" className="grid h-9 w-9 place-items-center" onClick={handleOpenMenu}>
+        <EllipsisHorizontalCircleIcon className="h-5 w-5" />
       </button>,
     ];
   }, [handleOpenMenu, isPublic]);

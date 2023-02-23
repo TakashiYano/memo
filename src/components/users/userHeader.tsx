@@ -9,10 +9,10 @@ export const UserHeader = () => {
   return (
     <div className="flex flex-row items-center">
       <div className="flex-1">
-        <div className="flex justify-end mr-4">Memo</div>
+        <div className="mr-4 flex justify-end">Memo</div>
       </div>
-      <div className="flex-1 my-auto mx-16">
-        <InputText startIcon={<SearchIcon className="my-auto mr-2 w-6 h-6" />} placeholder="メモを検索する" />
+      <div className="my-auto mx-16 flex-1">
+        <InputText startIcon={<SearchIcon className="my-auto mr-2 h-6 w-6" />} placeholder="メモを検索する" />
       </div>
       <div className="flex-1">
         <div className="flex flex-row">

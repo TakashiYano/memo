@@ -39,15 +39,15 @@ export const List: FC<ListProps> = (props) => {
               <li key={i}>
                 <Link href={item.href} legacyBehavior>
                   <a
-                    className="flex justify-between items-center py-3 px-4 -mx-4 text-lg font-bold hover:bg-gray-100"
+                    className="-mx-4 flex items-center justify-between py-3 px-4 text-lg font-bold hover:bg-gray-100"
                     target={isExternal ? "_blank" : undefined}
                     rel={isExternal ? "noopener noreferrer" : undefined}
                   >
                     {item.label}
                     {isExternal ? (
-                      <ArrowTopRightOnSquareIcon className="w-5 h-5" />
+                      <ArrowTopRightOnSquareIcon className="h-5 w-5" />
                     ) : (
-                      <ChevronRightIcon className="w-5 h-5" />
+                      <ChevronRightIcon className="h-5 w-5" />
                     )}
                   </a>
                 </Link>
@@ -58,9 +58,9 @@ export const List: FC<ListProps> = (props) => {
           if (hasButton(item)) {
             return (
               <li key={i}>
-                <div className="flex justify-between items-center py-3 px-4 -mx-4 text-lg font-bold">
+                <div className="-mx-4 flex items-center justify-between py-3 px-4 text-lg font-bold">
                   <div className="flex-1">{item.label}</div>
-                  <div className="flex-shrink-0">{item.button}</div>
+                  <div className="shrink-0">{item.button}</div>
                 </div>
               </li>
             );
@@ -72,7 +72,7 @@ export const List: FC<ListProps> = (props) => {
               <button
                 type="button"
                 onClick={handleClick}
-                className="flex justify-between items-center py-3 px-4 -mx-4 text-lg font-bold hover:bg-gray-100"
+                className="-mx-4 flex items-center justify-between py-3 px-4 text-lg font-bold hover:bg-gray-100"
               >
                 {item.label}
               </button>

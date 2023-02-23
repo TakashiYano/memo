@@ -12,15 +12,15 @@ export const ProfileForm: FC<ProfileFormProps> = (props) => {
     <div>
       <div className="space-y-6 sm:space-y-8">
         <div>
-          <div className="flex justify-start items-center space-x-6">
+          <div className="flex items-center justify-start space-x-6">
             {props.user ? (
-              <Image src={props.user.avatarUrl} alt={props.user.name} width={96} height={96} className="w-24 h-24" />
+              <Image src={props.user.avatarUrl} alt={props.user.name} width={96} height={96} className="h-24 w-24" />
             ) : (
-              <div className="p-2 w-24 h-24 bg-gray-300">
+              <div className="h-24 w-24 bg-gray-300 p-2">
                 <UserIcon className="text-white" />
               </div>
             )}
-            <Button className="py-2.5 px-5 mt-4 w-max text-gray-800 bg-gray-100">
+            <Button className="mt-4 w-max bg-gray-100 py-2.5 px-5 text-gray-800">
               アイコンを{props.user ? "変更する" : "設定する"}
             </Button>
           </div>
@@ -31,11 +31,11 @@ export const ProfileForm: FC<ProfileFormProps> = (props) => {
 
       <div className="mt-12 space-y-4">
         {props.user ? (
-          <Button className="p-3 text-white bg-blue-500">保存する</Button>
+          <Button className="bg-blue-500 p-3 text-white">保存する</Button>
         ) : (
           <>
-            <Button className="p-3 text-white bg-blue-500">登録してはじめる</Button>
-            <Button className="p-3 text-gray-800 bg-gray-100">登録せずに終了する</Button>
+            <Button className="bg-blue-500 p-3 text-white">登録してはじめる</Button>
+            <Button className="bg-gray-100 p-3 text-gray-800">登録せずに終了する</Button>
           </>
         )}
       </div>

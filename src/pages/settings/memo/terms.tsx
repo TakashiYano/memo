@@ -4,7 +4,7 @@ import { Layout } from "src/components/shared/Layout";
 const SettingsMemoTerms: NextPage = () => {
   return (
     <Layout left="back" center="利用規約">
-      <div className="mx-auto prose-sm prose-blue">
+      <div className="prose prose-blue mx-auto">
         <h3>この文章は仮です</h3>
         <p>
           この規約は、弊サービスのご利用にあたって、利用規約（以下「本規約」といいます）を定めたものです。Memo

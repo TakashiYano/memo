@@ -51,7 +51,7 @@ const SettingsMemoTheme: NextPage = () => {
                     <RadioGroup.Label className="font-bold text-gray-900 dark:text-white">
                       {THEME_LANG[theme]}
                     </RadioGroup.Label>
-                    {checked ? <CheckIcon className="w-6 h-6 text-blue-500" /> : null}
+                    {checked ? <CheckIcon className="h-6 w-6 text-blue-500" /> : null}
                   </>
                 );
               }}

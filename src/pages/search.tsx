@@ -47,8 +47,8 @@ const Search: NextPage = () => {
         </form>
       }
       right={[
-        <button key="delete" type="button" className="grid place-items-center w-9 h-9" onClick={handleClose}>
-          <XMarkIcon className="w-5 h-5" />
+        <button key="delete" type="button" className="grid h-9 w-9 place-items-center" onClick={handleClose}>
+          <XMarkIcon className="h-5 w-5" />
         </button>,
       ]}
     >
