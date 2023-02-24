@@ -39,7 +39,7 @@ export const List: FC<ListProps> = (props) => {
               <li key={i}>
                 <Link href={item.href} legacyBehavior>
                   <a
-                    className="-mx-4 flex items-center justify-between py-3 px-4 text-lg font-bold hover:bg-gray-100"
+                    className="-mx-4 flex items-center justify-between py-3 px-4 text-lg font-bold hover:bg-gray-100 focus:outline-none dark:hover:bg-gray-700 dark:focus:bg-gray-700"
                     target={isExternal ? "_blank" : undefined}
                     rel={isExternal ? "noopener noreferrer" : undefined}
                   >
@@ -72,7 +72,7 @@ export const List: FC<ListProps> = (props) => {
               <button
                 type="button"
                 onClick={handleClick}
-                className="-mx-4 flex items-center justify-between py-3 px-4 text-lg font-bold hover:bg-gray-100"
+                className="-mx-4 flex items-center justify-between py-3 px-4 text-lg font-bold hover:bg-gray-100 dark:hover:bg-gray-700"
               >
                 {item.label}
               </button>

@@ -5,7 +5,7 @@ import { Layout } from "src/components/shared/Layout";
 import { RecursiveList } from "src/components/shared/List";
 
 const SettingsDelete: NextPage = () => {
-  const handleDeleteQinMemo = useCallback(() => {
+  const handleDeleteMemo = useCallback(() => {
     alert("Memoの削除");
   }, []);
 
@@ -22,7 +22,10 @@ const SettingsDelete: NextPage = () => {
                 {
                   label: "Memoを削除",
                   button: (
-                    <Button className="bg-gray-200 py-2 px-5 text-sm text-red-500" onClick={handleDeleteQinMemo}>
+                    <Button
+                      className="bg-gray-100 py-2 px-5 text-sm text-red-500 dark:bg-gray-700"
+                      onClick={handleDeleteMemo}
+                    >
                       削除する
                     </Button>
                   ),

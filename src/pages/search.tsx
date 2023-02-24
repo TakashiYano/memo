@@ -1,6 +1,7 @@
 import { XMarkIcon } from "@heroicons/react/24/outline";
 import type { NextPage } from "next";
 import type { ChangeEvent, FormEvent } from "react";
+import { useMemo } from "react";
 import { useCallback, useState } from "react";
 import { SearchNoteList } from "src/components/NoteList";
 import { SearchHistories } from "src/components/SearchHistories";
@@ -37,6 +38,20 @@ const Search: NextPage = () => {
     setKeyword("");
   }, []);
 
+  const right = useMemo(() => {
+    if (!value) return;
+    return [
+      <button
+        key="delete"
+        type="button"
+        className="grid h-9 w-9 place-items-center rounded-full focus:bg-blue-50 focus:outline-none focus:ring-2 focus:ring-blue-400"
+        onClick={handleClose}
+      >
+        <XMarkIcon className="h-5 w-5" />
+      </button>,
+    ];
+  }, [handleClose, value]);
+
   return (
     <Layout
       isHeaderNarrow
@@ -46,11 +61,7 @@ const Search: NextPage = () => {
           <InputSearch placeholder="検索" value={value} onChange={handleChange} autoFocus />
         </form>
       }
-      right={[
-        <button key="delete" type="button" className="grid h-9 w-9 place-items-center" onClick={handleClose}>
-          <XMarkIcon className="h-5 w-5" />
-        </button>,
-      ]}
+      right={right}
     >
       {keyword === "" ? <SearchHistories /> : <SearchNoteList userId={user.id} keyword={keyword} />}
     </Layout>

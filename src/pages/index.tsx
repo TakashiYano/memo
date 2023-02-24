@@ -14,7 +14,7 @@ const Index: NextPage = () => {
       left="memo"
       right={[
         <Link href="/memos/new" key="write memo" legacyBehavior>
-          <a className="grid h-9 place-items-center rounded-full bg-blue-500 px-4 text-sm font-bold text-white">
+          <a className="grid h-9 place-items-center rounded-full bg-blue-500 px-4 text-sm font-bold text-white focus:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400">
             メモを書く
           </a>
         </Link>,
@@ -33,8 +33,8 @@ const Index: NextPage = () => {
         </div>
 
         <Link href="/search" legacyBehavior>
-          <a className="block">
-            <InputSearch placeholder="メモを検索する" />
+          <a className="block rounded-full focus:outline-none focus:ring-2 focus:ring-blue-400">
+            <InputSearch placeholder="メモを検索する" disabled />
           </a>
         </Link>
 

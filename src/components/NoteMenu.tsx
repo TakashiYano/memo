@@ -36,9 +36,9 @@ export const NoteMenu: FC<NoteMenuProps> = (props) => {
                 <li key={props.label} className="overflow-hidden first:rounded-t-2xl last:rounded-b-2xl">
                   <button
                     className={cc([
-                      "w-full text-left flex items-center py-3 px-6 bg-slate-100",
+                      "flex w-full items-center bg-gray-100 py-3 px-6 text-left focus:bg-gray-200 focus:outline-none dark:bg-gray-700 dark:focus:bg-gray-600",
                       {
-                        "hover:bg-slate-200": !props.disabled,
+                        "hover:bg-gray-200 dark:hover:bg-gray-600": !props.disabled,
                         "text-gray-400 text-opacity-50 cursor-not-allowed": props.disabled,
                       },
                     ])}

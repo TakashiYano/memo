@@ -22,7 +22,7 @@ export const Button: FC<Button | Link> = (props) => {
     <Link {...props.linkProps} legacyBehavior>
       <a
         className={cc([
-          "w-full flex items-center justify-center font-bold rounded-full hover:bg-opacity-80",
+          "flex justify-center items-center w-full font-bold hover:bg-opacity-80 rounded-full focus:ring-2 focus:ring-blue-400 focus:outline-none",
           props.className,
         ])}
       >

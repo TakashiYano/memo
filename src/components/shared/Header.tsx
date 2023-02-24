@@ -41,17 +41,15 @@ const Left = memo<Pick<HeaderProps, "left">>((props) => {
   if (!props.left) {
     return <div className="h-9 w-9" />;
   }
-  if (props.left === "back") {
+  if (props.left === "back" || props.left === "close") {
     return (
-      <button type="button" onClick={handleClick} className="grid h-9 w-9 place-items-center">
-        <ChevronLeftIcon className="h-5 w-5" />
-      </button>
-    );
-  }
-  if (props.left === "close") {
-    return (
-      <button type="button" onClick={handleClick} className="grid h-9 w-9 place-items-center">
-        <XMarkIcon className="h-5 w-5" />
+      <button
+        type="button"
+        onClick={handleClick}
+        className="grid h-9 w-9 place-items-center rounded-full focus:bg-blue-50 focus:outline-none focus:ring-2 focus:ring-blue-400 dark:focus:bg-opacity-10"
+      >
+        {props.left === "back" ? <ChevronLeftIcon className="h-5 w-5" /> : null}
+        {props.left === "close" ? <XMarkIcon className="h-5 w-5" /> : null}
       </button>
     );
   }
@@ -110,7 +108,7 @@ const UserMenu = memo(() => {
       {({ open }) => {
         return (
           <>
-            <Popover.Button>
+            <Popover.Button className="rounded-full focus:outline-none focus:ring-2 focus:ring-blue-400">
               <Avatar alt={user.name} src={user.avatarUrl} className="h-9 w-9" />
             </Popover.Button>
 
@@ -129,21 +127,21 @@ const UserMenu = memo(() => {
                   static
                   className="absolute left-full z-10 mt-2 w-screen max-w-xs -translate-x-full transform pl-8 sm:max-w-sm sm:px-0 sm:pl-0 xl:-left-full xl:-translate-x-1/2 2xl:left-1/2"
                 >
-                  <div className="overflow-hidden rounded-2xl bg-white py-4 shadow-lg ring-1 ring-gray-400 ring-opacity-20">
+                  <div className="overflow-hidden rounded-2xl bg-white py-4 shadow-lg ring-1 ring-gray-400 ring-opacity-20 dark:bg-gray-800">
                     <div>
                       <Link href="/settings/my" legacyBehavior>
-                        <a className="flex items-center p-4 transition duration-150 ease-in-out hover:bg-gray-100 focus:outline-none focus-visible:ring focus-visible:ring-orange-500 focus-visible:ring-opacity-50">
+                        <a className="flex items-center p-4 transition duration-150 ease-in-out hover:bg-gray-100 focus:outline-none focus-visible:ring focus-visible:ring-orange-500 focus-visible:ring-opacity-50 dark:hover:bg-gray-700">
                           <Avatar alt={user.name} src={user.avatarUrl} className="h-14 w-14" />
                           <div className="ml-4">
-                            <p className="text-base font-bold text-gray-900">yanot</p>
+                            <p className="text-base font-bold">yanot</p>
                             <p className="text-sm text-gray-400">@yanot</p>
                           </div>
                         </a>
                       </Link>
                     </div>
-                    <div className="relative grid bg-white">
+                    <div className="relative grid">
                       <Link href="/settings/memo" legacyBehavior>
-                        <a className="flex items-center py-2.5 px-4 transition duration-150 ease-in-out hover:bg-gray-100 focus:outline-none focus-visible:ring focus-visible:ring-orange-500 focus-visible:ring-opacity-50">
+                        <a className="flex items-center py-2.5 px-4 transition duration-150 ease-in-out hover:bg-gray-100 focus:outline-none focus-visible:ring focus-visible:ring-orange-500 focus-visible:ring-opacity-50 dark:hover:bg-gray-700">
                           <div className="flex shrink-0 items-center justify-center">
                             <CogIcon className="h-7 w-7" />
                           </div>
@@ -152,7 +150,7 @@ const UserMenu = memo(() => {
                       </Link>
                       <button
                         type="button"
-                        className="flex items-center py-2.5 px-4 transition duration-150 ease-in-out hover:bg-gray-100 focus:outline-none focus-visible:ring focus-visible:ring-orange-500 focus-visible:ring-opacity-50"
+                        className="flex items-center py-2.5 px-4 transition duration-150 ease-in-out hover:bg-gray-100 focus:outline-none focus-visible:ring focus-visible:ring-orange-500 focus-visible:ring-opacity-50 dark:hover:bg-gray-700"
                         onClick={handleSignOut}
                       >
                         <div className="flex shrink-0 items-center justify-center">

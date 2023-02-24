@@ -53,19 +53,19 @@ export const ConfirmDialog: FC<Props> = (props) => {
             leaveFrom="opacity-100 translate-y-0 scale-100"
             leaveTo="opacity-0 translate-y-0 scale-95"
           >
-            <div className="inline-block w-10/12 max-w-sm transform overflow-hidden rounded-2xl bg-white p-4 text-left align-middle shadow-xl transition-all sm:p-6">
+            <div className="inline-block w-10/12 max-w-sm transform overflow-hidden rounded-2xl bg-white p-4 text-left align-middle shadow-xl transition-all dark:bg-gray-800 sm:p-6">
               <div className="text-center">
-                <Dialog.Title as="h3" className="font-bold leading-6 text-gray-900">
+                <Dialog.Title as="h3" className="font-bold leading-6">
                   {props.title}
                 </Dialog.Title>
                 <div className="mt-2">
-                  <p className="text-sm text-gray-500">{props.description}</p>
+                  <p className="text-sm opacity-70">{props.description}</p>
                 </div>
               </div>
               <div className="mt-6 flex space-x-3 sm:space-x-4">
                 <button
                   type="button"
-                  className="inline-flex w-auto flex-1 justify-center rounded-full border border-gray-300 bg-white py-2 text-sm font-bold text-gray-700 shadow-sm hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                  className="inline-flex flex-1 justify-center rounded-full border border-gray-300 py-2 text-sm font-bold focus:outline-none focus:ring-2 focus:ring-blue-400"
                   onClick={props.onClose}
                   ref={buttonRef}
                 >
@@ -74,7 +74,7 @@ export const ConfirmDialog: FC<Props> = (props) => {
                 <button
                   type="button"
                   className={cc([
-                    "inline-flex flex-1 justify-center py-2 w-auto text-sm font-bold text-white rounded-full border border-transparent shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2",
+                    "inline-flex flex-1 justify-center py-2 text-sm font-bold text-white rounded-full border border-transparent focus:ring-2 focus:ring-red-400 focus:outline-none",
                     {
                       "bg-blue-600 hover:bg-blue-700 focus:ring-blue-500": props.buttonColor === "blue",
                       "bg-red-600 hover:bg-red-700 focus:ring-red-500": props.buttonColor === "red",

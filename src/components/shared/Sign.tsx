@@ -7,11 +7,11 @@ type SignProps = { page: "signin" | "signup" };
 
 export const Sign: FC<SignProps> = (props) => {
   return (
-    <div className="grid h-screen w-screen place-items-center bg-gray-200">
+    <div className="grid h-screen w-screen place-items-center bg-gray-200 dark:bg-gray-700">
       <div className="p-4">
         <div className="flex justify-center">Memo</div>
         <div className="mt-20 space-y-5">
-          <Button className="w-72 bg-white py-4 sm:w-80">
+          <Button className="w-72 bg-white py-4 dark:text-black sm:w-80">
             <GoogleIcon className="mr-3" />
             <span className="font-bold">{props.page === "signin" ? "Googleでログイン" : "Googleでアカウント作成"}</span>
           </Button>

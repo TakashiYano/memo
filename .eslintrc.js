@@ -2,6 +2,10 @@ module.exports = {
   root: true,
   parser: "@typescript-eslint/parser",
   parserOptions: { project: "./tsconfig.json" },
+  settings: {
+    react: { version: "detect" },
+    tailwindcss: { whitelist: ["prose-light"] },
+  },
   env: { es2021: true, browser: true, jest: true, node: true },
   plugins: ["simple-import-sort", "tailwindcss"],
   extends: [

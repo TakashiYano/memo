@@ -29,7 +29,7 @@ const SettingsAccount: NextPage = () => {
                 </div>
               ),
               button: (
-                <Button className="bg-gray-100 py-2 px-4 text-sm" onClick={handleGoogle}>
+                <Button className="bg-gray-100 py-2 px-4 text-sm dark:bg-gray-700" onClick={handleGoogle}>
                   解除する
                 </Button>
               ),
@@ -43,7 +43,7 @@ const SettingsAccount: NextPage = () => {
               ),
               button: (
                 <Button className="bg-blue-500 py-2 px-4 text-sm text-white" onClick={handleApple}>
-                  解除する
+                  連携する
                 </Button>
               ),
             },
