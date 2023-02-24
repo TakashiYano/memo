@@ -11,13 +11,11 @@ export const SearchHistories: FC = () => {
   const { data, error, mutate } = useSWR<SearchHistoryType[]>(`/users/${user.id}/searchHistories`);
 
   if (error) {
-    // 検索結果が取得できなかった場合のエラー処理
     return <div>error</div>;
   }
 
   if (!data) {
-    // 検索結果取得時のローディング処理
-    return <div>loading</div>;
+    return null;
   }
 
   return (
