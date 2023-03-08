@@ -2,6 +2,7 @@ import type { NextPage } from "next";
 import Link from "next/link";
 import { UserNoteList } from "src/components/NoteList";
 import { Avatar } from "src/components/shared/Avatar";
+import { Button } from "src/components/shared/Button";
 import { InputSearch } from "src/components/shared/InputSearch";
 import { Layout } from "src/components/shared/Layout";
 import { EXAMPLE_USER_01 } from "src/models/user";
@@ -13,11 +14,9 @@ const Index: NextPage = () => {
     <Layout
       left="memo"
       right={[
-        <Link href="/memos/new" key="write memo" legacyBehavior>
-          <a className="grid h-9 place-items-center rounded-full bg-blue-500 px-4 text-sm font-bold text-white focus:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400">
-            メモを書く
-          </a>
-        </Link>,
+        <Button key="write memo" variant="solid-blue" linkProps={{ href: "/memos/new" }} className="h-9 px-4">
+          メモを書く
+        </Button>,
         "profile",
       ]}
     >

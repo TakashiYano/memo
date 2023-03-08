@@ -11,13 +11,17 @@ export const Sign: FC<SignProps> = (props) => {
       <div className="p-4">
         <div className="flex justify-center">Memo</div>
         <div className="mt-20 space-y-5">
-          <Button className="w-72 bg-white py-4 dark:text-black sm:w-80">
-            <GoogleIcon className="mr-3" />
-            <span className="font-bold">{props.page === "signin" ? "Googleでログイン" : "Googleでアカウント作成"}</span>
+          <Button variant="solid-white" className="w-72 py-4 sm:w-80">
+            <div className="flex">
+              <GoogleIcon className="mr-3" />
+              <span>{props.page === "signin" ? "Googleでログイン" : "Googleでアカウント作成"}</span>
+            </div>
           </Button>
-          <Button className="w-72 bg-black py-4 text-white sm:w-80">
-            <AppleIcon className="mr-3" />
-            <span className="font-bold">{props.page === "signin" ? "Appleでログイン" : "Appleでアカウント作成"}</span>
+          <Button variant="solid-black" className="w-72 py-4 sm:w-80">
+            <div className="flex">
+              <AppleIcon className="mr-3" />
+              <span>{props.page === "signin" ? "Appleでログイン" : "Appleでアカウント作成"}</span>
+            </div>
           </Button>
         </div>
       </div>
