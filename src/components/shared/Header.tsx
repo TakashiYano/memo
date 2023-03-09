@@ -130,7 +130,7 @@ const UserMenu = memo(() => {
                   <div className="overflow-hidden rounded-2xl bg-white py-4 shadow-lg ring-1 ring-gray-400 ring-opacity-20 dark:bg-gray-800">
                     <div>
                       <Link href="/settings/my" legacyBehavior>
-                        <a className="flex items-center p-4 transition duration-150 ease-in-out hover:bg-gray-100 focus:outline-none focus-visible:ring focus-visible:ring-orange-500 focus-visible:ring-opacity-50 dark:hover:bg-gray-700">
+                        <a className="flex items-center p-4 hover:bg-gray-100 focus:outline-none focus-visible:bg-gray-100 dark:hover:bg-gray-700 dark:focus-visible:bg-gray-700">
                           <Avatar alt={user.name} src={user.avatarUrl} className="h-14 w-14" />
                           <div className="ml-4">
                             <p className="text-base font-bold">yanot</p>
@@ -141,7 +141,8 @@ const UserMenu = memo(() => {
                     </div>
                     <div className="relative grid">
                       <Link href="/settings/memo" legacyBehavior>
-                        <a className="flex items-center py-2.5 px-4 transition duration-150 ease-in-out hover:bg-gray-100 focus:outline-none focus-visible:ring focus-visible:ring-orange-500 focus-visible:ring-opacity-50 dark:hover:bg-gray-700">
+                        <a className="flex items-center py-2.5 px-4 hover:bg-gray-100 focus:outline-none focus-visible:bg-gray-100 dark:hover:bg-gray-700 dark:focus-visible:bg-gray-700">
+                          {" "}
                           <div className="flex shrink-0 items-center justify-center">
                             <CogIcon className="h-7 w-7" />
                           </div>
@@ -150,7 +151,7 @@ const UserMenu = memo(() => {
                       </Link>
                       <button
                         type="button"
-                        className="flex items-center py-2.5 px-4 transition duration-150 ease-in-out hover:bg-gray-100 focus:outline-none focus-visible:ring focus-visible:ring-orange-500 focus-visible:ring-opacity-50 dark:hover:bg-gray-700"
+                        className="flex items-center py-2.5 px-4 hover:bg-gray-100 focus:outline-none focus-visible:bg-gray-100 dark:hover:bg-gray-700 dark:focus-visible:bg-gray-700"
                         onClick={handleSignOut}
                       >
                         <div className="flex shrink-0 items-center justify-center">
