@@ -14,7 +14,7 @@ const UsersUserId: NextPage = () => {
     <Layout
       left="memo"
       right={[
-        <Button key="write memo" variant="solid-blue" linkProps={{ href: "/memos/new" }} className="h-9 px-4">
+        <Button key="write memo" variant="solid-blue" linkProps={{ href: "/memos/new" }} className="h-10 px-4">
           メモを書く
         </Button>,
         "profile",

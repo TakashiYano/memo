@@ -1,8 +1,8 @@
 import { Dialog, Transition } from "@headlessui/react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
 import type { FC, ReactNode } from "react";
-import { useRef } from "react";
-import { Fragment } from "react";
+import { Fragment, useRef } from "react";
+import { Button } from "src/components/shared/Button";
 
 type MenuDialogProps = {
   children: ReactNode;
@@ -49,16 +49,11 @@ export const MenuDialog: FC<MenuDialogProps> = (props) => {
               leaveFrom="translate-y-0 sm:opacity-100 sm:scale-100"
               leaveTo="translate-y-full sm:translate-y-0 sm:opacity-0 sm:scale-95"
             >
-              <div className="relative rounded-t-2xl bg-white px-6 pt-20 pb-12 dark:bg-gray-800 sm:rounded-b-2xl">
-                <button
-                  type="button"
-                  ref={buttonRef}
-                  className="absolute top-4 right-6 rounded-md text-gray-400 hover:text-gray-500 focus:text-blue-400 focus:outline-none focus:ring-2 focus:ring-blue-400"
-                  onClick={props.onClose}
-                >
+              <div className="relative rounded-t-3xl bg-white px-6 pt-20 pb-12 dark:bg-gray-800 sm:rounded-2xl">
+                <Button ref={buttonRef} variant="ghost" className="absolute top-4 right-5 p-2" onClick={props.onClose}>
                   <span className="sr-only">Close panel</span>
                   <XMarkIcon className="h-6 w-6" aria-hidden="true" />
-                </button>
+                </Button>
                 <div>{props.children}</div>
               </div>
             </Transition.Child>

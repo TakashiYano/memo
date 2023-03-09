@@ -2,13 +2,17 @@ import { Popover, Transition } from "@headlessui/react";
 import { ArrowLeftOnRectangleIcon, ChevronLeftIcon, CogIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import type { FC } from "react";
 import { Fragment, memo, useCallback } from "react";
 import { Avatar } from "src/components/shared/Avatar";
+import { Button } from "src/components/shared/Button";
 import { EXAMPLE_USER_01 } from "src/models/user";
 
 const user = EXAMPLE_USER_01;
 
 type Right = "profile" | JSX.Element;
+
+const ICON_SIZE = "w-10 h-10";
 
 export type HeaderProps = {
   left?: "back" | "close" | "memo" | JSX.Element;
@@ -39,18 +43,14 @@ const Left = memo<Pick<HeaderProps, "left">>((props) => {
   }, [router]);
 
   if (!props.left) {
-    return <div className="h-9 w-9" />;
+    return <div className={ICON_SIZE} />;
   }
   if (props.left === "back" || props.left === "close") {
     return (
-      <button
-        type="button"
-        onClick={handleClick}
-        className="grid h-9 w-9 place-items-center rounded-full focus:bg-blue-50 focus:outline-none focus:ring-2 focus:ring-blue-400 dark:focus:bg-opacity-10"
-      >
+      <Button variant="ghost" className={ICON_SIZE} onClick={handleClick}>
         {props.left === "back" ? <ChevronLeftIcon className="h-5 w-5" /> : null}
         {props.left === "close" ? <XMarkIcon className="h-5 w-5" /> : null}
-      </button>
+      </Button>
     );
   }
   if (props.left === "memo") {
@@ -84,7 +84,7 @@ Center.displayName = "Center";
 
 const Right = memo<Pick<HeaderProps, "right">>((props) => {
   if (!props.right) {
-    return <div className="h-9 w-9" />;
+    return <div className={ICON_SIZE} />;
   }
   return (
     <div className="flex items-center space-x-2 sm:space-x-3">
@@ -96,7 +96,7 @@ const Right = memo<Pick<HeaderProps, "right">>((props) => {
 });
 Right.displayName = "Right";
 
-const UserMenu = memo(() => {
+const UserMenu: FC = () => {
   const router = useRouter();
   const handleSignOut = useCallback(async () => {
     await router.push("/signin");
@@ -108,8 +108,8 @@ const UserMenu = memo(() => {
       {({ open }) => {
         return (
           <>
-            <Popover.Button className="rounded-full focus:outline-none focus:ring-2 focus:ring-blue-400">
-              <Avatar alt={user.name} src={user.avatarUrl} className="h-9 w-9" />
+            <Popover.Button className="rounded-full focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400">
+              <Avatar alt={user.name} src={user.avatarUrl} className={ICON_SIZE} />
             </Popover.Button>
 
             <div className="relative">
@@ -169,5 +169,4 @@ const UserMenu = memo(() => {
       }}
     </Popover>
   );
-});
-UserMenu.displayName = "UserMenu";
+};
