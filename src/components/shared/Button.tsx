@@ -2,8 +2,8 @@
 import cc from "classcat";
 import type { LinkProps } from "next/link";
 import Link from "next/link";
-import type { ComponentProps, FC, ReactElement, ReactNode } from "react";
-import { cloneElement, forwardRef } from "react";
+import type { ComponentProps, ReactNode } from "react";
+import { forwardRef, useMemo } from "react";
 
 type Common = {
   children: ReactNode;
@@ -20,39 +20,9 @@ const isLink = (props: Button | Link): props is Link => {
   return "linkProps" in props;
 };
 
-export const Button = forwardRef<HTMLButtonElement, Button | Link>((props, ref) => {
-  if (isLink(props)) {
-    const { children, linkProps, ...others } = props;
-    return (
-      <Link {...linkProps} passHref>
-        <StyledChildren {...others}>
-          <a>{children}</a>
-        </StyledChildren>
-      </Link>
-    );
-  }
-
-  // eslint-disable-next-line react/destructuring-assignment
-  const { children, ...others } = props;
-  return (
-    <StyledChildren {...others}>
-      <button type="button" ref={ref} onClick={props.onClick}>
-        {children}
-      </button>
-    </StyledChildren>
-  );
-});
-
-Button.displayName === "Button";
-
-type StyledChildrenProps = Omit<Common, "children"> & { children: ReactElement };
-
-const StyledChildren: FC<StyledChildrenProps> = (props) => {
-  const { children, className, ...others } = props;
-
-  return cloneElement(children, {
-    ...others,
-    className: cc([
+export const Button = forwardRef<HTMLButtonElement & HTMLAnchorElement, Button | Link>((props, ref) => {
+  const className = useMemo(() => {
+    return cc([
       "grid place-items-center font-bold rounded-full focus-visible:ring-2 transition duration-200 ease-in-out focus:outline-none",
       {
         "border dark:border-gray-500 focus:ring-2 focus:ring-blue-400": props.variant === "outline",
@@ -67,7 +37,25 @@ const StyledChildren: FC<StyledChildrenProps> = (props) => {
         "text-white bg-black hover:bg-gray-800 focus:bg-gray-800 dark:hover:bg-gray-900 dark:focus:bg-gray-900":
           props.variant === "solid-black",
       },
-      className,
-    ]),
-  });
-};
+      props.className,
+    ]);
+  }, [props.className, props.variant]);
+
+  if (isLink(props)) {
+    return (
+      <Link {...props.linkProps} legacyBehavior>
+        <a ref={ref} className={className}>
+          {props.children}
+        </a>
+      </Link>
+    );
+  }
+
+  return (
+    <button type="button" ref={ref} onClick={props.onClick} className={className}>
+      {props.children}
+    </button>
+  );
+});
+
+Button.displayName === "Button";
