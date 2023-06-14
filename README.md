@@ -10,7 +10,6 @@
   <a href="https://vercel.com/"><img src="https://user-images.githubusercontent.com/65433193/118944114-3b393980-b98f-11eb-84a5-fc9a1db8ea6b.png" height="50px;" /></a
   <a href="https://eslint.org/"><img src="https://cdn.worldvectorlogo.com/logos/eslint-1.svg" height="50px;" /></a>
   <a href="https://prettier.io/"><img src="https://cdn.worldvectorlogo.com/logos/prettier-2.svg" height="50px;" /></a>
-  <a href="https://storybook.js.org/"><img src="https://user-images.githubusercontent.com/65433193/118938590-c9122600-b989-11eb-957c-6290edb48eeb.png" height="50px;" /></a>
   <a href="https://tailwindcss.com/"><img src="https://cdn.worldvectorlogo.com/logos/tailwindcss.svg" height="50px;"></a>
   <a href="https://headlessui.com/"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAFhElEQVR4Aa3XA7Rc6wGG4effZya2GjupbdtdKJd6bdW2bdu2bdtu41yEx5w9+6umzArXfbf5/kZxipy/O1SK2gyxQCzGUiwQ08RoiZ3YJsa7M3nLmiN1xTF4dGJ4FyqVrllYLFZgLTZik1iHFWIR5oh2oRJd0S/5ocabxVfReeN1q2MH4PwdgUosx/VwQ3E9bMKqnmi26IMSBIEQBBBADGq8RuOFiuE33rACUOiJ/9ITczOcgbtinZhRAggSIAioxQgGxGEMiikxX2wVi0DU4pWl68mKyTfcrAIFLvhDYJriQjwRy/9XVkgmMYh9Yi+2Y5vYjj3YpzKoVSZMT2PYdLUbl8YTxH1FJcbEGYqPaHjDrSqtC37bMJGi7XzF88UsEOP4M34u+QX+gB0q+zLNcBnWrYaUzDRbZQnW4BaSJZghdmp8TcuZGq8XDxGzxDkan1eMQksXlVvpehJmCfiu4iWKb3U2lcPTftxUppd5Kitwq8JGsTmzbMQajWVYIGagJYgp8T4THqbKi8WdxVJxixLXVvwEyoU/bdop3owzChLfU5xWJuzR5+a4M26CzWIF5otpOLLAJQQQ0ClxevhIiU+K+wi4BK9T09LYWLijgNHC80zYpe2ZGpeJeSA4dmFUjnhHG3ctfED8oBcAuEnflY3uskq58PvNvfEhMQc/x511cyN8CvP+X1wCR4iOdf4jcRdxV3xEtMV3xb0w0lKbR9qCOFwqo+naWmLeCQqO/Zw1JVaKv2BALBWrsQQjrVKnRgTRQinROdEYnkA2LMR6yU/EPiwVi8Uqxc6W2oCYwgwxv3c8JDqizYmJjlE+Zogtia8WduN6veq4XvHdltoBMYp5YqGYL67CuGiXo8Y2J5IiQ/gt9lSNRmwHUYlNCi21g6K/xAosENcQV2FAzCMnmw2D+LX4iuIr4tfVRIbSKvAXAcQmHaVVagPiSsl1MFuslfIHsk+sPaE8Z1D8Gl/GV/AbQ4bM4bVntMAlb61hu+igLdZhTivTM1ZG7BLQEhurdEcb1W5xc+Eo2TCIX+Erve3X7f4M1/OK15zdcgQ12CsZxqISK8SiVulHsa0EAZuTSoltjhQP9KRfxlfxm+w3XBbz2nNbjkWpA/vFYbEIi8TyVqnBNjSiwgbRJ/7yf9Iv9aS/bf8kw50bF689v+WEqcGg2Cc2i9lY1VKDXRgVc7FGLMQP8QR8E7+58Xl9I794Q9drLmw5JTooJsQ+QUzDipYaxZXikJhbZKlYgV81dX4Fr7tsGnChU6bUYayvNrPpB9GHRa1Sh+KQuFysF/OxDr/uia8eOmiHOjUIaFe6hFEd29SoTdNxbTWXvbS+egPQadpqy3qeRq2/pY4yWaL4jQDihqWrSpXG1cDDnjxFF1wbNxcwgt8VuOwFHbi7+CRmit+Ku+GqVz+5jVPnEX+TNx2wWPE6PETANxUPaIE68FuxC9fqVZPbKz78sGdMedUzpp18rB87RVGaCfNxE8XDcD9BjCleLw4XuOyZUzJTKaNejUsE8f3SOF3xl1J45bOnwZGip3SYX7Gv29aYiyViLbbiBrhJL1JzhUIXL0/xlMJkgYc/PDKnQ3FzjU9gpSB+oPFc8V2MiSKmi57IaqzHJukNUFleYiGmS4oAghhSvF7xPDH0ytdMVwAe9oQpZirGXCxeKGYLGBF/FgdFH+aJRWJBYY6YRvyfiABiClfgO3gXvompV75+OigA8LDHTFG0dZ0rnipWgFASII4ma8QY+nGl2I7f4pf4jdijqJd+tvKUve2jzw0f/vBJikrjpuICcWexTLQR0RGj6BdXYTe2YbvYhSvEQY1R03RbO4uXfn6ao1EchYdfPAm9ftsmMU90MSgO4qAY0M24vtLYPu6VX13gZPkrxHcy2z2hSHYAAAAASUVORK5CYII=" height="50px;"></a>
   <a href="https://jestjs.io/ja/"><img src="https://user-images.githubusercontent.com/65433193/118944023-265ca600-b98f-11eb-83d8-5635a4f69b9a.png" height="50px;" /></a>
@@ -20,13 +19,11 @@
 
 |   領域   |  技術やツール  |
 | ---- | ---- |
-|  デザイン/設計  |  Storybook  |
 |  フロントエンド  |  Next.js(React)/TypeScript/ |
 |  バックエンド  |  Supabase |
 |  状態管理/データフェッチ  |  SWR |
 |  スタイル  | Headless UI/Tailwind CSS |
 |  Hosting  |  Vercel |
-|  API Server  | Next.js Serverless Functions |
 |  認証  |  Supabase Authentication |
 |  ストレージ  |  Supabase Storage |
 |  Linter/Formatter  |  ESLint/Prettier |
