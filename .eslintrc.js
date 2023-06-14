@@ -7,7 +7,7 @@ module.exports = {
     tailwindcss: { whitelist: ["prose-light"] },
   },
   env: { es2021: true, browser: true, jest: true, node: true },
-  plugins: ["simple-import-sort", "tailwindcss"],
+  plugins: ["simple-import-sort", "tailwindcss", "import-access"],
   extends: [
     "eslint:recommended",
     "plugin:@typescript-eslint/recommended",
@@ -39,6 +39,7 @@ module.exports = {
     "react/destructuring-assignment": ["error", "never"],
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "warn",
+    "import-access/jsdoc": "error",
     "import/newline-after-import": "error",
     "import/no-default-export": "error",
     "simple-import-sort/imports": "error",
