@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/naming-convention */
 import { Dialog, Transition } from "@headlessui/react";
 import type { ComponentProps, FC } from "react";
 import { Fragment, useRef } from "react";

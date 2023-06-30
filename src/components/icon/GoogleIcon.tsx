@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/naming-convention */
 import classcat from "classcat";
 import type { FC } from "react";
 

@@ -7,6 +7,7 @@ import { Fragment, memo, useCallback } from "react";
 import { Avatar } from "src/components/shared/Avatar";
 import { Button } from "src/components/shared/Button";
 import { EXAMPLE_USER_01 } from "src/models/user";
+import { useAuth } from "src/pages-component/auth/useAuth";
 
 const user = EXAMPLE_USER_01;
 
@@ -97,11 +98,7 @@ const Right = memo<Pick<HeaderProps, "right">>((props) => {
 Right.displayName = "Right";
 
 const UserMenu: FC = () => {
-  const router = useRouter();
-  const handleSignOut = useCallback(async () => {
-    await router.push("/signin");
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  const { handleSignOut } = useAuth();
 
   return (
     <Popover className="grid">

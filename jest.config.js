@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/naming-convention */
 module.exports = {
   roots: ["<rootDir>"],
   moduleFileExtensions: ["js", "ts", "tsx", "json"],

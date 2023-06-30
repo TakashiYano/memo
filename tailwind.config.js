@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/naming-convention */
 const colors = require("tailwindcss/colors");
 
 module.exports = {

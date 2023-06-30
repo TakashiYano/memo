@@ -44,9 +44,9 @@ module.exports = {
     "import/no-default-export": "error",
     "simple-import-sort/imports": "error",
     "simple-import-sort/exports": "error",
-    "tailwindcss/classnames-order": "warn",
-    "tailwindcss/no-custom-classname": "warn",
-    "tailwindcss/no-contradicting-classname": "error",
+    // "tailwindcss/classnames-order": "warn",
+    // "tailwindcss/no-custom-classname": "warn",
+    // "tailwindcss/no-contradicting-classname": "error",
     "@typescript-eslint/no-explicit-any": "off",
     "@typescript-eslint/no-var-requires": "off",
     "@typescript-eslint/explicit-module-boundary-types": "off",
@@ -55,8 +55,14 @@ module.exports = {
     "@typescript-eslint/naming-convention": [
       "error",
       { selector: ["typeAlias", "typeParameter"], format: ["PascalCase"] },
-      { selector: ["property", "method"], format: ["camelCase"] },
-      { selector: "variable", types: ["boolean"], format: ["PascalCase"], prefix: ["is", "has", "should"] },
+      { selector: ["classProperty", "method"], format: ["camelCase"] },
+      {
+        selector: "variable",
+        types: ["boolean"],
+        format: ["PascalCase"],
+        prefix: ["no", "is", "has", "should"],
+        filter: { regex: "^_", match: false },
+      },
     ],
     "jsx-a11y/no-autofocus": "off",
     "jsx-a11y/anchor-is-valid": [
@@ -64,5 +70,18 @@ module.exports = {
       { components: ["Link"], specialLink: ["hrefLeft", "hrefRight"], aspects: ["invalidHref", "preferButton"] },
     ],
   },
-  overrides: [{ files: ["src/pages/**/*.tsx", "src/pages/api/**/*.ts"], rules: { "import/no-default-export": "off" } }],
+  overrides: [
+    {
+      files: ["src/pages/**/*.tsx", "src/pages/api/**/*.ts"],
+      rules: {
+        "import/no-default-export": "off",
+        "@typescript-eslint/naming-convention": [
+          "error",
+          { selector: ["typeAlias", "typeParameter"], format: ["PascalCase"] },
+          { selector: ["classProperty", "typeProperty", "method"], format: ["camelCase"] },
+          { selector: "variable", types: ["boolean"], format: ["PascalCase"], prefix: ["is", "has", "should"] },
+        ],
+      },
+    },
+  ],
 };

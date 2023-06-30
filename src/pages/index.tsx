@@ -6,10 +6,20 @@ import { Button } from "src/components/shared/Button";
 import { InputSearch } from "src/components/shared/InputSearch";
 import { Layout } from "src/components/shared/Layout";
 import { EXAMPLE_USER_01 } from "src/models/user";
-
-const user = EXAMPLE_USER_01;
+import { useAuth } from "src/pages-component/auth/useAuth";
 
 const Index: NextPage = () => {
+  const { profileFromGoogle } = useAuth();
+
+  // ユーザ情報
+  const user = profileFromGoogle
+    ? {
+        id: profileFromGoogle.id ?? "",
+        name: profileFromGoogle.name ?? "",
+        avatarUrl: profileFromGoogle.avatarUrl ?? "",
+      }
+    : EXAMPLE_USER_01;
+
   return (
     <Layout
       left="memo"
