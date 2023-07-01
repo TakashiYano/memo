@@ -1,5 +1,7 @@
+import { ChevronDownIcon } from "@heroicons/react/24/outline";
 import type { FC } from "react";
 import { NoteListItem } from "src/components/NoteListItem";
+import { Button } from "src/components/shared/Button";
 import { Error } from "src/components/shared/Error";
 import type { ListNoteType } from "src/types/types";
 import type { SWRResponse } from "swr";
@@ -21,9 +23,19 @@ const NoteList: FC<NoteListProps> = (props) => {
               key={v}
               className="w-full animate-pulse rounded-xl bg-gray-100 py-3 px-4 shadow dark:bg-gray-700 sm:px-6"
             >
-              <div className="h-4 w-3/4 rounded bg-gray-200 dark:bg-gray-600"></div>
-              <div className="mt-3 h-4 rounded bg-gray-200 dark:bg-gray-600"></div>
-              <div className="mt-6 h-4 w-1/6 rounded bg-gray-200 dark:bg-gray-600"></div>
+              <div className="flex items-center space-x-8">
+                <div className="flex flex-col flex-1">
+                  <div className="h-4 w-3/4 rounded bg-gray-200 dark:bg-gray-600"></div>
+                  <div className="mt-3 h-4 rounded bg-gray-200 dark:bg-gray-600"></div>
+                  <div className="h-4 mt-6 flex justify-between">
+                    <div className="w-1/6 rounded bg-gray-200 dark:bg-gray-600"></div>
+                    <div className="w-1/6 rounded-full bg-gray-200 dark:bg-gray-600"></div>
+                  </div>
+                </div>
+                <Button variant="ghost" className="h-8 w-8">
+                  <ChevronDownIcon />
+                </Button>
+              </div>
             </li>
           );
         })}
@@ -39,7 +51,7 @@ const NoteList: FC<NoteListProps> = (props) => {
     <ul className="space-y-5">
       {props.data.map((note) => {
         return (
-          <li key={note.id}>
+          <li key={note.id} className="dark:bg-gray-700 rounded-xl bg-gray-100 py-3 px-4 shadow sm:px-6">
             <NoteListItem note={note} />
           </li>
         );
