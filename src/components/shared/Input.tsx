@@ -27,7 +27,7 @@ export const Input: FC<InputProps> = (props) => {
           />
         </div>
       </label>
-      {props.error ? <p className="mt-0.5 ml-4 text-sm text-red-500">{props.error}</p> : null}
+      {props.error ? <p className="ml-4 mt-0.5 text-sm text-red-500">{props.error}</p> : null}
     </div>
   );
 };

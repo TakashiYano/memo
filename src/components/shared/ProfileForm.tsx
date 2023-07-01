@@ -20,7 +20,7 @@ export const ProfileForm: FC<ProfileFormProps> = (props) => {
                 <UserIcon className="text-white" />
               </div>
             )}
-            <Button variant="solid-gray" className="mt-4 py-2.5 px-5">
+            <Button variant="solid-gray" className="mt-4 px-5 py-2.5">
               アイコンを{props.user ? "変更する" : "設定する"}
             </Button>
           </div>

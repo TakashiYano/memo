@@ -35,10 +35,10 @@ export const NoteMenu: FC<NoteMenuProps> = (props) => {
                 <li key={props.label} className="overflow-hidden first:rounded-t-2xl last:rounded-b-2xl">
                   <button
                     className={cc([
-                      "flex w-full items-center bg-gray-100 py-3 px-6 text-left focus:bg-gray-200 focus:outline-none dark:bg-gray-700 dark:focus:bg-gray-600",
+                      "flex w-full items-center bg-gray-100 px-6 py-3 text-left focus:bg-gray-200 focus:outline-none dark:bg-gray-700 dark:focus:bg-gray-600",
                       {
                         "hover:bg-gray-200 dark:hover:bg-gray-600": !props.disabled,
-                        "text-gray-400 text-opacity-50 cursor-not-allowed": props.disabled,
+                        "cursor-not-allowed text-gray-400 text-opacity-50": props.disabled,
                       },
                     ])}
                     onClick={props.onClick}
@@ -57,7 +57,7 @@ export const NoteMenu: FC<NoteMenuProps> = (props) => {
                     </div>
                     <div
                       className={cc([
-                        "flex-shrink-0 w-5 h-5",
+                        "h-5 w-5 flex-shrink-0",
                         {
                           "text-blue-500": !props.disabled && props.iconColor === "blue",
                           "text-red-500": !props.disabled && props.iconColor === "red",

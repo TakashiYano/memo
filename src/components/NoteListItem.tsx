@@ -20,14 +20,14 @@ export const NoteListItem: FC<NoteListItemProps> = (props) => {
     <div className="flex items-center space-x-8">
       <Link href={`/memos/${props.note.id}`} legacyBehavior>
         <a className="block w-5/6 bg-gray-100 dark:bg-gray-700">
-          <div className="flex flex-col flex-1">
+          <div className="flex flex-1 flex-col">
             <div className="w-3/4 truncate text-sm font-bold sm:text-base">{title}</div>
             <div className="mt-3 truncate text-sm">{props.note.excerpt.replace(title, "")}</div>
 
             <div className="mt-6 flex items-center justify-between">
               <time className="text-sm font-bold text-gray-400">{props.note.updatedOn}</time>
               {props.note.public ? (
-                <div className="rounded-full bg-gray-200 dark:bg-gray-600 py-1 px-2.5 text-xs font-bold text-white">
+                <div className="rounded-full bg-gray-200 px-2.5 py-1 text-xs font-bold text-white dark:bg-gray-600">
                   ラベル
                 </div>
               ) : null}
@@ -74,7 +74,7 @@ const ListMenu: FC = () => {
                   <div className="overflow-hidden rounded-2xl bg-white py-4 shadow-lg ring-1 ring-gray-400 ring-opacity-20 dark:bg-gray-800">
                     <div className="relative grid">
                       <Link href="/" legacyBehavior>
-                        <a className="flex items-center py-2.5 px-4 hover:bg-gray-100 focus:outline-none focus-visible:bg-gray-100 dark:hover:bg-gray-700 dark:focus-visible:bg-gray-700">
+                        <a className="flex items-center px-4 py-2.5 hover:bg-gray-100 focus:outline-none focus-visible:bg-gray-100 dark:hover:bg-gray-700 dark:focus-visible:bg-gray-700">
                           <div className="flex shrink-0 items-center justify-center">
                             <TagIcon className="h-7 w-7" />
                           </div>
@@ -83,7 +83,7 @@ const ListMenu: FC = () => {
                       </Link>
                       <button
                         type="button"
-                        className="flex items-center py-2.5 px-4 hover:bg-gray-100 focus:outline-none focus-visible:bg-gray-100 dark:hover:bg-gray-700 dark:focus-visible:bg-gray-700"
+                        className="flex items-center px-4 py-2.5 hover:bg-gray-100 focus:outline-none focus-visible:bg-gray-100 dark:hover:bg-gray-700 dark:focus-visible:bg-gray-700"
                         onClick={handleDeleteMemo}
                       >
                         <div className="flex shrink-0 items-center justify-center">

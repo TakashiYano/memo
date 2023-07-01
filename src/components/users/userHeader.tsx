@@ -11,7 +11,7 @@ export const UserHeader = () => {
       <div className="flex-1">
         <div className="mr-4 flex justify-end">Memo</div>
       </div>
-      <div className="my-auto mx-16 flex-1">
+      <div className="mx-16 my-auto flex-1">
         <InputText startIcon={<SearchIcon className="my-auto mr-2 h-6 w-6" />} placeholder="メモを検索する" />
       </div>
       <div className="flex-1">

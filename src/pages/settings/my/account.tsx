@@ -29,7 +29,7 @@ const SettingsAccount: NextPage = () => {
                 </div>
               ),
               button: (
-                <Button variant="solid-gray" className="py-2 px-4 text-sm" onClick={handleGoogle}>
+                <Button variant="solid-gray" className="px-4 py-2 text-sm" onClick={handleGoogle}>
                   解除する
                 </Button>
               ),
@@ -42,7 +42,7 @@ const SettingsAccount: NextPage = () => {
                 </div>
               ),
               button: (
-                <Button variant="solid-blue" className="py-2 px-4 text-sm" onClick={handleApple}>
+                <Button variant="solid-blue" className="px-4 py-2 text-sm" onClick={handleApple}>
                   連携する
                 </Button>
               ),

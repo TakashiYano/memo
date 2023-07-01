@@ -49,8 +49,8 @@ export const MenuDialog: FC<MenuDialogProps> = (props) => {
               leaveFrom="translate-y-0 sm:opacity-100 sm:scale-100"
               leaveTo="translate-y-full sm:translate-y-0 sm:opacity-0 sm:scale-95"
             >
-              <div className="relative rounded-t-3xl bg-white px-6 pt-20 pb-12 dark:bg-gray-800 sm:rounded-2xl">
-                <Button ref={buttonRef} variant="ghost" className="absolute top-4 right-5 p-2" onClick={props.onClose}>
+              <div className="relative rounded-t-3xl bg-white px-6 pb-12 pt-20 dark:bg-gray-800 sm:rounded-2xl">
+                <Button ref={buttonRef} variant="ghost" className="absolute right-5 top-4 p-2" onClick={props.onClose}>
                   <span className="sr-only">Close panel</span>
                   <XMarkIcon className="h-6 w-6" aria-hidden="true" />
                 </Button>

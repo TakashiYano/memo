@@ -138,7 +138,7 @@ const UserMenu: FC = () => {
                     </div>
                     <div className="relative grid">
                       <Link href="/settings/memo" legacyBehavior>
-                        <a className="flex items-center py-2.5 px-4 hover:bg-gray-100 focus:outline-none focus-visible:bg-gray-100 dark:hover:bg-gray-700 dark:focus-visible:bg-gray-700">
+                        <a className="flex items-center px-4 py-2.5 hover:bg-gray-100 focus:outline-none focus-visible:bg-gray-100 dark:hover:bg-gray-700 dark:focus-visible:bg-gray-700">
                           {" "}
                           <div className="flex shrink-0 items-center justify-center">
                             <CogIcon className="h-7 w-7" />
@@ -148,7 +148,7 @@ const UserMenu: FC = () => {
                       </Link>
                       <button
                         type="button"
-                        className="flex items-center py-2.5 px-4 hover:bg-gray-100 focus:outline-none focus-visible:bg-gray-100 dark:hover:bg-gray-700 dark:focus-visible:bg-gray-700"
+                        className="flex items-center px-4 py-2.5 hover:bg-gray-100 focus:outline-none focus-visible:bg-gray-100 dark:hover:bg-gray-700 dark:focus-visible:bg-gray-700"
                         onClick={handleSignOut}
                       >
                         <div className="flex shrink-0 items-center justify-center">

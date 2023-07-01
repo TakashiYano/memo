@@ -14,7 +14,7 @@ export const Layout: FC<Props> = (props) => {
   return (
     <div className="pb-20">
       <div
-        className={`mx-auto px-3 pt-4 pb-8 sm:px-4 sm:pb-14 ${isHeaderNarrow ? "max-w-screen-sm" : "max-w-screen-lg"}`}
+        className={`mx-auto px-3 pb-8 pt-4 sm:px-4 sm:pb-14 ${isHeaderNarrow ? "max-w-screen-sm" : "max-w-screen-lg"}`}
       >
         <Header {...headerProps} />
       </div>

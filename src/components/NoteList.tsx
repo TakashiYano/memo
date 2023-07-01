@@ -21,13 +21,13 @@ const NoteList: FC<NoteListProps> = (props) => {
           return (
             <li
               key={v}
-              className="w-full animate-pulse rounded-xl bg-gray-100 py-3 px-4 shadow dark:bg-gray-700 sm:px-6"
+              className="w-full animate-pulse rounded-xl bg-gray-100 px-4 py-3 shadow dark:bg-gray-700 sm:px-6"
             >
               <div className="flex items-center space-x-8">
-                <div className="flex flex-col flex-1">
+                <div className="flex flex-1 flex-col">
                   <div className="h-4 w-3/4 rounded bg-gray-200 dark:bg-gray-600"></div>
                   <div className="mt-3 h-4 rounded bg-gray-200 dark:bg-gray-600"></div>
-                  <div className="h-4 mt-6 flex justify-between">
+                  <div className="mt-6 flex h-4 justify-between">
                     <div className="w-1/6 rounded bg-gray-200 dark:bg-gray-600"></div>
                     <div className="w-1/6 rounded-full bg-gray-200 dark:bg-gray-600"></div>
                   </div>
@@ -51,7 +51,7 @@ const NoteList: FC<NoteListProps> = (props) => {
     <ul className="space-y-5">
       {props.data.map((note) => {
         return (
-          <li key={note.id} className="dark:bg-gray-700 rounded-xl bg-gray-100 py-3 px-4 shadow sm:px-6">
+          <li key={note.id} className="rounded-xl bg-gray-100 px-4 py-3 shadow dark:bg-gray-700 sm:px-6">
             <NoteListItem note={note} />
           </li>
         );
