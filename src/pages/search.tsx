@@ -1,65 +1,85 @@
-import { XMarkIcon } from "@heroicons/react/24/outline";
+import { ChevronLeftIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import type { NextPage } from "next";
-import type { ChangeEvent, FormEvent } from "react";
+import Link from "next/link";
+import { useRouter } from "next/router";
+import type { ChangeEventHandler, FormEvent } from "react";
 import { useMemo } from "react";
 import { useCallback, useState } from "react";
-import { SearchNoteList } from "src/components/NoteList";
-import { SearchHistories } from "src/components/SearchHistories";
+import { toast } from "react-hot-toast";
+import { UserNoteList } from "src/components/NoteList";
 import { Button } from "src/components/shared/Button";
 import { InputSearch } from "src/components/shared/InputSearch";
 import { Layout } from "src/components/shared/Layout";
 import { EXAMPLE_USER_01 } from "src/models/user";
-import type { SearchHistoryType } from "src/types/types";
+import { useDebouncedCallback } from "use-debounce";
 
 const user = EXAMPLE_USER_01;
 
 const Search: NextPage = () => {
-  const [value, setValue] = useState("");
-  const [keyword, setKeyword] = useState("");
+  const router = useRouter();
+  const [inputValue, setInputValue] = useState(router.query.q);
 
-  const handleChange = useCallback((e: ChangeEvent<HTMLInputElement>) => {
-    setValue(e.currentTarget.value);
-  }, []);
+  const debounced = useDebouncedCallback((value: string) => {
+    try {
+      if (!value) {
+        router.push("/search");
+      } else {
+        router.push(`/search?q=${value}`);
+      }
+    } catch (error) {
+      toast.error("エラーが発生したため保存に失敗しました。時間を空けてから再度お試しください。");
+      console.error(error);
+    }
+  }, 1000);
+
+  const handleChange = useCallback<ChangeEventHandler<HTMLInputElement>>(
+    (e) => {
+      const value = e.target.value;
+      setInputValue(value);
+
+      return debounced(e.currentTarget.value);
+    },
+    [debounced]
+  );
 
   const handleSubmit = useCallback(
-    async (e: FormEvent<HTMLFormElement>) => {
+    (e: FormEvent<HTMLFormElement>) => {
       e.preventDefault();
-      setKeyword(value);
-      const req: Pick<SearchHistoryType, "keyword"> = { keyword };
-      await fetch(`/users/${user.id}/searchHistories`, {
-        method: "post",
-        body: JSON.stringify(req),
-      });
+      router.push(`/search?q=${inputValue}`);
     },
-    [keyword, value]
+    [router, inputValue]
   );
 
   const handleClose = useCallback(() => {
-    setValue("");
-    setKeyword("");
-  }, []);
+    setInputValue("");
+    router.push("/search");
+  }, [router]);
 
   const right = useMemo(() => {
-    if (!value) return;
+    if (!inputValue) return;
     return [
       <Button key="delete" variant="ghost" className="h-10 w-10" onClick={handleClose}>
         <XMarkIcon className="h-5 w-5" />
       </Button>,
     ];
-  }, [handleClose, value]);
+  }, [handleClose, inputValue]);
 
   return (
     <Layout
       isHeaderNarrow
-      left="back"
+      left={
+        <Link href={"/"}>
+          <ChevronLeftIcon className="h-5 w-5" />
+        </Link>
+      }
       center={
         <form className="flex-1" onSubmit={handleSubmit}>
-          <InputSearch placeholder="検索" value={value} onChange={handleChange} autoFocus />
+          <InputSearch placeholder="検索" value={inputValue} onChange={handleChange} autoFocus />
         </form>
       }
       right={right}
     >
-      {keyword === "" ? <SearchHistories /> : <SearchNoteList userId={user.id} keyword={keyword} />}
+      <UserNoteList userId={user.id} />
     </Layout>
   );
 };
