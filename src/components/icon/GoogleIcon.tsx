@@ -1,22 +1,8 @@
-import classcat from "classcat";
 import type { FC } from "react";
 
-type Props = {
-  className?: string;
-  size?: "large" | "small";
-};
-
-export const GoogleIcon: FC<Props> = (props) => {
-  const classes = classcat([
-    {
-      "w-6 h-6": props.size === "large",
-      "w-5 h-5": props.size === "small",
-    },
-    props.className,
-  ]);
-
+export const GoogleIcon: FC<{ className?: string }> = (props) => {
   return (
-    <svg className={classes} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg className={props.className} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path
         d="M23.5236 12.2755C23.5236 11.4598 23.4574 10.6397 23.3163 9.83716H11.9976V14.4581H18.4793C18.2103 15.9485 17.3461 17.2669 16.0806 18.1047V21.103H19.9476C22.2184 19.013 23.5236 15.9264 23.5236 12.2755Z"
         fill="#4285F4"
@@ -35,10 +21,4 @@ export const GoogleIcon: FC<Props> = (props) => {
       />
     </svg>
   );
-};
-
-// Propsのデフォルト値
-GoogleIcon.defaultProps = {
-  className: "",
-  size: "small",
 };

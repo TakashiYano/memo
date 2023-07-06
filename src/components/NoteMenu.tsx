@@ -5,7 +5,7 @@ type MenuItem = {
   label: string;
   labelColor?: "blue" | "red";
   icon: JSX.Element;
-  iconColor?: "blue" | "red" | "twitter";
+  iconColor?: "blue" | "red";
   onClick: ComponentProps<"button">["onClick"];
   disabled?: boolean;
 };
@@ -61,7 +61,6 @@ export const NoteMenu: FC<NoteMenuProps> = (props) => {
                         {
                           "text-blue-500": !props.disabled && props.iconColor === "blue",
                           "text-red-500": !props.disabled && props.iconColor === "red",
-                          "text-blue-400": !props.disabled && props.iconColor === "twitter",
                         },
                       ])}
                     >

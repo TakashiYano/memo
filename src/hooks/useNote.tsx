@@ -8,7 +8,6 @@ import {
 import { useRouter } from "next/router";
 import { useCallback, useMemo, useState } from "react";
 import { toast } from "react-hot-toast";
-import { TwitterIcon } from "src/components/icon/TwitterIcon";
 import type { NoteMenuProps } from "src/components/NoteMenu";
 import { Button } from "src/components/shared/Button";
 import type { NotePutRequest, NoteType } from "src/types/types";
@@ -111,19 +110,6 @@ export const useNote = (note: NoteType) => {
       ],
       isPublic ? undefined : "以下は公開後に操作ができます",
       [
-        {
-          label: "Twitterでシェアする",
-          icon: <TwitterIcon />,
-          iconColor: "twitter",
-          onClick: () => {
-            // TODO
-            const url = `https://twitter.com/intent/tweet?url=${
-              location.href
-            }&text=${"メモを書きました"}&via=${"Memo"}`;
-            window.open(url, "_blank", "noreferrer");
-          },
-          disabled: !isPublic,
-        },
         {
           label: "リンクをコピーする",
           icon: <ClipboardIcon />,
