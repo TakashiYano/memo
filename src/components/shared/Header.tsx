@@ -84,12 +84,9 @@ const Center = memo<Pick<HeaderProps, "center">>((props) => {
 Center.displayName = "Center";
 
 const Right = memo<Pick<HeaderProps, "right">>((props) => {
-  if (!props.right) {
-    return <div className={ICON_SIZE} />;
-  }
   return (
     <div className="flex items-center space-x-2 sm:space-x-3">
-      {props.right.map((item, i) => {
+      {props.right?.map((item, i) => {
         return <Fragment key={i}>{item === "profile" ? <UserMenu /> : item}</Fragment>;
       })}
     </div>

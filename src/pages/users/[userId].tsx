@@ -3,7 +3,7 @@ import Link from "next/link";
 import { UserNoteList } from "src/components/NoteList";
 import { Avatar } from "src/components/shared/Avatar";
 import { Button } from "src/components/shared/Button";
-import { InputSearch } from "src/components/shared/InputSearch";
+import { InputSearch } from "src/components/shared/InputSearch2";
 import { Layout } from "src/components/shared/Layout";
 import { EXAMPLE_USER_02 } from "src/models/user";
 
