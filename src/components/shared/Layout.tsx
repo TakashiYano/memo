@@ -1,24 +1,18 @@
 import type { FC, ReactNode } from "react";
-import type { HeaderProps } from "src/components/shared/Header";
-import { Header } from "src/components/shared/Header";
 
-type Props = HeaderProps & {
-  children: ReactNode;
-  isHeaderNarrow?: boolean;
-};
+import type { HeaderProps } from "./Header";
+import { Header } from "./Header";
+
+type Props = HeaderProps & { children: ReactNode; isHeaderNarrow?: boolean };
 
 export const Layout: FC<Props> = (props) => {
   // eslint-disable-next-line react/destructuring-assignment
-  const { children, isHeaderNarrow, ...headerProps } = props;
+  const { children, ...rest } = props;
 
   return (
-    <div className="pb-20">
-      <div
-        className={`mx-auto px-3 pb-8 pt-4 sm:px-4 sm:pb-14 ${isHeaderNarrow ? "max-w-screen-sm" : "max-w-screen-lg"}`}
-      >
-        <Header {...headerProps} />
-      </div>
-      <div className="mx-auto w-full max-w-screen-sm px-4">{children}</div>
+    <div className="space-y-8 pb-20 pt-4 sm:space-y-14">
+      <Header {...rest} />
+      <main className="mx-auto w-full max-w-screen-sm px-4">{children}</main>
     </div>
   );
 };

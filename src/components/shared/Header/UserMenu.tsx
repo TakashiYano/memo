@@ -1,101 +1,23 @@
 import { Popover, Transition } from "@headlessui/react";
-import { ArrowLeftOnRectangleIcon, ChevronLeftIcon, CogIcon, XMarkIcon } from "@heroicons/react/24/outline";
+import { ArrowLeftOnRectangleIcon, CogIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
-import { useRouter } from "next/router";
 import type { FC } from "react";
-import { Fragment, memo, useCallback } from "react";
+import { Fragment } from "react";
 import { Avatar } from "src/components/shared/Avatar";
-import { Button } from "src/components/shared/Button";
+import { ICON_SIZE } from "src/components/shared/Header/constants";
 import { EXAMPLE_USER_01 } from "src/models/user";
 import { useAuth } from "src/pages-component/auth/useAuth";
 
-const user = EXAMPLE_USER_01;
-
-type Right = "profile" | JSX.Element;
-
-const ICON_SIZE = "w-10 h-10";
-
-export type HeaderProps = {
-  left?: "back" | "close" | "memo" | JSX.Element;
-  center?: "account" | string | JSX.Element;
-  right?: ("profile" | JSX.Element)[];
-};
-
-export const Header = memo<HeaderProps>((props) => {
-  return (
-    <header className="flex items-center">
-      <Left left={props.left} />
-
-      <div className="flex flex-1 justify-center px-2">
-        <Center center={props.center} />
-      </div>
-
-      <Right right={props.right} />
-    </header>
-  );
-});
-Header.displayName = "Header";
-
-const Left = memo<Pick<HeaderProps, "left">>((props) => {
-  const router = useRouter();
-  const handleClick = useCallback(() => {
-    const prevPath = sessionStorage.getItem("prevPath");
-    return prevPath ? router.back() : router.push("/");
-  }, [router]);
-
-  if (!props.left) {
-    return <div className={ICON_SIZE} />;
-  }
-  if (props.left === "back" || props.left === "close") {
-    return (
-      <Button variant="ghost" className={ICON_SIZE} onClick={handleClick}>
-        {props.left === "back" ? <ChevronLeftIcon className="h-5 w-5" /> : null}
-        {props.left === "close" ? <XMarkIcon className="h-5 w-5" /> : null}
-      </Button>
-    );
-  }
-  if (props.left === "memo") {
-    return (
-      <Link href="/" legacyBehavior>
-        <a className="text-xl font-bold">Memo</a>
-      </Link>
-    );
-  }
-  return props.left;
-});
-Left.displayName = "Left";
-
-const Center = memo<Pick<HeaderProps, "center">>((props) => {
-  if (!props.center) {
-    return null;
-  }
-  if (props.center === "account") {
-    return (
-      <Link href="/settings/my" legacyBehavior>
-        <a className="text-xl font-bold">Account</a>
-      </Link>
-    );
-  }
-  if (typeof props.center === "string") {
-    return <div className="text-xl font-bold">{props.center}</div>;
-  }
-  return props.center;
-});
-Center.displayName = "Center";
-
-const Right = memo<Pick<HeaderProps, "right">>((props) => {
-  return (
-    <div className="flex items-center space-x-2 sm:space-x-3">
-      {props.right?.map((item, i) => {
-        return <Fragment key={i}>{item === "profile" ? <UserMenu /> : item}</Fragment>;
-      })}
-    </div>
-  );
-});
-Right.displayName = "Right";
-
-const UserMenu: FC = () => {
-  const { handleSignOut } = useAuth();
+/** @package */
+export const UserMenu: FC = () => {
+  const { profileFromGoogle, handleSignOut } = useAuth();
+  const user = profileFromGoogle
+    ? {
+        id: profileFromGoogle.id ?? "",
+        name: profileFromGoogle.name ?? "",
+        avatarUrl: profileFromGoogle.avatarUrl ?? "",
+      }
+    : EXAMPLE_USER_01;
 
   return (
     <Popover className="grid">
