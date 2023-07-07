@@ -1,7 +1,7 @@
 import { ChevronLeftIcon } from "@heroicons/react/24/outline";
 import type { NextPage } from "next";
 import { UserNoteList } from "src/components/NoteList";
-import { Button } from "src/components/shared/Button";
+import { Anchor } from "src/components/shared/Button";
 import { InputSearch2 } from "src/components/shared/InputSearch2";
 import { Layout } from "src/components/shared/Layout";
 import { EXAMPLE_USER_01 } from "src/models/user";
@@ -13,9 +13,9 @@ const Search: NextPage = () => {
     <Layout
       isHeaderNarrow
       left={
-        <Button linkProps={{ href: "/" }} variant="ghost" className="h-10 w-10">
+        <Anchor href={"/"} variant="ghost" className="h-10 w-10">
           <ChevronLeftIcon className="h-5 w-5" />
-        </Button>
+        </Anchor>
       }
       center={<InputSearch2 />}
     >
