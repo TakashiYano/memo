@@ -25,7 +25,7 @@ export const List: FC<ListProps> = (props) => {
             const isExternal = item.href.slice(0, 1) !== "/";
             return (
               <li key={i}>
-                <Link href={item.href}>
+                <Link href={item.href} legacyBehavior>
                   <a
                     className={className}
                     target={isExternal ? "_blank" : undefined}
