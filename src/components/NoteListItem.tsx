@@ -3,6 +3,7 @@ import { ChevronDownIcon, TagIcon, TrashIcon } from "@heroicons/react/24/outline
 import Link from "next/link";
 import { type FC, Fragment, useCallback } from "react";
 import { Button } from "src/components/shared/Button";
+import { format_yyyyMd } from "src/lib/date";
 import type { ListNoteType } from "src/types/types";
 
 type NoteListItemProps = { note: ListNoteType };
@@ -25,7 +26,9 @@ export const NoteListItem: FC<NoteListItemProps> = (props) => {
             <div className="mt-3 truncate text-sm">{props.note.excerpt.replace(title, "")}</div>
 
             <div className="mt-6 flex items-center justify-between">
-              <time className="text-sm font-bold text-gray-400">{props.note.updatedOn}</time>
+              <time className="space-x-4 text-sm font-bold tracking-wide text-gray-400">
+                {format_yyyyMd(props.note.updatedOn)}
+              </time>
               {props.note.public ? (
                 <div className="rounded-full bg-gray-200 px-2.5 py-1 text-xs font-bold text-white dark:bg-gray-600">
                   ラベル
