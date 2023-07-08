@@ -1,33 +1,12 @@
 import { ArrowTopRightOnSquareIcon, ChevronRightIcon } from "@heroicons/react/24/outline";
 import cc from "classcat";
 import Link from "next/link";
-import type { ComponentProps, FC } from "react";
+import type { FC } from "react";
 
-export type AllOrNone<T> = T | { [Key in keyof T]?: never };
+import type { ListProps } from "./type";
+import { hasButton, isLink } from "./type";
 
-type Link = {
-  label: string | JSX.Element;
-  href: string;
-};
-
-type ComponentButton = { label: string | JSX.Element; button: JSX.Element };
-
-type AllButton = { label: string | JSX.Element; onClick: ComponentProps<"button">["onClick"] };
-
-type Button = ComponentButton | AllButton;
-
-type ListItem = Link | Button;
-
-type ListProps = { title?: string | JSX.Element; items: [ListItem, ...ListItem[]] };
-
-const isLink = (item: ListItem): item is Link => {
-  return "href" in item;
-};
-
-const hasButton = (item: Button): item is ComponentButton => {
-  return "button" in item;
-};
-
+/** @package */
 export const List: FC<ListProps> = (props) => {
   return (
     <div className="space-y-1">
@@ -46,7 +25,7 @@ export const List: FC<ListProps> = (props) => {
             const isExternal = item.href.slice(0, 1) !== "/";
             return (
               <li key={i}>
-                <Link href={item.href} legacyBehavior>
+                <Link href={item.href}>
                   <a
                     className={className}
                     target={isExternal ? "_blank" : undefined}
@@ -69,7 +48,7 @@ export const List: FC<ListProps> = (props) => {
               <li key={i}>
                 <div className={className}>
                   <div className="flex-1">{item.label}</div>
-                  <div className="shrink-0">{item.button}</div>
+                  <div className="flex-shrink-0">{item.button}</div>
                 </div>
               </li>
             );
@@ -86,23 +65,5 @@ export const List: FC<ListProps> = (props) => {
         })}
       </ul>
     </div>
-  );
-};
-
-type RecursiveListProps = {
-  list: [ListProps, ...ListProps[]];
-};
-
-export const RecursiveList: FC<RecursiveListProps> = (props) => {
-  return (
-    <ul className="space-y-8">
-      {props.list.map((listItems, i) => {
-        return (
-          <li key={i}>
-            <List {...listItems} />
-          </li>
-        );
-      })}
-    </ul>
   );
 };
