@@ -13,6 +13,7 @@ type Props = {
   buttonColor: "blue" | "red";
 };
 
+/** @package */
 export const ConfirmDialog: FC<Props> = (props) => {
   const buttonRef = useRef(null);
 

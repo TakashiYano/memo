@@ -10,6 +10,7 @@ type MenuDialogProps = {
   onClose: () => void;
 };
 
+/** @package */
 export const MenuDialog: FC<MenuDialogProps> = (props) => {
   const buttonRef = useRef(null);
 
