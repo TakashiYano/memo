@@ -1,7 +1,7 @@
 import type { NextPage } from "next";
 import { useCallback } from "react";
-import { GoogleIcon } from "src/components/icon/GoogleIcon";
 import { Button } from "src/components/shared/Button";
+import { GoogleIcon } from "src/components/shared/Icon";
 import { Layout } from "src/components/shared/Layout";
 import { List } from "src/components/shared/List";
 
