@@ -1,6 +1,5 @@
 import { ChevronLeftIcon, ClipboardIcon, TagIcon, TrashIcon } from "@heroicons/react/24/outline";
 import type { NextPage } from "next";
-import { useRouter } from "next/router";
 import type { ChangeEvent } from "react";
 import { useCallback, useState } from "react";
 import { toast } from "react-hot-toast";
@@ -8,37 +7,14 @@ import TextareaAutosize from "react-textarea-autosize";
 import { ConfirmDialog } from "src/components/Dialog";
 import { Anchor, Button } from "src/components/shared/Button";
 import { Layout } from "src/components/shared/Layout";
+import { useDeleteNote } from "src/hooks/useDeleteNote";
+import { useNoteDialog } from "src/hooks/useNoteDialog";
 import type { NoteType } from "src/types/types";
 
 const MemosNoteId: NextPage<NoteType> = (props) => {
-  const router = useRouter();
-  const [isShowDeleteDialog, setIsShowDeleteDialog] = useState(false);
+  const { isShowMenu, handleOpenMenu, handleCloseMenu } = useNoteDialog();
+  const { handleDeleteNote } = useDeleteNote();
   const [content, setContent] = useState(props.content);
-
-  const handleOpenDeleteDialog = useCallback(() => {
-    setIsShowDeleteDialog(true);
-  }, []);
-
-  const handleCloseDeleteDialog = useCallback(() => {
-    setIsShowDeleteDialog(false);
-  }, []);
-
-  const deleteNote = useCallback(async () => {
-    await alert("TODO: 削除処理の追加");
-  }, []);
-
-  const handleDeleteNote = useCallback(async () => {
-    try {
-      await toast.promise(deleteNote(), {
-        loading: "処理中",
-        success: "削除しました",
-        error: "失敗しました",
-      });
-      await router.push("/");
-    } catch (error) {
-      console.error(error);
-    }
-  }, [deleteNote, router]);
 
   const handleChangeContent = useCallback(async (event: ChangeEvent<HTMLTextAreaElement>) => {
     setContent(event.currentTarget.value);
@@ -68,7 +44,7 @@ const MemosNoteId: NextPage<NoteType> = (props) => {
           <Button key="copy" variant="ghost" className="h-10 w-10" onClick={handleCopy}>
             <ClipboardIcon className="h-5 w-5" />
           </Button>,
-          <Button key="delete" variant="ghost" className="h-10 w-10" onClick={handleOpenDeleteDialog}>
+          <Button key="delete" variant="ghost" className="h-10 w-10" onClick={handleOpenMenu}>
             <TrashIcon className="h-5 w-5" />
           </Button>,
         ]}
@@ -89,8 +65,8 @@ const MemosNoteId: NextPage<NoteType> = (props) => {
       </Layout>
 
       <ConfirmDialog
-        show={isShowDeleteDialog}
-        onClose={handleCloseDeleteDialog}
+        show={isShowMenu}
+        onClose={handleCloseMenu}
         onClickOk={handleDeleteNote}
         title="メモを削除"
         description="復元できませんがよろしいですか？"
