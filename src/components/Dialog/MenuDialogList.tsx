@@ -1,7 +1,7 @@
 import cc from "classcat";
 import type { ComponentProps, FC } from "react";
 
-type MenuItem = {
+type MenuListItem = {
   label: string;
   labelColor?: "blue" | "red";
   icon: JSX.Element;
@@ -10,11 +10,13 @@ type MenuItem = {
   disabled?: boolean;
 };
 
-export type NoteMenuProps = {
-  menu: (MenuItem[] | string | undefined)[];
+/** @package */
+export type MenuDialogListProps = {
+  menu: (MenuListItem[] | string | undefined)[];
 };
 
-export const NoteMenu: FC<NoteMenuProps> = (props) => {
+/** @package */
+export const MenuDialogList: FC<MenuDialogListProps> = (props) => {
   return (
     <div className="space-y-5">
       {props.menu.map((item, i) => {

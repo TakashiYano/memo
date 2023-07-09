@@ -1,45 +1,80 @@
-import type { GetStaticPaths, GetStaticProps, NextPage } from "next";
+import { ChevronLeftIcon, ClipboardIcon, TagIcon, TrashIcon } from "@heroicons/react/24/outline";
+import type { NextPage } from "next";
+import { useRouter } from "next/router";
 import type { ChangeEvent } from "react";
-import { useCallback } from "react";
-import { useState } from "react";
+import { useCallback, useState } from "react";
+import { toast } from "react-hot-toast";
 import TextareaAutosize from "react-textarea-autosize";
-import { ConfirmDialog, MenuDialog } from "src/components/Dialog";
-import { NoteMenu } from "src/components/NoteMenu";
+import { ConfirmDialog } from "src/components/Dialog";
+import { Anchor, Button } from "src/components/shared/Button";
 import { Layout } from "src/components/shared/Layout";
-import { useNote } from "src/hooks/useNote";
-import { EXAMPLE_NOTE } from "src/models/note";
 import type { NoteType } from "src/types/types";
 
-export const getStaticPaths: GetStaticPaths = async () => {
-  return { paths: [], fallback: "blocking" };
-};
-
-export const getStaticProps: GetStaticProps<NoteType, { noteId: string }> = async ({ params: _ }) => {
-  // const res = await fetch(`/notes/${params?.noteId}`);
-  // const data: NoteType = await res.json();
-  return { props: EXAMPLE_NOTE, revalidate: 60 };
-};
-
 const MemosNoteId: NextPage<NoteType> = (props) => {
-  const {
-    headerRight,
-    menu,
-    isShowMenu,
-    handleCloseMenu,
-    handleDeleteMemo,
-    isShowDeleteNoteDialog,
-    handleCloseDeleteNoteDialog,
-  } = useNote(props);
+  const router = useRouter();
+  const [isShowDeleteDialog, setIsShowDeleteDialog] = useState(false);
   const [content, setContent] = useState(props.content);
-  const handleChangeContent = useCallback((e: ChangeEvent<HTMLTextAreaElement>) => {
-    setContent(e.currentTarget.value);
+
+  const handleOpenDeleteDialog = useCallback(() => {
+    setIsShowDeleteDialog(true);
+  }, []);
+
+  const handleCloseDeleteDialog = useCallback(() => {
+    setIsShowDeleteDialog(false);
+  }, []);
+
+  const deleteNote = useCallback(async () => {
+    await alert("TODO: 削除処理の追加");
+  }, []);
+
+  const handleDeleteNote = useCallback(async () => {
+    try {
+      await toast.promise(deleteNote(), {
+        loading: "処理中",
+        success: "削除しました",
+        error: "失敗しました",
+      });
+      await router.push("/");
+    } catch (error) {
+      console.error(error);
+    }
+  }, [deleteNote, router]);
+
+  const handleChangeContent = useCallback(async (event: ChangeEvent<HTMLTextAreaElement>) => {
+    setContent(event.currentTarget.value);
+  }, []);
+
+  const handleOpenLabelDialog = useCallback(() => {
+    alert("TODO: ラベル選択モーダルを出す");
+  }, []);
+
+  const handleCopy = useCallback(async () => {
+    await navigator.clipboard.writeText(location.href);
+    toast("コピーしました");
   }, []);
 
   return (
     <>
-      <Layout left="memo" right={headerRight}>
-        <div className="flex min-h-screen flex-col">
-          <label htmlFor="memo" className="flex-1 cursor-text pb-20">
+      <Layout
+        left={
+          <Anchor href={"/"} variant="ghost" className="h-10 w-10">
+            <ChevronLeftIcon className="h-5 w-5" />
+          </Anchor>
+        }
+        right={[
+          <Button key="label" variant="ghost" className="h-10 w-10" onClick={handleOpenLabelDialog}>
+            <TagIcon className="h-5 w-5" />
+          </Button>,
+          <Button key="copy" variant="ghost" className="h-10 w-10" onClick={handleCopy}>
+            <ClipboardIcon className="h-5 w-5" />
+          </Button>,
+          <Button key="delete" variant="ghost" className="h-10 w-10" onClick={handleOpenDeleteDialog}>
+            <TrashIcon className="h-5 w-5" />
+          </Button>,
+        ]}
+      >
+        <div className="flex h-[calc(100vh-168px)] flex-col sm:h-[calc(100vh-192px)]">
+          <label htmlFor="memo" className="flex-1 cursor-text">
             <TextareaAutosize
               id="memo"
               style={{ caretColor: "#3B82F6" }}
@@ -53,14 +88,10 @@ const MemosNoteId: NextPage<NoteType> = (props) => {
         </div>
       </Layout>
 
-      <MenuDialog show={isShowMenu} onClose={handleCloseMenu}>
-        <NoteMenu menu={menu} />
-      </MenuDialog>
-
       <ConfirmDialog
-        show={isShowDeleteNoteDialog}
-        onClose={handleCloseDeleteNoteDialog}
-        onClickOk={handleDeleteMemo}
+        show={isShowDeleteDialog}
+        onClose={handleCloseDeleteDialog}
+        onClickOk={handleDeleteNote}
         title="メモを削除"
         description="復元できませんがよろしいですか？"
         buttonText="削除する"

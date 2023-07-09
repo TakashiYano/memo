@@ -3,7 +3,7 @@ import { UserMenu } from "src/components/shared/Header/UserMenu";
 
 /** @package */
 export type Right = {
-  right?: ("profile" | JSX.Element)[];
+  right?: ("profile" | JSX.Element | undefined)[];
 };
 
 /** @package */
