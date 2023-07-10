@@ -1,4 +1,4 @@
-import type { UserPutRequest, UserType } from "src/types/types";
+import type { UserPutRequest, UserType } from "src/type/types";
 
 export const hasName = (user: UserPutRequest): user is UserType | Pick<UserType, "id" | "name"> => {
   return "name" in user;

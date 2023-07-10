@@ -1,6 +1,6 @@
 import { rest } from "msw";
 import { EXAMPLE_SEARCH_HISTORIES } from "src/models/searchHistory";
-import type { SearchHistoryType } from "src/types/types";
+import type { SearchHistoryType } from "src/type/types";
 
 export const searchHistoriesHandlers = [
   // 自分の検索履歴を表示する

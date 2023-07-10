@@ -1,4 +1,4 @@
-import type { ListNoteType, NoteType } from "src/types/types";
+import type { ListNoteType, NoteType } from "src/type/types";
 
 export const EXAMPLE_NOTE: NoteType = {
   id: "123",

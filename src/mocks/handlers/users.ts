@@ -1,6 +1,6 @@
 import { rest } from "msw";
 import { EXAMPLE_USER_01, EXAMPLE_USER_02 } from "src/models/user";
-import type { UserPutRequest, UserType } from "src/types/types";
+import type { UserPutRequest, UserType } from "src/type/types";
 
 export const usersHandlers = [
   // ユーザーを作成する

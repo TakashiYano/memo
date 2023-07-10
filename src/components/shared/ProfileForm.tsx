@@ -3,7 +3,7 @@ import Image from "next/image";
 import type { FC } from "react";
 import { Button } from "src/components/shared/Button";
 import { Input } from "src/components/shared/Input";
-import type { UserType } from "src/types/types";
+import type { UserType } from "src/type/types";
 
 type ProfileFormProps = { user?: UserType };
 

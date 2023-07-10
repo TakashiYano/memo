@@ -4,7 +4,7 @@ import Link from "next/link";
 import { type FC, Fragment, useCallback } from "react";
 import { Button } from "src/components/shared/Button";
 import { format_yyyyMd } from "src/lib/date";
-import type { ListNoteType } from "src/types/types";
+import type { ListNoteType } from "src/type/types";
 
 type NoteListItemProps = { note: ListNoteType };
 

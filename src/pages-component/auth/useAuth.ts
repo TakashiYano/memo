@@ -2,7 +2,7 @@ import type { Session } from "@supabase/supabase-js";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { supabase } from "src/lib/supabase";
-import type { UserType } from "src/types/types";
+import type { UserType } from "src/type/types";
 
 /** @package */
 export const useAuth = () => {

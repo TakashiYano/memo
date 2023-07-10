@@ -1,6 +1,6 @@
 import { rest } from "msw";
 import { EXAMPLE_MY_NOTE_LIST, EXAMPLE_NOTE, EXAMPLE_OTHER_USER_NOTE_LIST } from "src/models/note";
-import type { ListNoteType, NoteType } from "src/types/types";
+import type { ListNoteType, NoteType } from "src/type/types";
 
 export const notesHandlers = [
   // 新しいメモを作成する

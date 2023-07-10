@@ -2,7 +2,7 @@ import { XMarkIcon } from "@heroicons/react/24/outline";
 import type { FC } from "react";
 import { Error } from "src/components/shared/Error";
 import { EXAMPLE_USER_01 } from "src/models/user";
-import type { SearchHistoryType } from "src/types/types";
+import type { SearchHistoryType } from "src/type/types";
 import type { SWRResponse } from "swr";
 import useSWR from "swr";
 

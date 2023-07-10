@@ -3,7 +3,7 @@ import type { FC } from "react";
 import { NoteListItem } from "src/components/NoteListItem";
 import { Button } from "src/components/shared/Button";
 import { Error } from "src/components/shared/Error";
-import type { ListNoteType } from "src/types/types";
+import type { ListNoteType } from "src/type/types";
 import type { SWRResponse } from "swr";
 import useSWR from "swr";
 
