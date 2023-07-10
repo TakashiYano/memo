@@ -1,7 +1,7 @@
 import type { FC } from "react";
 import { Button } from "src/components/shared/Button";
 import { GoogleIcon } from "src/components/shared/Icon";
-import { useAuth } from "src/pages-component/auth/useAuth";
+import { useAuth } from "src/pages-component/auth";
 
 type SignProps = { page: "signin" | "signup" };
 

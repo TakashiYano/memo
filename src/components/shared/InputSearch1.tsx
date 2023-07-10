@@ -1,6 +1,6 @@
 import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 import { type FC, type InputHTMLAttributes } from "react";
-import { useSearch } from "src/pages-component/search/useSearch";
+import { useSearch } from "src/pages-component/search";
 
 type Props = InputHTMLAttributes<HTMLInputElement>;
 

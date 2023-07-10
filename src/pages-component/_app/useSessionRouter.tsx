@@ -1,6 +1,7 @@
 import type { Router } from "next/router";
 import { useEffect } from "react";
 
+/** @package */
 export const useSessionRouter = (routerAsPath: Router["asPath"]) => {
   useEffect(() => {
     const storage = sessionStorage;

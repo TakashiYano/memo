@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { supabase } from "src/lib/supabase";
 import type { UserType } from "src/types/types";
 
+/** @package */
 export const useAuth = () => {
   const router = useRouter();
   const [session, setSession] = useState<Session | null>(null); // ログイン状態を管理

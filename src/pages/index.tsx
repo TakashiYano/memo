@@ -4,7 +4,7 @@ import { Anchor } from "src/components/shared/Button";
 import { InputSearch1 } from "src/components/shared/InputSearch1";
 import { Layout } from "src/components/shared/Layout";
 import { EXAMPLE_USER_01 } from "src/models/user";
-import { useAuth } from "src/pages-component/auth/useAuth";
+import { useAuth } from "src/pages-component/auth";
 
 const Index: NextPage = () => {
   // ユーザ情報

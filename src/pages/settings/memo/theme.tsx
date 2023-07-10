@@ -3,7 +3,7 @@ import { CheckIcon } from "@heroicons/react/24/outline";
 import cc from "classcat";
 import type { NextPage } from "next";
 import { Layout } from "src/components/shared/Layout";
-import { useTheme } from "src/hooks/useTheme";
+import { useTheme } from "src/pages-component/setting/memo";
 
 const SettingsMemoTheme: NextPage = () => {
   const { themes, isMounted, currentTheme, handleTheme } = useTheme();

@@ -3,8 +3,7 @@ import "tailwindcss/tailwind.css";
 import type { AppProps } from "next/app";
 import { ThemeProvider } from "next-themes";
 import { Toaster } from "react-hot-toast";
-import { useAddClassToBodyElem } from "src/hooks/useAddClassToBodyElem";
-import { useSessionRouter } from "src/hooks/useSessionRouter";
+import { useAddClassToBodyElem, useSessionRouter } from "src/pages-component/_app";
 
 if (process.env.NODE_ENV === "development") {
   require("src/mocks");

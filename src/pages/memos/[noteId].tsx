@@ -7,8 +7,7 @@ import TextareaAutosize from "react-textarea-autosize";
 import { ConfirmDialog } from "src/components/Dialog";
 import { Anchor, Button } from "src/components/shared/Button";
 import { Layout } from "src/components/shared/Layout";
-import { useDeleteNote } from "src/hooks/useDeleteNote";
-import { useNoteDialog } from "src/hooks/useNoteDialog";
+import { useDeleteNote, useNoteDialog } from "src/pages-component/memo";
 import type { NoteType } from "src/types/types";
 
 const MemosNoteId: NextPage<NoteType> = (props) => {

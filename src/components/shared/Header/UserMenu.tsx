@@ -6,7 +6,7 @@ import { Fragment } from "react";
 import { Avatar } from "src/components/shared/Avatar";
 import { ICON_SIZE } from "src/components/shared/Header/constants";
 import { EXAMPLE_USER_01 } from "src/models/user";
-import { useAuth } from "src/pages-component/auth/useAuth";
+import { useAuth } from "src/pages-component/auth";
 
 /** @package */
 export const UserMenu: FC = () => {
