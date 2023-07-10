@@ -1,10 +1,9 @@
 import { ChevronLeftIcon, ClipboardIcon, TagIcon, TrashIcon } from "@heroicons/react/24/outline";
 import type { NextPage } from "next";
-import type { ChangeEvent } from "react";
-import { useCallback, useState } from "react";
+import { useCallback } from "react";
 import { toast } from "react-hot-toast";
-import TextareaAutosize from "react-textarea-autosize";
 import { ConfirmDialog } from "src/components/Dialog";
+import { NoteEditor } from "src/components/NoteEditor";
 import { Anchor, Button } from "src/components/shared/Button";
 import { Layout } from "src/components/shared/Layout";
 import { useDeleteNote, useNoteDialog } from "src/pages-component/memo";
@@ -13,11 +12,6 @@ import type { NoteType } from "src/type/types";
 const MemosNoteId: NextPage<NoteType> = (props) => {
   const { isShowMenu, handleOpenMenu, handleCloseMenu } = useNoteDialog();
   const { handleDeleteNote } = useDeleteNote();
-  const [content, setContent] = useState(props.content);
-
-  const handleChangeContent = useCallback(async (event: ChangeEvent<HTMLTextAreaElement>) => {
-    setContent(event.currentTarget.value);
-  }, []);
 
   const handleOpenLabelDialog = useCallback(() => {
     alert("TODO: ラベル選択モーダルを出す");
@@ -49,17 +43,7 @@ const MemosNoteId: NextPage<NoteType> = (props) => {
         ]}
       >
         <div className="flex h-[calc(100vh-168px)] flex-col sm:h-[calc(100vh-192px)]">
-          <label htmlFor="memo" className="flex-1 cursor-text">
-            <TextareaAutosize
-              id="memo"
-              style={{ caretColor: "#3B82F6" }}
-              className="w-full resize-none border-none bg-transparent text-lg focus:ring-0 sm:text-xl"
-              value={content}
-              onChange={handleChangeContent}
-              placeholder="メモを入力する"
-              autoComplete="off"
-            />
-          </label>
+          <NoteEditor {...props} />
         </div>
       </Layout>
 
