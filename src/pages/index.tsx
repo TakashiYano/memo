@@ -1,22 +1,13 @@
 import type { NextPage } from "next";
-import { UserNoteList } from "src/components/NoteList";
+import { NoteList } from "src/components/NoteList";
 import { Anchor } from "src/components/shared/Button";
 import { InputSearch1 } from "src/components/shared/InputSearch1";
 import { Layout } from "src/components/shared/Layout";
-import { EXAMPLE_USER_01 } from "src/models/user";
-import { useAuth } from "src/pages-component/auth";
+import { EXAMPLE_MY_NOTE_LIST } from "src/models/note";
+
+const data = EXAMPLE_MY_NOTE_LIST;
 
 const Index: NextPage = () => {
-  // ユーザ情報
-  const { profileFromGoogle } = useAuth();
-  const user = profileFromGoogle
-    ? {
-        id: profileFromGoogle.id ?? "",
-        name: profileFromGoogle.name ?? "",
-        avatarUrl: profileFromGoogle.avatarUrl ?? "",
-      }
-    : EXAMPLE_USER_01;
-
   return (
     <Layout
       left="memo"
@@ -29,7 +20,7 @@ const Index: NextPage = () => {
     >
       <div className="space-y-7">
         <InputSearch1 />
-        <UserNoteList userId={user.id} />
+        <NoteList data={data} />
       </div>
     </Layout>
   );

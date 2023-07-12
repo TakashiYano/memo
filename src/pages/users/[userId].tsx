@@ -1,9 +1,9 @@
 import type { NextPage } from "next";
 import Link from "next/link";
-import { UserNoteList } from "src/components/NoteList";
+import { NoteList } from "src/components/NoteList";
 import { Avatar } from "src/components/shared/Avatar";
 import { Anchor } from "src/components/shared/Button";
-import { InputSearch } from "src/components/shared/InputSearch2";
+import { InputSearch1 } from "src/components/shared/InputSearch1";
 import { Layout } from "src/components/shared/Layout";
 import { EXAMPLE_USER_02 } from "src/models/user";
 
@@ -30,11 +30,11 @@ const UsersUserId: NextPage = () => {
 
         <Link href="/search" legacyBehavior>
           <a className="block">
-            <InputSearch placeholder="メモを検索する" />
+            <InputSearch1 placeholder="メモを検索する" />
           </a>
         </Link>
 
-        <UserNoteList userId={user.id} />
+        <NoteList />
       </div>
     </Layout>
   );
