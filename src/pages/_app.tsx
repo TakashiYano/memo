@@ -5,9 +5,9 @@ import { ThemeProvider } from "next-themes";
 import { Toaster } from "react-hot-toast";
 import { useAddClassToBodyElem, useSessionRouter } from "src/pages-component/_app";
 
-if (process.env.NODE_ENV === "development") {
-  require("src/mocks");
-}
+// if (process.env.NODE_ENV === "development") {
+//   require("src/api");
+// }
 
 const App = (props: AppProps) => {
   useSessionRouter(props.router.asPath);
