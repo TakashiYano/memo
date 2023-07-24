@@ -3,10 +3,16 @@ import { ArrowLeftOnRectangleIcon, CogIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
 import type { FC } from "react";
 import { Fragment } from "react";
+import type { UserType } from "src/api/handler/user/type";
 import { Avatar } from "src/components/shared/Avatar";
 import { ICON_SIZE } from "src/components/shared/Header/constants";
-import { EXAMPLE_USER_01 } from "src/models/user";
 import { useAuth } from "src/pages-component/auth";
+
+const example: UserType = {
+  id: "engineer",
+  name: "yanot",
+  avatarUrl: "/mocks/avatar01.jpg",
+};
 
 /** @package */
 export const UserMenu: FC = () => {
@@ -17,7 +23,7 @@ export const UserMenu: FC = () => {
         name: profileFromGoogle.name ?? "",
         avatarUrl: profileFromGoogle.avatarUrl ?? "",
       }
-    : EXAMPLE_USER_01;
+    : example;
 
   return (
     <Popover className="grid">

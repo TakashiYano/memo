@@ -1,7 +1,7 @@
 import Link from "next/link";
 import type { FC } from "react";
+import type { ListNoteType } from "src/api/handler/note/type";
 import { format_yyyyMd } from "src/lib/date";
-import type { ListNoteType } from "src/type/types";
 
 // Get first and second line of string
 const getFirstAndSecondLine = (str: string) => {
@@ -14,7 +14,7 @@ export const NoteListItem: FC<ListNoteType> = (props) => {
 
   return (
     <article>
-      <Link href={`/memos/${props.id}`}>
+      <Link href={`/memos/${props.id}`} legacyBehavior>
         <a className="block w-full rounded-xl bg-gray-100 px-4 py-3 shadow dark:bg-gray-700 sm:px-6">
           {first.length > 120 ? (
             <div className="line-clamp-2">

@@ -1,10 +1,14 @@
 import type { NextPage } from "next";
 import Image from "next/image";
+import type { UserType } from "src/api/handler/user/type";
 import { Layout } from "src/components/shared/Layout";
 import { List } from "src/components/shared/List";
-import { EXAMPLE_USER_01 } from "src/models/user";
 
-const user = EXAMPLE_USER_01;
+const user: UserType = {
+  id: "engineer",
+  name: "yanot",
+  avatarUrl: "/mocks/avatar01.jpg",
+};
 
 const SettingsMy: NextPage = () => {
   return (

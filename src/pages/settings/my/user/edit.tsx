@@ -1,9 +1,13 @@
 import type { NextPage } from "next";
+import type { UserType } from "src/api/handler/user/type";
 import { Layout } from "src/components/shared/Layout";
 import { ProfileForm } from "src/components/shared/ProfileForm";
-import { EXAMPLE_USER_01 } from "src/models/user";
 
-const user = EXAMPLE_USER_01;
+const user: UserType = {
+  id: "engineer",
+  name: "yanot",
+  avatarUrl: "/mocks/avatar01.jpg",
+};
 
 const SettingsQinUserEdit: NextPage = () => {
   return (
