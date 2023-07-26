@@ -1,6 +1,6 @@
 import type { NextPage } from "next";
-import { Layout } from "src/components/shared/Layout";
 import { ProfileForm } from "src/components/shared/ProfileForm";
+import { Layout } from "src/pages-layout";
 
 const SettingsQinUserNew: NextPage = () => {
   return (

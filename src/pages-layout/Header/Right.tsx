@@ -1,5 +1,6 @@
 import { Fragment, memo } from "react";
-import { UserMenu } from "src/components/shared/Header/UserMenu";
+
+import { UserMenu } from "./UserMenu";
 
 /** @package */
 export type Right = {

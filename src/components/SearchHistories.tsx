@@ -1,12 +1,16 @@
 import { XMarkIcon } from "@heroicons/react/24/outline";
 import type { FC } from "react";
-import { Error } from "src/components/shared/Error";
-import { EXAMPLE_USER_01 } from "src/models/user";
-import type { SearchHistoryType } from "src/type/types";
+import type { SearchHistoryType } from "src/api/handler/searchHistory/type";
+import type { UserType } from "src/api/handler/user/type";
+import { Error } from "src/components/Error";
 import type { SWRResponse } from "swr";
 import useSWR from "swr";
 
-const user = EXAMPLE_USER_01;
+const user: UserType = {
+  id: "engineer",
+  name: "yanot",
+  avatarUrl: "/mocks/avatar01.jpg",
+};
 
 export const SearchHistories: FC = () => {
   const { data, error, mutate } = useSWR<SearchHistoryType[]>(`/users/${user.id}/searchHistories`);
@@ -21,10 +25,10 @@ export const SearchHistories: FC = () => {
 
   return (
     <ul className="space-y-1">
-      {data.map((serchHistory) => {
+      {data.map((searchHistory) => {
         return (
-          <li key={serchHistory.id}>
-            <HistoryItem {...serchHistory} mutate={mutate} />
+          <li key={searchHistory.id}>
+            <HistoryItem {...searchHistory} mutate={mutate} />
           </li>
         );
       })}

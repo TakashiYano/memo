@@ -1,7 +1,7 @@
 import type { NextPage } from "next";
 import type { UserType } from "src/api/handler/user/type";
-import { Layout } from "src/components/shared/Layout";
 import { ProfileForm } from "src/components/shared/ProfileForm";
+import { Layout } from "src/pages-layout";
 
 const user: UserType = {
   id: "engineer",

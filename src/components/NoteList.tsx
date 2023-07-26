@@ -2,9 +2,9 @@ import { TrashIcon } from "@heroicons/react/24/outline";
 import type { FC } from "react";
 import type { ListNoteType } from "src/api/handler/note/type";
 import { ConfirmDialog } from "src/components/Dialog";
+import { Error } from "src/components/Error";
 import { NoteListItem } from "src/components/NoteListItem";
 import { Button } from "src/components/shared/Button";
-import { Error } from "src/components/shared/Error";
 import { useDeleteNote, useNoteDialog } from "src/pages-component/memo";
 
 type NoteListProps = { data?: ListNoteType[]; error?: Error };

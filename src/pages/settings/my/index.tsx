@@ -1,8 +1,8 @@
 import type { NextPage } from "next";
 import Image from "next/image";
 import type { UserType } from "src/api/handler/user/type";
-import { Layout } from "src/components/shared/Layout";
 import { List } from "src/components/shared/List";
+import { Layout } from "src/pages-layout";
 
 const user: UserType = {
   id: "engineer",

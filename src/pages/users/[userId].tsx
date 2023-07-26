@@ -1,11 +1,11 @@
 import type { NextPage } from "next";
 import Link from "next/link";
 import type { UserType } from "src/api/handler/user/type";
+import { Avatar } from "src/components/Avatar";
 import { NoteList } from "src/components/NoteList";
 import { NoteWriteButton } from "src/components/NoteWriteButton";
-import { Avatar } from "src/components/shared/Avatar";
 import { InputSearch1 } from "src/components/shared/InputSearch1";
-import { Layout } from "src/components/shared/Layout";
+import { Layout } from "src/pages-layout";
 
 const user: UserType = {
   id: "engineer",

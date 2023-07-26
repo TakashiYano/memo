@@ -6,8 +6,8 @@ import type { NoteType } from "src/api/handler/note/type";
 import { ConfirmDialog } from "src/components/Dialog";
 import { NoteEditor } from "src/components/NoteEditor";
 import { Anchor, Button } from "src/components/shared/Button";
-import { Layout } from "src/components/shared/Layout";
 import { useDeleteNote, useNoteDialog } from "src/pages-component/memo";
+import { Layout } from "src/pages-layout";
 
 const MemosNoteId: NextPage<NoteType> = (props) => {
   const { isShowMenu, handleOpenMenu, handleCloseMenu } = useNoteDialog();

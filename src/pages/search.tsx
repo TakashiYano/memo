@@ -3,7 +3,7 @@ import type { NextPage } from "next";
 import { NoteList } from "src/components/NoteList";
 import { Anchor } from "src/components/shared/Button";
 import { InputSearch2 } from "src/components/shared/InputSearch2";
-import { Layout } from "src/components/shared/Layout";
+import { Layout } from "src/pages-layout";
 
 const Search: NextPage = () => {
   return (
