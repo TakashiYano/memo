@@ -1,9 +1,8 @@
 import type { NextPage } from "next";
 import type { ListNoteType } from "src/api/handler/note/type";
-import { NoteList } from "src/components/NoteList";
-import { NoteWriteButton } from "src/components/NoteWriteButton";
-import { InputSearch1 } from "src/components/shared/InputSearch1";
-import { Layout } from "src/pages-layout";
+import { NoteList, NoteWriteButton } from "src/component/Note";
+import { InputSearch1 } from "src/pages-component/Index";
+import { Layout } from "src/pages-layout/Layout";
 
 const data: ListNoteType[] = [
   {

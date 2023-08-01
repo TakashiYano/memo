@@ -1,7 +1,8 @@
 import { useRouter } from "next/router";
 import { useCallback } from "react";
-import { Button } from "src/components/shared/Button";
+import { Button } from "src/component/Button";
 
+/** @package */
 export const NoteWriteButton = () => {
   const router = useRouter();
 

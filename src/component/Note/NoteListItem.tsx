@@ -9,6 +9,7 @@ const getFirstAndSecondLine = (str: string) => {
   return [first, second || "\u00A0"];
 };
 
+/** @package */
 export const NoteListItem: FC<ListNoteType> = (props) => {
   const [first, second] = getFirstAndSecondLine(props.excerpt);
 

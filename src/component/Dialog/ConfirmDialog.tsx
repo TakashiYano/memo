@@ -1,7 +1,7 @@
 import { Dialog, Transition } from "@headlessui/react";
 import type { ComponentProps, FC } from "react";
 import { Fragment, useRef } from "react";
-import { Button } from "src/components/shared/Button";
+import { Button } from "src/component/Button";
 
 type Props = {
   show: boolean;

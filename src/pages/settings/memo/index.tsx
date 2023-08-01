@@ -1,6 +1,6 @@
 import type { NextPage } from "next";
-import { RecursiveList } from "src/components/shared/List";
-import { Layout } from "src/pages-layout";
+import { RecursiveList } from "src/component/List";
+import { Layout } from "src/pages-layout/Layout";
 
 const SettingsMemo: NextPage = () => {
   return (

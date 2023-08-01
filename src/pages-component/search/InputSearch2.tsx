@@ -1,10 +1,11 @@
 import { MagnifyingGlassIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import { type FC, type InputHTMLAttributes } from "react";
-import { Button } from "src/components/shared/Button";
+import { Button } from "src/component/Button";
 import { useSearch } from "src/pages-component/search";
 
 type Props = InputHTMLAttributes<HTMLInputElement>;
 
+/** @package */
 export const InputSearch2: FC<Props> = (props) => {
   const { inputValue, isLoading, handleChange, handleSubmit, handleClose } = useSearch();
 

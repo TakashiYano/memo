@@ -1,5 +1,5 @@
 import type { NextPage } from "next";
-import { Layout } from "src/pages-layout";
+import { Layout } from "src/pages-layout/Layout";
 
 const SettingsMemoPrivacy: NextPage = () => {
   return (

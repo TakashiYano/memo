@@ -1,10 +1,11 @@
 import type { FC } from "react";
-import { Button } from "src/components/shared/Button";
-import { GoogleIcon } from "src/components/shared/Icon";
+import { Button } from "src/component/Button";
+import { GoogleIcon } from "src/component/Icon";
 import { useAuth } from "src/pages-component/auth";
 
 type SignProps = { page: "signin" | "signup" };
 
+/** @package */
 export const Sign: FC<SignProps> = (props) => {
   const { handleSignInWithGoogle } = useAuth();
 

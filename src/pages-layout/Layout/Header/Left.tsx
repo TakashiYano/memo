@@ -2,8 +2,8 @@ import { ChevronLeftIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { memo, useCallback } from "react";
-import { Button } from "src/components/shared/Button";
-import { ICON_SIZE } from "src/pages-layout/Header/constants";
+import { Button } from "src/component/Button";
+import { ICON_SIZE } from "src/pages-layout/Layout/Header/constants";
 
 /** @package */
 export type Left = {

@@ -3,9 +3,10 @@ import type { ChangeEvent } from "react";
 import { useCallback, useEffect, useRef } from "react";
 import { toast } from "react-hot-toast";
 import TextareaAutosize from "react-textarea-autosize";
-import type { NoteType } from "src/type/types";
+import type { NoteType } from "src/api/handler/note/type";
 import { useDebouncedCallback } from "use-debounce";
 
+/** @package */
 export const NoteEditor = (props: NoteType) => {
   const ref = useRef<HTMLTextAreaElement>(null);
   const router = useRouter();

@@ -1,9 +1,9 @@
 import type { NextPage } from "next";
 import { useCallback } from "react";
-import { Button } from "src/components/shared/Button";
-import { GoogleIcon } from "src/components/shared/Icon";
-import { List } from "src/components/shared/List";
-import { Layout } from "src/pages-layout";
+import { Button } from "src/component/Button";
+import { GoogleIcon } from "src/component/Icon";
+import { List } from "src/component/List";
+import { Layout } from "src/pages-layout/Layout";
 
 const SettingsAccount: NextPage = () => {
   const handleGoogle = useCallback(() => {

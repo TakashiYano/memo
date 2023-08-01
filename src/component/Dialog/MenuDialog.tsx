@@ -2,7 +2,7 @@ import { Dialog, Transition } from "@headlessui/react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
 import type { FC, ReactNode } from "react";
 import { Fragment, useRef } from "react";
-import { Button } from "src/components/shared/Button";
+import { Button } from "src/component/Button";
 
 type MenuDialogProps = {
   children: ReactNode;

@@ -4,6 +4,7 @@ import { useSearch } from "src/pages-component/search";
 
 type Props = InputHTMLAttributes<HTMLInputElement>;
 
+/** @package */
 export const InputSearch1: FC<Props> = (props) => {
   const { inputValue, isLoading, handleChange, handleSubmit } = useSearch();
 

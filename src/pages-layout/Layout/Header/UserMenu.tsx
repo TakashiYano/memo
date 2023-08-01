@@ -4,9 +4,9 @@ import Link from "next/link";
 import type { FC } from "react";
 import { Fragment } from "react";
 import type { UserType } from "src/api/handler/user/type";
-import { Avatar } from "src/components/Avatar";
+import { Avatar } from "src/component/Avatar";
 import { useAuth } from "src/pages-component/auth";
-import { ICON_SIZE } from "src/pages-layout/Header/constants";
+import { ICON_SIZE } from "src/pages-layout/Layout/Header/constants";
 
 const example: UserType = {
   id: "engineer",

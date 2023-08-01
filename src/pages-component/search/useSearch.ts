@@ -4,6 +4,7 @@ import { useCallback, useState } from "react";
 import { toast } from "react-hot-toast";
 import { useDebouncedCallback } from "use-debounce";
 
+/** @package */
 export const useSearch = () => {
   const router = useRouter();
   const [inputValue, setInputValue] = useState(router.query.q);

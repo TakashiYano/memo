@@ -3,11 +3,10 @@ import type { NextPage } from "next";
 import { useCallback } from "react";
 import { toast } from "react-hot-toast";
 import type { NoteType } from "src/api/handler/note/type";
-import { ConfirmDialog } from "src/components/Dialog";
-import { NoteEditor } from "src/components/NoteEditor";
-import { Anchor, Button } from "src/components/shared/Button";
-import { useDeleteNote, useNoteDialog } from "src/pages-component/memo";
-import { Layout } from "src/pages-layout";
+import { Anchor, Button } from "src/component/Button";
+import { ConfirmDialog } from "src/component/Dialog";
+import { NoteEditor, useDeleteNote, useNoteDialog } from "src/pages-component/memo";
+import { Layout } from "src/pages-layout/Layout";
 
 const MemosNoteId: NextPage<NoteType> = (props) => {
   const { isShowMenu, handleOpenMenu, handleCloseMenu } = useNoteDialog();
