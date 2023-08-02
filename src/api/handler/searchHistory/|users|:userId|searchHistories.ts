@@ -2,7 +2,7 @@ import { rest } from "msw";
 
 import type { SearchHistoryType } from "./type";
 
-const endpoint = "/users/:userId/searchHistories";
+const endpoint = "/user/:userId/searchHistories";
 
 /**
  * @package 自分の検索履歴を表示する

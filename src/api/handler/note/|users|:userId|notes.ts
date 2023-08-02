@@ -3,7 +3,7 @@ import { rest } from "msw";
 import { EXAMPLE_NOTE_LIST } from "./data";
 import type { ListNoteType } from "./type";
 
-const endpoint = "/users/:userId/notes";
+const endpoint = "/user/:userId/notes";
 
 /**
  * @package 自分または特定のユーザーのメモ一覧を取得する

@@ -51,7 +51,7 @@ export const UserMenu: FC = () => {
                 >
                   <div className="overflow-hidden rounded-2xl bg-white py-4 shadow-lg ring-1 ring-gray-400 ring-opacity-20 dark:bg-gray-800">
                     <div>
-                      <Link href="/settings/my" legacyBehavior>
+                      <Link href="/setting/my" legacyBehavior>
                         <a className="flex items-center p-4 hover:bg-gray-100 focus:outline-none focus-visible:bg-gray-100 dark:hover:bg-gray-700 dark:focus-visible:bg-gray-700">
                           <Avatar alt={user.name} src={user.avatarUrl} className="h-14 w-14" />
                           <div className="ml-4">
@@ -62,7 +62,7 @@ export const UserMenu: FC = () => {
                       </Link>
                     </div>
                     <div className="relative grid">
-                      <Link href="/settings/memo" legacyBehavior>
+                      <Link href="/setting/memo" legacyBehavior>
                         <a className="flex items-center px-4 py-2.5 hover:bg-gray-100 focus:outline-none focus-visible:bg-gray-100 dark:hover:bg-gray-700 dark:focus-visible:bg-gray-700">
                           {" "}
                           <div className="flex shrink-0 items-center justify-center">

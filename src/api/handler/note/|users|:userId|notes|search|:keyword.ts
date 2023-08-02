@@ -3,7 +3,7 @@ import { rest } from "msw";
 import { EXAMPLE_NOTE_LIST } from "./data";
 import type { ListNoteType } from "./type";
 
-const endpoint = "/users/:userId/notes/search/:keyword";
+const endpoint = "/user/:userId/notes/search/:keyword";
 
 /**
  * @package 自分または特定のユーザーのメモ一覧を検索して取得する

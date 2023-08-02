@@ -29,9 +29,9 @@ const SettingsMy: NextPage = () => {
         <List
           title="全般"
           items={[
-            { label: "プロフィール", href: "/settings/my/user/edit" },
-            { label: "アカウントの連携", href: "/settings/my/account" },
-            { label: "データの削除", href: "/settings/my/delete" },
+            { label: "プロフィール", href: "/setting/my/user/edit" },
+            { label: "アカウントの連携", href: "/setting/my/account" },
+            { label: "データの削除", href: "/setting/my/delete" },
           ]}
         />
       </div>

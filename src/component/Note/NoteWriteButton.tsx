@@ -9,7 +9,7 @@ export const NoteWriteButton = () => {
   const handleCreateMemo = useCallback(async () => {
     try {
       // TODO:新規メモ作成処理の実装
-      await router.push(`/memos/new`);
+      await router.push(`/memo/new`);
     } catch (error) {
       console.error(error);
     }

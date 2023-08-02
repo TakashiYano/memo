@@ -1,6 +1,6 @@
 import { rest } from "msw";
 
-const endpoint = "/users/:userId/searchHistories/:searchHistoriesId";
+const endpoint = "/user/:userId/searchHistories/:searchHistoriesId";
 
 /**
  * @package 自分の特定の検索履歴を削除する

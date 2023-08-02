@@ -2,7 +2,7 @@ import { rest } from "msw";
 
 import type { UserPutRequest, UserType } from "./type";
 
-const endpoint = "/users/:userId";
+const endpoint = "/user/:userId";
 
 /**
  * @package 特定のユーザーの情報を取得する
