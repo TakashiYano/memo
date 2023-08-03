@@ -15,7 +15,7 @@ export const NoteListItem: FC<ListNoteType> = (props) => {
 
   return (
     <Link href={`/memo/${props.id}`} legacyBehavior>
-      <a className="block w-full rounded-xl bg-gray-100 px-4 py-3 shadow dark:bg-gray-700 sm:px-6">
+      <a>
         {first.length > 120 ? (
           <div className="line-clamp-2">
             <h1 className="text-sm leading-relaxed first-line:font-bold sm:first-line:text-base">{props.excerpt}</h1>
