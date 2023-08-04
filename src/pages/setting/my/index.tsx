@@ -10,7 +10,7 @@ const user: UserType = {
   avatarUrl: "/mocks/avatar01.jpg",
 };
 
-const SettingsMy: NextPage = () => {
+const SettingMy: NextPage = () => {
   return (
     <Layout left="close" center="account">
       <div className="flex flex-col items-center">
@@ -39,4 +39,4 @@ const SettingsMy: NextPage = () => {
   );
 };
 
-export default SettingsMy;
+export default SettingMy;

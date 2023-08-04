@@ -9,7 +9,7 @@ const user: UserType = {
   avatarUrl: "/mocks/avatar01.jpg",
 };
 
-const SettingsQinUserEdit: NextPage = () => {
+const SettingMyUserEdit: NextPage = () => {
   return (
     <Layout left="back" center="account">
       <ProfileForm user={user} />
@@ -17,4 +17,4 @@ const SettingsQinUserEdit: NextPage = () => {
   );
 };
 
-export default SettingsQinUserEdit;
+export default SettingMyUserEdit;

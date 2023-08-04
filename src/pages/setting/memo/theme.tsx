@@ -5,7 +5,7 @@ import type { NextPage } from "next";
 import { useTheme } from "src/pages-component/setting/memo";
 import { Layout } from "src/pages-layout/Layout";
 
-const SettingsMemoTheme: NextPage = () => {
+const SettingMemoTheme: NextPage = () => {
   const { themes, isMounted, currentTheme, handleTheme } = useTheme();
   if (!isMounted) return null;
 
@@ -43,4 +43,4 @@ const SettingsMemoTheme: NextPage = () => {
   );
 };
 
-export default SettingsMemoTheme;
+export default SettingMemoTheme;

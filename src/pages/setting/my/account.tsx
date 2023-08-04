@@ -5,7 +5,7 @@ import { GoogleIcon } from "src/component/Icon";
 import { List } from "src/component/List";
 import { Layout } from "src/pages-layout/Layout";
 
-const SettingsAccount: NextPage = () => {
+const SettingAccount: NextPage = () => {
   const handleGoogle = useCallback(() => {
     alert("Google");
   }, []);
@@ -37,4 +37,4 @@ const SettingsAccount: NextPage = () => {
   );
 };
 
-export default SettingsAccount;
+export default SettingAccount;

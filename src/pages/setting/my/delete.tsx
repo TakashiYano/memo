@@ -4,7 +4,7 @@ import { Button } from "src/component/Button";
 import { RecursiveList } from "src/component/List";
 import { Layout } from "src/pages-layout/Layout";
 
-const SettingsDelete: NextPage = () => {
+const SettingDelete: NextPage = () => {
   const handleDeleteMemo = useCallback(() => {
     alert("Memoの削除");
   }, []);
@@ -36,4 +36,4 @@ const SettingsDelete: NextPage = () => {
   );
 };
 
-export default SettingsDelete;
+export default SettingDelete;

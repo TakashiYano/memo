@@ -1,7 +1,7 @@
 import type { NextPage } from "next";
 import { Layout } from "src/pages-layout/Layout";
 
-const SettingsMemoTerms: NextPage = () => {
+const SettingMemoTerms: NextPage = () => {
   return (
     <Layout left="back" center="利用規約">
       <div className="prose prose-blue mx-auto dark:prose-light">
@@ -394,4 +394,4 @@ const SettingsMemoTerms: NextPage = () => {
   );
 };
 
-export default SettingsMemoTerms;
+export default SettingMemoTerms;

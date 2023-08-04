@@ -1,8 +1,8 @@
 import type { NextPage } from "next";
-import { ProfileForm } from "src/components/shared/ProfileForm";
+import { ProfileForm } from "src/pages-component/setting/my/user/edit";
 import { Layout } from "src/pages-layout/Layout";
 
-const SettingsQinUserNew: NextPage = () => {
+const SettingMyUserNew: NextPage = () => {
   return (
     <Layout center="account">
       <ProfileForm />
@@ -10,4 +10,4 @@ const SettingsQinUserNew: NextPage = () => {
   );
 };
 
-export default SettingsQinUserNew;
+export default SettingMyUserNew;
