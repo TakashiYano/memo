@@ -1,18 +1,16 @@
 module.exports = {
-  root: true,
   parser: "@typescript-eslint/parser",
   parserOptions: { project: "./tsconfig.json" },
   settings: {
     react: { version: "detect" },
-    tailwindcss: { whitelist: ["prose-light"] },
+    tailwindcss: { whitelist: ["prose-light"], groupByResponsive: true },
   },
-  env: { es2021: true, browser: true, jest: true, node: true },
   plugins: ["simple-import-sort", "tailwindcss", "import-access"],
   extends: [
     "eslint:recommended",
     "plugin:@typescript-eslint/recommended",
     "plugin:jsx-a11y/recommended",
-    "next",
+    "plugin:tailwindcss/recommended",
     "next/core-web-vitals",
     "prettier",
   ],
