@@ -1,13 +1,8 @@
 import Link from "next/link";
 import type { FC } from "react";
 import type { ListNoteType } from "src/api/handler/note/type";
+import { getFirstAndSecondLine } from "src/lib/const";
 import { format_yyyyMd } from "src/lib/date";
-
-// Get first and second line of string
-const getFirstAndSecondLine = (str: string) => {
-  const [first, second] = str.split("\n").filter(Boolean);
-  return [first, second || "\u00A0"];
-};
 
 /** @package */
 export const NoteListItem: FC<ListNoteType> = (props) => {
