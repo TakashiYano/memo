@@ -10,7 +10,7 @@ export type Right = {
 /** @package */
 export const Right = memo<Right>((props) => {
   return (
-    <div className="flex items-center space-x-2 sm:space-x-3">
+    <div className="flex h-10 items-center space-x-2 sm:space-x-3">
       {props.right?.map((item, i) => {
         return <Fragment key={i}>{item === "profile" ? <UserMenu /> : item}</Fragment>;
       })}
