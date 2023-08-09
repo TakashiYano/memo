@@ -23,7 +23,7 @@ export const NoteListItem: FC<ListNoteType> = (props) => {
         )}
         <div className="mt-4 flex h-6 items-end justify-between">
           <time className="space-x-4 text-sm font-bold tracking-wide text-gray-400">
-            {format_yyyyMd(props.updatedOn)}
+            {format_yyyyMd(props.updatedAt)}
           </time>
           {props.public ? (
             <div className="grid h-full place-content-center rounded-full bg-orange-400 px-2.5 text-xs font-bold text-white">

@@ -28,7 +28,7 @@ export const postUsersUserIdSearchHistories = rest.post<string, { userId: string
 );
 
 export const EXAMPLE_SEARCH_HISTORIES: SearchHistoryType[] = [
-  { id: 3, keyword: "Vue.js", createdOn: "2023-06-01T00:00:00.000Z" },
-  { id: 2, keyword: "React", createdOn: "2023-07-01T00:00:00.000Z" },
-  { id: 1, keyword: "JavaScript", createdOn: "2023-08-01T00:00:00.000Z" },
+  { id: 3, keyword: "Vue.js", createdAt: "2023-06-01T00:00:00.000Z" },
+  { id: 2, keyword: "React", createdAt: "2023-07-01T00:00:00.000Z" },
+  { id: 1, keyword: "JavaScript", createdAt: "2023-08-01T00:00:00.000Z" },
 ];

@@ -3,7 +3,7 @@ import type { UserType } from "src/api/handler/user/type";
 type NoteCommonType = {
   id: string;
   public: boolean;
-  updatedOn: string;
+  updatedAt: string;
 };
 
 export type NoteType = NoteCommonType & { content: string };
