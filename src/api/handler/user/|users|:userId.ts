@@ -23,7 +23,7 @@ export const putUsersUserId = rest.put<string, { userId: string }, UserType>(end
   return res(ctx.delay(1000), ctx.status(200), ctx.json({ ...EXAMPLE_USER_02, id: userId }));
 });
 
-const EXAMPLE_USER_01: UserType = {
+export const EXAMPLE_USER_01: UserType = {
   id: "engineer",
   name: "yanot",
   avatarUrl: "/mocks/avatar01.jpg",

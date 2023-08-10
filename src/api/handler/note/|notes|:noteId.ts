@@ -1,6 +1,6 @@
 import { rest } from "msw";
+import { EXAMPLE_NOTE_DB } from "src/api/handler/note/data";
 
-import { EXAMPLE_NOTE } from "./data";
 import type { NoteType } from "./type";
 
 const endpoint = "/notes/:noteId";
@@ -10,18 +10,17 @@ const endpoint = "/notes/:noteId";
  */
 export const getNotesNoteId = rest.get<never, { noteId: string }, NoteType>(endpoint, (req, res, ctx) => {
   const { noteId } = req.params;
-  return res(ctx.delay(1000), ctx.status(200), ctx.json({ ...EXAMPLE_NOTE, id: noteId }));
+  const note = EXAMPLE_NOTE_DB.find(({ id }) => {
+    return id === noteId;
+  }) as NoteType;
+  return res(ctx.delay(1000), ctx.status(200), ctx.json(note));
 });
 
 /**
  * @package 特定のメモを更新する
  */
-export const putNotesNoteId = rest.put<string, { noteId: string }, NoteType>(endpoint, (req, res, ctx) => {
-  const { noteId } = req.params;
-  const body: Pick<NoteType, "content"> = JSON.parse(req.body);
-  // eslint-disable-next-line no-console
-  console.log(body.content);
-  return res(ctx.delay(1000), ctx.status(200), ctx.json({ ...EXAMPLE_NOTE, id: noteId }));
+export const putNotesNoteId = rest.put<string, Pick<NoteType, "content">, undefined>(endpoint, (_req, res, ctx) => {
+  return res(ctx.delay(1000), ctx.status(200));
 });
 
 /**
