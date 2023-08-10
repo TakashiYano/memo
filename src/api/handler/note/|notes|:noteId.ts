@@ -1,9 +1,10 @@
 import { rest } from "msw";
+import { API_URL } from "src/api/endpoint";
 import { EXAMPLE_NOTE_DB } from "src/api/handler/note/data";
 
 import type { NoteType } from "./type";
 
-const endpoint = "/notes/:noteId";
+const endpoint = `${API_URL}//notes/:noteId`;
 
 /**
  * @package 特定のメモの情報を取得する

@@ -1,9 +1,10 @@
 import { rest } from "msw";
+import { API_URL } from "src/api/endpoint";
 
 import { EXAMPLE_NOTE_LIST } from "./data";
 import type { ListNoteType } from "./type";
 
-const endpoint = "/user/:userId/notes";
+const endpoint = `${API_URL}//user/:userId/notes`;
 
 /**
  * @package 自分または特定のユーザーのメモ一覧を取得する

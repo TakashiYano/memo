@@ -1,8 +1,9 @@
 import { rest } from "msw";
+import { API_URL } from "src/api/endpoint";
 
 import type { UserPutRequest, UserType } from "./type";
 
-const endpoint = "/user/:userId";
+const endpoint = `${API_URL}//user/:userId`;
 
 /**
  * @package 特定のユーザーの情報を取得する

@@ -1,6 +1,7 @@
 import { rest } from "msw";
+import { API_URL } from "src/api/endpoint";
 
-const endpoint = "/user/:userId/searchHistories/:searchHistoriesId";
+const endpoint = `${API_URL}/user/:userId/searchHistories/:searchHistoriesId`;
 
 /**
  * @package 自分の特定の検索履歴を削除する

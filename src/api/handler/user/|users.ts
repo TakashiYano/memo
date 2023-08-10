@@ -1,8 +1,9 @@
 import { rest } from "msw";
+import { API_URL } from "src/api/endpoint";
 
 import type { UserType } from "./type";
 
-const endpoint = "/users";
+const endpoint = `${API_URL}/users`;
 
 /**
  * @package ユーザーを作成する
