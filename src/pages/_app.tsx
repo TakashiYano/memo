@@ -7,7 +7,7 @@ import { Toaster } from "react-hot-toast";
 import { useAddClassToBodyElem, useSessionRouter } from "src/pages-component/_app";
 
 // if (process.env.NODE_ENV === "development") {
-//   require("src/api");
+//   require("src/api/mock");
 // }
 
 const App = (props: AppProps) => {
