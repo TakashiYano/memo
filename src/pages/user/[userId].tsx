@@ -1,10 +1,9 @@
 import type { NextPage } from "next";
 import Link from "next/link";
 import type { UserType } from "src/api/handler/user/type";
-import { Avatar } from "src/components/Avatar";
-import { NoteList } from "src/components/NoteList";
-import { NoteWriteButton } from "src/components/NoteWriteButton";
-import { InputSearch1 } from "src/components/shared/InputSearch1";
+import { Avatar } from "src/component/Avatar";
+import { NoteList, NoteWriteButton } from "src/component/Note";
+import { InputSearch1 } from "src/pages-component/Index";
 import { Layout } from "src/pages-layout/Layout";
 
 const user: UserType = {

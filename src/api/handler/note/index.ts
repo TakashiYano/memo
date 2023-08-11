@@ -1,4 +1,4 @@
-import { postNotes } from "./|notes";
+import { getNotes } from "./|notes";
 import { deleteNotesNoteId, getNotesNoteId, putNotesNoteId } from "./|notes|:noteId";
 import { patchNotesNoteIdPublic } from "./|notes|:noteId|public";
 import { getUsersUserIdNotes } from "./|users|:userId|notes";
@@ -6,7 +6,7 @@ import { getUsersUserIdNotesSearchKeyword } from "./|users|:userId|notes|search|
 
 /** @package */
 export const noteHandler = [
-  postNotes,
+  getNotes,
   deleteNotesNoteId,
   getNotesNoteId,
   putNotesNoteId,
