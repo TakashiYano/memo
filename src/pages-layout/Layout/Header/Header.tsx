@@ -1,3 +1,4 @@
+import { useRouter } from "next/router";
 import type { FC } from "react";
 
 import { Center } from "./Center";
@@ -11,6 +12,10 @@ export type HeaderProps = Left & Center & Right & { isHeaderNarrow?: boolean };
 export const Header: FC<HeaderProps> = (props) => {
   // eslint-disable-next-line react/destructuring-assignment
   const { isHeaderNarrow, left, center, right } = props;
+  const router = useRouter();
+  if (router.query.client === "app") {
+    return null;
+  }
 
   return (
     <header
