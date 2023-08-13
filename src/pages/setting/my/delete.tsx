@@ -20,7 +20,7 @@ const SettingDelete: NextPage = () => {
               title: "サービスの削除",
               items: [
                 {
-                  label: "Memoを削除",
+                  label: "Memoのデータを削除",
                   button: (
                     <Button variant="solid-gray" className="px-5 py-2 text-sm text-red-500" onClick={handleDeleteMemo}>
                       削除する
