@@ -20,7 +20,7 @@ export const NoteViewer = (props: NoteWithUserType) => {
           </div>
         </a>
       </Link>
-      <p className="whitespace-pre-wrap text-lg leading-loose">{props.content}</p>
+      <p className="whitespace-pre-wrap break-words text-lg leading-loose">{props.content}</p>
     </div>
   );
 };
