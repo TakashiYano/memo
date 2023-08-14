@@ -11,16 +11,10 @@ export const NoteListItem: FC<ListNoteType> = (props) => {
   return (
     <Link href={`/memo/${props.id}`} legacyBehavior>
       <a>
-        {first.length > 120 ? (
-          <div className="line-clamp-2">
-            <h1 className="text-sm leading-relaxed first-line:font-bold sm:first-line:text-base">{props.excerpt}</h1>
-          </div>
-        ) : (
-          <div>
-            <h1 className="truncate text-sm font-bold leading-relaxed sm:text-base">{first}</h1>
-            <p className="truncate text-sm leading-relaxed">{second}</p>
-          </div>
-        )}
+        <div>
+          <h1 className="truncate text-sm font-bold leading-relaxed sm:text-base">{first}</h1>
+          <p className="truncate text-sm leading-relaxed">{second}</p>
+        </div>
         <div className="mt-4 flex h-6 items-end justify-between">
           <time className="space-x-4 text-sm font-bold tracking-wide text-gray-400">
             {format_yyyyMd(props.updatedAt)}
