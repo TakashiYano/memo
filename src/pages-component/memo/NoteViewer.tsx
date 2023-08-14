@@ -1,3 +1,5 @@
+import { Interweave } from "interweave";
+import { UrlMatcher } from "interweave-autolink";
 import Link from "next/link";
 import type { NoteWithUserType } from "src/api/handler/note/type";
 import { Avatar } from "src/component/Avatar";
@@ -20,7 +22,25 @@ export const NoteViewer = (props: NoteWithUserType) => {
           </div>
         </a>
       </Link>
-      <p className="whitespace-pre-wrap break-words text-lg leading-loose">{props.content}</p>
+      <p className="whitespace-pre-wrap text-lg leading-loose">
+        <Interweave
+          content={props.content}
+          matchers={[
+            new UrlMatcher("url", { validateTLD: false }, (urlProps) => {
+              return (
+                <a
+                  href={urlProps.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="cursor-pointer text-blue-400 underline"
+                >
+                  {urlProps.children}
+                </a>
+              );
+            }),
+          ]}
+        />
+      </p>
     </div>
   );
 };
