@@ -14,7 +14,7 @@ export const NoteViewer = (props: NoteWithUserType) => {
             alt={props.users.name}
             width={64}
             height={64}
-            className="h-16 w-16 overflow-hidden rounded-full"
+            className="h-16 w-16"
             noDialog
           />
           <div className="flex flex-col">
