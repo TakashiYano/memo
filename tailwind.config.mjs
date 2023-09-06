@@ -1,6 +1,7 @@
 const colors = require("tailwindcss/colors");
 
-module.exports = {
+/** @type {import('tailwindcss').Config} */
+const config = {
   mode: "jit",
   content: ["./src/**/*.{js,ts,jsx,tsx}"],
   darkMode: "class",
@@ -81,3 +82,5 @@ module.exports = {
   variants: { extend: { typography: ["dark"] } },
   plugins: [require("@tailwindcss/forms"), require("@tailwindcss/typography"), require("@tailwindcss/line-clamp")],
 };
+
+export default config;
