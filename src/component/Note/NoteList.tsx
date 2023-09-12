@@ -41,7 +41,7 @@ export const NoteList: FC<NoteListProps> = (props) => {
     <ul className="space-y-5">
       {props.data.map((note) => {
         return (
-          <li key={note.id} className="block w-full rounded-xl bg-gray-100 px-4 py-3 shadow dark:bg-gray-700 sm:px-6">
+          <li key={note.id}>
             <article className="flex items-center space-x-8">
               <NoteListItem {...note} />
               {dc.doubleCheck ? (

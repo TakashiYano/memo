@@ -10,7 +10,7 @@ export const NoteListItem: FC<ListNoteType> = (props) => {
 
   return (
     <Link href={`/memo/${props.id}`} legacyBehavior>
-      <a>
+      <a className="block w-full rounded-xl bg-gray-100 px-4 py-3 shadow dark:bg-gray-700 sm:px-6">
         <div>
           <h1 className="truncate text-sm font-bold leading-relaxed sm:text-base">{first}</h1>
           <p className="truncate text-sm leading-relaxed">{second}</p>

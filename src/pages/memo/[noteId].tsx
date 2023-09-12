@@ -6,7 +6,6 @@ import type { NoteType } from "src/api/handler/note/type";
 import { Anchor, Button } from "src/component/Button";
 import { ConfirmDialog } from "src/component/Dialog";
 import { NoteEditor, useDeleteNote, useNoteDialog } from "src/pages-component/memo";
-import { NoteViewer } from "src/pages-component/memo/NoteViewer";
 import { Layout } from "src/pages-layout/Layout";
 
 const MemosNoteId: NextPage<NoteType & { isEditable: boolean }> = (props) => {
@@ -30,24 +29,20 @@ const MemosNoteId: NextPage<NoteType & { isEditable: boolean }> = (props) => {
             <ChevronLeftIcon className="h-5 w-5" />
           </Anchor>
         }
-        right={
-          props.isEditable
-            ? [
-                <Button key="label" variant="ghost" className="h-10 w-10" onClick={handleOpenLabelDialog}>
-                  <TagIcon className="h-5 w-5" />
-                </Button>,
-                <Button key="copy" variant="ghost" className="h-10 w-10" onClick={handleCopy}>
-                  <ClipboardIcon className="h-5 w-5" />
-                </Button>,
-                <Button key="delete" variant="ghost" className="h-10 w-10" onClick={handleOpenMenu}>
-                  <TrashIcon className="h-5 w-5" />
-                </Button>,
-              ]
-            : undefined
-        }
+        right={[
+          <Button key="label" variant="ghost" className="h-10 w-10" onClick={handleOpenLabelDialog}>
+            <TagIcon className="h-5 w-5" />
+          </Button>,
+          <Button key="copy" variant="ghost" className="h-10 w-10" onClick={handleCopy}>
+            <ClipboardIcon className="h-5 w-5" />
+          </Button>,
+          <Button key="delete" variant="ghost" className="h-10 w-10" onClick={handleOpenMenu}>
+            <TrashIcon className="h-5 w-5" />
+          </Button>,
+        ]}
       >
         <div className="flex h-[calc(100vh-168px)] flex-col sm:h-[calc(100vh-192px)]">
-          {props.isEditable ? <NoteEditor {...props} /> : <NoteViewer {...props} />}
+          <NoteEditor {...props} />
         </div>
       </Layout>
 
