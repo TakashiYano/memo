@@ -21,9 +21,6 @@
       "next/babel"
     ]
   },
-  "prettier": {
-    "printWidth": 120
-  },
   "dependencies": {
     "@headlessui/react": "^1.7.8",
     "@heroicons/react": "2.0.18",

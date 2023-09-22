@@ -17,9 +17,6 @@
     "incremental": true,
     "plugins": [
       {
-        "name": "eslint-plugin-import-access"
-      },
-      {
         "name": "next"
       }
     ]
