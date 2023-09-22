@@ -2,7 +2,6 @@ const colors = require("tailwindcss/colors");
 
 /** @type {import('tailwindcss').Config} */
 const config = {
-  mode: "jit",
   content: ["./src/**/*.{js,ts,jsx,tsx}"],
   darkMode: "class",
   theme: {
