@@ -1,7 +1,7 @@
 import type { NextPage } from "next";
 import Image from "next/image";
 import type { UserType } from "src/api/handler/user/type";
-import { List } from "src/component/List";
+import { RecursiveList } from "src/component/List";
 import { Layout } from "src/pages-layout/Layout";
 
 const user: UserType = {
@@ -26,12 +26,20 @@ const SettingMy: NextPage = () => {
       </div>
 
       <div className="mt-12">
-        <List
-          title="全般"
-          items={[
-            { label: "プロフィール", href: "/setting/my/user/edit" },
-            { label: "アカウントの連携", href: "/setting/my/account" },
-            { label: "データの削除", href: "/setting/my/delete" },
+        <RecursiveList
+          list={[
+            {
+              title: "設定",
+              items: [{ label: "テーマ", href: "/setting/theme" }],
+            },
+            {
+              title: "全般",
+              items: [
+                { label: "プロフィール", href: "/setting/profile/edit" },
+                { label: "アカウントの連携", href: "/setting/account" },
+                { label: "データの削除", href: "/setting/delete" },
+              ],
+            },
           ]}
         />
       </div>
