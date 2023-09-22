@@ -1,8 +1,7 @@
 import Link from "next/link";
 import type { FC } from "react";
-import type { ListNoteType } from "src/api/handler/note/type";
-import { getFirstAndSecondLine } from "src/lib/const";
-import { format_yyyyMd } from "src/lib/date";
+import type { ListNoteType } from "src/lib/memo";
+import { format_yyyyMd, getFirstAndSecondLine } from "src/pages-component/memo";
 
 /** @package */
 export const NoteListItem: FC<ListNoteType> = (props) => {

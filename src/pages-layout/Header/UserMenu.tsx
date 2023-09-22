@@ -5,8 +5,8 @@ import type { FC } from "react";
 import { Fragment } from "react";
 import type { UserType } from "src/api/handler/user/type";
 import { Avatar } from "src/component/Avatar";
-import { useAuth } from "src/pages-component/auth";
-import { ICON_SIZE } from "src/pages-layout/Layout/Header/constants";
+import { useAuth } from "src/lib/user";
+import { ICON_SIZE } from "src/pages-layout/Header/constants";
 
 const example: UserType = {
   id: "engineer",

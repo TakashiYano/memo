@@ -22,12 +22,3 @@ export const useTheme = () => {
 
   return { themes, isMounted, currentTheme, handleTheme };
 };
-
-export const useGetIconFillColor = () => {
-  const { resolvedTheme } = useNextTheme() as ExtendUseThemeProps;
-  const fillColor = useMemo(() => {
-    return resolvedTheme === "light" ? "#070417" : "#fff";
-  }, [resolvedTheme]);
-
-  return { fillColor };
-};

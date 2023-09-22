@@ -1,12 +1,10 @@
 import type { FC } from "react";
 import { Button } from "src/component/Button";
 import { GoogleIcon } from "src/component/Icon";
-import { useAuth } from "src/pages-component/auth";
-
-type SignProps = { page: "signin" | "signup" };
+import { useAuth } from "src/lib/user";
 
 /** @package */
-export const Sign: FC<SignProps> = (props) => {
+export const Sign: FC = () => {
   const { handleSignInWithGoogle } = useAuth();
 
   return (
@@ -17,7 +15,7 @@ export const Sign: FC<SignProps> = (props) => {
           <Button onClick={handleSignInWithGoogle} variant="solid-white" className="w-72 py-4 sm:w-80">
             <div className="flex">
               <GoogleIcon className="mr-3 h-6 w-6" />
-              {props.page === "signin" ? "Googleでログイン" : "Googleでアカウント作成"}
+              Googleでログイン
             </div>
           </Button>
         </div>

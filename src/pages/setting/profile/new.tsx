@@ -1,6 +1,6 @@
 import type { NextPage } from "next";
-import { ProfileForm } from "src/pages-component/setting/my/user/edit";
-import { Layout } from "src/pages-layout/Layout";
+import { ProfileForm } from "src/pages-component/setting/profile";
+import { Layout } from "src/pages-layout";
 
 const SettingMyUserNew: NextPage = () => {
   return (

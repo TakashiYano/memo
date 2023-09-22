@@ -1,22 +1,23 @@
-import { ChevronLeftIcon } from "@heroicons/react/24/outline";
+import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 import type { NextPage } from "next";
 import { Anchor } from "src/component/Button";
-import { NoteList } from "src/component/Note";
+import { NoteWriteButton } from "src/component/Note";
 import { InputSearch2 } from "src/pages-component/search";
-import { Layout } from "src/pages-layout/Layout";
+import { Layout } from "src/pages-layout";
 
 const Search: NextPage = () => {
   return (
     <Layout
-      isHeaderNarrow
-      left={
-        <Anchor href={"/"} variant="ghost" className="h-10 w-10">
-          <ChevronLeftIcon className="h-5 w-5" />
-        </Anchor>
-      }
-      center={<InputSearch2 />}
+      left="memo"
+      right={[
+        <Anchor variant="ghost" href={"/search"} key="search">
+          <MagnifyingGlassIcon className="h-6 w-6" key="search" />
+        </Anchor>,
+        "profile",
+        <NoteWriteButton key="write" />,
+      ]}
     >
-      <NoteList />
+      <InputSearch2 />
     </Layout>
   );
 };

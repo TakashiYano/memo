@@ -3,7 +3,7 @@ import type { ChangeEvent } from "react";
 import { useCallback, useEffect, useRef } from "react";
 import { toast } from "react-hot-toast";
 import TextareaAutosize from "react-textarea-autosize";
-import type { NoteWithUserType } from "src/api/handler/note/type";
+import type { NoteWithUserType } from "src/lib/memo";
 import { useDebouncedCallback } from "use-debounce";
 
 /** @package */

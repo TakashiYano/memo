@@ -1,9 +1,9 @@
 import { ExclamationCircleIcon, TrashIcon } from "@heroicons/react/24/outline";
 import { type FC } from "react";
-import type { ListNoteType } from "src/api/handler/note/type";
 import { Button } from "src/component/Button";
 import { Error } from "src/component/Error";
 import { NoteListItem } from "src/component/Note/NoteListItem";
+import type { ListNoteType } from "src/lib/memo";
 import { useDeleteNote, useDoubleCheck } from "src/pages-component/memo";
 
 type NoteListProps = { data?: ListNoteType[]; error?: Error };

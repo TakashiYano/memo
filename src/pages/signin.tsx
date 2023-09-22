@@ -1,8 +1,8 @@
 import type { NextPage } from "next";
-import { Sign } from "src/pages-component/auth";
+import { Sign } from "src/pages-component/signin";
 
 const Signin: NextPage = () => {
-  return <Sign page="signin" />;
+  return <Sign />;
 };
 
 export default Signin;
