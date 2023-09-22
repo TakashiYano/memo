@@ -12,8 +12,6 @@
     "fix": "run-s -l -c fix:eslint fix:prettier",
     "fix:eslint": "yarn lint:eslint --fix",
     "fix:prettier": "yarn lint:prettier --write",
-    "test": "run-p -l -c --aggregate-output lint:* unit",
-    "unit": "jest",
     "prepare": "husky install"
   },
   "babel": {
@@ -59,9 +57,6 @@
     "prettier-plugin-tailwindcss": "^0.3.0",
     "tailwindcss": "^3.3.2",
     "typescript": "4.9.4"
-  },
-  "msw": {
-    "workerDirectory": "public"
   },
   "lint-staged": {
     "*.{ts,tsx}": "yarn fix:eslint",
