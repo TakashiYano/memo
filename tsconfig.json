@@ -15,8 +15,23 @@
     "jsx": "preserve",
     "baseUrl": ".",
     "incremental": true,
-    "plugins": [{ "name": "eslint-plugin-import-access" }]
+    "plugins": [
+      {
+        "name": "eslint-plugin-import-access"
+      },
+      {
+        "name": "next"
+      }
+    ]
   },
   "exclude": ["node_modules", ".next", "out"],
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "**/*.js", "tailwind.config.mjs"]
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    "**/*.js",
+    "tailwind.config.mjs",
+    "next.config.mjs",
+    ".next/types/**/*.ts"
+  ]
 }

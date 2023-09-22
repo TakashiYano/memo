@@ -63,7 +63,7 @@ module.exports = {
   },
   overrides: [
     {
-      files: ["src/pages/**/*.tsx", "src/pages/api/**/*.ts", "tailwind.config.mjs"],
+      files: ["src/pages/**/*.tsx", "src/pages/api/**/*.ts", "tailwind.config.mjs", "next.config.mjs"],
       rules: {
         "import/no-default-export": "off",
         "@typescript-eslint/naming-convention": [
