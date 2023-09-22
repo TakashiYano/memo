@@ -1,9 +1,9 @@
 import { UserIcon } from "@heroicons/react/24/solid";
 import Image from "next/image";
 import type { FC } from "react";
-import type { UserType } from "src/api/handler/user/type";
 import { Button } from "src/component/Button";
 import { Input } from "src/component/Form/Input";
+import type { UserType } from "src/lib/user";
 
 type ProfileFormProps = { user?: UserType };
 

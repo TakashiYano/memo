@@ -2,7 +2,7 @@ import type { NextPage } from "next";
 import { useCallback } from "react";
 import { Button } from "src/component/Button";
 import { RecursiveList } from "src/component/List";
-import { Layout } from "src/pages-layout/Layout";
+import { Layout } from "src/pages-layout";
 
 const SettingDelete: NextPage = () => {
   const handleDeleteMemo = useCallback(() => {

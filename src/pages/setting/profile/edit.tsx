@@ -1,5 +1,5 @@
 import type { NextPage } from "next";
-import type { UserType } from "src/api/handler/user/type";
+import type { UserType } from "src/lib/user";
 import { ProfileForm } from "src/pages-component/setting/profile";
 import { Layout } from "src/pages-layout";
 

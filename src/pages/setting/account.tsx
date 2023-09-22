@@ -3,7 +3,7 @@ import { useCallback } from "react";
 import { Button } from "src/component/Button";
 import { GoogleIcon } from "src/component/Icon";
 import { List } from "src/component/List";
-import { Layout } from "src/pages-layout/Layout";
+import { Layout } from "src/pages-layout";
 
 const SettingAccount: NextPage = () => {
   const handleGoogle = useCallback(() => {

@@ -3,8 +3,8 @@ import { ArrowLeftOnRectangleIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
 import type { FC } from "react";
 import { Fragment } from "react";
-import type { UserType } from "src/api/handler/user/type";
 import { Avatar } from "src/component/Avatar";
+import type { UserType } from "src/lib/user";
 import { useAuth } from "src/lib/user";
 import { ICON_SIZE } from "src/pages-layout/Header/constants";
 
