@@ -1,11 +1,11 @@
-/* eslint-disable @next/next/no-img-element */
+/* eslint-disable func-style */
+import { Fragment, useCallback, useState, type FC, type ReactNode } from "react";
+
 import { Dialog, Transition } from "@headlessui/react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
-import type { FC, ReactNode } from "react";
-import { Fragment, useCallback, useState } from "react";
 
-/**@package */
-export const DialogImage: FC<{ children: ReactNode; src?: string; alt?: string }> = (props) => {
+export const DialogImage: FC<{ children: ReactNode; alt?: string; src?: string }> = (props) => {
+  const { children, alt, src } = props;
   const [isShow, setIsShow] = useState(false);
   const handleOpen = useCallback(() => {
     setIsShow(true);
@@ -17,11 +17,16 @@ export const DialogImage: FC<{ children: ReactNode; src?: string; alt?: string }
   return (
     <>
       <button className="contents" onClick={handleOpen}>
-        {props.children}
+        {children}
       </button>
 
       <Transition as={Fragment} show={isShow}>
-        <Dialog static className="fixed inset-0 z-10 overflow-y-auto" open={isShow} onClose={handleClose}>
+        <Dialog
+          static
+          className="fixed inset-0 z-10 overflow-y-auto"
+          open={isShow}
+          onClose={handleClose}
+        >
           <div className="relative min-h-screen">
             <Transition.Child
               as={Fragment}
@@ -32,7 +37,7 @@ export const DialogImage: FC<{ children: ReactNode; src?: string; alt?: string }
               leaveFrom="opacity-100"
               leaveTo="opacity-0"
             >
-              <Dialog.Overlay className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" />
+              <Dialog.Overlay className="fixed inset-0 bg-gray-500/75 transition-opacity" />
             </Transition.Child>
 
             <Transition.Child
@@ -45,7 +50,11 @@ export const DialogImage: FC<{ children: ReactNode; src?: string; alt?: string }
               leaveTo="opacity-0"
             >
               <div>
-                <img className="absolute inset-0 m-auto max-h-full max-w-full" src={props.src} alt={props.alt} />
+                <img
+                  className="absolute inset-0 m-auto max-h-full max-w-full"
+                  src={src}
+                  alt={alt}
+                />
                 <button
                   type="button"
                   className="absolute left-3 top-3.5 rounded-full border border-transparent bg-gray-600 p-1.5 text-white hover:bg-gray-500 focus:outline-none"

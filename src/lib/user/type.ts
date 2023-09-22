@@ -1,6 +1,5 @@
-/** @package */
 export type UserType = {
+  avatarUrl: string;
   id: string;
   name: string;
-  avatarUrl: string;
 };

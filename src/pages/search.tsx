@@ -1,5 +1,8 @@
-import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
+/* eslint-disable import/no-default-export */
+/* eslint-disable func-style */
 import type { NextPage } from "next";
+
+import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 import { Anchor } from "src/component/Button";
 import { NoteWriteButton } from "src/component/Note";
 import { InputSearch2 } from "src/pages-component/search";

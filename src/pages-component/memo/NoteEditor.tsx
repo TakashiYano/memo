@@ -1,19 +1,19 @@
+/* eslint-disable func-style */
+import { useCallback, useEffect, useRef, type ChangeEvent } from "react";
 import { useRouter } from "next/router";
-import type { ChangeEvent } from "react";
-import { useCallback, useEffect, useRef } from "react";
+
 import { toast } from "react-hot-toast";
 import TextareaAutosize from "react-textarea-autosize";
 import type { NoteWithUserType } from "src/lib/memo";
 import { useDebouncedCallback } from "use-debounce";
 
-/** @package */
 export const NoteEditor = (props: NoteWithUserType) => {
+  const { content } = props;
   const ref = useRef<HTMLTextAreaElement>(null);
   const router = useRouter();
 
   const saveNote = useCallback(async (value: string) => {
     // TODO: メモ更新処理を追加
-    // eslint-disable-next-line no-console
     console.log(value.trim());
   }, []);
 
@@ -54,7 +54,7 @@ export const NoteEditor = (props: NoteWithUserType) => {
         ref={ref}
         id="memo"
         className="w-full resize-none border-none bg-transparent text-lg leading-loose focus:ring-0"
-        defaultValue={props.content}
+        defaultValue={content}
         onChange={handleChange}
         onBlur={handleBlur}
         placeholder="メモを入力する"

@@ -1,5 +1,8 @@
-import type { NextPage } from "next";
+/* eslint-disable import/no-default-export */
+/* eslint-disable func-style */
 import { useCallback } from "react";
+import type { NextPage } from "next";
+
 import { Button } from "src/component/Button";
 import { GoogleIcon } from "src/component/Icon";
 import { List } from "src/component/List";
@@ -18,16 +21,16 @@ const SettingAccount: NextPage = () => {
         <List
           items={[
             {
+              button: (
+                <Button variant="solid-gray" className="px-4 py-2 text-sm" onClick={handleGoogle}>
+                  解除する
+                </Button>
+              ),
               label: (
                 <div className="flex items-center">
                   <GoogleIcon className="h-6 w-6" />
                   <div className="ml-3 flex-1 font-bold">Google</div>
                 </div>
-              ),
-              button: (
-                <Button variant="solid-gray" className="px-4 py-2 text-sm" onClick={handleGoogle}>
-                  解除する
-                </Button>
               ),
             },
           ]}

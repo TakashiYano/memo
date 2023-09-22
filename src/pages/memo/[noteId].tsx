@@ -1,6 +1,9 @@
-import { ChevronLeftIcon, ClipboardIcon, TagIcon, TrashIcon } from "@heroicons/react/24/outline";
-import type { NextPage } from "next";
+/* eslint-disable import/no-default-export */
+/* eslint-disable func-style */
 import { useCallback } from "react";
+import type { NextPage } from "next";
+
+import { ChevronLeftIcon, ClipboardIcon, TagIcon, TrashIcon } from "@heroicons/react/24/outline";
 import { toast } from "react-hot-toast";
 import { Anchor, Button } from "src/component/Button";
 import { ConfirmDialog } from "src/component/Dialog";
@@ -9,7 +12,7 @@ import { NoteEditor, useDeleteNote, useNoteDialog } from "src/pages-component/me
 import { Layout } from "src/pages-layout";
 
 const MemosNoteId: NextPage<NoteWithUserType & { isEditable: boolean }> = (props) => {
-  const { isShowMenu, handleOpenMenu, handleCloseMenu } = useNoteDialog();
+  const { handleCloseMenu, handleOpenMenu, isShowMenu } = useNoteDialog();
   const { handleDeleteNote } = useDeleteNote();
 
   const handleOpenLabelDialog = useCallback(() => {

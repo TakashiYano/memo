@@ -1,28 +1,37 @@
-import { UserIcon } from "@heroicons/react/24/solid";
-import Image from "next/image";
+/* eslint-disable func-style */
 import type { FC } from "react";
+import Image from "next/image";
+
+import { UserIcon } from "@heroicons/react/24/solid";
 import { Button } from "src/component/Button";
 import { Input } from "src/component/Form/Input";
 import type { UserType } from "src/lib/user";
 
 type ProfileFormProps = { user?: UserType };
 
-/** @package */
 export const ProfileForm: FC<ProfileFormProps> = (props) => {
+  const { user } = props;
+
   return (
     <div>
       <div className="space-y-6 sm:space-y-8">
         <div>
           <div className="flex items-center justify-start space-x-6">
-            {props.user ? (
-              <Image src={props.user.avatarUrl} alt={props.user.name} width={96} height={96} className="h-24 w-24" />
+            {user ? (
+              <Image
+                src={user.avatarUrl}
+                alt={user.name}
+                width={96}
+                height={96}
+                className="h-24 w-24"
+              />
             ) : (
               <div className="h-24 w-24 bg-gray-300 p-2">
                 <UserIcon className="text-white" />
               </div>
             )}
             <Button variant="solid-gray" className="mt-4 px-5 py-2.5">
-              アイコンを{props.user ? "変更する" : "設定する"}
+              アイコンを{user ? "変更する" : "設定する"}
             </Button>
           </div>
         </div>
@@ -31,7 +40,7 @@ export const ProfileForm: FC<ProfileFormProps> = (props) => {
       </div>
 
       <div className="mt-12 space-y-4">
-        {props.user ? (
+        {user ? (
           <Button variant="solid-blue" className="w-full p-3">
             保存する
           </Button>

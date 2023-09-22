@@ -1,18 +1,20 @@
+/* eslint-disable func-style */
+import type { FC } from "react";
+import Link from "next/link";
+
 import { ArrowTopRightOnSquareIcon, ChevronRightIcon } from "@heroicons/react/24/outline";
 import cc from "classcat";
-import Link from "next/link";
-import type { FC } from "react";
 
-import type { ListProps } from "./type";
-import { hasButton, isLink } from "./type";
+import { hasButton, isLink, type ListProps } from "./type";
 
-/** @package */
 export const List: FC<ListProps> = (props) => {
+  const { items, title } = props;
+
   return (
     <div className="space-y-1">
-      {props.title ? <div className="text-sm font-bold text-gray-400">{props.title}</div> : null}
+      {title ? <div className="text-sm font-bold text-gray-400">{title}</div> : null}
       <ul>
-        {props.items.map((item, i) => {
+        {items.map((item, i) => {
           const className = cc([
             "flex justify-between items-center py-3 px-4 -mx-4 text-lg font-bold",
             {
@@ -48,7 +50,7 @@ export const List: FC<ListProps> = (props) => {
               <li key={i}>
                 <div className={className}>
                   <div className="flex-1">{item.label}</div>
-                  <div className="flex-shrink-0">{item.button}</div>
+                  <div className="shrink-0">{item.button}</div>
                 </div>
               </li>
             );

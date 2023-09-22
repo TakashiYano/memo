@@ -1,13 +1,14 @@
-import { MagnifyingGlassIcon, XMarkIcon } from "@heroicons/react/24/outline";
+/* eslint-disable func-style */
 import { type FC, type InputHTMLAttributes } from "react";
+
+import { MagnifyingGlassIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import { Button } from "src/component/Button";
 import { useSearch } from "src/pages-component/search";
 
 type Props = InputHTMLAttributes<HTMLInputElement>;
 
-/** @package */
 export const InputSearch2: FC<Props> = (props) => {
-  const { inputValue, isLoading, handleChange, handleSubmit, handleClose } = useSearch();
+  const { handleChange, handleClose, handleSubmit, inputValue, isLoading } = useSearch();
 
   return (
     <form className="relative w-full" onSubmit={handleSubmit}>

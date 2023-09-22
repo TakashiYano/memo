@@ -1,17 +1,15 @@
-import { useRouter } from "next/router";
+/* eslint-disable func-style */
 import type { FC } from "react";
+import { useRouter } from "next/router";
 
 import { Center } from "./Center";
 import { Left } from "./Left";
 import { Right } from "./Right";
 
-/** @package */
 export type HeaderProps = Left & Center & Right & { isHeaderNarrow?: boolean };
 
-/** @package */
 export const Header: FC<HeaderProps> = (props) => {
-  // eslint-disable-next-line react/destructuring-assignment
-  const { isHeaderNarrow, left, center, right } = props;
+  const { center, isHeaderNarrow, left, right } = props;
   const router = useRouter();
   if (router.query.client === "app") {
     return null;
@@ -19,7 +17,9 @@ export const Header: FC<HeaderProps> = (props) => {
 
   return (
     <header
-      className={`mx-auto flex items-center px-3 sm:px-4 ${isHeaderNarrow ? "max-w-screen-sm" : "max-w-screen-lg"}`}
+      className={`mx-auto flex items-center px-3 sm:px-4 ${
+        isHeaderNarrow ? "max-w-screen-sm" : "max-w-screen-lg"
+      }`}
     >
       <Left left={left} />
 

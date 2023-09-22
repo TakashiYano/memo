@@ -1,3 +1,4 @@
+/* eslint-disable func-style */
 import { useCallback, useState } from "react";
 
 export const useNoteDialog = () => {
@@ -9,5 +10,5 @@ export const useNoteDialog = () => {
     setIsShowMenu(false);
   }, []);
 
-  return { isShowMenu, handleOpenMenu, handleCloseMenu };
+  return { handleCloseMenu, handleOpenMenu, isShowMenu };
 };

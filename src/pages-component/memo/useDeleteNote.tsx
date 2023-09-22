@@ -1,5 +1,7 @@
-import { useRouter } from "next/router";
+/* eslint-disable func-style */
 import { useCallback } from "react";
+import { useRouter } from "next/router";
+
 import { toast } from "react-hot-toast";
 
 export const useDeleteNote = () => {
@@ -12,9 +14,9 @@ export const useDeleteNote = () => {
   const handleDeleteNote = useCallback(async () => {
     try {
       await toast.promise(deleteNote(), {
+        error: "失敗しました",
         loading: "処理中",
         success: "削除しました",
-        error: "失敗しました",
       });
       await router.push("/");
     } catch (error) {

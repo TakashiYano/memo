@@ -1,16 +1,15 @@
-import { ChevronLeftIcon, XMarkIcon } from "@heroicons/react/24/outline";
+import { memo, useCallback } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { memo, useCallback } from "react";
+
+import { ChevronLeftIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import { Button } from "src/component/Button";
 import { ICON_SIZE } from "src/pages-layout/Header/constants";
 
-/** @package */
 export type Left = {
   left?: "back" | "close" | "memo" | JSX.Element;
 };
 
-/** @package */
 export const Left = memo<Left>((props) => {
   const router = useRouter();
   const handleClick = useCallback(() => {

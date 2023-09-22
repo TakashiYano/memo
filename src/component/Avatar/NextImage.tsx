@@ -1,8 +1,8 @@
-import type { ImageLoaderProps, ImageProps } from "next/image";
-import Image from "next/image";
+/* eslint-disable func-style */
 import type { FC } from "react";
+import Image, { type ImageLoaderProps, type ImageProps } from "next/image";
 
-const loader = ({ src, width, quality }: ImageLoaderProps) => {
+const loader = ({ quality, src, width }: ImageLoaderProps) => {
   const url = new URL(src);
   url.searchParams.append("w", width.toString());
   url.searchParams.append("q", (quality || 75).toString());
@@ -10,15 +10,14 @@ const loader = ({ src, width, quality }: ImageLoaderProps) => {
 };
 
 const LoaderedImage: FC<Omit<ImageProps, "src"> & { src: string }> = (props) => {
-  return <Image {...props} src={props.src} alt={props.alt} loader={loader} />;
+  const { alt, src } = props;
+  return <Image {...props} src={src} alt={alt} loader={loader} />;
 };
 
-/**
- * @package
- */
 export const NextImage: FC<ImageProps> = (props) => {
-  if (typeof props.src === "string") {
-    return <LoaderedImage {...props} src={props.src} />;
+  const { alt, src } = props;
+  if (typeof src === "string") {
+    return <LoaderedImage {...props} src={src} />;
   }
-  return <Image {...props} alt={props.alt} />;
+  return <Image {...props} alt={alt} />;
 };

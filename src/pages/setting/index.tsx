@@ -1,13 +1,16 @@
+/* eslint-disable import/no-default-export */
+/* eslint-disable func-style */
 import type { NextPage } from "next";
 import Image from "next/image";
+
 import { RecursiveList } from "src/component/List";
 import type { UserType } from "src/lib/user";
 import { Layout } from "src/pages-layout";
 
 const user: UserType = {
+  avatarUrl: "/mocks/avatar01.jpg",
   id: "engineer",
   name: "yanot",
-  avatarUrl: "/mocks/avatar01.jpg",
 };
 
 const SettingMy: NextPage = () => {
@@ -29,16 +32,16 @@ const SettingMy: NextPage = () => {
         <RecursiveList
           list={[
             {
+              items: [{ href: "/setting/theme", label: "テーマ" }],
               title: "設定",
-              items: [{ label: "テーマ", href: "/setting/theme" }],
             },
             {
-              title: "全般",
               items: [
-                { label: "プロフィール", href: "/setting/profile/edit" },
-                { label: "アカウントの連携", href: "/setting/account" },
-                { label: "データの削除", href: "/setting/delete" },
+                { href: "/setting/profile/edit", label: "プロフィール" },
+                { href: "/setting/account", label: "アカウントの連携" },
+                { href: "/setting/delete", label: "データの削除" },
               ],
+              title: "全般",
             },
           ]}
         />

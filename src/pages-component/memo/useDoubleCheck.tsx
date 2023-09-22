@@ -1,6 +1,9 @@
+/* eslint-disable func-style */
 import { useState } from "react";
 
-const callAll = <Args extends Array<unknown>>(...fns: Array<((...args: Args) => unknown) | undefined>) => {
+const callAll = <Args extends Array<unknown>>(
+  ...fns: Array<((...args: Args) => unknown) | undefined>
+) => {
   return (...args: Args) => {
     return fns.forEach((fn) => {
       return fn?.(...args);
@@ -8,9 +11,7 @@ const callAll = <Args extends Array<unknown>>(...fns: Array<((...args: Args) => 
   };
 };
 
-/**@package */
 export const useDoubleCheck = () => {
-  // eslint-disable-next-line @typescript-eslint/naming-convention
   const [doubleCheck, setDoubleCheck] = useState(false);
 
   const getButtonProps = (props?: React.ButtonHTMLAttributes<HTMLButtonElement>) => {

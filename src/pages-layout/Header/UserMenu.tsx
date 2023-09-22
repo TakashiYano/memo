@@ -1,27 +1,26 @@
+/* eslint-disable func-style */
+import { Fragment, type FC } from "react";
+import Link from "next/link";
+
 import { Popover, Transition } from "@headlessui/react";
 import { ArrowLeftOnRectangleIcon } from "@heroicons/react/24/outline";
-import Link from "next/link";
-import type { FC } from "react";
-import { Fragment } from "react";
 import { Avatar } from "src/component/Avatar";
-import type { UserType } from "src/lib/user";
-import { useAuth } from "src/lib/user";
+import { useAuth, type UserType } from "src/lib/user";
 import { ICON_SIZE } from "src/pages-layout/Header/constants";
 
 const example: UserType = {
+  avatarUrl: "/mocks/avatar01.jpg",
   id: "engineer",
   name: "yanot",
-  avatarUrl: "/mocks/avatar01.jpg",
 };
 
-/** @package */
 export const UserMenu: FC = () => {
-  const { profileFromGoogle, handleSignOut } = useAuth();
+  const { handleSignOut, profileFromGoogle } = useAuth();
   const user = profileFromGoogle
     ? {
+        avatarUrl: profileFromGoogle.avatarUrl ?? "",
         id: profileFromGoogle.id ?? "",
         name: profileFromGoogle.name ?? "",
-        avatarUrl: profileFromGoogle.avatarUrl ?? "",
       }
     : example;
 
@@ -47,9 +46,9 @@ export const UserMenu: FC = () => {
               >
                 <Popover.Panel
                   static
-                  className="absolute left-full z-10 mt-2 w-screen max-w-xs -translate-x-full transform pl-8 sm:max-w-sm sm:px-0 sm:pl-0 xl:-left-full xl:-translate-x-1/2 2xl:left-1/2"
+                  className="absolute left-full z-10 mt-2 w-screen max-w-xs -translate-x-full pl-8 sm:max-w-sm sm:px-0 xl:-left-full xl:-translate-x-1/2 2xl:left-1/2"
                 >
-                  <div className="overflow-hidden rounded-2xl bg-white py-4 shadow-lg ring-1 ring-gray-400 ring-opacity-20 dark:bg-gray-800">
+                  <div className="overflow-hidden rounded-2xl bg-white py-4 shadow-lg ring-1 ring-gray-400/20 dark:bg-gray-800">
                     <div>
                       <Link href="/setting" legacyBehavior>
                         <a className="flex items-center p-4 hover:bg-gray-100 focus:outline-none focus-visible:bg-gray-100 dark:hover:bg-gray-700 dark:focus-visible:bg-gray-700">

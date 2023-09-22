@@ -1,11 +1,9 @@
 import { memo } from "react";
 
-/** @package */
 export type Center = {
   center?: string | JSX.Element;
 };
 
-/** @package */
 export const Center = memo<Center>((props) => {
   if (!props.center) {
     return null;

@@ -1,14 +1,16 @@
-import { useTheme as useNextTheme } from "next-themes";
+/* eslint-disable func-style */
 import { useEffect, useMemo, useState } from "react";
 
+import { useTheme as useNextTheme } from "next-themes";
+
 type ExtendUseThemeProps = ReturnType<typeof useNextTheme> & {
-  theme: "system" | "light" | "dark";
   resolvedTheme: "light" | "dark";
+  theme: "system" | "light" | "dark";
 };
 
 export const useTheme = () => {
   const [isMounted, setIsMounted] = useState(false);
-  const { theme: currentTheme, setTheme: handleTheme } = useNextTheme() as ExtendUseThemeProps;
+  const { setTheme: handleTheme, theme: currentTheme } = useNextTheme() as ExtendUseThemeProps;
   const themes = useMemo(() => {
     return [
       { id: "system", label: "端末の設定に合わせる" },
@@ -20,5 +22,5 @@ export const useTheme = () => {
     return setIsMounted(true);
   }, []);
 
-  return { themes, isMounted, currentTheme, handleTheme };
+  return { currentTheme, handleTheme, isMounted, themes };
 };

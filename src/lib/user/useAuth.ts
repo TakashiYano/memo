@@ -1,10 +1,11 @@
-import type { Session } from "@supabase/supabase-js";
-import { useRouter } from "next/router";
+/* eslint-disable func-style */
 import { useEffect, useState } from "react";
+import { useRouter } from "next/router";
+
+import type { Session } from "@supabase/supabase-js";
 import { supabase } from "src/lib/supabase";
 import type { UserType } from "src/lib/user/type";
 
-/** @package */
 export const useAuth = () => {
   const router = useRouter();
   const [session, setSession] = useState<Session | null>(null); // ログイン状態を管理
@@ -42,9 +43,9 @@ export const useAuth = () => {
 
   // ログインユーザーのプロフィール取得: Google
   const profileFromGoogle: UserType = {
+    avatarUrl: session?.user?.user_metadata.avatar_url,
     id: session?.user?.user_metadata.provider_id,
     name: session?.user?.user_metadata.name,
-    avatarUrl: session?.user?.user_metadata.avatar_url,
   };
 
   // サインアウト
@@ -54,10 +55,10 @@ export const useAuth = () => {
   };
 
   return {
-    session,
     error,
-    profileFromGoogle,
     handleSignInWithGoogle,
     handleSignOut,
+    profileFromGoogle,
+    session,
   };
 };

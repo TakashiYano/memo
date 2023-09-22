@@ -1,8 +1,9 @@
-import { useRouter } from "next/router";
+/* eslint-disable func-style */
 import { useCallback, useState } from "react";
+import { useRouter } from "next/router";
+
 import { Button } from "src/component/Button";
 
-/** @package */
 export const NoteWriteButton = () => {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
@@ -20,7 +21,13 @@ export const NoteWriteButton = () => {
   }, [router]);
 
   return (
-    <Button key="write memo" className="h-10 px-4" variant="solid-blue" onClick={handleCreateMemo} disabled={isLoading}>
+    <Button
+      key="write memo"
+      className="h-10 px-4"
+      variant="solid-blue"
+      onClick={handleCreateMemo}
+      disabled={isLoading}
+    >
       メモを書く
     </Button>
   );

@@ -1,13 +1,18 @@
+/* eslint-disable import/no-default-export */
+/* eslint-disable func-style */
+import type { NextPage } from "next";
+
 import { RadioGroup } from "@headlessui/react";
 import { CheckIcon } from "@heroicons/react/24/outline";
 import cc from "classcat";
-import type { NextPage } from "next";
 import { useTheme } from "src/pages-component/setting/theme";
 import { Layout } from "src/pages-layout";
 
 const SettingMemoTheme: NextPage = () => {
-  const { themes, isMounted, currentTheme, handleTheme } = useTheme();
-  if (!isMounted) return null;
+  const { currentTheme, handleTheme, isMounted, themes } = useTheme();
+  if (!isMounted) {
+    return null;
+  }
 
   return (
     <Layout left="back" center="テーマ">
