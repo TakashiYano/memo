@@ -3,15 +3,15 @@
   "version": "1.0.0",
   "license": "MIT",
   "scripts": {
-    "dev": "next dev",
+    "dev": "rm -rf .next && next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "run-p -l -c --aggregate-output lint:*",
-    "lint:eslint": "eslint --cache .",
+    "lint": "conc -g \"yarn:lint:*\"",
+    "lint:eslint": "next lint",
     "lint:prettier": "prettier --check .",
-    "fix": "run-s -l -c fix:eslint fix:prettier",
-    "fix:eslint": "yarn lint:eslint --fix",
-    "fix:prettier": "yarn lint:prettier --write",
+    "fix": "yarn fix:eslint && yarn fix:prettier",
+    "fix:eslint": "next lint --fix",
+    "fix:prettier": "prettier --write .",
     "prepare": "husky install"
   },
   "babel": {
