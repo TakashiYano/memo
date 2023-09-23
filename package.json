@@ -1,7 +1,6 @@
 {
   "name": "memo",
-  "version": "1.0.0",
-  "license": "MIT",
+  "version": "0.1.0",
   "scripts": {
     "dev": "rm -rf .next && next dev",
     "build": "next build",
@@ -13,11 +12,6 @@
     "fix:eslint": "next lint --fix",
     "fix:prettier": "prettier --write .",
     "prepare": "husky install"
-  },
-  "babel": {
-    "presets": [
-      "next/babel"
-    ]
   },
   "dependencies": {
     "@headlessui/react": "^1.7.8",
