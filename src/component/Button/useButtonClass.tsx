@@ -1,9 +1,8 @@
-/* eslint-disable func-style */
 import { useMemo } from "react";
 
 import cc from "classcat";
 
-import type { ButtonVariant } from "./type";
+import { type ButtonVariant } from "@/component/Button/type";
 
 export const useButtonClass = (className?: string, variant?: ButtonVariant) => {
   const classes = useMemo(() => {

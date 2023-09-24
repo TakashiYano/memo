@@ -1,8 +1,8 @@
-/* eslint-disable func-style */
-import type { FC } from "react";
+import { type FC } from "react";
+
+import { type ListProps } from "@/component/List/type";
 
 import { List } from "./List";
-import type { ListProps } from "./type";
 
 type RecursiveListProps = {
   list: [ListProps, ...ListProps[]];

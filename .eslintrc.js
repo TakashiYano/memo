@@ -28,7 +28,6 @@ module.exports = {
     "prefer-const": ["error"],
     "prefer-arrow-callback": ["error"],
     "arrow-body-style": ["error", "always"],
-    "func-style": ["error", "declaration"],
     "@typescript-eslint/no-var-requires": ["off"],
     "unused-imports/no-unused-imports": ["error"],
     "@typescript-eslint/consistent-type-imports": ["error", { fixStyle: "inline-type-imports" }],

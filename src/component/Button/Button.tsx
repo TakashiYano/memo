@@ -1,6 +1,7 @@
 import { forwardRef, type ForwardedRef } from "react";
 
-import type { ButtonType } from "./type";
+import { type ButtonType } from "@/component/Button/type";
+
 import { useButtonClass } from "./useButtonClass";
 
 export const Button = forwardRef<HTMLButtonElement, ButtonType>((props, ref) => {

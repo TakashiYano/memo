@@ -1,5 +1,4 @@
-/* eslint-disable func-style */
-import type { ComponentProps, FC } from "react";
+import { type ComponentProps, type FC } from "react";
 
 import cc from "classcat";
 
@@ -12,7 +11,7 @@ type MenuListItem = {
   onClick: ComponentProps<"button">["onClick"];
 };
 
-export type MenuDialogListProps = {
+type MenuDialogListProps = {
   menu: (MenuListItem[] | string | undefined)[];
 };
 

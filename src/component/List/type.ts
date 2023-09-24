@@ -1,5 +1,4 @@
-/* eslint-disable func-style */
-import type { DOMAttributes } from "react";
+import { type DOMAttributes } from "react";
 
 type AllOrNone<T> = T | { [Key in keyof T]?: never };
 
@@ -29,8 +28,6 @@ const hasButton = (item: Button): item is ComponentButton => {
   return "button" in item;
 };
 
-/** @package */
 export type { AllOrNone, ListProps };
 
-/** @package */
 export { hasButton, isLink };

@@ -1,8 +1,8 @@
-/* eslint-disable func-style */
 import { Fragment, useRef, type ComponentProps, type FC } from "react";
 
 import { Dialog, Transition } from "@headlessui/react";
-import { Button } from "src/component/Button";
+
+import { Button } from "@/component/Button/Button";
 
 type Props = {
   buttonColor: "blue" | "red";

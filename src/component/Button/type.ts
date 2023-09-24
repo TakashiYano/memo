@@ -1,5 +1,5 @@
-import type { ButtonHTMLAttributes, ReactNode } from "react";
-import type { LinkProps } from "next/link";
+import { type ButtonHTMLAttributes, type ReactNode } from "react";
+import { type LinkProps } from "next/link";
 
 type Common = {
   children: ReactNode;

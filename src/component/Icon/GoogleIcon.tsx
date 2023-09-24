@@ -1,5 +1,4 @@
-/* eslint-disable func-style */
-import type { FC } from "react";
+import { type FC } from "react";
 
 export const GoogleIcon: FC<{ className?: string }> = (props) => {
   const { className } = props;

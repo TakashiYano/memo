@@ -1,5 +1,4 @@
-/* eslint-disable func-style */
-import type { FC } from "react";
+import { type FC } from "react";
 import Link from "next/link";
 
 import { ArrowTopRightOnSquareIcon, ChevronRightIcon } from "@heroicons/react/24/outline";

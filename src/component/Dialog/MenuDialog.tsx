@@ -1,9 +1,9 @@
-/* eslint-disable func-style */
 import { Fragment, useRef, type FC, type ReactNode } from "react";
 
 import { Dialog, Transition } from "@headlessui/react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
-import { Button } from "src/component/Button";
+
+import { Button } from "@/component/Button/Button";
 
 type MenuDialogProps = {
   children: ReactNode;

@@ -1,5 +1,4 @@
-/* eslint-disable func-style */
-import type { ComponentProps, FC } from "react";
+import { type ComponentProps, type FC } from "react";
 
 type InputProps = ComponentProps<"input"> & {
   error?: string;

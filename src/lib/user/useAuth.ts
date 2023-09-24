@@ -1,10 +1,12 @@
-/* eslint-disable func-style */
-import { useEffect, useState } from "react";
-import { useRouter } from "next/router";
+"use client";
 
-import type { Session } from "@supabase/supabase-js";
-import { supabase } from "src/lib/supabase";
-import type { UserType } from "src/lib/user/type";
+import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
+
+import { type Session } from "@supabase/supabase-js";
+
+import { supabase } from "@/lib/supabase/supabase";
+import { type UserType } from "@/lib/user/type";
 
 export const useAuth = () => {
   const router = useRouter();

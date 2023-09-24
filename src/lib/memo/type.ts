@@ -1,4 +1,4 @@
-import type { UserType } from "src/lib/user";
+import { type UserType } from "@/lib/user";
 
 type NoteCommonType = {
   excerpt: string;

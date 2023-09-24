@@ -1,4 +1,3 @@
-/* eslint-disable func-style */
 export const Error = () => {
   return (
     <div className="space-y-2">
