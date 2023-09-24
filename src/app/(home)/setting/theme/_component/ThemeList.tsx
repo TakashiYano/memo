@@ -4,9 +4,18 @@ import { type FC } from "react";
 
 import { RadioGroup } from "@headlessui/react";
 import { CheckIcon } from "@heroicons/react/24/outline";
-import cc from "classcat";
+import { tv } from "tailwind-variants";
 
 import { useTheme } from "@/lib/setting/useTheme";
+
+const list = tv({
+  base: "-mx-4 cursor-pointer hover:bg-gray-100 focus:outline-none dark:hover:bg-gray-700",
+  variants: {
+    checked: {
+      true: "bg-gray-100 dark:bg-gray-700",
+    },
+  },
+});
 
 export const ThemeList: FC = () => {
   const { currentTheme, handleTheme, isMounted, themes } = useTheme();
@@ -22,13 +31,8 @@ export const ThemeList: FC = () => {
           <RadioGroup.Option
             key={theme.id}
             value={theme.id}
-            className={({ active, checked }) => {
-              return cc([
-                "-mx-4 cursor-pointer hover:bg-gray-100 focus:outline-none dark:hover:bg-gray-700",
-                {
-                  "bg-gray-100 dark:bg-gray-700": checked || active,
-                },
-              ]);
+            className={({ checked }) => {
+              return list({ checked });
             }}
           >
             {({ checked }) => {

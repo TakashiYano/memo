@@ -2,16 +2,20 @@
 import type { FC } from "react";
 import Image from "next/image";
 
-import cc from "classcat";
 import NoProfileImage from "public/no-profile-image.webp";
+import { tv } from "tailwind-variants";
 
 import { DialogImage } from "./DialogImage";
 import { NextImage } from "./NextImage";
 import { hasSrc, isBlob, type ImagePropsSrcUndefinedable } from "./types";
 
+const button = tv({
+  base: "object-cover object-center overflow-hidden rounded-full",
+});
+
 export const Avatar: FC<ImagePropsSrcUndefinedable> = (props) => {
   const { className, noDialog, ...rest } = props;
-  const classes = cc(["object-cover object-center overflow-hidden rounded-full", className]);
+  const classes = button({ class: className });
 
   if (!hasSrc(rest)) {
     return (

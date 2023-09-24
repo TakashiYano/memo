@@ -2,9 +2,18 @@ import { type FC } from "react";
 import Link from "next/link";
 
 import { ArrowTopRightOnSquareIcon, ChevronRightIcon } from "@heroicons/react/24/outline";
-import cc from "classcat";
+import { tv } from "tailwind-variants";
 
 import { hasButton, isLink, type ListProps } from "./type";
+
+const list = tv({
+  base: "flex justify-between items-center py-3 px-4 -mx-4 text-lg font-bold",
+  variants: {
+    isLinked: {
+      true: "hover:bg-gray-100 focus-visible:bg-gray-100 dark:hover:bg-gray-700 dark:focus-visible:bg-gray-700 focus:outline-none",
+    },
+  },
+});
 
 export const List: FC<ListProps> = (props) => {
   const { items, title } = props;
@@ -14,13 +23,7 @@ export const List: FC<ListProps> = (props) => {
       {title ? <div className="text-sm font-bold text-gray-400">{title}</div> : null}
       <ul>
         {items.map((item, i) => {
-          const className = cc([
-            "flex justify-between items-center py-3 px-4 -mx-4 text-lg font-bold",
-            {
-              "hover:bg-gray-100 focus-visible:bg-gray-100 dark:hover:bg-gray-700 dark:focus-visible:bg-gray-700 focus:outline-none":
-                isLink(item),
-            },
-          ]);
+          const className = list({ isLinked: isLink(item) });
 
           if (isLink(item)) {
             const isExternal = item.href.slice(0, 1) !== "/";

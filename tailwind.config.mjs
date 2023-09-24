@@ -1,4 +1,5 @@
 const colors = require("tailwindcss/colors");
+const { withTV } = require("tailwind-variants/transformer");
 
 /** @type {import('tailwindcss').Config} */
 const config = {
@@ -82,4 +83,4 @@ const config = {
   plugins: [require("@tailwindcss/forms"), require("@tailwindcss/typography")],
 };
 
-export default config;
+export default withTV(config);
