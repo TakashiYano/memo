@@ -1,4 +1,3 @@
-/* eslint-disable func-style */
 import type { FC } from "react";
 import Image, { type ImageLoaderProps, type ImageProps } from "next/image";
 

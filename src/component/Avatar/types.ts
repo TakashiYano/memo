@@ -1,4 +1,3 @@
-/* eslint-disable func-style */
 import type { ImgHTMLAttributes } from "react";
 import type { ImageProps as NextImageProps } from "next/image";
 
