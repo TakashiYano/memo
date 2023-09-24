@@ -6,7 +6,7 @@ import Link from "next/link";
 import { Popover, Transition } from "@headlessui/react";
 import { ArrowLeftOnRectangleIcon } from "@heroicons/react/24/outline";
 
-import { Avatar } from "@/component/Avatar";
+import { Avatar } from "@/component/Avatar/Avatar";
 import { ICON_SIZE } from "@/lib/const/constants";
 import { type UserType } from "@/lib/user/type";
 import { useAuth } from "@/lib/user/useAuth";

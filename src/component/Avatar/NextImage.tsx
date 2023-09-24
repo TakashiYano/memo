@@ -1,4 +1,4 @@
-import type { FC } from "react";
+import { type FC } from "react";
 import Image, { type ImageLoaderProps, type ImageProps } from "next/image";
 
 const loader = ({ quality, src, width }: ImageLoaderProps) => {

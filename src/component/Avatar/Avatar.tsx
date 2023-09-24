@@ -1,4 +1,4 @@
-import type { FC } from "react";
+import { type FC } from "react";
 import Image from "next/image";
 
 import NoProfileImage from "public/no-profile-image.webp";

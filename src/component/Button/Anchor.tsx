@@ -1,7 +1,8 @@
 import { forwardRef, type ForwardedRef } from "react";
 import Link from "next/link";
 
-import type { AnchorType } from "./type";
+import { type AnchorType } from "@/component/Button/type";
+
 import { useButtonClass } from "./useButtonClass";
 
 export const Anchor = forwardRef<HTMLAnchorElement, AnchorType>((props, ref) => {
