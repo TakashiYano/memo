@@ -7,7 +7,7 @@ export const Error = () => {
         更新してもうまくいかない場合は下記よりお問い合わせください。
       </p>
       <a
-        className="inline-block font-bold text-blue-500"
+        className="inline-block font-bold text-indigo-11 dark:text-indigodark-11"
         href="##"
         target="_blank"
         rel="noopener noreferrer"

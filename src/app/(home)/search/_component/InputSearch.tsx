@@ -15,7 +15,7 @@ export const InputSearch: FC<Props> = (props) => {
   return (
     <form className="relative w-full" onSubmit={handleSubmit}>
       <input
-        className="m-0 my-auto h-10 w-full rounded-full border-none bg-gray-100 pl-12 focus:ring-2 focus:ring-blue-400 dark:bg-gray-700 dark:focus:bg-transparent"
+        className="m-0 my-auto h-10 w-full rounded-full border-none bg-indigo-3 pl-12 focus:ring-2 focus:ring-indigo-11 dark:bg-indigodark-3 dark:focus:bg-transparent"
         type="text"
         {...props}
         placeholder="検索"
@@ -23,7 +23,7 @@ export const InputSearch: FC<Props> = (props) => {
         autoFocus
       />
       <span className="absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2">
-        <MagnifyingGlassIcon className="h-5 w-5 text-blue-500" />
+        <MagnifyingGlassIcon className="h-5 w-5 text-indigo-11 dark:text-indigodark-11" />
       </span>
 
       {inputValue && isLoading && (
