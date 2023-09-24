@@ -1,10 +1,9 @@
-import { type UserType } from "@/lib/user";
+import { type UserType } from "@/lib/user/type";
 
 type NoteCommonType = {
   excerpt: string;
   id: string;
   isMine: boolean;
-  isPublic: boolean;
   updatedAt: string;
 };
 
