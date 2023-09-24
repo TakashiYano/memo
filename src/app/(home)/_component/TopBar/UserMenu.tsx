@@ -32,7 +32,7 @@ export const UserMenu: FC = () => {
       {({ open }) => {
         return (
           <>
-            <Popover.Button className="rounded-full focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400">
+            <Popover.Button className="rounded-full focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-4">
               <Avatar alt={user.name} src={user.avatarUrl} className={ICON_SIZE} />
             </Popover.Button>
 
@@ -51,7 +51,7 @@ export const UserMenu: FC = () => {
                   static
                   className="absolute left-full z-10 mt-2 w-screen max-w-xs -translate-x-full pl-8 sm:max-w-sm sm:px-0 xl:-left-full xl:-translate-x-1/2 2xl:left-1/2"
                 >
-                  <div className="overflow-hidden rounded-2xl bg-white py-4 shadow-lg ring-1 ring-gray-400/20 dark:bg-gray-800">
+                  <div className="overflow-hidden rounded-2xl bg-indigo-2 py-4 shadow-lg ring-1 ring-gray-400/20 dark:bg-indigodark-2">
                     <div>
                       <Link href="/setting" legacyBehavior>
                         <a className="flex items-center p-4 hover:bg-gray-100 focus:outline-none focus-visible:bg-gray-100 dark:hover:bg-gray-700 dark:focus-visible:bg-gray-700">
@@ -70,9 +70,11 @@ export const UserMenu: FC = () => {
                         onClick={handleSignOut}
                       >
                         <div className="flex shrink-0 items-center justify-center">
-                          <ArrowLeftOnRectangleIcon className="ml-0.5 h-7 w-7 text-red-500" />
+                          <ArrowLeftOnRectangleIcon className="ml-0.5 h-7 w-7 text-red-11 dark:text-reddark-11" />
                         </div>
-                        <p className="ml-4 font-bold text-red-500">ログアウト</p>
+                        <p className="ml-4 font-bold text-red-11 dark:text-reddark-11">
+                          ログアウト
+                        </p>
                       </button>
                     </div>
                   </div>

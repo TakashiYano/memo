@@ -25,7 +25,7 @@ export const NoteWriteButton = () => {
     <Button
       key="write memo"
       className="h-10 px-4"
-      variant="solid-blue"
+      variant="solid"
       onClick={handleCreateMemo}
       disabled={isLoading}
     >

@@ -7,7 +7,7 @@ import "./globals.css";
 const RootLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <html lang="ja" suppressHydrationWarning>
-      <body className="dark:bg-gray-800">
+      <body className="bg-indigo-1 dark:bg-indigodark-1">
         <ThemeProviders>
           {children}
           <Toaster

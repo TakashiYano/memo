@@ -37,7 +37,7 @@ export const ConfirmDialog: FC<Props> = (props) => {
             leaveFrom="opacity-100"
             leaveTo="opacity-0"
           >
-            <Dialog.Overlay className="fixed inset-0 bg-black/40" />
+            <Dialog.Overlay className="fixed inset-0" />
           </Transition.Child>
 
           <span className="inline-block h-screen align-middle" aria-hidden="true">
@@ -53,7 +53,7 @@ export const ConfirmDialog: FC<Props> = (props) => {
             leaveFrom="opacity-100 translate-y-0 scale-100"
             leaveTo="opacity-0 translate-y-0 scale-95"
           >
-            <div className="inline-block w-10/12 max-w-sm overflow-hidden rounded-2xl bg-white p-4 text-left align-middle shadow-xl transition-all dark:bg-gray-800 sm:p-6">
+            <div className="inline-block w-10/12 max-w-sm overflow-hidden rounded-2xl bg-indigo-2 p-4 text-left align-middle shadow-xl transition-all dark:bg-indigodark-2 sm:p-6">
               <div className="text-center">
                 <Dialog.Title as="h3" className="font-bold leading-6">
                   {title}
@@ -72,7 +72,7 @@ export const ConfirmDialog: FC<Props> = (props) => {
                   キャンセル
                 </Button>
                 <Button
-                  variant={buttonColor === "blue" ? "solid-blue" : "solid-red"}
+                  variant={buttonColor === "blue" ? "solid" : "error"}
                   className="flex-1 py-2 text-sm"
                   onClick={onClickOk}
                 >

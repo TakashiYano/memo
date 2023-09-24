@@ -55,7 +55,7 @@ export const NoteList: FC<NoteListProps> = (props) => {
               {dc.doubleCheck ? (
                 <Button
                   key="delete"
-                  variant="solid-red"
+                  variant="error"
                   className="flex-1 py-2 text-sm"
                   {...dc.getButtonProps()}
                   onClick={handleDeleteNote}
@@ -68,7 +68,7 @@ export const NoteList: FC<NoteListProps> = (props) => {
               ) : (
                 <Button
                   key="delete"
-                  variant="solid-red"
+                  variant="error"
                   className="flex-1 py-2 text-sm"
                   {...dc.getButtonProps()}
                 >

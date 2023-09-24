@@ -22,8 +22,8 @@ export const DeleteAccount: FC = () => {
                 {
                   button: (
                     <Button
-                      variant="solid-gray"
-                      className="px-5 py-2 text-sm text-red-500"
+                      variant="error"
+                      className="px-5 py-2 text-sm text-red-11 dark:text-reddark-11"
                       onClick={handleDeleteMemo}
                     >
                       削除する

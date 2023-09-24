@@ -11,5 +11,5 @@
   "typescript.preferences.importModuleSpecifier": "non-relative",
   "typescript.tsdk": "node_modules/typescript/lib",
   "tailwindCSS.experimental.classRegex": [["tv\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"]],
-  "cSpell.words": ["callees", "ianvs"]
+  "cSpell.words": ["callees", "graydark", "ianvs", "indigodark", "reddark", "slatedark"]
 }

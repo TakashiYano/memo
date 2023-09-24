@@ -20,7 +20,7 @@ export const AccountList: FC = () => {
           items={[
             {
               button: (
-                <Button variant="solid-gray" className="px-4 py-2 text-sm" onClick={handleGoogle}>
+                <Button variant="ui" className="px-4 py-2 text-sm" onClick={handleGoogle}>
                   解除する
                 </Button>
               ),

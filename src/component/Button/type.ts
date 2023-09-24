@@ -7,14 +7,7 @@ type Common = {
   variant?: ButtonVariant;
 };
 
-type ButtonVariant =
-  | "outline"
-  | "ghost"
-  | "solid-blue"
-  | "solid-red"
-  | "solid-gray"
-  | "solid-white"
-  | "solid-black";
+type ButtonVariant = "outline" | "ghost" | "solid" | "error" | "ui";
 
 type ButtonType = ButtonHTMLAttributes<HTMLButtonElement> & Common;
 

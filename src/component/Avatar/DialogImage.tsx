@@ -58,7 +58,7 @@ export const DialogImage: FC<{ children: ReactNode; alt?: string; src?: string }
                 />
                 <button
                   type="button"
-                  className="absolute left-3 top-3.5 rounded-full border border-transparent bg-gray-600 p-1.5 text-white hover:bg-gray-500 focus:outline-none"
+                  className="absolute left-3 top-3.5 rounded-full border border-transparent bg-gray-600 p-1.5 hover:bg-gray-500 focus:outline-none"
                   onClick={handleClose}
                 >
                   <XMarkIcon className="h-6 w-6" />

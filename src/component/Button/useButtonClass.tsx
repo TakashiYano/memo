@@ -6,19 +6,15 @@ const button = tv({
   base: "grid place-items-center font-bold rounded-full focus-visible:ring-2 transition duration-200 ease-in-out focus:outline-none",
   variants: {
     color: {
+      error:
+        "bg-red-4 dark:bg-reddark-4 hover:bg-red-5 dark:hover:bg-reddark-5 active:bg-red-6 dark:active:bg-reddark-6",
       ghost:
-        "hover:text-blue-400 focus-visible:text-blue-400 hover:bg-blue-50 focus-visible:bg-blue-50 dark:hover:bg-opacity-10 dark:focus-visible:bg-opacity-10 focus-visible:ring-blue-400",
-      outline: "border dark:border-gray-500 focus:ring-2 focus:ring-blue-400",
-      "solid-black":
-        "text-white bg-black hover:bg-gray-800 focus:bg-gray-800 dark:hover:bg-gray-900 dark:focus:bg-gray-900",
-      "solid-blue":
-        "text-white bg-blue-500 hover:bg-blue-600 focus-visible:bg-blue-600 focus-visible:ring-blue-400",
-      "solid-gray":
-        "bg-gray-100 hover:bg-gray-200 focus-visible:bg-gray-200 dark:bg-gray-700 dark:hover:bg-gray-600 dark:focus-visible:bg-gray-600 focus-visible:ring-blue-400",
-      "solid-red":
-        "text-white bg-red-500 hover:bg-red-600 focus-visible:bg-red-600 focus-visible:ring-red-400",
-      "solid-white":
-        "dark:text-black bg-white hover:bg-gray-100 focus:bg-gray-100 dark:hover:bg-gray-200 dark:focus:bg-gray-200",
+        "bg-transparent dark:bg-transparent hover:bg-indigo-4 dark:hover:bg-indigodark-4 active:bg-indigo-5 dark:active:bg-indigodark-5",
+      outline:
+        "border active:bg-indigo-6 dark:active:bg-indigodark-6 border-indigo-7 dark:border-indigodark-7 hover:border-indigo-8 dark:hover:border-indigodark-8",
+      solid:
+        "bg-indigo-4 dark:bg-indigodark-4 hover:bg-indigo-5 dark:hover:bg-indigodark-5 active:bg-indigo-6 dark:active:bg-indigodark-6",
+      ui: "bg-indigo-3 dark:bg-indigodark-3 hover:bg-indigo-4 dark:hover:bg-indigodark-4 active:bg-indigo-5 dark:active:bg-indigodark-5",
     },
   },
 });
