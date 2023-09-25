@@ -1,5 +1,6 @@
 import Image from "next/image";
 
+import { LogoutButton } from "@/app/(home)/setting/_component/LogoutButton";
 import { RecursiveList } from "@/component/List/RecursiveList";
 import { type UserType } from "@/lib/user/type";
 
@@ -11,7 +12,7 @@ const user: UserType = {
 
 const Setting = () => {
   return (
-    <div>
+    <div className="px-4">
       <div className="flex flex-col items-center">
         <Image
           src={user.avatarUrl}
@@ -33,7 +34,7 @@ const Setting = () => {
             },
             {
               items: [
-                { href: "/setting/profile/edit", label: "プロフィール" },
+                { href: "/setting/profile/edit", label: "プロフィールの管理" },
                 { href: "/setting/account", label: "アカウントの連携" },
                 { href: "/setting/delete", label: "データの削除" },
               ],
@@ -41,6 +42,9 @@ const Setting = () => {
             },
           ]}
         />
+        <div className="relative mt-8 grid">
+          <LogoutButton />
+        </div>
       </div>
     </div>
   );
