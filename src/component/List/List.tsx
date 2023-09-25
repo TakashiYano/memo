@@ -1,7 +1,7 @@
 import { type FC } from "react";
 import Link from "next/link";
 
-import { ArrowTopRightOnSquareIcon, ChevronRightIcon } from "@heroicons/react/24/outline";
+import { ChevronRightIcon } from "@heroicons/react/24/outline";
 import { tv } from "tailwind-variants";
 
 import { hasButton, isLink, type ListProps } from "./type";
@@ -28,21 +28,12 @@ export const List: FC<ListProps> = (props) => {
           const className = list({ isLinked: isLink(item) });
 
           if (isLink(item)) {
-            const isExternal = item.href.slice(0, 1) !== "/";
             return (
               <li key={i}>
                 <Link href={item.href} legacyBehavior>
-                  <a
-                    className={className}
-                    target={isExternal ? "_blank" : undefined}
-                    rel={isExternal ? "noopener noreferrer" : undefined}
-                  >
+                  <a className={className}>
                     {item.label}
-                    {isExternal ? (
-                      <ArrowTopRightOnSquareIcon className="h-5 w-5" />
-                    ) : (
-                      <ChevronRightIcon className="h-5 w-5" />
-                    )}
+                    <ChevronRightIcon className="h-5 w-5" />
                   </a>
                 </Link>
               </li>
