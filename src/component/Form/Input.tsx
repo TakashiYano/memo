@@ -13,7 +13,7 @@ export const Input: FC<InputProps> = (props) => {
   return (
     <div className="block">
       <label htmlFor={name}>
-        <div className="ml-4 block text-sm font-bold text-indigo-11 dark:text-indigodark-11">
+        <div className="ml-4 block text-sm font-bold text-indigo-12 dark:text-indigodark-12">
           {label}
         </div>
         <div className="relative">
@@ -23,7 +23,7 @@ export const Input: FC<InputProps> = (props) => {
           <input
             type="text"
             id={name}
-            className={`mt-0.5 h-10 w-full rounded-full border-none bg-indigo-3 py-6 pr-5 font-bold focus:outline-none focus:ring-2 focus:ring-blue-11 dark:bg-indigodark-3 dark:focus:bg-transparent ${
+            className={`mt-0.5 h-10 w-full rounded-xl border border-indigo-6 bg-indigo-3 py-6 pr-5 font-bold focus:outline-none focus:ring-2 focus:ring-indigo-11 dark:border-indigodark-6 dark:bg-indigodark-3 dark:focus:bg-transparent ${
               prefix ? "pl-10" : "pl-5"
             }`}
             autoComplete="off"

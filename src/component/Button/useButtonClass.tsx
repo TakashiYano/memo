@@ -11,7 +11,7 @@ const button = tv({
       ghost:
         "bg-transparent dark:bg-transparent hover:bg-indigo-4 dark:hover:bg-indigodark-4 active:bg-indigo-5 dark:active:bg-indigodark-5",
       outline:
-        "border active:bg-indigo-6 dark:active:bg-indigodark-6 border-indigo-7 dark:border-indigodark-7 hover:border-indigo-8 dark:hover:border-indigodark-8",
+        "text-indigo-12 dark:text-indigodark-12 border active:bg-indigo-6 dark:active:bg-indigodark-6 border-indigo-7 dark:border-indigodark-7 hover:border-indigo-8 dark:hover:border-indigodark-8",
       solid:
         "bg-indigo-4 dark:bg-indigodark-4 hover:bg-indigo-5 dark:hover:bg-indigodark-5 active:bg-indigo-6 dark:active:bg-indigodark-6",
       ui: "bg-indigo-3 dark:bg-indigodark-3 hover:bg-indigo-4 dark:hover:bg-indigodark-4 active:bg-indigo-5 dark:active:bg-indigodark-5",
