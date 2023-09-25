@@ -3,7 +3,10 @@
 import { useCallback, useState } from "react";
 import { useRouter } from "next/navigation";
 
+import { PencilSquareIcon } from "@heroicons/react/24/outline";
+
 import { Button } from "@/component/Button/Button";
+import { ICON_SIZE } from "@/lib/const/constants";
 
 export const NoteWriteButton = () => {
   const router = useRouter();
@@ -24,12 +27,12 @@ export const NoteWriteButton = () => {
   return (
     <Button
       key="write memo"
-      className="h-10 px-4"
-      variant="solid"
+      className={ICON_SIZE}
+      variant="ghost"
       onClick={handleCreateMemo}
       disabled={isLoading}
     >
-      メモを書く
+      <PencilSquareIcon className="h-5 w-5" />
     </Button>
   );
 };
