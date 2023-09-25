@@ -1,9 +1,9 @@
-import { InputSearch } from "@/app/(home)/search/_component/InputSearch";
+import { NoteList } from "@/app/(home)/_component/Note/NoteList";
 
 const Search = () => {
   return (
     <div className="px-4">
-      <InputSearch />
+      <NoteList />
     </div>
   );
 };
