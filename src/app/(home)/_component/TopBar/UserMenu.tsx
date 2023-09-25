@@ -51,14 +51,14 @@ export const UserMenu: FC = () => {
                   static
                   className="absolute left-full z-10 mt-2 w-screen max-w-xs -translate-x-full pl-8 sm:max-w-sm sm:px-0 xl:-left-full xl:-translate-x-1/2 2xl:left-1/2"
                 >
-                  <div className="overflow-hidden rounded-2xl bg-indigo-2 py-4 shadow-lg ring-1 ring-gray-400/20 dark:bg-indigodark-2">
+                  <div className="overflow-hidden rounded-2xl bg-indigo-2 py-4 shadow-lg ring-1 ring-indigo-4/20 dark:bg-indigodark-2">
                     <div>
                       <Link href="/setting" legacyBehavior>
-                        <a className="flex items-center p-4 hover:bg-gray-100 focus:outline-none focus-visible:bg-gray-100 dark:hover:bg-gray-700 dark:focus-visible:bg-gray-700">
+                        <a className="flex items-center p-4 hover:bg-indigo-4 focus:outline-none  focus-visible:bg-indigo-4 dark:hover:bg-indigodark-4 dark:focus-visible:bg-indigo-4">
                           <Avatar alt={user.name} src={user.avatarUrl} className="h-14 w-14" />
                           <div className="ml-4">
                             <p className="text-base font-bold">yanot</p>
-                            <p className="text-sm text-gray-400">@yanot</p>
+                            <p className="text-sm text-indigo-11 dark:text-indigodark-11">@yanot</p>
                           </div>
                         </a>
                       </Link>
@@ -66,7 +66,7 @@ export const UserMenu: FC = () => {
                     <div className="relative grid">
                       <button
                         type="button"
-                        className="flex items-center px-4 py-2.5 hover:bg-gray-100 focus:outline-none focus-visible:bg-gray-100 dark:hover:bg-gray-700 dark:focus-visible:bg-gray-700"
+                        className="flex items-center px-4 py-2.5 hover:bg-red-4 focus:outline-none  focus-visible:bg-red-4 dark:hover:bg-reddark-4 dark:focus-visible:bg-red-4"
                         onClick={handleSignOut}
                       >
                         <div className="flex shrink-0 items-center justify-center">

@@ -13,7 +13,9 @@ export const Input: FC<InputProps> = (props) => {
   return (
     <div className="block">
       <label htmlFor={name}>
-        <div className="ml-4 block text-sm font-bold text-gray-500">{label}</div>
+        <div className="ml-4 block text-sm font-bold text-indigo-11 dark:text-indigodark-11">
+          {label}
+        </div>
         <div className="relative">
           {prefix ? (
             <span className="absolute left-5 flex h-full items-center font-bold">{prefix}</span>

@@ -9,10 +9,10 @@ import { tv } from "tailwind-variants";
 import { useTheme } from "@/lib/setting/useTheme";
 
 const list = tv({
-  base: "-mx-4 cursor-pointer hover:bg-gray-100 focus:outline-none dark:hover:bg-gray-700",
+  base: "-mx-4 cursor-pointer focus:outline-none hover:bg-indigo-3 dark:hover:bg-indigodark-3 active:bg-indigo-3 dark:active:bg-indigodark-3",
   variants: {
     checked: {
-      true: "bg-gray-100 dark:bg-gray-700",
+      true: "bg-indigo-3 dark:bg-indigodark-3",
     },
   },
 });

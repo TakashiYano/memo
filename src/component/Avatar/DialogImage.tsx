@@ -38,7 +38,7 @@ export const DialogImage: FC<{ children: ReactNode; alt?: string; src?: string }
               leaveFrom="opacity-100"
               leaveTo="opacity-0"
             >
-              <Dialog.Overlay className="fixed inset-0 bg-gray-500/75 transition-opacity" />
+              <Dialog.Overlay className="fixed inset-0 bg-indigo-5/75 transition-opacity" />
             </Transition.Child>
 
             <Transition.Child
@@ -58,7 +58,7 @@ export const DialogImage: FC<{ children: ReactNode; alt?: string; src?: string }
                 />
                 <button
                   type="button"
-                  className="absolute left-3 top-3.5 rounded-full border border-transparent bg-gray-600 p-1.5 hover:bg-gray-500 focus:outline-none"
+                  className="absolute left-3 top-3.5 rounded-full border border-transparent bg-indigo-4 p-1.5 hover:bg-indigo-3 focus:outline-none dark:bg-indigodark-4  dark:hover:bg-indigodark-3"
                   onClick={handleClose}
                 >
                   <XMarkIcon className="h-6 w-6" />

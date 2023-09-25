@@ -10,7 +10,7 @@ const list = tv({
   base: "flex justify-between items-center py-3 px-4 -mx-4 text-lg font-bold",
   variants: {
     isLinked: {
-      true: "hover:bg-gray-100 focus-visible:bg-gray-100 dark:hover:bg-gray-700 dark:focus-visible:bg-gray-700 focus:outline-none",
+      true: "hover:bg-indigo-4 dark:hover:bg-indigodark-4  focus-visible:bg-indigo-4 dark:focus-visible:bg-indigo-4 focus:outline-none",
     },
   },
 });
@@ -20,7 +20,9 @@ export const List: FC<ListProps> = (props) => {
 
   return (
     <div className="space-y-1">
-      {title ? <div className="text-sm font-bold text-gray-400">{title}</div> : null}
+      {title ? (
+        <div className="text-sm font-bold text-indigo-11 dark:text-indigodark-11">{title}</div>
+      ) : null}
       <ul>
         {items.map((item, i) => {
           const className = list({ isLinked: isLink(item) });

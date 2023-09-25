@@ -29,11 +29,11 @@ export const NoteList: FC<NoteListProps> = (props) => {
           return (
             <li
               key={v}
-              className="w-full animate-pulse rounded-xl bg-gray-100 p-4 shadow dark:bg-gray-700 sm:px-6"
+              className="w-full animate-pulse rounded-xl bg-indigo-2 p-4 shadow dark:bg-indigodark-2 sm:px-6"
             >
-              <div className="h-3.5 w-3/4 rounded bg-gray-200 dark:bg-gray-600 sm:h-4"></div>
-              <div className="mt-2.5 h-3.5 rounded bg-gray-200 dark:bg-gray-600"></div>
-              <div className="mt-6 h-3.5 w-16 rounded bg-gray-200 dark:bg-gray-600"></div>
+              <div className="h-3.5 w-3/4 rounded bg-indigo-3 dark:bg-indigodark-3 sm:h-4"></div>
+              <div className="mt-2.5 h-3.5 rounded bg-indigo-3 dark:bg-indigodark-3"></div>
+              <div className="mt-6 h-3.5 w-16 rounded bg-indigo-3 dark:bg-indigodark-3"></div>
             </li>
           );
         })}

@@ -26,7 +26,7 @@ export const ProfileForm: FC<ProfileFormProps> = (props) => {
                 className="h-24 w-24"
               />
             ) : (
-              <div className="h-24 w-24 bg-gray-300 p-2">
+              <div className="h-24 w-24 bg-indigo-3 p-2 dark:bg-indigodark-3">
                 <UserIcon />
               </div>
             )}
