@@ -52,17 +52,16 @@ export const UserMenu: FC = () => {
                   className="absolute left-full z-10 mt-2 w-screen max-w-xs -translate-x-full pl-8 sm:max-w-sm sm:px-0 xl:-left-full xl:-translate-x-1/2 2xl:left-1/2"
                 >
                   <div className="overflow-hidden rounded-2xl bg-indigo-2 py-4 shadow-lg ring-1 ring-indigo-4/20 dark:bg-indigodark-2">
-                    <div>
-                      <Link href="/setting" legacyBehavior>
-                        <a className="flex items-center p-4 hover:bg-indigo-4 focus:outline-none  focus-visible:bg-indigo-4 dark:hover:bg-indigodark-4 dark:focus-visible:bg-indigo-4">
-                          <Avatar alt={user.name} src={user.avatarUrl} className="h-14 w-14" />
-                          <div className="ml-4">
-                            <p className="text-base font-bold">yanot</p>
-                            <p className="text-sm text-indigo-11 dark:text-indigodark-11">@yanot</p>
-                          </div>
-                        </a>
-                      </Link>
-                    </div>
+                    <Link
+                      href="/setting"
+                      className="flex items-center p-4 hover:bg-indigo-4 focus:outline-none  focus-visible:bg-indigo-4 dark:hover:bg-indigodark-4 dark:focus-visible:bg-indigo-4"
+                    >
+                      <Avatar alt={user.name} src={user.avatarUrl} className="h-14 w-14" />
+                      <div className="ml-4">
+                        <p className="text-base font-bold">yanot</p>
+                        <p className="text-sm text-indigo-11 dark:text-indigodark-11">@yanot</p>
+                      </div>
+                    </Link>
                     <div className="relative grid">
                       <button
                         type="button"

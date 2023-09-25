@@ -30,11 +30,9 @@ export const List: FC<ListProps> = (props) => {
           if (isLink(item)) {
             return (
               <li key={i}>
-                <Link href={item.href} legacyBehavior>
-                  <a className={className}>
-                    {item.label}
-                    <ChevronRightIcon className="h-5 w-5" />
-                  </a>
+                <Link href={item.href} className={className}>
+                  {item.label}
+                  <ChevronRightIcon className="h-5 w-5" />
                 </Link>
               </li>
             );

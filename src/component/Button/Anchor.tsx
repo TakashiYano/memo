@@ -9,10 +9,8 @@ export const Anchor = forwardRef<HTMLAnchorElement, AnchorType>((props, ref) => 
   const { children, className, variant, ...rest } = props;
   const classes = useButtonClass(className, variant);
   return (
-    <Link {...rest} legacyBehavior>
-      <a ref={ref as ForwardedRef<HTMLAnchorElement>} className={classes}>
-        {children}
-      </a>
+    <Link {...rest} ref={ref as ForwardedRef<HTMLAnchorElement>} className={classes}>
+      {children}
     </Link>
   );
 });
