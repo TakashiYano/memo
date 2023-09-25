@@ -13,11 +13,7 @@ const config = {
       },
     },
   },
-  plugins: [
-    require("@tailwindcss/forms"),
-    require("@tailwindcss/typography"),
-    require("tailwindcss-radix-colors"),
-  ],
+  plugins: [require("@tailwindcss/forms"), require("tailwindcss-radix-colors")],
 };
 
 export default withTV(config);
