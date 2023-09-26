@@ -1,20 +1,21 @@
-import { type ComponentProps, type FC } from "react";
+import { forwardRef, type ComponentProps, type ForwardedRef } from "react";
 
 type InputProps = ComponentProps<"input"> & {
   error?: string;
   label: string;
-  name: string;
   prefix?: string;
+  required?: boolean;
 };
 
-export const Input: FC<InputProps> = (props) => {
-  const { error, label, name, prefix } = props;
+export const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
+  const { error, label, prefix, required, ...rest } = props;
 
   return (
     <div className="block">
-      <label htmlFor={name}>
+      <label htmlFor={rest.id}>
         <div className="ml-4 block text-sm font-bold text-indigo-12 dark:text-indigodark-12">
           {label}
+          <div className="inline-block text-red-11 dark:text-reddark-11">{required && "*"}</div>
         </div>
         <div className="relative">
           {prefix ? (
@@ -22,12 +23,16 @@ export const Input: FC<InputProps> = (props) => {
           ) : null}
           <input
             type="text"
-            id={name}
-            className={`mt-0.5 h-10 w-full rounded-xl border border-indigo-6 bg-indigo-3 py-6 pr-5 font-bold focus:outline-none focus:ring-2 focus:ring-indigo-11 dark:border-indigodark-6 dark:bg-indigodark-3 dark:focus:bg-transparent ${
+            ref={ref as ForwardedRef<HTMLInputElement>}
+            id={rest.id}
+            className={`mt-0.5 h-10 w-full rounded-xl border bg-indigo-3 py-6 pr-5 font-bold focus:outline-none focus:ring-2 dark:bg-indigodark-3 ${
               prefix ? "pl-10" : "pl-5"
+            } ${
+              error
+                ? "border-red-6 focus:ring-red-11 dark:border-reddark-6 dark:focus:ring-reddark-11"
+                : "border-indigo-6 focus:ring-indigo-11 dark:border-indigodark-6 dark:focus:ring-indigodark-11"
             }`}
-            autoComplete="off"
-            {...props}
+            {...rest}
           />
         </div>
       </label>
@@ -36,4 +41,6 @@ export const Input: FC<InputProps> = (props) => {
       ) : null}
     </div>
   );
-};
+});
+
+Input.displayName === "Input";

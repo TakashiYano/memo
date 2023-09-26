@@ -23,27 +23,30 @@ export const ForgotPassword: FC = () => {
           <h1 className="text-xl font-bold leading-tight tracking-tight text-indigo-12 dark:text-indigodark-12 md:text-2xl">
             パスワードリセット
           </h1>
-          <Input label="メールアドレス" name="メールアドレス" placeholder="test@example.com" />
 
-          <div className="flex items-center justify-between">
-            <div className="flex items-start">
-              <Link
-                href="/signin"
-                className="flex items-center text-sm font-medium text-indigo-11 hover:underline dark:text-indigodark-11"
+          <form>
+            <Input label="メールアドレス" name="メールアドレス" placeholder="test@example.com" />
+
+            <div className="flex items-center justify-between">
+              <div className="flex items-start">
+                <Link
+                  href="/signin"
+                  className="flex items-center text-sm font-medium text-indigo-11 hover:underline dark:text-indigodark-11"
+                >
+                  <ArrowLeftIcon className="h-5 w-5" />
+                  ログインページに戻る
+                </Link>
+              </div>
+              <Button
+                onClick={handleReset}
+                type="submit"
+                variant="solid"
+                className="rounded-xl p-4 text-center text-sm font-medium focus:outline-none focus:ring-4 focus:ring-indigo-11"
               >
-                <ArrowLeftIcon className="h-5 w-5" />
-                ログインページに戻る
-              </Link>
+                リセットする
+              </Button>
             </div>
-            <Button
-              onClick={handleReset}
-              type="submit"
-              variant="solid"
-              className="rounded-xl p-4 text-center text-sm font-medium focus:outline-none focus:ring-4 focus:ring-indigo-11"
-            >
-              リセットする
-            </Button>
-          </div>
+          </form>
 
           <p className="text-sm font-light opacity-70">
             リセットするためにメールアドレスをご入力ください

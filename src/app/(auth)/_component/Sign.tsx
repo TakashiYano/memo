@@ -6,6 +6,7 @@ import Link from "next/link";
 import { Button } from "@/component/Button/Button";
 import { Input } from "@/component/Form/Input";
 import { GoogleIcon } from "@/component/Icon/GoogleIcon";
+import { useSignForm } from "@/lib/form/useSignForm";
 import { useAuth } from "@/lib/user/useAuth";
 
 type SignProps = {
@@ -15,10 +16,7 @@ type SignProps = {
 export const Sign: FC<SignProps> = (props) => {
   const { page } = props;
   const { handleSignInWithGoogle } = useAuth();
-
-  const handleSignIn = () => {
-    // TODO：ログイン処理
-  };
+  const { errors, onSubmit, register } = useSignForm();
 
   return (
     <div className="mx-auto flex min-h-screen flex-col items-center justify-center px-6 py-8 md:h-screen lg:py-0">
@@ -48,56 +46,81 @@ export const Sign: FC<SignProps> = (props) => {
             <hr className="grow border-indigo-6 dark:border-indigodark-6" />
           </div>
 
-          <Input label="メールアドレス" name="メールアドレス" placeholder="test@example.com" />
-          <Input label="パスワード" name="パスワード" placeholder="Your password" />
+          <form className="space-y-4 md:space-y-6" onSubmit={onSubmit}>
+            <Input
+              id="email"
+              required
+              label="メールアドレス"
+              placeholder="test@example.com"
+              {...register("email")}
+              error={errors.email?.message}
+            />
+            <Input
+              id="password"
+              required
+              label="パスワード"
+              placeholder="Your password"
+              {...register("password")}
+              error={errors.password?.message}
+            />
+            {page === "signup" && (
+              <Input
+                id="passwordConfirm"
+                required
+                label="確認用パスワード"
+                placeholder="Your password"
+                {...register("passwordConfirm")}
+                error={errors.passwordConfirm?.message}
+              />
+            )}
 
-          {page === "signin" ? (
-            <div className="flex items-center justify-between">
-              <div className="flex items-start">
-                <div className="flex h-5 items-center">
-                  <input
-                    id="remember"
-                    aria-describedby="remember"
-                    type="checkbox"
-                    className="h-4 w-4 rounded border border-indigo-6 bg-indigo-3 focus:outline-none focus:ring-2 focus:ring-blue-11 dark:border-indigodark-6 dark:bg-indigodark-3"
-                    required
-                  />
+            {page === "signin" ? (
+              <div className="flex items-center justify-between">
+                <div className="flex items-start">
+                  <div className="flex h-5 items-center">
+                    <input
+                      id="remember"
+                      aria-describedby="remember"
+                      type="checkbox"
+                      className="h-4 w-4 rounded border border-indigo-6 bg-indigo-3 focus:outline-none focus:ring-2 focus:ring-blue-11 dark:border-indigodark-6 dark:bg-indigodark-3"
+                      // {...register("remember")}
+                    />
+                  </div>
+                  <div className="ml-3 text-sm">
+                    <label htmlFor="remember" className="text-indigo-12 dark:text-indigodark-12">
+                      ログイン状態を保持
+                    </label>
+                  </div>
                 </div>
-                <div className="ml-3 text-sm">
-                  <label htmlFor="remember" className="text-indigo-12 dark:text-indigodark-12">
-                    ログイン状態を保持
-                  </label>
-                </div>
+                <Link
+                  href="/forgot-password"
+                  className="text-sm font-medium text-indigo-11 hover:underline dark:text-indigodark-11"
+                >
+                  パスワードをお忘れですか?
+                </Link>
               </div>
-              <Link
-                href="/forgot-password"
-                className="text-sm font-medium text-indigo-11 hover:underline dark:text-indigodark-11"
-              >
-                パスワードをお忘れですか?
-              </Link>
-            </div>
-          ) : null}
+            ) : null}
 
-          <Button
-            onClick={handleSignIn}
-            type="submit"
-            variant="solid"
-            className="w-full rounded-xl py-4 text-center text-sm font-medium focus:outline-none focus:ring-4 focus:ring-indigo-11"
-          >
-            {page === "signin" ? "ログイン" : "新規登録"}
-          </Button>
-
-          <p className="text-sm font-light opacity-70">
-            {page === "signin"
-              ? "アカウントをお持ちでないですか？"
-              : "アカウントを既にお持ちですか？"}
-            <Link
-              href={page === "signin" ? "/signup" : "/signin"}
-              className="font-medium text-indigo-11 hover:underline dark:text-indigodark-11"
+            <Button
+              type="submit"
+              variant="solid"
+              className="w-full rounded-xl py-4 text-center text-sm font-medium focus:outline-none focus:ring-4 focus:ring-indigo-11"
             >
-              {page === "signin" ? "新規登録" : "ログイン"}
-            </Link>
-          </p>
+              {page === "signin" ? "ログイン" : "新規登録"}
+            </Button>
+
+            <p className="text-sm font-light opacity-70">
+              {page === "signin"
+                ? "アカウントをお持ちでないですか？"
+                : "アカウントを既にお持ちですか？"}
+              <Link
+                href={page === "signin" ? "/signup" : "/signin"}
+                className="font-medium text-indigo-11 hover:underline dark:text-indigodark-11"
+              >
+                {page === "signin" ? "新規登録" : "ログイン"}
+              </Link>
+            </p>
+          </form>
         </div>
       </div>
     </div>
