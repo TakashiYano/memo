@@ -32,6 +32,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
                 ? "border-red-6 focus:ring-red-11 dark:border-reddark-6 dark:focus:ring-reddark-11"
                 : "border-indigo-6 focus:ring-indigo-11 dark:border-indigodark-6 dark:focus:ring-indigodark-11"
             }`}
+            autoComplete="off"
             {...rest}
           />
         </div>

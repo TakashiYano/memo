@@ -1,15 +1,14 @@
 import { z } from "zod";
 
-export const signFormSchema = z
+const password = /^(?=.*?[a-z])(?=.*?\d)[a-z\d]{8,100}$/i;
+
+export const signupFormSchema = z
   .object({
     email: z.string().email({ message: "不正なメールアドレスです" }),
     password: z
       .string()
       .min(8, "パスワードは8文字以上で入力してください")
-      .regex(
-        /^(?=.*?[a-z])(?=.*?\d)[a-z\d]{8,100}$/i,
-        "パスワードは半角英数字混合で入力してください"
-      ),
+      .regex(password, "パスワードは半角英数字混合で入力してください"),
     passwordConfirm: z.string().nonempty({ message: "確認用パスワードを入力してください" }),
   })
   .refine(
@@ -22,4 +21,14 @@ export const signFormSchema = z
     }
   );
 
-export type SignFormSchemaType = z.infer<typeof signFormSchema>;
+export type SignupFormSchemaType = z.infer<typeof signupFormSchema>;
+
+export const signinFormSchema = z.object({
+  email: z.string().email({ message: "不正なメールアドレスです" }),
+  password: z
+    .string()
+    .min(8, "パスワードは8文字以上で入力してください")
+    .regex(password, "パスワードは半角英数字混合で入力してください"),
+});
+
+export type SigninFormSchemaType = z.infer<typeof signinFormSchema>;
