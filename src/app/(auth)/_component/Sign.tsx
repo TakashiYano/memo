@@ -35,7 +35,7 @@ const form = tv({
 export const Sign: FC<SignProps> = (props) => {
   const { page } = props;
   const { base, button, container, divideContainer, hr, icon, logo, space, text, title } = form();
-  const { handleSignInWithGoogle } = useAuth();
+  const { handleSignIn } = useAuth();
 
   return (
     <div className={base()}>
@@ -44,7 +44,7 @@ export const Sign: FC<SignProps> = (props) => {
         <div className={space()}>
           <h1 className={title()}>{page === "signin" ? "ログイン" : "新規登録"}</h1>
 
-          <Button onClick={handleSignInWithGoogle} variant="outline" className={button()}>
+          <Button onClick={handleSignIn} variant="outline" className={button()}>
             <div className="flex">
               <GoogleIcon className={icon()} />
               {page === "signin" ? "Googleでログイン" : "Googleで新規登録"}
