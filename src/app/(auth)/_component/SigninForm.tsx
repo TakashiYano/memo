@@ -23,7 +23,7 @@ const form = tv({
 
 export const SigninForm: FC = () => {
   const { base, button, checkbox, container, label, link, text } = form();
-  const { errors, onSubmit, register } = useSigninForm();
+  const { errors, isLoading, onSubmit, register } = useSigninForm();
 
   return (
     <form className={base()} onSubmit={onSubmit}>
@@ -63,8 +63,15 @@ export const SigninForm: FC = () => {
         </Link>
       </div>
 
-      <Button type="submit" variant="solid" className={button()}>
-        ログイン
+      <Button type="submit" variant="solid" className={button()} disabled={isLoading}>
+        {isLoading ? (
+          <div className="flex items-center space-x-2">
+            <div className="h-10 w-10 animate-spin rounded-full border-4 border-indigo-6 border-t-transparent dark:border-indigodark-6" />
+            <div>ログインしています</div>
+          </div>
+        ) : (
+          <div>ログイン</div>
+        )}
       </Button>
 
       <p className={text()}>

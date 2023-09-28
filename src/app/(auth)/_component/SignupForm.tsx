@@ -19,7 +19,7 @@ const form = tv({
 
 export const SignupForm: FC = () => {
   const { base, button, link, text } = form();
-  const { errors, onSubmit, register } = useSignupForm();
+  const { errors, isLoading, onSubmit, register } = useSignupForm();
 
   return (
     <form className={base()} onSubmit={onSubmit}>
@@ -48,8 +48,15 @@ export const SignupForm: FC = () => {
         error={errors.passwordConfirm?.message}
       />
 
-      <Button type="submit" variant="solid" className={button()}>
-        新規登録
+      <Button type="submit" variant="solid" className={button()} disabled={isLoading}>
+        {isLoading ? (
+          <div className="flex items-center space-x-2">
+            <div className="h-10 w-10 animate-spin rounded-full border-4 border-indigo-6 border-t-transparent dark:border-indigodark-6" />
+            <div>新規登録しています</div>
+          </div>
+        ) : (
+          <div>新規登録</div>
+        )}
       </Button>
 
       <p className={text()}>

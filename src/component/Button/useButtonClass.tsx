@@ -13,7 +13,7 @@ const button = tv({
       outline:
         "text-indigo-12 dark:text-indigodark-12 border active:bg-indigo-6 dark:active:bg-indigodark-6 border-indigo-7 dark:border-indigodark-7 hover:border-indigo-8 dark:hover:border-indigodark-8",
       solid:
-        "bg-indigo-4 dark:bg-indigodark-4 hover:bg-indigo-5 dark:hover:bg-indigodark-5 active:bg-indigo-6 dark:active:bg-indigodark-6",
+        "bg-indigo-4 dark:bg-indigodark-4 hover:enabled:bg-indigo-5 dark:hover:enabled:bg-indigodark-5 active:enabled:bg-indigo-6 dark:active:enabled:bg-indigodark-6 disabled:opacity-75",
       ui: "bg-indigo-3 dark:bg-indigodark-3 hover:bg-indigo-4 dark:hover:bg-indigodark-4 active:bg-indigo-5 dark:active:bg-indigodark-5",
     },
   },
