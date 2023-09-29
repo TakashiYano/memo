@@ -65,10 +65,7 @@ export const SigninForm: FC = () => {
 
       <Button type="submit" variant="solid" className={button()} disabled={isLoading}>
         {isLoading ? (
-          <div className="flex items-center space-x-2">
-            <div className="h-10 w-10 animate-spin rounded-full border-4 border-indigo-6 border-t-transparent dark:border-indigodark-6" />
-            <div>ログインしています</div>
-          </div>
+          <div className="h-7 w-7 animate-spin rounded-full border-4 border-indigo-6 border-t-transparent dark:border-indigodark-6" />
         ) : (
           <div>ログイン</div>
         )}

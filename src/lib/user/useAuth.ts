@@ -6,12 +6,14 @@ import { useRouter } from "next/navigation";
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 
 export const useAuth = () => {
+  const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
   const supabase = createClientComponentClient();
   const router = useRouter();
 
   // サインイン処理
   const handleSignIn = async () => {
+    setIsLoading(true);
     try {
       const { error } = await supabase.auth.signInWithOAuth({
         options: {
@@ -31,6 +33,7 @@ export const useAuth = () => {
         console.error("Googleとの連携に失敗しました。");
       }
     }
+    setIsLoading(false);
   };
   // サインアウト処理
   const handleSignOut = async () => {
@@ -42,5 +45,6 @@ export const useAuth = () => {
     error,
     handleSignIn,
     handleSignOut,
+    isLoading,
   };
 };
