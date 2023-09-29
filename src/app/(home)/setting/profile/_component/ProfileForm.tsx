@@ -1,60 +1,86 @@
-import { type FC } from "react";
-import Image from "next/image";
+"use client";
 
-import { UserIcon } from "@heroicons/react/24/solid";
-
+import { Avatar } from "@/component/Avatar/Avatar";
 import { Button } from "@/component/Button/Button";
 import { Input } from "@/component/Form/Input";
-import { type UserType } from "@/lib/user/type";
+import { type ProfileFormType } from "@/lib/user/type";
+import { useAuth } from "@/lib/user/useAuth";
+import { useFile } from "@/lib/user/useFile";
+import { useUpsertUser } from "@/lib/user/useUpsertUser";
 
-type ProfileFormProps = { user?: UserType };
-
-export const ProfileForm: FC<ProfileFormProps> = (props) => {
-  const { user } = props;
+export const ProfileForm = (props: ProfileFormType) => {
+  const { profile, user } = props;
+  const { handleSignOut, isLoading } = useAuth();
+  const { handleChangeFile, handleOpenFileDialog, imageRef, imageUrl, selectedFile } = useFile();
+  const { errors, isUpserting, onSubmit, register } = useUpsertUser({
+    profile,
+    selectedFile,
+    user,
+  });
 
   return (
-    <div>
+    <form onSubmit={onSubmit}>
       <div className="space-y-6 sm:space-y-8">
         <div>
           <div className="flex items-center justify-start space-x-6">
-            {user ? (
-              <Image
-                src={user.avatarUrl}
-                alt={user.name}
-                width={96}
-                height={96}
-                className="h-24 w-24"
-              />
-            ) : (
-              <div className="h-24 w-24 bg-indigo-3 p-2 dark:bg-indigodark-3">
-                <UserIcon />
-              </div>
-            )}
-            <Button variant="ui" className="mt-4 px-5 py-2.5">
-              アイコンを{user ? "変更する" : "設定する"}
+            <Avatar
+              noDialog
+              src={imageUrl ?? profile?.avatar_url ?? user.user_metadata["avatar_url"] ?? ""}
+              alt={profile?.user_name ?? user.user_metadata["name"] ?? ""}
+              width={96}
+              height={96}
+              className="h-24 w-24"
+            />
+            <input
+              ref={imageRef}
+              type="file"
+              className="hidden"
+              onChange={handleChangeFile}
+              accept="image/png, image/jpeg"
+            />
+            <Button variant="ui" className="mt-4 px-5 py-2.5" onClick={handleOpenFileDialog}>
+              アイコンを{profile ? "変更する" : "設定する"}
             </Button>
           </div>
         </div>
-        <Input name="name" label="名前" />
-        <Input name="id" label="ユーザー名" prefix="@" />
+
+        <Input
+          id="userName"
+          required
+          label="ユーザ名"
+          {...register("userName")}
+          error={errors.userName?.message}
+        />
       </div>
 
       <div className="mt-12 space-y-4">
-        {user ? (
-          <Button variant="solid" className="w-full p-3">
-            保存する
+        {profile ? (
+          <Button type="submit" variant="solid" className="w-full p-3" disabled={isUpserting}>
+            {isUpserting ? (
+              <div className="h-7 w-7 animate-spin rounded-full border-4 border-indigo-6 border-t-transparent dark:border-indigodark-6" />
+            ) : (
+              <div>保存する</div>
+            )}
           </Button>
         ) : (
           <>
-            <Button variant="solid" className="w-full p-3">
-              登録してはじめる
+            <Button type="submit" variant="solid" className="w-full p-3" disabled={isUpserting}>
+              {isUpserting ? (
+                <div className="h-7 w-7 animate-spin rounded-full border-4 border-indigo-6 border-t-transparent dark:border-indigodark-6" />
+              ) : (
+                <div>登録してはじめる</div>
+              )}
             </Button>
-            <Button variant="ui" className="w-full p-3">
-              登録せずに終了する
+            <Button variant="solid" className="w-full p-3" onClick={handleSignOut}>
+              {isLoading ? (
+                <div className="h-7 w-7 animate-spin rounded-full border-4 border-indigo-6 border-t-transparent dark:border-indigodark-6" />
+              ) : (
+                <div>登録せずに終了する</div>
+              )}
             </Button>
           </>
         )}
       </div>
-    </div>
+    </form>
   );
 };

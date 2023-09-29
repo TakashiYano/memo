@@ -2,9 +2,11 @@ import { NextResponse, type NextRequest } from "next/server";
 
 import { createMiddlewareClient } from "@supabase/auth-helpers-nextjs";
 
+import { type Database } from "@/lib/supabase/type";
+
 export async function middleware(req: NextRequest) {
   const res = NextResponse.next();
-  const supabase = createMiddlewareClient({ req, res });
+  const supabase = createMiddlewareClient<Database>({ req, res });
 
   // 有効期限が切れたセッションを更新
   await supabase.auth.getSession();
@@ -18,7 +20,7 @@ export async function middleware(req: NextRequest) {
   }
 
   // ログイン後にプロフィールがなければ、プロフィールページにリダイレクト
-  const { data: profile } = await supabase.from("users").select("*");
+  const { data: profile } = await supabase.from("profiles").select("*").eq("id", user.id);
   if (profile?.length === 0) {
     return NextResponse.redirect(new URL("/setting/profile/new", req.url));
   }

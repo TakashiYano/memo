@@ -1,27 +1,36 @@
-import Image from "next/image";
+import { cookies } from "next/headers";
+
+import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 
 import { LogoutButton } from "@/app/(home)/setting/_component/LogoutButton";
+import { Avatar } from "@/component/Avatar/Avatar";
 import { RecursiveList } from "@/component/List/RecursiveList";
-import { type UserType } from "@/lib/user/type";
+import { type Database } from "@/lib/supabase/type";
 
-const user: UserType = {
-  avatarUrl: "/mocks/avatar01.jpg",
-  id: "engineer",
-  name: "yanot",
-};
+const Setting = async () => {
+  const supabase = createServerComponentClient<Database>({ cookies });
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+  if (!user) {
+    return;
+  }
+  const { data: profile } = await supabase.from("profiles").select("*").eq("id", user.id).single();
+  if (!profile?.avatar_url) {
+    return;
+  }
 
-const Setting = () => {
   return (
     <div className="px-4">
       <div className="flex flex-col items-center">
-        <Image
-          src={user.avatarUrl}
-          alt={user.name}
+        <Avatar
+          src={profile?.avatar_url}
+          alt={profile?.user_name}
           width={96}
           height={96}
-          className="h-24 w-24 overflow-hidden rounded-full"
+          className="h-24 w-24"
         />
-        <h1 className="mt-8 text-2xl font-bold">ようこそ、{user.name}さん</h1>
+        <h1 className="mt-8 text-2xl font-bold">ようこそ、{profile?.user_name}さん</h1>
         <p className="mt-2 text-sm opacity-70">アカウントに関する各種設定ができます</p>
       </div>
 

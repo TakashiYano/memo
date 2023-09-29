@@ -1,17 +1,10 @@
-import { type FC } from "react";
-import Image from "next/image";
 import Link from "next/link";
 
 import { HomeIcon } from "@heroicons/react/24/outline";
 import { tv } from "tailwind-variants";
 
-import { type UserType } from "@/lib/user/type";
-
-const user: UserType = {
-  avatarUrl: "/mocks/avatar01.jpg",
-  id: "engineer",
-  name: "yanot",
-};
+import { Avatar } from "@/component/Avatar/Avatar";
+import { type FooterType } from "@/lib/user/type";
 
 const footer = tv({
   slots: {
@@ -23,8 +16,12 @@ const footer = tv({
   },
 });
 
-export const Footer: FC = () => {
+export const Footer = (props: FooterType) => {
+  const { profile } = props;
   const { base, image, li, text, ul } = footer();
+  if (!profile?.avatar_url) {
+    return null;
+  }
 
   return (
     <footer className={base()}>
@@ -38,9 +35,10 @@ export const Footer: FC = () => {
           </li>
           <li className={li()}>
             <Link href="/setting">
-              <Image
-                src={user.avatarUrl}
-                alt={user.name}
+              <Avatar
+                noDialog
+                src={profile.avatar_url}
+                alt={profile.user_name}
                 width={96}
                 height={96}
                 className={image({ class: "overflow-hidden rounded-full" })}
