@@ -1,20 +1,24 @@
 import { type User } from "@supabase/auth-helpers-nextjs";
 
+import { type Database } from "@/lib/supabase/type";
+
 export type UserType = {
   avatarUrl: string;
   id: string;
   name: string;
 };
 
-export type ProfileFormType = {
-  profile: {
-    avatar_url: string | null;
-    id: string;
-    user_name: string;
-  } | null;
-  user: User;
+type ProfileType = {
+  profile: Database["public"]["Tables"]["profiles"]["Row"] | null;
 };
+type UserProps = { user: User };
 
-export type UpsertUserType = ProfileFormType & { selectedFile: File | undefined };
+export type ProfileFormType = ProfileType & UserProps;
 
-export type FooterType = Pick<ProfileFormType, "profile">;
+export type UpsertUserType = ProfileType & UserProps & { selectedFile: File | undefined };
+
+export type FooterType = ProfileType;
+
+export type HeaderType = { isHeaderNarrow?: boolean } & UserProps;
+
+export type NoteWriteType = UserProps;

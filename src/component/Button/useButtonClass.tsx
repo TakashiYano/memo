@@ -9,7 +9,7 @@ const button = tv({
       error:
         "bg-red-4 dark:bg-reddark-4 hover:bg-red-5 dark:hover:bg-reddark-5 active:bg-red-6 dark:active:bg-reddark-6",
       ghost:
-        "bg-transparent dark:bg-transparent hover:bg-indigo-4 dark:hover:bg-indigodark-4 active:bg-indigo-5 dark:active:bg-indigodark-5",
+        "bg-transparent dark:bg-transparent hover:enabled:bg-indigo-4 dark:hover:enabled:bg-indigodark-4 active:enabled:bg-indigo-5 dark:active:enabled:bg-indigodark-5",
       outline:
         "text-indigo-12 dark:text-indigodark-12 border active:bg-indigo-6 dark:active:bg-indigodark-6 border-indigo-7 dark:border-indigodark-7 hover:border-indigo-8 dark:hover:border-indigodark-8",
       solid:
