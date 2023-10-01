@@ -14,7 +14,7 @@ import { toast } from "react-hot-toast";
 import ReactTextareaAutosize from "react-textarea-autosize";
 import { useDebouncedCallback } from "use-debounce";
 
-import { format_yyyyMd } from "@/lib/memo/date";
+import { format_hhmma } from "@/lib/memo/date";
 import { type NoteWithUserType } from "@/lib/memo/type";
 import { type Database } from "@/lib/supabase/type";
 
@@ -28,7 +28,7 @@ export const Textarea = (props: NoteWithUserType) => {
   return (
     <label htmlFor="memo" className="block">
       <div className="text-sm font-light opacity-70">
-        {isInserting ? `Last Saved ${format_yyyyMd(note.updated_at ?? "")}` : "Saved"}
+        {isInserting ? `Last Saved ${format_hhmma(note.updated_at ?? "")}` : "Saved"}
       </div>
       <ReactTextareaAutosize
         ref={ref}

@@ -23,3 +23,23 @@ export const isNoteType = (data: any): data is NoteSchema => {
 export type NoteWithUserType = {
   note: { content: string | null; id: string; updated_at: string | null };
 };
+
+export type NoteListsType = {
+  note: {
+    content: string | null;
+    created_at: string;
+    id: string;
+    updated_at: string | null;
+    user_id: string;
+  }[];
+};
+
+export type NoteListType = {
+  note: {
+    content: string | null;
+    created_at: string;
+    id: string;
+    updated_at: string | null;
+    user_id: string;
+  };
+};
