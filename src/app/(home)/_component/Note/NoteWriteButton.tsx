@@ -10,18 +10,23 @@ import { toast } from "react-hot-toast";
 import { Button } from "@/component/Button/Button";
 import { ICON_SIZE } from "@/lib/const/constants";
 import { isNoteType } from "@/lib/memo/type";
+import { type Database } from "@/lib/supabase/type";
 import { type NoteWriteType } from "@/lib/user/type";
 
 export const NoteWriteButton = (props: NoteWriteType) => {
   const { user } = props;
   const router = useRouter();
-  const supabase = createClientComponentClient();
+  const supabase = createClientComponentClient<Database>();
   const [isLoading, setIsLoading] = useState(false);
 
   const handleCreateMemo = useCallback(async () => {
     setIsLoading(true);
     try {
-      const { data } = await supabase.from("memo_notes").insert({ user_id: user.id }).select();
+      const { data } = await supabase
+        .from("memo_notes")
+        .insert({ user_id: user.id })
+        .select()
+        .single();
       if (!isNoteType(data)) {
         throw new Error("Failed to create memo");
       }
