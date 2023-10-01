@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, type FC } from "react";
+import { useCallback } from "react";
 import { useRouter } from "next/navigation";
 
 import { ChevronLeftIcon, TrashIcon } from "@heroicons/react/24/outline";
@@ -10,14 +10,23 @@ import { ConfirmDialog } from "@/component/Dialog/ConfirmDialog";
 import { ICON_SIZE } from "@/lib/const/constants";
 import { useDeleteNote } from "@/lib/memo/useDeleteNote";
 import { useNoteDialog } from "@/lib/memo/useNoteDialog";
+import { type NoteHeaderType } from "@/lib/user/type";
 
-export type HeaderProps = { isHeaderNarrow?: boolean };
+export type HeaderProps = { isHeaderNarrow?: boolean } & NoteHeaderType;
 
-export const NoteHeader: FC<HeaderProps> = (props) => {
-  const { isHeaderNarrow } = props;
+export const NoteHeader = (props: HeaderProps) => {
+  const { isHeaderNarrow, note } = props;
   const router = useRouter();
-  const { handleCloseMenu, handleOpenMenu, isShowMenu } = useNoteDialog();
-  const { handleDeleteNote } = useDeleteNote();
+  const { dispatch, isShowConfirmDialog } = useNoteDialog();
+  const { handleDeleteNote } = useDeleteNote({ note });
+
+  const handleShowConfirmDialog = () => {
+    dispatch({ type: "SHOW_CONFIRM_DIALOG" });
+  };
+
+  const handleHideConfirmDialog = () => {
+    dispatch({ type: "HIDE_CONFIRM_DIALOG" });
+  };
 
   const handleClick = useCallback(() => {
     const prevPath = sessionStorage.getItem("prevPath");
@@ -34,14 +43,19 @@ export const NoteHeader: FC<HeaderProps> = (props) => {
         <Button variant="ghost" className={ICON_SIZE} onClick={handleClick}>
           <ChevronLeftIcon className="h-5 w-5" />
         </Button>
-        <Button key="delete" variant="ghost" className={ICON_SIZE} onClick={handleOpenMenu}>
+        <Button
+          key="delete"
+          variant="ghost"
+          className={ICON_SIZE}
+          onClick={handleShowConfirmDialog}
+        >
           <TrashIcon className="h-5 w-5" />
         </Button>
       </header>
 
       <ConfirmDialog
-        show={isShowMenu}
-        onClose={handleCloseMenu}
+        show={isShowConfirmDialog}
+        onClose={handleHideConfirmDialog}
         onClickOk={handleDeleteNote}
         title="メモを削除"
         description="復元できませんがよろしいですか？"

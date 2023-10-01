@@ -22,3 +22,5 @@ export type FooterType = ProfileType;
 export type HeaderType = { isHeaderNarrow?: boolean } & UserProps;
 
 export type NoteWriteType = UserProps;
+
+export type NoteHeaderType = { note: { id: string } };

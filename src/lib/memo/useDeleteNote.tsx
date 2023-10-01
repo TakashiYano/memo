@@ -5,12 +5,17 @@ import { useRouter } from "next/navigation";
 
 import { toast } from "react-hot-toast";
 
-export const useDeleteNote = () => {
+import { createClient } from "@/lib/supabase/supabase-browser";
+import { type NoteHeaderType } from "@/lib/user/type";
+
+export const useDeleteNote = (props: NoteHeaderType) => {
+  const { note } = props;
   const router = useRouter();
 
   const deleteNote = useCallback(async () => {
-    await alert("TODO: 削除処理の追加");
-  }, []);
+    const supabase = createClient();
+    await supabase.from("memo_notes").delete().eq("id", note.id);
+  }, [note.id]);
 
   const handleDeleteNote = useCallback(async () => {
     try {

@@ -1,5 +1,6 @@
 import { notFound } from "next/navigation";
 
+import { NoteHeader } from "@/app/memo/[noteId]/_component/Header";
 import { NoteEditor } from "@/app/memo/[noteId]/_component/NoteEditor";
 import { createClient } from "@/lib/supabase/supabase-server";
 
@@ -30,8 +31,13 @@ const NotePage = async ({ params: { noteId } }: { params: { noteId: string } }) 
   const [note] = await Promise.all([notePromise]);
 
   return (
-    <div className="flex h-[calc(100vh-168px)] flex-col sm:h-[calc(100vh-192px)]">
-      <NoteEditor note={note} />
+    <div className="space-y-8 pb-20 pt-4 sm:space-y-14">
+      <NoteHeader note={note} />
+      <main className="mx-auto w-full max-w-screen-sm px-4">
+        <div className="flex h-[calc(100vh-168px)] flex-col sm:h-[calc(100vh-192px)]">
+          <NoteEditor note={note} />
+        </div>
+      </main>
     </div>
   );
 };
