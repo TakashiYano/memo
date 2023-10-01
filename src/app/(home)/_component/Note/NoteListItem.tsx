@@ -11,7 +11,7 @@ export const NoteListItem = (props: NoteListType) => {
   return (
     <Link
       href={`/memo/${note.id}`}
-      className="block w-full rounded-xl bg-indigo-2 px-4 py-3 shadow dark:bg-indigodark-2 sm:px-6"
+      className="block w-full rounded-xl bg-indigo-3 px-4 py-3 shadow hover:bg-indigo-4 dark:bg-indigodark-3 dark:hover:bg-indigodark-4 sm:px-6"
     >
       <div>
         <h1 className="truncate text-sm font-bold leading-relaxed sm:text-base">{first}</h1>
