@@ -10,7 +10,7 @@ const Error = ({ error, reset }: { error: Error; reset: () => void }) => {
   }, [error]);
 
   return (
-    <div className="space-y-4 px-4">
+    <div className="flex min-h-screen flex-col items-center justify-center space-y-4">
       <div className="text-center text-xl">
         エラーが発生しました。
         <br className="hidden sm:block" />

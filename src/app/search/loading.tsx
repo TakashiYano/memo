@@ -1,6 +1,7 @@
 const Loading = () => {
   return (
-    <div className="mx-auto w-full max-w-screen-sm px-4">
+    <div className="mx-auto w-full max-w-screen-sm space-y-4 px-4">
+      <div className="h-7 w-1/4 rounded bg-indigo-3 dark:bg-indigodark-3"></div>
       <ul className="space-y-5">
         {[1, 2, 3, 4, 5].map((v) => {
           return (

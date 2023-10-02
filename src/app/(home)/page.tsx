@@ -11,7 +11,7 @@ async function getNotes() {
     .order("updated_at", { ascending: false });
 
   if (error) {
-    throw new Error("Failed to fetch notes");
+    throw new Error("メモ一覧の取得に失敗しました");
   }
 
   return data;
@@ -21,9 +21,13 @@ const Home = async () => {
   const notes = await getNotes();
 
   return (
-    <div className="space-y-7 px-4">
-      <NoteList note={notes} />
-    </div>
+    <main className="mx-auto w-full max-w-screen-sm px-4">
+      {notes.length !== 0 ? (
+        <NoteList note={notes} />
+      ) : (
+        <div className="space-y-5">メモが見つかりませんでした！</div>
+      )}
+    </main>
   );
 };
 

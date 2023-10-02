@@ -1,10 +1,30 @@
 "use client";
 
-const Error = () => {
+import { useEffect } from "react";
+
+import { Button } from "@/component/Button/Button";
+
+const Error = ({ error, reset }: { error: Error; reset: () => void }) => {
+  useEffect(() => {
+    console.error(error);
+  }, [error]);
+
   return (
-    <div>
-      <div className="mb-3 text-center text-5xl font-bold">500</div>
-      <div className="text-center text-xl font-bold">Server Error</div>
+    <div className="space-y-4 px-4">
+      <div className="text-center text-xl">
+        エラーが発生しました。
+        <br className="hidden sm:block" />
+        更新してもうまくいかない場合はお問い合わせください。
+      </div>
+      <Button
+        className="mx-auto p-4"
+        variant="ui"
+        onClick={() => {
+          return reset();
+        }}
+      >
+        やり直す
+      </Button>
     </div>
   );
 };

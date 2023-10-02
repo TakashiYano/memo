@@ -16,16 +16,15 @@ type SignProps = {
 
 const form = tv({
   slots: {
-    base: "mx-auto flex min-h-screen flex-col items-center justify-center px-6 py-8 md:h-screen lg:py-0",
+    base: "flex min-h-screen flex-col items-center justify-center",
     button:
       "w-full rounded-xl py-4 hover:bg-indigo-6 focus:outline-none focus:ring-2 focus:ring-blue-11 dark:hover:bg-indigodark-6",
     container:
-      "w-full rounded-lg border border-indigo-6 bg-indigo-2 shadow dark:border-indigodark-6 dark:bg-indigodark-2 sm:max-w-md md:mt-0 xl:p-0",
+      "space-y-4 p-6 sm:p-8 md:space-y-6 w-full rounded-lg border border-indigo-6 bg-indigo-2 shadow dark:border-indigodark-6 dark:bg-indigodark-2 sm:max-w-md md:mt-0 xl:p-0",
     divideContainer: "flex items-center space-x-2",
     hr: "grow border-indigo-6 dark:border-indigodark-6",
     icon: "mr-3 h-5 w-5",
     logo: "mb-6 flex items-center text-2xl font-semibold text-indigo-12 dark:text-indigodark-12",
-    space: "space-y-4 p-6 sm:p-8 md:space-y-6",
     text: "text-sm text-indigo-11 dark:text-indigodark-11",
     title:
       "text-xl font-bold leading-tight tracking-tight text-indigo-12 dark:text-indigodark-12 md:text-2xl",
@@ -34,31 +33,29 @@ const form = tv({
 
 export const Sign: FC<SignProps> = (props) => {
   const { page } = props;
-  const { base, button, container, divideContainer, hr, icon, logo, space, text, title } = form();
+  const { base, button, container, divideContainer, hr, icon, logo, text, title } = form();
   const { handleSignIn } = useAuth();
 
   return (
     <div className={base()}>
       <div className={logo()}>Memo</div>
       <div className={container()}>
-        <div className={space()}>
-          <h1 className={title()}>{page === "signin" ? "ログイン" : "新規登録"}</h1>
+        <h1 className={title()}>{page === "signin" ? "ログイン" : "新規登録"}</h1>
 
-          <Button onClick={handleSignIn} variant="outline" className={button()}>
-            <div className="flex">
-              <GoogleIcon className={icon()} />
-              {page === "signin" ? "Googleでログイン" : "Googleで新規登録"}
-            </div>
-          </Button>
-
-          <div className={divideContainer()}>
-            <hr className={hr()} />
-            <span className={text()}>OR</span>
-            <hr className={hr()} />
+        <Button onClick={handleSignIn} variant="outline" className={button()}>
+          <div className="flex">
+            <GoogleIcon className={icon()} />
+            {page === "signin" ? "Googleでログイン" : "Googleで新規登録"}
           </div>
+        </Button>
 
-          {page === "signin" ? <SigninForm /> : <SignupForm />}
+        <div className={divideContainer()}>
+          <hr className={hr()} />
+          <span className={text()}>OR</span>
+          <hr className={hr()} />
         </div>
+
+        {page === "signin" ? <SigninForm /> : <SignupForm />}
       </div>
     </div>
   );

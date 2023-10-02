@@ -19,7 +19,7 @@ const getNote = async (noteId: string) => {
   }
 
   if (error) {
-    throw new Error("Failed to fetch memo");
+    throw new Error("メモ詳細の取得に失敗しました");
   }
 
   return note;
@@ -31,12 +31,10 @@ const NotePage = async ({ params: { noteId } }: { params: { noteId: string } }) 
   const [note] = await Promise.all([notePromise]);
 
   return (
-    <div className="space-y-8 pb-20 pt-4 sm:space-y-14">
+    <div className="space-y-4">
       <NoteHeader note={note} />
       <main className="mx-auto w-full max-w-screen-sm px-4">
-        <div className="flex h-[calc(100vh-168px)] flex-col sm:h-[calc(100vh-192px)]">
-          <NoteEditor note={note} />
-        </div>
+        <NoteEditor note={note} />
       </main>
     </div>
   );
