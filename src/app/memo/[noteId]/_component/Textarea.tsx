@@ -3,7 +3,7 @@
 import {
   useCallback,
   useRef,
-  useState,
+  useTransition,
   type ChangeEventHandler,
   type FocusEventHandler,
 } from "react";
@@ -21,14 +21,14 @@ import { type Database } from "@/lib/supabase/type";
 export const Textarea = (props: NoteWithUserType) => {
   const { note } = props;
   const ref = useRef<HTMLTextAreaElement>(null);
-  const { handleBlur, handleChange, isInserting } = useNote({ note });
+  const { handleBlur, handleChange, isPending } = useNote({ note });
 
   // TODO:ブラウザバック時の対応
 
   return (
     <label htmlFor="memo" className="block">
       <div className="text-sm font-light opacity-70">
-        {isInserting ? `Last Saved ${format_hhmma(note.updated_at ?? "")}` : "Saved"}
+        {isPending ? `Last Saved ${format_hhmma(note.updated_at ?? "")}` : "Saved"}
       </div>
       <ReactTextareaAutosize
         ref={ref}
@@ -49,7 +49,7 @@ export const Textarea = (props: NoteWithUserType) => {
 const useNote = (props: NoteWithUserType) => {
   const { note } = props;
   const router = useRouter();
-  const [isInserting, setIsInserting] = useState(false);
+  const [isPending, startTransition] = useTransition();
 
   const saveNote = useCallback(
     async (value?: string) => {
@@ -65,20 +65,20 @@ const useNote = (props: NoteWithUserType) => {
       if (error) {
         return;
       }
-      router.refresh();
     },
-    [note, router]
+    [note]
   );
 
   const debounced = useDebouncedCallback(async (value: string) => {
     try {
-      setIsInserting(true);
       await saveNote(value);
+      startTransition(() => {
+        router.refresh();
+      });
     } catch (error) {
       toast.error("エラーが発生したため保存に失敗しました。時間を空けてから再度お試しください。");
       console.error(error);
     }
-    setIsInserting(false);
   }, 1000);
 
   const handleChange = useCallback<ChangeEventHandler<HTMLTextAreaElement>>(
@@ -90,12 +90,10 @@ const useNote = (props: NoteWithUserType) => {
 
   const handleBlur = useCallback<FocusEventHandler<HTMLTextAreaElement>>(
     (e) => {
-      setIsInserting(true);
       saveNote(e.currentTarget.value);
-      setIsInserting(false);
     },
     [saveNote]
   );
 
-  return { handleBlur, handleChange, isInserting };
+  return { handleBlur, handleChange, isPending };
 };

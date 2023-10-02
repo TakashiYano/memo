@@ -5,7 +5,10 @@ export const fetchCache = "only-no-store";
 
 async function getNotes() {
   const supabase = createClient();
-  const { data, error } = await supabase.from("memo_notes").select();
+  const { data, error } = await supabase
+    .from("memo_notes")
+    .select()
+    .order("updated_at", { ascending: false });
 
   if (error) {
     throw new Error("Failed to fetch notes");

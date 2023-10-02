@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback } from "react";
+import { useCallback, useTransition } from "react";
 import { useRouter } from "next/navigation";
 
 import { toast } from "react-hot-toast";
@@ -11,6 +11,8 @@ import { type NoteHeaderType } from "@/lib/user/type";
 export const useDeleteNote = (props: NoteHeaderType) => {
   const { note } = props;
   const router = useRouter();
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [isPending, startTransition] = useTransition();
 
   const deleteNote = useCallback(async () => {
     const supabase = createClient();
@@ -25,6 +27,9 @@ export const useDeleteNote = (props: NoteHeaderType) => {
         success: "削除しました",
       });
       await router.push("/");
+      startTransition(() => {
+        router.refresh();
+      });
     } catch (error) {
       console.error(error);
     }

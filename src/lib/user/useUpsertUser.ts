@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useTransition } from "react";
+import { useTransition } from "react";
 import { useRouter } from "next/navigation";
 
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -22,9 +22,7 @@ export const useUpsertUser = (props: UpsertUserType) => {
   const { profile, selectedFile, user } = props;
   const router = useRouter();
   const supabase = createClientComponentClient<Database>();
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [isPending, startTransition] = useTransition();
-  const [isUpserting, setIsUpserting] = useState(false);
   const {
     formState: { errors },
     handleSubmit,
@@ -83,15 +81,12 @@ export const useUpsertUser = (props: UpsertUserType) => {
   };
 
   const upsertUser = async (formData: ProfileSchemaType) => {
-    setIsUpserting(true);
     await toast.promise(handleProfile(formData), {
       error: (error) => {
-        setIsUpserting(false);
         return error.message ?? "失敗しました";
       },
       loading: "処理中",
       success: () => {
-        setIsUpserting(false);
         return profile ? "保存しました" : "登録しました";
       },
     });
@@ -104,5 +99,5 @@ export const useUpsertUser = (props: UpsertUserType) => {
     });
   };
 
-  return { errors, isUpserting, onSubmit: handleSubmit(upsertUser), register };
+  return { errors, isPending, onSubmit: handleSubmit(upsertUser), register };
 };
