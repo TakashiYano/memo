@@ -1,13 +1,9 @@
-import { cookies } from "next/headers";
-
-import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
-
 import { Footer } from "@/app/(home)/_component/TopBar/Footer";
 import { Header } from "@/app/(home)/_component/TopBar/Header";
-import { type Database } from "@/lib/supabase/type";
+import { createClient } from "@/lib/supabase/server";
 
 const HomeLayout = async ({ children }: { children: React.ReactNode }) => {
-  const supabase = createServerComponentClient<Database>({ cookies });
+  const supabase = createClient();
   const {
     data: { user },
   } = await supabase.auth.getUser();

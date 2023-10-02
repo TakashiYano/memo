@@ -1,12 +1,8 @@
-import { cookies } from "next/headers";
-
-import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
-
 import { ProfileForm } from "@/app/(home)/setting/profile/_component/ProfileForm";
-import { type Database } from "@/lib/supabase/type";
+import { createClient } from "@/lib/supabase/server";
 
 const ProfileEdit = async () => {
-  const supabase = createServerComponentClient<Database>({ cookies });
+  const supabase = createClient();
   const {
     data: { user },
   } = await supabase.auth.getUser();

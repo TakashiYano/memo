@@ -1,14 +1,10 @@
-import { cookies } from "next/headers";
-
-import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
-
 import { LogoutButton } from "@/app/(home)/setting/_component/LogoutButton";
 import { Avatar } from "@/component/Avatar/Avatar";
 import { RecursiveList } from "@/component/List/RecursiveList";
-import { type Database } from "@/lib/supabase/type";
+import { createClient } from "@/lib/supabase/server";
 
 const Setting = async () => {
-  const supabase = createServerComponentClient<Database>({ cookies });
+  const supabase = createClient();
   const {
     data: { user },
   } = await supabase.auth.getUser();

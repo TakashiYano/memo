@@ -4,13 +4,12 @@ import { useTransition } from "react";
 import { useRouter } from "next/navigation";
 
 import { zodResolver } from "@hookform/resolvers/zod";
-import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import { useForm } from "react-hook-form";
 import { toast } from "react-hot-toast";
 import { v4 as uuidv4 } from "uuid";
 import { z } from "zod";
 
-import { type Database } from "@/lib/supabase/type";
+import { createClient } from "@/lib/supabase/browser";
 import { type UpsertUserType } from "@/lib/user/type";
 
 const profileSchema = z.object({
@@ -21,7 +20,7 @@ type ProfileSchemaType = z.infer<typeof profileSchema>;
 export const useUpsertUser = (props: UpsertUserType) => {
   const { profile, selectedFile, user } = props;
   const router = useRouter();
-  const supabase = createClientComponentClient<Database>();
+  const supabase = createClient();
   const [isPending, startTransition] = useTransition();
   const {
     formState: { errors },

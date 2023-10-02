@@ -2,7 +2,7 @@ import { notFound } from "next/navigation";
 
 import { NoteHeader } from "@/app/memo/[noteId]/_component/Header";
 import { NoteEditor } from "@/app/memo/[noteId]/_component/NoteEditor";
-import { createClient } from "@/lib/supabase/supabase-server";
+import { createClient } from "@/lib/supabase/server";
 
 export const revalidate = 60;
 

@@ -12,10 +12,11 @@ import {
   type SigninFormSchemaType,
   type SignupFormSchemaType,
 } from "@/lib/form/SignForm";
+import { createClient } from "@/lib/supabase/browser";
 
 export const useSigninForm = () => {
   const router = useRouter();
-  const supabase = createClientComponentClient();
+  const supabase = createClient();
   const [isLoading, setIsLoading] = useState(false);
 
   const {

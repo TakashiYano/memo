@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 
 import { toast } from "react-hot-toast";
 
-import { createClient } from "@/lib/supabase/supabase-browser";
+import { createClient } from "@/lib/supabase/browser";
 import { type NoteHeaderType } from "@/lib/user/type";
 
 export const useDeleteNote = (props: NoteHeaderType) => {

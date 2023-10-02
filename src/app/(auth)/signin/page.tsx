@@ -1,15 +1,10 @@
-import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 
-import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
-
 import { Sign } from "@/app/(auth)/_component/Sign";
-import { type Database } from "@/lib/supabase/type";
+import { createClient } from "@/lib/supabase/server";
 
 const Signin = async () => {
-  const supabase = createServerComponentClient<Database>({
-    cookies,
-  });
+  const supabase = createClient();
 
   // セッションの取得
   const {

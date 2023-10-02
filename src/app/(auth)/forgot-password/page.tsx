@@ -1,15 +1,10 @@
-import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 
-import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
-
 import { ForgotPassword } from "@/app/(auth)/forgot-password/_component/ForgotPassword";
-import { type Database } from "@/lib/supabase/type";
+import { createClient } from "@/lib/supabase/server";
 
 const ForgotPasswordPage = async () => {
-  const supabase = createServerComponentClient<Database>({
-    cookies,
-  });
+  const supabase = createClient();
 
   // セッションの取得
   const {

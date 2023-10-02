@@ -1,5 +1,5 @@
 import { NoteList } from "@/app/(home)/_component/Note/NoteList";
-import { createClient } from "@/lib/supabase/supabase-server";
+import { createClient } from "@/lib/supabase/server";
 
 export const fetchCache = "only-no-store";
 
