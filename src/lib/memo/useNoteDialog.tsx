@@ -6,7 +6,7 @@ const initialState = {
   isShowConfirmDialog: false,
 };
 
-export type DialogActionType = { type: "SHOW_CONFIRM_DIALOG" } | { type: "HIDE_CONFIRM_DIALOG" };
+type DialogActionType = { type: "SHOW_CONFIRM_DIALOG" } | { type: "HIDE_CONFIRM_DIALOG" };
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const reducer = (_state = initialState, action: DialogActionType) => {

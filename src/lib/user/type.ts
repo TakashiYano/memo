@@ -2,12 +2,6 @@ import { type User } from "@supabase/auth-helpers-nextjs";
 
 import { type Database } from "@/lib/supabase/type";
 
-export type UserType = {
-  avatarUrl: string;
-  id: string;
-  name: string;
-};
-
 type ProfileType = {
   profile: Database["public"]["Tables"]["profiles"]["Row"] | null;
 };
