@@ -8,13 +8,13 @@ export const revalidate = 60;
 
 const getNote = async (noteId: string) => {
   const supabase = createClient();
-  const { data: note, error } = await supabase
+  const { data, error } = await supabase
     .from("memo_notes")
     .select("id, content, updated_at")
     .eq("id", noteId)
     .single();
 
-  if (!note) {
+  if (!data) {
     notFound();
   }
 
@@ -22,7 +22,7 @@ const getNote = async (noteId: string) => {
     throw new Error("メモ詳細の取得に失敗しました");
   }
 
-  return note;
+  return data;
 };
 
 const NotePage = async ({ params: { noteId } }: { params: { noteId: string } }) => {

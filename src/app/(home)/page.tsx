@@ -3,7 +3,7 @@ import { createClient } from "@/lib/supabase/supabase-server";
 
 export const fetchCache = "only-no-store";
 
-async function getNotes() {
+const getNotes = async () => {
   const supabase = createClient();
   const { data, error } = await supabase
     .from("memo_notes")
@@ -15,7 +15,7 @@ async function getNotes() {
   }
 
   return data;
-}
+};
 
 const Home = async () => {
   const notes = await getNotes();

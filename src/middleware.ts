@@ -4,7 +4,7 @@ import { createMiddlewareClient } from "@supabase/auth-helpers-nextjs";
 
 import { type Database } from "@/lib/supabase/type";
 
-export async function middleware(req: NextRequest) {
+export const middleware = async (req: NextRequest) => {
   const res = NextResponse.next();
   const supabase = createMiddlewareClient<Database>({ req, res });
 
@@ -26,7 +26,7 @@ export async function middleware(req: NextRequest) {
   }
 
   return res;
-}
+};
 
 export const config = {
   matcher: [

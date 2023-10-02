@@ -3,7 +3,7 @@ import { NextResponse, type NextRequest } from "next/server";
 
 import { createRouteHandlerClient } from "@supabase/auth-helpers-nextjs";
 
-export async function GET(request: NextRequest) {
+export const GET = async (request: NextRequest) => {
   const requestUrl = new URL(request.url);
   const code = requestUrl.searchParams.get("code");
 
@@ -15,4 +15,4 @@ export async function GET(request: NextRequest) {
 
   // サインイン後にリダイレクトするURLを指定
   return NextResponse.redirect(requestUrl.origin);
-}
+};
