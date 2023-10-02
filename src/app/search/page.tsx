@@ -1,9 +1,51 @@
 import { NoteList } from "@/app/(home)/_component/Note/NoteList";
+import { InputSearch } from "@/app/search/_component/InputSearch";
+import { createClient } from "@/lib/supabase/supabase-server";
 
-const Search = () => {
+type SearchType = {
+  searchParams: { [key: string]: string | string[] | undefined };
+};
+
+async function getNotes(props: SearchType) {
+  const { searchParams } = props;
+  const supabase = createClient();
+
+  if (searchParams.q) {
+    const { data: notes, error } = await supabase
+      .from("memo_notes")
+      .select("id, content, updated_at")
+      .textSearch("content", `${searchParams.q}`)
+      .order("updated_at", { ascending: false });
+    if (error) {
+      throw new Error("Failed to fetch notes");
+    }
+    return notes;
+  } else {
+    const { data: notes, error } = await supabase
+      .from("memo_notes")
+      .select("id, content, updated_at")
+      .order("updated_at", { ascending: false });
+
+    if (error) {
+      throw new Error("Failed to fetch notes");
+    }
+    return notes;
+  }
+}
+
+const Search = async (props: SearchType) => {
+  const { searchParams } = props;
+  const notes = await getNotes({ searchParams });
+
   return (
-    <div className="px-4">
-      <NoteList />
+    <div className="space-y-8 pb-20 pt-4 sm:space-y-14">
+      <InputSearch />
+      <div className="mx-auto w-full max-w-screen-sm space-y-4 px-4">
+        <h2 className="text-xl font-bold">
+          {searchParams.q ? `「${searchParams.q}」で検索` : "メモ一覧"}
+        </h2>
+        <NoteList note={notes} />
+      </div>
     </div>
   );
 };
