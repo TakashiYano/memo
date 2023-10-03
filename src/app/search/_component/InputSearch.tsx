@@ -13,7 +13,7 @@ type InputSearchProps = ComponentProps<"input">;
 
 const inputSearch = tv({
   slots: {
-    base: "mx-auto flex items-center justify-between px-3 sm:px-4",
+    base: "py-2 px-4",
     container: "relative w-full",
     icon: "h-5 w-5",
     input:
@@ -21,17 +21,18 @@ const inputSearch = tv({
     span: "absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-indigo-11 dark:text-indigodark-11",
     spinner:
       "absolute right-4 top-2.5 h-5 w-5 animate-spin rounded-full border-4 border-indigo-6 border-t-transparent dark:border-indigodark-6",
+    wrapper: "flex items-center gap-x-4",
   },
 });
 
 export const InputSearch = (props: InputSearchProps) => {
-  const { base, container, icon, input, span, spinner } = inputSearch();
+  const { base, container, icon, input, span, spinner, wrapper } = inputSearch();
   const { buttonRef, handleChange, handleClose, handleSubmit, inputRef, isPending, keyword } =
     useSearch();
 
   return (
     <div className={base()}>
-      <div>
+      <div className={wrapper()}>
         <Anchor href="/" variant="ghost" className="h-10 w-10">
           <ChevronLeftIcon className={icon()} />
         </Anchor>
