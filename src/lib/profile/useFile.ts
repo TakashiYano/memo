@@ -1,3 +1,5 @@
+"use client";
+
 import { useCallback, useRef, useState, type ChangeEvent } from "react";
 
 export const useFile = () => {

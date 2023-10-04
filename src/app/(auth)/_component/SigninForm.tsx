@@ -3,11 +3,14 @@
 import { type FC } from "react";
 import Link from "next/link";
 
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
 import { tv } from "tailwind-variants";
 
 import { Button } from "@/component/Button/Button";
 import { Input } from "@/component/Form/Input";
-import { useSigninForm } from "@/lib/form/useSignForm";
+import { signinFormSchema, type SigninFormSchemaType } from "@/lib/user/type";
+import { useAuth } from "@/lib/user/useAuth";
 
 const form = tv({
   slots: {
@@ -25,10 +28,18 @@ const form = tv({
 
 export const SigninForm: FC = () => {
   const { base, button, checkbox, container, label, link, text } = form();
-  const { errors, isLoading, onSubmit, register } = useSigninForm();
+  const { handleEmailSignin, isPending } = useAuth();
+  const {
+    formState: { errors },
+    handleSubmit,
+    register,
+  } = useForm<SigninFormSchemaType>({
+    resolver: zodResolver(signinFormSchema),
+    reValidateMode: "onSubmit",
+  });
 
   return (
-    <form className={base()} onSubmit={onSubmit}>
+    <form className={base()} onSubmit={handleSubmit(handleEmailSignin)}>
       <Input
         id="email"
         required
@@ -65,8 +76,8 @@ export const SigninForm: FC = () => {
         </Link>
       </div>
 
-      <Button type="submit" variant="solid" className={button()} disabled={isLoading}>
-        {isLoading ? (
+      <Button type="submit" variant="solid" className={button()} disabled={isPending}>
+        {isPending ? (
           <div className="h-7 w-7 animate-spin rounded-full border-4 border-indigo-6 border-t-transparent dark:border-indigodark-6" />
         ) : (
           <div>ログイン</div>

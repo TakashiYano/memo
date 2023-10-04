@@ -1,33 +1,39 @@
 import { type User } from "@supabase/auth-helpers-nextjs";
+import { z } from "zod";
 
-import { type Database } from "@/lib/supabase/type";
+const password = /^(?=.*?[a-z])(?=.*?\d)[a-z\d]{8,100}$/i;
 
-type ProfileType = {
-  profile: Database["public"]["Tables"]["profiles"]["Row"] | null;
-};
+export const signupFormSchema = z
+  .object({
+    email: z.string().email({ message: "不正なメールアドレスです" }),
+    password: z
+      .string()
+      .min(8, "パスワードは8文字以上で入力してください")
+      .regex(password, "パスワードは半角英数字混合で入力してください"),
+    passwordConfirm: z.string().nonempty({ message: "確認用パスワードを入力してください" }),
+  })
+  .refine(
+    (data) => {
+      return data.password === data.passwordConfirm;
+    },
+    {
+      message: "パスワードが一致しません",
+      path: ["passwordConfirm"],
+    }
+  );
 
-type ProfileSchema = {
-  avatar_url: string | null;
-  id: string;
-  user_name: string;
-};
+export type SignupFormSchemaType = z.infer<typeof signupFormSchema>;
 
-// type UserSchema = User;
+export const signinFormSchema = z.object({
+  email: z.string().email({ message: "不正なメールアドレスです" }),
+  password: z
+    .string()
+    .min(8, "パスワードは8文字以上で入力してください")
+    .regex(password, "パスワードは半角英数字混合で入力してください"),
+});
 
-type UserProps = { user: User };
+export type SigninFormSchemaType = z.infer<typeof signinFormSchema>;
 
-export type ProfileIdProps = { profile: Pick<ProfileSchema, "id"> };
+type UserSchema = User;
 
-export type ProfileNavProps = { profile: Omit<ProfileSchema, "id"> };
-
-export type ProfileAllProps = { profile: ProfileSchema };
-
-export type ProfileFormType = ProfileType & UserProps;
-
-export type UpsertUserType = ProfileType & UserProps & { selectedFile: File | undefined };
-
-export type HeaderType = { isHeaderNarrow?: boolean } & UserProps;
-
-export type NoteWriteType = UserProps;
-
-export type NoteHeaderType = { note: { id: string } };
+export type UserType = { user: UserSchema };

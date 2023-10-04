@@ -1,50 +1,98 @@
 "use client";
 
-import { useState } from "react";
+import { useTransition } from "react";
 import { useRouter } from "next/navigation";
 
+import { type SubmitHandler } from "react-hook-form";
+import { toast } from "react-hot-toast";
+
 import { createClient } from "@/lib/supabase/browser";
+import {
+  signinFormSchema,
+  signupFormSchema,
+  type SigninFormSchemaType,
+  type SignupFormSchemaType,
+} from "@/lib/user/type";
 
 export const useAuth = () => {
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState("");
   const supabase = createClient();
   const router = useRouter();
+  const [isPending, startTransition] = useTransition();
 
-  // サインイン処理
-  const handleSignIn = async () => {
-    setIsLoading(true);
+  // Google Signin
+  const handleGoogleSignin = async () => {
     try {
-      const { error } = await supabase.auth.signInWithOAuth({
+      await supabase.auth.signInWithOAuth({
         options: {
           redirectTo: "http://localhost:3000/auth/callback",
         },
         provider: "google",
       });
-      if (error) {
-        setError(error.message);
-      }
     } catch (error) {
-      if (error instanceof Error) {
-        setError(error.message);
-      } else if (typeof error === "string") {
-        setError(error);
-      } else {
-        console.error("Googleとの連携に失敗しました。");
-      }
+      toast.error("Googleとの連携に失敗しました。");
     }
-    setIsLoading(false);
   };
-  // サインアウト処理
+
+  // Email Signup
+  const handleEmailSignup: SubmitHandler<SignupFormSchemaType> = async (data) => {
+    try {
+      const parsed = signupFormSchema.parse(data);
+      await toast.promise(
+        supabase.auth.signUp({
+          email: parsed.email,
+          options: {
+            emailRedirectTo: "http://localhost:3000/auth/callback",
+          },
+          password: parsed.password,
+        }),
+        {
+          error: "新規登録に失敗しました",
+          loading: "新規登録しています",
+          success: "新規登録に成功しました",
+        }
+      );
+      await router.push("/");
+      startTransition(() => {
+        router.refresh();
+      });
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  // Email SignIn
+  const handleEmailSignin: SubmitHandler<SigninFormSchemaType> = async (data) => {
+    try {
+      const parsed = signinFormSchema.parse(data);
+      await toast.promise(
+        supabase.auth.signInWithPassword({
+          email: parsed.email,
+          password: parsed.password,
+        }),
+        {
+          error: "ログインに失敗しました",
+          loading: "ログインしています",
+          success: "ログインに成功しました",
+        }
+      );
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  // SignOut
   const handleSignOut = async () => {
     await supabase.auth.signOut();
-    router.refresh();
+    startTransition(() => {
+      router.refresh();
+    });
   };
 
   return {
-    error,
-    handleSignIn,
+    handleEmailSignin,
+    handleEmailSignup,
+    handleGoogleSignin,
     handleSignOut,
-    isLoading,
+    isPending,
   };
 };

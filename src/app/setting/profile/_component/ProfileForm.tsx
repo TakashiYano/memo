@@ -1,25 +1,37 @@
 "use client";
 
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+
+import { type ProfileFormProps } from "@/app/setting/profile/_component/type";
 import { Avatar } from "@/component/Avatar/Avatar";
 import { Button } from "@/component/Button/Button";
 import { Input } from "@/component/Form/Input";
-import { type ProfileFormType } from "@/lib/user/type";
+import { profileSchema, type ProfileSchemaType } from "@/lib/profile/type";
+import { useFile } from "@/lib/profile/useFile";
+import { useUpsertUser } from "@/lib/profile/useUpsertUser";
 import { useAuth } from "@/lib/user/useAuth";
-import { useFile } from "@/lib/user/useFile";
-import { useUpsertUser } from "@/lib/user/useUpsertUser";
 
-export const ProfileForm = (props: ProfileFormType) => {
+export const ProfileForm = (props: ProfileFormProps) => {
   const { profile, user } = props;
-  const { handleSignOut, isLoading } = useAuth();
+  const { handleSignOut } = useAuth();
   const { handleChangeFile, handleOpenFileDialog, imageRef, imageUrl, selectedFile } = useFile();
-  const { errors, isPending, onSubmit, register } = useUpsertUser({
+  const { isPending, upsertUser } = useUpsertUser({
     profile,
     selectedFile,
     user,
   });
+  const {
+    formState: { errors },
+    handleSubmit,
+    register,
+  } = useForm<ProfileSchemaType>({
+    resolver: zodResolver(profileSchema),
+    reValidateMode: "onSubmit",
+  });
 
   return (
-    <form onSubmit={onSubmit}>
+    <form onSubmit={handleSubmit(upsertUser)}>
       <div className="space-y-6 sm:space-y-8">
         <div>
           <div className="flex items-center justify-start space-x-6">
@@ -59,7 +71,7 @@ export const ProfileForm = (props: ProfileFormType) => {
             {isPending ? (
               <div className="h-7 w-7 animate-spin rounded-full border-4 border-indigo-6 border-t-transparent dark:border-indigodark-6" />
             ) : (
-              <div>保存する</div>
+              <p>保存する</p>
             )}
           </Button>
         ) : (
@@ -68,15 +80,11 @@ export const ProfileForm = (props: ProfileFormType) => {
               {isPending ? (
                 <div className="h-7 w-7 animate-spin rounded-full border-4 border-indigo-6 border-t-transparent dark:border-indigodark-6" />
               ) : (
-                <div>登録してはじめる</div>
+                <p>登録してはじめる</p>
               )}
             </Button>
             <Button variant="solid" className="w-full p-3" onClick={handleSignOut}>
-              {isLoading ? (
-                <div className="h-7 w-7 animate-spin rounded-full border-4 border-indigo-6 border-t-transparent dark:border-indigodark-6" />
-              ) : (
-                <div>登録せずに終了する</div>
-              )}
+              <p>登録せずに終了する</p>
             </Button>
           </>
         )}
