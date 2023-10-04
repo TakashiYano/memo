@@ -4,16 +4,14 @@ import { NoteListItem } from "@/app/(home)/_component/Note/NoteListItem";
 import { type NoteListsType } from "@/lib/memo/type";
 
 export const NoteList = (props: NoteListsType) => {
-  const { note: notes } = props;
+  const { notes } = props;
 
   return (
-    <ul className="space-y-5">
+    <ul className="space-y-4">
       {notes.map((note) => {
         return (
           <li key={note.id}>
-            <article className="flex items-center space-x-8">
-              <NoteListItem note={note} />
-            </article>
+            <NoteListItem note={note} />
           </li>
         );
       })}

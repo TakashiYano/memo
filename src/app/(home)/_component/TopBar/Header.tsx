@@ -1,12 +1,11 @@
 import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 
-import { NoteWriteButton } from "@/app/(home)/_component/Note/NoteWriteButton";
 import { Anchor } from "@/component/Button/Anchor";
 import { ICON_SIZE } from "@/lib/const/constants";
 import { type HeaderType } from "@/lib/user/type";
 
 export const Header = (props: HeaderType) => {
-  const { isHeaderNarrow, user } = props;
+  const { isHeaderNarrow } = props;
 
   return (
     <header
@@ -20,7 +19,6 @@ export const Header = (props: HeaderType) => {
         <Anchor href="/search" variant="ghost" className={ICON_SIZE}>
           <MagnifyingGlassIcon className="h-5 w-5" />
         </Anchor>
-        <NoteWriteButton user={user} />
       </div>
     </header>
   );

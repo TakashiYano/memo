@@ -13,6 +13,6 @@ export type NoteWithUserType = {
   note: { content: string | null; id: string; updated_at: string | null };
 };
 
-export type NoteListsType = { note: NoteSchema[] };
+export type NoteListsType = { notes: NoteSchema[] };
 
 export type NoteListItemType = { note: NoteSchema };

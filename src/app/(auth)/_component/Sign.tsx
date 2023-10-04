@@ -16,7 +16,7 @@ type SignProps = {
 
 const form = tv({
   slots: {
-    base: "flex min-h-screen flex-col items-center justify-center",
+    base: "flex min-h-screen flex-col items-center justify-center px-4",
     button:
       "w-full rounded-xl py-4 hover:bg-indigo-6 focus:outline-none focus:ring-2 focus:ring-blue-11 dark:hover:bg-indigodark-6",
     container:

@@ -1,4 +1,4 @@
-import { NoteList } from "@/app/(home)/_component/Note/NoteList";
+import { AllNoteList } from "@/app/(auth)/_component/AllNoteList";
 import { createClient } from "@/lib/supabase/server";
 
 export const fetchCache = "only-no-store";
@@ -20,15 +20,7 @@ const getNotes = async () => {
 const Home = async () => {
   const notes = await getNotes();
 
-  return (
-    <main className="mx-auto w-full max-w-screen-sm px-4">
-      {notes.length !== 0 ? (
-        <NoteList note={notes} />
-      ) : (
-        <div className="space-y-5">メモが見つかりませんでした！</div>
-      )}
-    </main>
-  );
+  return <AllNoteList notes={notes} />;
 };
 
 export default Home;

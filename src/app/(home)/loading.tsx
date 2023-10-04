@@ -1,14 +1,14 @@
 const Loading = () => {
   return (
-    <div className="mx-auto w-full max-w-screen-sm px-4">
-      <ul className="space-y-5">
-        {[1, 2, 3, 4, 5].map((v) => {
+    <div className="p-4">
+      <ul className="space-y-4">
+        {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((v) => {
           return (
             <li
               key={v}
-              className="w-full animate-pulse rounded-xl bg-indigo-2 p-4 shadow dark:bg-indigodark-2 sm:px-6"
+              className="w-full animate-pulse rounded-xl bg-indigo-2 p-4 shadow dark:bg-indigodark-2"
             >
-              <div className="h-3.5 w-3/4 rounded bg-indigo-3 dark:bg-indigodark-3 sm:h-4"></div>
+              <div className="h-3.5 w-3/4 rounded bg-indigo-3 dark:bg-indigodark-3"></div>
               <div className="mt-2.5 h-3.5 rounded bg-indigo-3 dark:bg-indigodark-3"></div>
               <div className="mt-6 h-3.5 w-16 rounded bg-indigo-3 dark:bg-indigodark-3"></div>
             </li>

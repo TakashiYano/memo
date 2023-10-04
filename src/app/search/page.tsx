@@ -1,11 +1,8 @@
-import { NoteList } from "@/app/(home)/_component/Note/NoteList";
+import { SearchList } from "@/app/search/_component/SearchList";
+import { type SearchPageProps } from "@/app/search/_component/type";
 import { createClient } from "@/lib/supabase/server";
 
-type SearchType = {
-  searchParams: { [key: string]: string | string[] | undefined };
-};
-
-const getNotes = async (props: SearchType) => {
+const getNotes = async (props: SearchPageProps) => {
   const { searchParams } = props;
   const supabase = createClient();
 
@@ -24,7 +21,6 @@ const getNotes = async (props: SearchType) => {
       .from("memo_notes")
       .select("id, content, updated_at")
       .order("updated_at", { ascending: false });
-
     if (error) {
       throw new Error("メモ検索一覧の取得に失敗しました");
     }
@@ -32,22 +28,15 @@ const getNotes = async (props: SearchType) => {
   }
 };
 
-const Search = async (props: SearchType) => {
+const SearchPage = async (props: SearchPageProps) => {
   const { searchParams } = props;
   const notes = await getNotes({ searchParams });
 
   return (
-    <main className="mx-auto w-full max-w-screen-sm space-y-4 px-4">
-      <h2 className="text-xl font-bold">
-        {searchParams.q ? `「${searchParams.q}」で検索` : "メモ一覧"}
-      </h2>
-      {notes.length !== 0 ? (
-        <NoteList note={notes} />
-      ) : (
-        <p className="space-y-5">メモが見つかりませんでした！</p>
-      )}
-    </main>
+    <>
+      <SearchList searchParams={searchParams} notes={notes} />
+    </>
   );
 };
 
-export default Search;
+export default SearchPage;

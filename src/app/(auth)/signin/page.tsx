@@ -16,7 +16,11 @@ const Signin = async () => {
     redirect("/");
   }
 
-  return <Sign page="signin" />;
+  return (
+    <>
+      <Sign page="signin" />
+    </>
+  );
 };
 
 export default Signin;

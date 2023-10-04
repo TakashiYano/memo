@@ -1,11 +1,15 @@
 import { InputSearch } from "@/app/search/_component/InputSearch";
 
-const SearchLayout = async ({ children }: { children: React.ReactNode }) => {
+type SearchLayoutProps = { children: React.ReactNode };
+
+const SearchLayout = async (props: SearchLayoutProps) => {
+  const { children } = props;
+
   return (
-    <div className="space-y-8 pb-20 pt-4 sm:space-y-14">
+    <>
       <InputSearch />
       {children}
-    </div>
+    </>
   );
 };
 

@@ -38,7 +38,7 @@ export const ThemeList: FC = () => {
             {({ checked }) => {
               return (
                 <div className="flex items-center justify-between px-4 py-3 text-lg">
-                  <RadioGroup.Label className="font-bold">{theme.label}</RadioGroup.Label>
+                  <RadioGroup.Label className="ml-3 font-bold">{theme.label}</RadioGroup.Label>
                   {checked ? (
                     <CheckIcon className="h-6 w-6 text-indigo-11 dark:text-indigodark-11" />
                   ) : null}
