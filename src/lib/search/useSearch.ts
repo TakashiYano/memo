@@ -8,31 +8,24 @@ import {
   type ChangeEventHandler,
   type FormEvent,
 } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 
-import { toast } from "react-hot-toast";
 import { useDebouncedCallback } from "use-debounce";
 
 export const useSearch = () => {
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const q = searchParams.get("q");
   const inputRef = useRef<HTMLInputElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
-  const [keyword, setKeyword] = useState("");
+  const [keyword, setKeyword] = useState(q || "");
   const [isPending, startTransition] = useTransition();
 
   const debounced = useDebouncedCallback((value: string) => {
-    try {
-      if (!value) {
-        router.push("/search");
-      } else {
-        router.push(`/search?q=${value}`);
-      }
-      startTransition(() => {
-        router.refresh();
-      });
-    } catch (error) {
-      toast.error("エラーが発生したため検索に失敗しました。時間を空けてから再度お試しください。");
-      console.error(error);
+    if (!value) {
+      router.push("/search");
+    } else {
+      router.push(`/search?q=${value}`);
     }
   }, 1000);
 
@@ -40,19 +33,19 @@ export const useSearch = () => {
     (e) => {
       const value = e.target.value;
       setKeyword(value);
+      startTransition(() => {
+        router.refresh();
+      });
 
-      return debounced(e.currentTarget.value);
+      return debounced(value);
     },
-    [debounced]
+    [debounced, router]
   );
 
   const handleSubmit = useCallback(
     (e: FormEvent<HTMLFormElement>) => {
       e.preventDefault();
       router.push(`/search?q=${keyword}`);
-      startTransition(() => {
-        router.refresh();
-      });
     },
     [router, keyword]
   );
@@ -60,9 +53,6 @@ export const useSearch = () => {
   const handleClose = useCallback(() => {
     setKeyword("");
     router.push("/search");
-    startTransition(() => {
-      router.refresh();
-    });
   }, [router]);
 
   return { buttonRef, handleChange, handleClose, handleSubmit, inputRef, isPending, keyword };

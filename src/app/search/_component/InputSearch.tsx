@@ -48,6 +48,7 @@ export const InputSearch = (props: InputSearchProps) => {
             placeholder="検索"
             onChange={handleChange}
             autoFocus
+            autoComplete="off"
           />
           <span className={span()}>
             <MagnifyingGlassIcon className={icon()} />

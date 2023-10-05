@@ -24,7 +24,7 @@ const allInputSearch = tv({
 
 export const AllInputSearch = (props: InputSearchProps) => {
   const { base, container, icon, input, span, spinner } = allInputSearch();
-  const { handleChange, handleSubmit, inputRef, isPending, keyword } = useSearch();
+  const { handleChange, handleSubmit, inputRef, keyword } = useSearch();
 
   return (
     <div className={base()}>
@@ -39,12 +39,13 @@ export const AllInputSearch = (props: InputSearchProps) => {
           placeholder="検索"
           onChange={handleChange}
           autoFocus
+          autoComplete="off"
         />
         <span className={span()}>
           <MagnifyingGlassIcon className={icon()} />
         </span>
 
-        {keyword && isPending && <div className={spinner()} />}
+        {keyword && <div className={spinner()} />}
       </form>
     </div>
   );
