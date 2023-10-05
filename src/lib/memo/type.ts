@@ -1,7 +1,9 @@
 type NoteSchema = {
   content: string | null;
+  created_at: string;
   id: string;
   updated_at: string | null;
+  user_id: string;
 };
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -10,9 +12,11 @@ export const isNoteType = (data: any): data is NoteSchema => {
 };
 
 export type NoteWithUserType = {
-  note: { content: string | null; id: string; updated_at: string | null };
+  note: Pick<NoteSchema, "content" | "id" | "updated_at">;
 };
 
 export type NoteListsType = { notes: NoteSchema[] };
 
 export type NoteListItemType = { note: NoteSchema };
+
+export type NoteIdType = { note: Pick<NoteSchema, "id"> };

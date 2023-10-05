@@ -8,6 +8,7 @@ type Props = {
   buttonColor: "blue" | "red";
   buttonText: string;
   description: string;
+  disabled: boolean;
   onClickOk: ComponentProps<"button">["onClick"];
   onClose: () => void;
   show: boolean;
@@ -15,7 +16,7 @@ type Props = {
 };
 
 export const ConfirmDialog: FC<Props> = (props) => {
-  const { buttonColor, buttonText, description, onClickOk, onClose, show, title } = props;
+  const { buttonColor, buttonText, description, disabled, onClickOk, onClose, show, title } = props;
   const buttonRef = useRef(null);
 
   return (
@@ -75,6 +76,7 @@ export const ConfirmDialog: FC<Props> = (props) => {
                   variant={buttonColor === "blue" ? "solid" : "error"}
                   className="flex-1 py-2 text-sm"
                   onClick={onClickOk}
+                  disabled={disabled}
                 >
                   {buttonText}
                 </Button>

@@ -1,8 +1,13 @@
+"use client";
+
 import { useEffect, useMemo, useState } from "react";
 
 import { useTheme as useNextTheme } from "next-themes";
 
-import { type ExtendUseThemeType } from "@/lib/setting/type";
+type ExtendUseThemeType = ReturnType<typeof useNextTheme> & {
+  resolvedTheme: "light" | "dark";
+  theme: "system" | "light" | "dark";
+};
 
 export const useTheme = () => {
   const [isMounted, setIsMounted] = useState(false);

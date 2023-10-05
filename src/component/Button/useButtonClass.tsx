@@ -7,7 +7,7 @@ const button = tv({
   variants: {
     color: {
       error:
-        "bg-red-4 dark:bg-reddark-4 hover:bg-red-5 dark:hover:bg-reddark-5 active:bg-red-6 dark:active:bg-reddark-6",
+        "bg-red-4 dark:bg-reddark-4 hover:enabled:bg-red-5 dark:hover:enabled:bg-reddark-5 active:enabled:bg-red-6 dark:active:enabled:bg-reddark-6",
       ghost:
         "bg-transparent dark:bg-transparent hover:bg-indigo-4 dark:hover:bg-indigodark-4 active:bg-indigo-5 dark:active:bg-indigodark-5",
       outline:

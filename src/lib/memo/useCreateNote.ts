@@ -6,10 +6,10 @@ import { useRouter } from "next/navigation";
 import { toast } from "react-hot-toast";
 
 import { isNoteType } from "@/lib/memo/type";
+import { type ProfileIdType } from "@/lib/profile/type";
 import { createClient } from "@/lib/supabase/browser";
-import { type ProfileIdProps } from "@/lib/user/type";
 
-export const useCreateNote = (props: ProfileIdProps) => {
+export const useCreateNote = (props: ProfileIdType) => {
   const { profile } = props;
   const router = useRouter();
   const supabase = createClient();
@@ -25,7 +25,7 @@ export const useCreateNote = (props: ProfileIdProps) => {
       if (!isNoteType(data)) {
         throw new Error("Failed to create memo");
       }
-      await router.push(`/memo/${data.id}`);
+      router.push(`/memo/${data.id}`);
       startTransition(() => {
         router.refresh();
       });

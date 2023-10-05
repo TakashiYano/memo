@@ -5,13 +5,12 @@ import { useRouter } from "next/navigation";
 
 import { toast } from "react-hot-toast";
 
+import { type NoteIdType } from "@/lib/memo/type";
 import { createClient } from "@/lib/supabase/browser";
-import { type NoteHeaderType } from "@/lib/user/type";
 
-export const useDeleteNote = (props: NoteHeaderType) => {
+export const useDeleteNote = (props: NoteIdType) => {
   const { note } = props;
   const router = useRouter();
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [isPending, startTransition] = useTransition();
 
   const deleteNote = useCallback(async () => {
@@ -26,7 +25,7 @@ export const useDeleteNote = (props: NoteHeaderType) => {
         loading: "処理中",
         success: "削除しました",
       });
-      await router.push("/");
+      router.push("/");
       startTransition(() => {
         router.refresh();
       });
@@ -35,5 +34,5 @@ export const useDeleteNote = (props: NoteHeaderType) => {
     }
   }, [deleteNote, router]);
 
-  return { handleDeleteNote };
+  return { handleDeleteNote, isPending };
 };
