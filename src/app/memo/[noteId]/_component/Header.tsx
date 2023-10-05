@@ -7,7 +7,6 @@ import { ChevronLeftIcon, TrashIcon } from "@heroicons/react/24/outline";
 
 import { Button } from "@/component/Button/Button";
 import { ConfirmDialog } from "@/component/Dialog/ConfirmDialog";
-import { ICON_SIZE } from "@/lib/const/constant";
 import { useDeleteNote } from "@/lib/memo/useDeleteNote";
 import { useNoteDialog } from "@/lib/memo/useNoteDialog";
 import { type NoteHeaderType } from "@/lib/user/type";
@@ -40,13 +39,13 @@ export const NoteHeader = (props: HeaderProps) => {
           isHeaderNarrow ? "max-w-screen-sm" : "max-w-screen-lg"
         }`}
       >
-        <Button variant="ghost" className={ICON_SIZE} onClick={handleClick}>
+        <Button variant="ghost" className="h-10 w-10" onClick={handleClick}>
           <ChevronLeftIcon className="h-5 w-5" />
         </Button>
         <Button
           key="delete"
           variant="ghost"
-          className={ICON_SIZE}
+          className="h-10 w-10"
           onClick={handleShowConfirmDialog}
         >
           <TrashIcon className="h-5 w-5" />
