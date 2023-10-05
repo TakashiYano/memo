@@ -1,7 +1,7 @@
 import { type User } from "@supabase/auth-helpers-nextjs";
 import { z } from "zod";
 
-const password = /^(?=.*?[a-z])(?=.*?\d)[a-z\d]{8,100}$/i;
+import { password } from "@/lib/const/constant";
 
 export const signupFormSchema = z
   .object({

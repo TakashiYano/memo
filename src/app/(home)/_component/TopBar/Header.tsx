@@ -1,7 +1,7 @@
 import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 
 import { Anchor } from "@/component/Button/Anchor";
-import { ICON_SIZE } from "@/lib/const/constants";
+import { ICON_SIZE } from "@/lib/const/constant";
 import { type HeaderType } from "@/lib/user/type";
 
 export const Header = (props: HeaderType) => {

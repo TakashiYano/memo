@@ -2,14 +2,11 @@ import { useEffect, useMemo, useState } from "react";
 
 import { useTheme as useNextTheme } from "next-themes";
 
-type ExtendUseThemeProps = ReturnType<typeof useNextTheme> & {
-  resolvedTheme: "light" | "dark";
-  theme: "system" | "light" | "dark";
-};
+import { type ExtendUseThemeType } from "@/lib/setting/type";
 
 export const useTheme = () => {
   const [isMounted, setIsMounted] = useState(false);
-  const { setTheme: handleTheme, theme: currentTheme } = useNextTheme() as ExtendUseThemeProps;
+  const { setTheme: handleTheme, theme: currentTheme } = useNextTheme() as ExtendUseThemeType;
   const themes = useMemo(() => {
     return [
       { id: "system", label: "端末の設定に合わせる" },

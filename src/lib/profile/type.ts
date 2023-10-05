@@ -1,7 +1,5 @@
 import { z } from "zod";
 
-import { type UserType } from "@/lib/user/type";
-
 type ProfileSchema = {
   avatar_url: string | null;
   id: string;
@@ -21,5 +19,3 @@ export const profileSchema = z.object({
 });
 
 export type ProfileSchemaType = z.infer<typeof profileSchema>;
-
-export type UpsertUserProps = ProfileOrNullType & UserType & { selectedFile: File | undefined };

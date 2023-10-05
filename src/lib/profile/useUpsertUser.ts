@@ -7,8 +7,11 @@ import { type SubmitHandler } from "react-hook-form";
 import { toast } from "react-hot-toast";
 import { v4 as uuidv4 } from "uuid";
 
-import { profileSchema, type ProfileSchemaType, type UpsertUserProps } from "@/lib/profile/type";
+import { profileSchema, type ProfileOrNullType, type ProfileSchemaType } from "@/lib/profile/type";
 import { createClient } from "@/lib/supabase/browser";
+import { type UserType } from "@/lib/user/type";
+
+type UpsertUserProps = ProfileOrNullType & UserType & { selectedFile: File | undefined };
 
 export const useUpsertUser = (props: UpsertUserProps) => {
   const { profile, selectedFile, user } = props;
