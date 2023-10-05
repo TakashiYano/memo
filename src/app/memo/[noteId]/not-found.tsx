@@ -1,6 +1,6 @@
 "use client";
 
-import { Anchor } from "@/component/Button/Anchor";
+import { Anchor } from "@/component/Button";
 
 const NotFound = () => {
   return (

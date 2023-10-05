@@ -4,7 +4,7 @@ import { type FC } from "react";
 
 import { tv } from "tailwind-variants";
 
-import { Button } from "@/component/Button/Button";
+import { Button } from "@/component/Button";
 import { List } from "@/component/List/List";
 
 const list = tv({

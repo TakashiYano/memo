@@ -6,7 +6,7 @@ import { tv } from "tailwind-variants";
 
 import { SigninForm } from "@/app/(auth)/_component/SigninForm";
 import { SignupForm } from "@/app/(auth)/_component/SignupForm";
-import { Button } from "@/component/Button/Button";
+import { Button } from "@/component/Button";
 import { GoogleIcon } from "@/component/Icon/GoogleIcon";
 import { useAuth } from "@/lib/user/useAuth";
 

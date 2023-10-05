@@ -4,8 +4,8 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 
 import { type ProfileFormProps } from "@/app/setting/profile/_component/type";
-import { Avatar } from "@/component/Avatar/Avatar";
-import { Button } from "@/component/Button/Button";
+import { Avatar } from "@/component/Avatar";
+import { Button } from "@/component/Button";
 import { Input } from "@/component/Form/Input";
 import { profileSchema, type ProfileSchemaType } from "@/lib/profile/type";
 import { useFile } from "@/lib/profile/useFile";

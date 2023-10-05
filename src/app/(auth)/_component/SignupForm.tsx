@@ -5,7 +5,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { tv } from "tailwind-variants";
 
-import { Button } from "@/component/Button/Button";
+import { Button } from "@/component/Button";
 import { Input } from "@/component/Form/Input";
 import { signupFormSchema, type SignupFormSchemaType } from "@/lib/user/type";
 import { useAuth } from "@/lib/user/useAuth";

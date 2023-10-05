@@ -15,4 +15,4 @@ export const Anchor = forwardRef<HTMLAnchorElement, AnchorType>((props, ref) => 
   );
 });
 
-Anchor.displayName === "Button";
+Anchor.displayName === "Anchor";

@@ -7,7 +7,7 @@ import { tv } from "tailwind-variants";
 
 import { DeleteAccount } from "@/app/setting/account/_component/DeleteAccount";
 import { ThemeList } from "@/app/setting/account/_component/ThemeList";
-import { Button } from "@/component/Button/Button";
+import { Button } from "@/component/Button";
 import { GoogleIcon } from "@/component/Icon/GoogleIcon";
 import { List } from "@/component/List/List";
 import { useAuth } from "@/lib/user/useAuth";

@@ -5,8 +5,7 @@ import { type ComponentProps } from "react";
 import { ChevronLeftIcon, MagnifyingGlassIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import { tv } from "tailwind-variants";
 
-import { Anchor } from "@/component/Button/Anchor";
-import { Button } from "@/component/Button/Button";
+import { Anchor, Button } from "@/component/Button";
 import { useSearch } from "@/lib/search/useSearch";
 
 type InputSearchProps = ComponentProps<"input">;

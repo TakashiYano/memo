@@ -1,8 +1,10 @@
+"use client";
+
 import { Fragment, useRef, type ComponentProps, type FC } from "react";
 
 import { Dialog, Transition } from "@headlessui/react";
 
-import { Button } from "@/component/Button/Button";
+import { Button } from "@/component/Button";
 
 type Props = {
   buttonColor: "blue" | "red";

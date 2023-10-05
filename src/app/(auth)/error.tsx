@@ -2,7 +2,7 @@
 
 import { useEffect } from "react";
 
-import { Button } from "@/component/Button/Button";
+import { Button } from "@/component/Button";
 
 const Error = ({ error, reset }: { error: Error; reset: () => void }) => {
   useEffect(() => {

@@ -6,8 +6,8 @@ import { usePathname } from "next/navigation";
 import { MagnifyingGlassIcon, PencilSquareIcon } from "@heroicons/react/24/outline";
 import { tv } from "tailwind-variants";
 
-import { Avatar } from "@/component/Avatar/Avatar";
-import { Button } from "@/component/Button/Button";
+import { Avatar } from "@/component/Avatar";
+import { Button } from "@/component/Button";
 import { useCreateNote } from "@/lib/memo/useCreateNote";
 import { type ProfileAllProps } from "@/lib/user/type";
 

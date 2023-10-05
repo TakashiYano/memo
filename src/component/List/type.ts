@@ -1,7 +1,5 @@
 import { type DOMAttributes } from "react";
 
-type AllOrNone<T> = T | { [Key in keyof T]?: never };
-
 type Link = {
   href: string;
   label: string | JSX.Element;
@@ -28,6 +26,6 @@ const hasButton = (item: Button): item is ComponentButton => {
   return "button" in item;
 };
 
-export type { AllOrNone, ListProps };
+export type { ListProps };
 
 export { hasButton, isLink };

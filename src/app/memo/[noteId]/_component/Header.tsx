@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 
 import { ChevronLeftIcon, TrashIcon } from "@heroicons/react/24/outline";
 
-import { Button } from "@/component/Button/Button";
+import { Button } from "@/component/Button";
 import { ConfirmDialog } from "@/component/Dialog/ConfirmDialog";
 import { useDeleteNote } from "@/lib/memo/useDeleteNote";
 import { useNoteDialog } from "@/lib/memo/useNoteDialog";
