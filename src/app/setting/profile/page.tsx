@@ -1,13 +1,15 @@
+import { redirect } from "next/navigation";
+
 import { ProfileForm } from "@/app/setting/profile/_component/ProfileForm";
 import { createClient } from "@/lib/supabase/server";
 
-const ProfileEdit = async () => {
+const ProfilePage = async () => {
   const supabase = createClient();
   const {
     data: { user },
   } = await supabase.auth.getUser();
   if (!user) {
-    return;
+    redirect("/signin");
   }
   const { data: profile } = await supabase.from("profiles").select("*").eq("id", user.id).single();
 
@@ -19,4 +21,4 @@ const ProfileEdit = async () => {
   );
 };
 
-export default ProfileEdit;
+export default ProfilePage;

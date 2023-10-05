@@ -26,6 +26,9 @@ export const ProfileForm = (props: ProfileFormProps) => {
     handleSubmit,
     register,
   } = useForm<ProfileSchemaType>({
+    defaultValues: {
+      userName: profile?.user_name ?? user.user_metadata["name"] ?? "",
+    },
     resolver: zodResolver(profileSchema),
     reValidateMode: "onSubmit",
   });

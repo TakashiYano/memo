@@ -19,10 +19,10 @@ export const middleware = async (req: NextRequest) => {
     return NextResponse.redirect(new URL("/signin", req.url));
   }
 
-  // ログイン後にプロフィールがなければ、プロフィールページにリダイレクト
+  // プロフィール登録がまだのユーザーはプロフィールページにリダイレクト
   const { data: profile } = await supabase.from("profiles").select("*").eq("id", user.id);
   if (profile?.length === 0) {
-    return NextResponse.redirect(new URL("/setting/profile/new", req.url));
+    return NextResponse.redirect(new URL("/setting/profile", req.url));
   }
 
   return res;
@@ -30,6 +30,6 @@ export const middleware = async (req: NextRequest) => {
 
 export const config = {
   matcher: [
-    "/((?!api|_next/static|_next/image|favicon.ico|signin|signup|forgot-password|auth|setting/profile/new).*)",
+    "/((?!api|_next/static|_next/image|favicon.ico|signin|signup|forgot-password|auth|setting/profile).*)",
   ],
 };

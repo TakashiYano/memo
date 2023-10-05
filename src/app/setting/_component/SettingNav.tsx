@@ -39,7 +39,7 @@ export const SettingNav = () => {
             </NavigationLink>
           </li>
           <li className="w-1/2 text-center text-[16px] ">
-            <NavigationLink href="/setting/profile/edit" currentPath={currentPath}>
+            <NavigationLink href="/setting/profile" currentPath={currentPath}>
               プロフィール
             </NavigationLink>
           </li>
