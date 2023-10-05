@@ -17,17 +17,13 @@ const form = tv({
     base: "space-y-4 md:space-y-6",
     button:
       "w-full rounded-xl py-4 text-center text-sm font-medium focus:outline-none focus:ring-4 focus:ring-indigo-11",
-    checkbox:
-      "h-4 w-4 rounded border border-indigo-6 bg-indigo-3 focus:outline-none focus:ring-2 focus:ring-blue-11 dark:border-indigodark-6 dark:bg-indigodark-3",
-    container: "flex items-center",
-    label: "text-indigo-12 dark:text-indigodark-12 ml-3 text-sm",
     link: "font-medium text-indigo-11 hover:underline dark:text-indigodark-11",
     text: "text-sm font-light opacity-70",
   },
 });
 
 export const SigninForm: FC = () => {
-  const { base, button, checkbox, container, label, link, text } = form();
+  const { base, button, link, text } = form();
   const { handleEmailSignin, isPending } = useAuth();
   const {
     formState: { errors },
@@ -56,25 +52,6 @@ export const SigninForm: FC = () => {
         {...register("password")}
         error={errors.password?.message}
       />
-
-      <div className={container({ class: "justify-between" })}>
-        <div className={container()}>
-          <div className={container({ class: "h-5" })}>
-            <input
-              id="remember"
-              aria-describedby="remember"
-              type="checkbox"
-              className={checkbox()}
-            />
-          </div>
-          <label htmlFor="remember" className={label()}>
-            ログイン状態を保持
-          </label>
-        </div>
-        <Link href="/forgot-password" className={link()}>
-          パスワードをお忘れですか?
-        </Link>
-      </div>
 
       <Button type="submit" variant="solid" className={button()} disabled={isPending}>
         {isPending ? (
