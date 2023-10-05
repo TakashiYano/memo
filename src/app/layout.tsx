@@ -1,11 +1,11 @@
 import { Toaster } from "react-hot-toast";
 
-import { ThemeProviders } from "@/app/_component/ThemeProviders";
+import { ThemeProviders } from "@/app/_component/Provider/ThemeProviders";
 
 import "./globals.css";
 
-import { Footer } from "@/app/(home)/_component/TopBar/Footer";
-import { SideNav } from "@/app/(home)/_component/TopBar/SideNav";
+import { Footer } from "@/app/_component/Nav/Footer";
+import { SideNav } from "@/app/_component/Nav/SideNav";
 import { createClient } from "@/lib/supabase/server";
 
 const getProfile = async () => {

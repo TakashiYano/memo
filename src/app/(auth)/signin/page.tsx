@@ -1,24 +1,22 @@
 import { redirect } from "next/navigation";
 
-import { Sign } from "@/app/(auth)/_component/Sign";
+import { Auth } from "@/app/(auth)/_component/AuthContent";
 import { createClient } from "@/lib/supabase/server";
 
 const Signin = async () => {
   const supabase = createClient();
 
-  // セッションの取得
+  // 認証している場合、リダイレクト
   const {
     data: { session },
   } = await supabase.auth.getSession();
-
-  // 認証している場合、リダイレクト
   if (session) {
     redirect("/");
   }
 
   return (
     <>
-      <Sign page="signin" />
+      <Auth page="signin" />
     </>
   );
 };

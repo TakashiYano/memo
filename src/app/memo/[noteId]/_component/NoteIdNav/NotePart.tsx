@@ -7,14 +7,12 @@ import { ChevronLeftIcon, TrashIcon } from "@heroicons/react/24/outline";
 
 import { Button } from "@/component/Button";
 import { ConfirmDialog } from "@/component/Dialog/ConfirmDialog";
+import { type NoteWithUserType } from "@/lib/memo/type";
 import { useDeleteNote } from "@/lib/memo/useDeleteNote";
 import { useNoteDialog } from "@/lib/memo/useNoteDialog";
-import { type NoteHeaderType } from "@/lib/user/type";
 
-export type HeaderProps = { isHeaderNarrow?: boolean } & NoteHeaderType;
-
-export const NoteHeader = (props: HeaderProps) => {
-  const { isHeaderNarrow, note } = props;
+export const NotePart = (props: NoteWithUserType) => {
+  const { note } = props;
   const router = useRouter();
   const { dispatch, isShowConfirmDialog } = useNoteDialog();
   const { handleDeleteNote, isPending } = useDeleteNote({ note });
@@ -34,11 +32,7 @@ export const NoteHeader = (props: HeaderProps) => {
 
   return (
     <>
-      <header
-        className={`mx-auto flex items-center justify-between px-3 sm:px-4 ${
-          isHeaderNarrow ? "max-w-screen-sm" : "max-w-screen-lg"
-        }`}
-      >
+      <div className="mx-auto flex items-center justify-between px-3 sm:px-4">
         <Button variant="ghost" className="h-10 w-10" onClick={handleClick}>
           <ChevronLeftIcon className="h-5 w-5" />
         </Button>
@@ -50,7 +44,7 @@ export const NoteHeader = (props: HeaderProps) => {
         >
           <TrashIcon className="h-5 w-5" />
         </Button>
-      </header>
+      </div>
 
       <ConfirmDialog
         show={isShowConfirmDialog}

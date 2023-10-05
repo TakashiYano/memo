@@ -1,4 +1,4 @@
-import { SettingNav } from "@/app/setting/_component/SettingNav";
+import { SettingNav } from "@/app/setting/_component/Common/SettingNav";
 import { createClient } from "@/lib/supabase/server";
 
 type HomeLayoutProps = { children: React.ReactNode };

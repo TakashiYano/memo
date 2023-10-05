@@ -1,7 +1,10 @@
 import { tv } from "tailwind-variants";
 
-import { NoteList } from "@/app/(home)/_component/Note/NoteList";
-import { type SearchListProps } from "@/app/search/_component/type";
+import { NoteList } from "@/app/(home)/_component/NoteContent/NoteList";
+import { type SearchPageProps } from "@/app/search/_component/type";
+import { type NoteDisplayType } from "@/lib/memo/type";
+
+type SearchListProps = SearchPageProps & { notes: NoteDisplayType[] };
 
 const searchList = tv({
   slots: {

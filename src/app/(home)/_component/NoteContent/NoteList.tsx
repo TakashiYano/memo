@@ -1,9 +1,9 @@
-"use client";
+import { NoteListItem } from "@/app/(home)/_component/NoteContent/NoteListItem";
+import { type NoteDisplayType } from "@/lib/memo/type";
 
-import { NoteListItem } from "@/app/(home)/_component/Note/NoteListItem";
-import { type NoteListsType } from "@/lib/memo/type";
+type NoteListProps = { notes: NoteDisplayType[] };
 
-export const NoteList = (props: NoteListsType) => {
+export const NoteList = (props: NoteListProps) => {
   const { notes } = props;
 
   return (

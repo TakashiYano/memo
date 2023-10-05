@@ -2,9 +2,11 @@ import Link from "next/link";
 
 import { format_yyyyMd } from "@/lib/memo/date";
 import { getFirstAndSecondLine } from "@/lib/memo/getFirstAndSecondLine";
-import { type NoteListItemType } from "@/lib/memo/type";
+import { type NoteDisplayType } from "@/lib/memo/type";
 
-export const NoteListItem = (props: NoteListItemType) => {
+export type NoteListItemProps = { note: NoteDisplayType };
+
+export const NoteListItem = (props: NoteListItemProps) => {
   const { note } = props;
   const [first, second] = getFirstAndSecondLine(note.content ?? "");
 

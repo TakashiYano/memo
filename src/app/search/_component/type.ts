@@ -1,7 +1,5 @@
-import { type NoteListsType } from "@/lib/memo/type";
+type SearchParamsSchema = { [key: string]: string | string[] | undefined };
 
 export type SearchPageProps = {
-  searchParams: { [key: string]: string | string[] | undefined };
+  searchParams: SearchParamsSchema;
 };
-
-export type SearchListProps = SearchPageProps & NoteListsType;

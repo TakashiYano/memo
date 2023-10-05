@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
 
-import { NoteHeader } from "@/app/memo/[noteId]/_component/Header";
-import { NoteEditor } from "@/app/memo/[noteId]/_component/NoteEditor";
+import { NoteEditor } from "@/app/memo/[noteId]/_component/NoteIdContent/NoteEditor";
+import { NotePart } from "@/app/memo/[noteId]/_component/NoteIdNav/NotePart";
 import { createClient } from "@/lib/supabase/server";
 
 export const revalidate = 60;
@@ -31,11 +31,9 @@ const NotePage = async ({ params: { noteId } }: { params: { noteId: string } }) 
   const [note] = await Promise.all([notePromise]);
 
   return (
-    <div className="space-y-4">
-      <NoteHeader note={note} />
-      <main className="mx-auto w-full max-w-screen-sm px-4">
-        <NoteEditor note={note} />
-      </main>
+    <div className="space-y-4 pt-4">
+      <NotePart note={note} />
+      <NoteEditor note={note} />
     </div>
   );
 };

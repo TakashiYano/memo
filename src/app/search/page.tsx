@@ -1,4 +1,4 @@
-import { SearchList } from "@/app/search/_component/SearchList";
+import { SearchList } from "@/app/search/_component/SearchContent/SearchList";
 import { type SearchPageProps } from "@/app/search/_component/type";
 import { createClient } from "@/lib/supabase/server";
 

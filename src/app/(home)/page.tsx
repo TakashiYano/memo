@@ -1,4 +1,4 @@
-import { AllNoteList } from "@/app/(auth)/_component/AllNoteList";
+import { AllNoteList } from "@/app/(home)/_component/NoteContent/AllNoteList";
 import { createClient } from "@/lib/supabase/server";
 
 export const fetchCache = "only-no-store";

@@ -1,6 +1,6 @@
 import { tv } from "tailwind-variants";
 
-import { NoteList } from "@/app/(home)/_component/Note/NoteList";
+import { NoteList } from "@/app/(home)/_component/NoteContent/NoteList";
 import { type NoteListsType } from "@/lib/memo/type";
 
 const allNoteList = tv({

@@ -9,7 +9,7 @@ import { tv } from "tailwind-variants";
 import { Avatar } from "@/component/Avatar";
 import { Button } from "@/component/Button";
 import { useCreateNote } from "@/lib/memo/useCreateNote";
-import { type ProfileAllProps } from "@/lib/user/type";
+import { type ProfileAllType } from "@/lib/profile/type";
 
 const sideNav = tv({
   slots: {
@@ -43,7 +43,7 @@ const NavigationLink = ({
   );
 };
 
-export const SideNav = (props: ProfileAllProps) => {
+export const SideNav = (props: ProfileAllType) => {
   const { profile } = props;
   const { base, body, icon, title } = sideNav();
   const currentPath = usePathname();

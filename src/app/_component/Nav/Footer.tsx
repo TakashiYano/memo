@@ -9,7 +9,7 @@ import { tv } from "tailwind-variants";
 import { Avatar } from "@/component/Avatar";
 import { Button } from "@/component/Button";
 import { useCreateNote } from "@/lib/memo/useCreateNote";
-import { type ProfileAllProps } from "@/lib/user/type";
+import { type ProfileAllType } from "@/lib/profile/type";
 
 const footer = tv({
   slots: {
@@ -44,7 +44,7 @@ const NavigationLink = ({
   );
 };
 
-export const Footer = (props: ProfileAllProps) => {
+export const Footer = (props: ProfileAllType) => {
   const { profile } = props;
   const { base, image, li, text, ul } = footer();
   const { handleCreateMemo, isPending } = useCreateNote({ profile });

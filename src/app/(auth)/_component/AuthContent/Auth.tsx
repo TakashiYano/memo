@@ -4,17 +4,17 @@ import { type FC } from "react";
 
 import { tv } from "tailwind-variants";
 
-import { SigninForm } from "@/app/(auth)/_component/SigninForm";
-import { SignupForm } from "@/app/(auth)/_component/SignupForm";
+import { SigninForm } from "@/app/(auth)/_component/AuthContent/SigninForm";
+import { SignupForm } from "@/app/(auth)/_component/AuthContent/SignupForm";
 import { Button } from "@/component/Button";
 import { GoogleIcon } from "@/component/Icon/GoogleIcon";
 import { useAuth } from "@/lib/user/useAuth";
 
-type SignProps = {
+type AuthProps = {
   page: "signin" | "signup";
 };
 
-const form = tv({
+const authContainer = tv({
   slots: {
     base: "flex min-h-screen flex-col items-center justify-center px-4",
     button:
@@ -31,9 +31,9 @@ const form = tv({
   },
 });
 
-export const Sign: FC<SignProps> = (props) => {
+export const Auth: FC<AuthProps> = (props) => {
   const { page } = props;
-  const { base, button, container, divideContainer, hr, icon, logo, text, title } = form();
+  const { base, button, container, divideContainer, hr, icon, logo, text, title } = authContainer();
   const { handleGoogleSignin } = useAuth();
 
   return (

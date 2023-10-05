@@ -1,4 +1,4 @@
-import { InputSearch } from "@/app/search/_component/InputSearch";
+import { InputSearch } from "@/app/search/_component/SearchNav/InputSearch";
 
 type SearchLayoutProps = { children: React.ReactNode };
 

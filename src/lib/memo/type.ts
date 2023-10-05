@@ -6,6 +6,8 @@ type NoteSchema = {
   user_id: string;
 };
 
+export type NoteDisplayType = Pick<NoteSchema, "content" | "id" | "updated_at">;
+
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const isNoteType = (data: any): data is NoteSchema => {
   return data.id !== undefined;
@@ -16,7 +18,5 @@ export type NoteWithUserType = {
 };
 
 export type NoteListsType = { notes: NoteSchema[] };
-
-export type NoteListItemType = { note: NoteSchema };
 
 export type NoteIdType = { note: Pick<NoteSchema, "id"> };

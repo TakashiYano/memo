@@ -1,4 +1,4 @@
-import { AllInputSearch } from "@/app/(home)/_component/AllInputSearch";
+import { AllInputSearch } from "@/app/(home)/_component/NoteNav/AllInputSearch";
 
 type HomeLayoutProps = { children: React.ReactNode };
 
