@@ -20,3 +20,5 @@ export type NoteWithUserType = {
 export type NoteListsType = { notes: NoteSchema[] };
 
 export type NoteIdType = { note: Pick<NoteSchema, "id"> };
+
+export type DeleteNoteListType = { deletedNote: NoteSchema };
