@@ -17,7 +17,7 @@ export const useUpsertUser = (props: UpsertUserProps) => {
   const { profile, selectedFile, user } = props;
   const router = useRouter();
   const supabase = createClient();
-  const [isPending, startTransition] = useTransition();
+  const [isUpsertingProfile, startTransition] = useTransition();
 
   const handleProfile = async (formData: ProfileSchemaType) => {
     let avatar_url = user.user_metadata["avatar_url"];
@@ -79,5 +79,5 @@ export const useUpsertUser = (props: UpsertUserProps) => {
     }
   };
 
-  return { isPending, upsertUser };
+  return { isUpsertingProfile, upsertUser };
 };

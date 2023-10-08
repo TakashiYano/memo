@@ -12,7 +12,7 @@ import { createClient } from "@/lib/supabase/browser";
 export const useDeleteNote = (props: NoteIdType) => {
   const { note } = props;
   const router = useRouter();
-  const [isPending, startTransition] = useTransition();
+  const [isDeletingNote, startTransition] = useTransition();
 
   const backNote = useCallback(async ({ deletedNote }: DeleteNoteListType) => {
     const supabase = createClient();
@@ -88,5 +88,5 @@ export const useDeleteNote = (props: NoteIdType) => {
     }
   }, [deleteNote, router, handleBackNote]);
 
-  return { deleteNote, handleDeleteNote, isPending };
+  return { deleteNote, handleDeleteNote, isDeletingNote };
 };

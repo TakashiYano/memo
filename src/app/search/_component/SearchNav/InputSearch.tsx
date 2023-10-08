@@ -26,7 +26,7 @@ const inputSearch = tv({
 
 export const InputSearch = (props: InputSearchProps) => {
   const { base, container, icon, input, span, spinner, wrapper } = inputSearch();
-  const { buttonRef, handleChange, handleClose, handleSubmit, inputRef, isPending, keyword } =
+  const { buttonRef, handleChange, handleClose, handleSubmit, inputRef, isSearching, keyword } =
     useSearch();
 
   return (
@@ -53,9 +53,9 @@ export const InputSearch = (props: InputSearchProps) => {
             <MagnifyingGlassIcon className={icon()} />
           </span>
 
-          {keyword && isPending && <div className={spinner()} />}
+          {keyword && isSearching && <div className={spinner()} />}
 
-          {keyword && !isPending && (
+          {keyword && !isSearching && (
             <Button
               key="delete"
               ref={buttonRef}

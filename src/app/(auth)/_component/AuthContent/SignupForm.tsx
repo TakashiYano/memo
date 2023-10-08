@@ -24,7 +24,7 @@ const form = tv({
 
 export const SignupForm: FC = () => {
   const { base, button, link, text } = form();
-  const { handleEmailSignup, isPending } = useAuth();
+  const { handleEmailSignup, isCreatingUser } = useAuth();
   const {
     formState: { errors },
     handleSubmit,
@@ -61,8 +61,8 @@ export const SignupForm: FC = () => {
         error={errors.passwordConfirm?.message}
       />
 
-      <Button type="submit" variant="solid" className={button()} disabled={isPending}>
-        {isPending ? (
+      <Button type="submit" variant="solid" className={button()} disabled={isCreatingUser}>
+        {isCreatingUser ? (
           <div className="h-7 w-7 animate-spin rounded-full border-4 border-indigo-6 border-t-transparent dark:border-indigodark-6" />
         ) : (
           <div>新規登録</div>

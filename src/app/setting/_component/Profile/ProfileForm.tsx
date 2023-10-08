@@ -16,7 +16,7 @@ export const ProfileForm = (props: ProfileFormProps) => {
   const { profile, user } = props;
   const { handleSignOut } = useAuth();
   const { handleChangeFile, handleOpenFileDialog, imageRef, imageUrl, selectedFile } = useFile();
-  const { isPending, upsertUser } = useUpsertUser({
+  const { isUpsertingProfile, upsertUser } = useUpsertUser({
     profile,
     selectedFile,
     user,
@@ -73,8 +73,13 @@ export const ProfileForm = (props: ProfileFormProps) => {
 
         <div className="mt-12 space-y-4">
           {profile ? (
-            <Button type="submit" variant="solid" className="w-full p-3" disabled={isPending}>
-              {isPending ? (
+            <Button
+              type="submit"
+              variant="solid"
+              className="w-full p-3"
+              disabled={isUpsertingProfile}
+            >
+              {isUpsertingProfile ? (
                 <div className="h-7 w-7 animate-spin rounded-full border-4 border-indigo-6 border-t-transparent dark:border-indigodark-6" />
               ) : (
                 <p>保存する</p>
@@ -82,8 +87,13 @@ export const ProfileForm = (props: ProfileFormProps) => {
             </Button>
           ) : (
             <>
-              <Button type="submit" variant="solid" className="w-full p-3" disabled={isPending}>
-                {isPending ? (
+              <Button
+                type="submit"
+                variant="solid"
+                className="w-full p-3"
+                disabled={isUpsertingProfile}
+              >
+                {isUpsertingProfile ? (
                   <div className="h-7 w-7 animate-spin rounded-full border-4 border-indigo-6 border-t-transparent dark:border-indigodark-6" />
                 ) : (
                   <p>登録してはじめる</p>

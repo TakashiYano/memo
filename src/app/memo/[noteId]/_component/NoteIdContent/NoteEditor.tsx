@@ -11,13 +11,13 @@ import { useUpdateNote } from "@/lib/memo/useUpdateNote";
 export const NoteEditor = (props: NoteWithUserType) => {
   const { note } = props;
   const ref = useRef<HTMLTextAreaElement>(null);
-  const { handleBlur, handleChange, isPending } = useUpdateNote({ note });
+  const { handleBlur, handleChange, isUpdatingNote } = useUpdateNote({ note });
 
   return (
     <main className="mx-auto w-full max-w-screen-sm px-4">
       <label htmlFor="memo" className="block">
         <div className="text-sm font-light opacity-70">
-          {isPending ? `Last Saved ${format_hhmma(note.updated_at ?? "")}` : "Saved"}
+          {isUpdatingNote ? `Last Saved ${format_hhmma(note.updated_at ?? "")}` : "Saved"}
         </div>
         <ReactTextareaAutosize
           ref={ref}

@@ -13,7 +13,7 @@ export const useCreateNote = (props: ProfileIdType) => {
   const { profile } = props;
   const router = useRouter();
   const supabase = createClient();
-  const [isPending, startTransition] = useTransition();
+  const [isCreatingNote, startTransition] = useTransition();
 
   const handleCreateMemo = useCallback(async () => {
     try {
@@ -35,5 +35,5 @@ export const useCreateNote = (props: ProfileIdType) => {
     }
   }, [router, supabase, profile.id]);
 
-  return { handleCreateMemo, isPending };
+  return { handleCreateMemo, isCreatingNote };
 };

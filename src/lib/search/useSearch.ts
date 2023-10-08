@@ -19,7 +19,7 @@ export const useSearch = () => {
   const inputRef = useRef<HTMLInputElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
   const [keyword, setKeyword] = useState(q || "");
-  const [isPending, startTransition] = useTransition();
+  const [isSearching, startTransition] = useTransition();
 
   const debounced = useDebouncedCallback((value: string) => {
     if (!value) {
@@ -55,5 +55,5 @@ export const useSearch = () => {
     router.push("/search");
   }, [router]);
 
-  return { buttonRef, handleChange, handleClose, handleSubmit, inputRef, isPending, keyword };
+  return { buttonRef, handleChange, handleClose, handleSubmit, inputRef, isSearching, keyword };
 };

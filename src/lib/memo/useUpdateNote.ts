@@ -13,7 +13,7 @@ import { type Database } from "@/lib/supabase/type";
 export const useUpdateNote = (props: NoteWithUserType) => {
   const { note } = props;
   const router = useRouter();
-  const [isPending, startTransition] = useTransition();
+  const [isUpdatingNote, startTransition] = useTransition();
 
   const saveNote = useCallback(
     async (value?: string) => {
@@ -59,5 +59,5 @@ export const useUpdateNote = (props: NoteWithUserType) => {
     [saveNote]
   );
 
-  return { handleBlur, handleChange, isPending };
+  return { handleBlur, handleChange, isUpdatingNote };
 };

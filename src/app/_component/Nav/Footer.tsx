@@ -47,7 +47,7 @@ const NavigationLink = ({
 export const Footer = (props: ProfileAllType) => {
   const { profile } = props;
   const { base, image, li, text, ul } = footer();
-  const { handleCreateMemo, isPending } = useCreateNote({ profile });
+  const { handleCreateMemo, isCreatingNote } = useCreateNote({ profile });
   const currentPath = usePathname();
 
   return (
@@ -66,7 +66,7 @@ export const Footer = (props: ProfileAllType) => {
               key="write memo"
               variant="solid"
               onClick={handleCreateMemo}
-              disabled={isPending}
+              disabled={isCreatingNote}
               className="w-full p-2 text-indigo-12 hover:bg-indigo-3 dark:text-indigodark-12 dark:hover:bg-indigodark-3"
             >
               <PencilSquareIcon className="h-5 w-5" />

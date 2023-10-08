@@ -17,7 +17,7 @@ import {
 export const useAuth = () => {
   const supabase = createClient();
   const router = useRouter();
-  const [isPending, startTransition] = useTransition();
+  const [isCreatingUser, startTransition] = useTransition();
 
   // Google Signin
   const handleGoogleSignin = async () => {
@@ -93,6 +93,6 @@ export const useAuth = () => {
     handleEmailSignup,
     handleGoogleSignin,
     handleSignOut,
-    isPending,
+    isCreatingUser,
   };
 };

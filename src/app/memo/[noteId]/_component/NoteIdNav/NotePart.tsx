@@ -15,7 +15,7 @@ export const NotePart = (props: NoteWithUserType) => {
   const { note } = props;
   const router = useRouter();
   const { dispatch, isShowConfirmDialog } = useNoteDialog();
-  const { handleDeleteNote, isPending } = useDeleteNote({ note });
+  const { handleDeleteNote, isDeletingNote } = useDeleteNote({ note });
 
   const handleShowConfirmDialog = () => {
     dispatch({ type: "SHOW_CONFIRM_DIALOG" });
@@ -54,7 +54,7 @@ export const NotePart = (props: NoteWithUserType) => {
         description="復元できませんがよろしいですか？"
         buttonText="削除する"
         buttonColor="red"
-        disabled={isPending}
+        disabled={isDeletingNote}
       />
     </>
   );
