@@ -2,7 +2,7 @@ import { forwardRef, type ComponentProps, type ForwardedRef } from "react";
 
 type InputProps = ComponentProps<"input"> & {
   error?: string;
-  label: string;
+  label?: string;
   prefix?: string;
   required?: boolean;
 };

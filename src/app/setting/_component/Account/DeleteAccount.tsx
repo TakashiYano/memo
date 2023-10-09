@@ -4,8 +4,11 @@ import { type FC } from "react";
 
 import { tv } from "tailwind-variants";
 
+import { InputConfirmDialog } from "@/app/setting/_component/Account/InputConfirmDialog";
 import { Button } from "@/component/Button";
 import { List } from "@/component/List/List";
+import { type ProfileAllType } from "@/lib/profile/type";
+import { useDeleteDialog } from "@/lib/setting/useDelete";
 
 const list = tv({
   slots: {
@@ -13,13 +16,15 @@ const list = tv({
   },
 });
 
-export const DeleteAccount: FC = () => {
+export const DeleteAccount: FC<ProfileAllType> = (props) => {
+  const { profile } = props;
   const { container } = list();
-
-  const handleDeleteMemo = () => {
-    // TODO:Memo削除
-    alert("未実装");
-  };
+  const {
+    handleCloseDeleteAccountDialog,
+    handleDeleteAccount,
+    handleOpenDeleteAccountDialog,
+    isShowDeleteAccount,
+  } = useDeleteDialog({ profile });
 
   return (
     <div className={container()}>
@@ -32,14 +37,22 @@ export const DeleteAccount: FC = () => {
               <Button
                 variant="error"
                 className="px-4 py-2 text-sm text-red-11 dark:text-reddark-11"
-                onClick={handleDeleteMemo}
+                onClick={handleOpenDeleteAccountDialog}
               >
                 削除する
               </Button>
             ),
-            label: <div className="ml-3 flex-1 font-bold">Memoデータ</div>,
+            label: <div className="ml-3 flex-1 font-bold">アカウントの削除</div>,
           },
         ]}
+      />
+
+      <InputConfirmDialog
+        show={isShowDeleteAccount}
+        onClose={handleCloseDeleteAccountDialog}
+        onClickOk={handleDeleteAccount}
+        title="アカウントの削除"
+        buttonText="削除する"
       />
     </div>
   );
