@@ -1,9 +1,15 @@
+"use client";
+
 import { useCallback, useState } from "react";
+import { useRouter } from "next/navigation";
 
 import { type ProfileAllType } from "@/lib/profile/type";
+import { createClient } from "@/lib/supabase/browser";
 
 export const useDeleteDialog = (props: ProfileAllType) => {
   const { profile } = props;
+  const supabase = createClient();
+  const router = useRouter();
 
   // account
   const [isShowDeleteAccount, setIsShowDeleteAccount] = useState(false);
@@ -17,9 +23,10 @@ export const useDeleteDialog = (props: ProfileAllType) => {
     if (!profile) {
       return;
     }
-    // TODO:ユーザーデータの削除
-    alert("未実装");
-  }, [profile]);
+    await supabase.from("profiles").delete().eq("id", profile.id);
+    await supabase.auth.signOut();
+    router.refresh();
+  }, [profile, supabase, router]);
 
   return {
     handleCloseDeleteAccountDialog,
