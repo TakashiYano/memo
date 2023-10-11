@@ -21,9 +21,13 @@ export const DeleteAccount: FC<ProfileAllType> = (props) => {
   const { container } = list();
   const {
     handleCloseDeleteAccountDialog,
+    handleCloseDeleteMemoDialog,
     handleDeleteAccount,
+    handleDeleteMemo,
     handleOpenDeleteAccountDialog,
+    handleOpenDeleteMemoDialog,
     isShowDeleteAccount,
+    isShowDeleteMemo,
   } = useDeleteDialog({ profile });
 
   return (
@@ -37,6 +41,18 @@ export const DeleteAccount: FC<ProfileAllType> = (props) => {
               <Button
                 variant="error"
                 className="px-4 py-2 text-sm text-red-11 dark:text-reddark-11"
+                onClick={handleOpenDeleteMemoDialog}
+              >
+                削除する
+              </Button>
+            ),
+            label: <div className="ml-3 flex-1 font-bold">Memoデータの削除</div>,
+          },
+          {
+            button: (
+              <Button
+                variant="error"
+                className="px-4 py-2 text-sm text-red-11 dark:text-reddark-11"
                 onClick={handleOpenDeleteAccountDialog}
               >
                 削除する
@@ -45,6 +61,14 @@ export const DeleteAccount: FC<ProfileAllType> = (props) => {
             label: <div className="ml-3 flex-1 font-bold">アカウントの削除</div>,
           },
         ]}
+      />
+
+      <InputConfirmDialog
+        show={isShowDeleteMemo}
+        onClose={handleCloseDeleteMemoDialog}
+        onClickOk={handleDeleteMemo}
+        title="Memoデータの削除"
+        buttonText="削除する"
       />
 
       <InputConfirmDialog
