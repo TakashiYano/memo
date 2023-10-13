@@ -11,6 +11,39 @@ import { createClient } from "@/lib/supabase/server";
 
 const inter = Inter({ subsets: ["latin"] });
 
+const siteName = "Memo";
+const description = "Memo pad app for constantly updated output";
+const url = "https://localhost:3000";
+
+export const metadata = {
+  alternates: {
+    canonical: url,
+  },
+  description,
+  openGraph: {
+    description,
+    locale: "ja_JP",
+    siteName,
+    title: siteName,
+    type: "website",
+    url,
+  },
+  title: {
+    default: siteName,
+    template: `%s - ${siteName}`,
+  },
+  twitter: {
+    card: "summary_large_image",
+    creator: "@作者のTwitterID",
+    description,
+    site: "@サイト用アカウントのTwitterID",
+    title: siteName,
+  },
+  verification: {
+    google: "サーチコンソールのやつ",
+  },
+};
+
 const getProfile = async () => {
   const supabase = createClient();
   const {

@@ -1,6 +1,10 @@
 import { AllNoteList } from "@/app/(home)/_component/NoteContent/AllNoteList";
 import { createClient } from "@/lib/supabase/server";
 
+export const metadata = {
+  title: "Home",
+};
+
 export const fetchCache = "only-no-store";
 
 const getNotes = async () => {

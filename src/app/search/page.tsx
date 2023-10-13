@@ -2,6 +2,10 @@ import { SearchList } from "@/app/search/_component/SearchContent/SearchList";
 import { type SearchPageProps } from "@/app/search/_component/type";
 import { createClient } from "@/lib/supabase/server";
 
+export const metadata = {
+  title: "Search",
+};
+
 const getNotes = async (props: SearchPageProps) => {
   const { searchParams } = props;
   const supabase = createClient();

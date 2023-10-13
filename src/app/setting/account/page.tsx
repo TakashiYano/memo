@@ -3,6 +3,10 @@ import { LogoutButton } from "@/app/setting/_component/Account/LogoutButton";
 import { ThemeList } from "@/app/setting/_component/Account/ThemeList";
 import { createClient } from "@/lib/supabase/server";
 
+export const metadata = {
+  title: "Account",
+};
+
 const getProfile = async () => {
   const supabase = createClient();
   const {

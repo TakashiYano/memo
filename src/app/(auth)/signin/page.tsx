@@ -3,6 +3,10 @@ import { redirect } from "next/navigation";
 import { Auth } from "@/app/(auth)/_component/AuthContent";
 import { createClient } from "@/lib/supabase/server";
 
+export const metadata = {
+  title: "SignIn",
+};
+
 const Signin = async () => {
   const supabase = createClient();
 
