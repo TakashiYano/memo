@@ -73,10 +73,10 @@ export const useUpsertUser = (props: UpsertUserProps) => {
     // 新規登録の場合はリダイレクト
     if (!profile) {
       await router.push("/");
-      startTransition(() => {
-        router.refresh();
-      });
     }
+    startTransition(() => {
+      router.refresh();
+    });
   };
 
   return { isUpsertingProfile, upsertUser };
