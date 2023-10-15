@@ -1,7 +1,9 @@
+import { type Metadata } from "next";
 import { notFound } from "next/navigation";
 
 import { NoteEditor } from "@/app/memo/[noteId]/_component/NoteIdContent/NoteEditor";
 import { NotePart } from "@/app/memo/[noteId]/_component/NoteIdNav/NotePart";
+import { getFirstAndSecondLine } from "@/lib/memo/getFirstAndSecondLine";
 import { createClient } from "@/lib/supabase/server";
 
 export const revalidate = 60;
@@ -25,9 +27,22 @@ const getNote = async (noteId: string) => {
   return data;
 };
 
+export async function generateMetadata({
+  params: { noteId },
+}: {
+  params: { noteId: string };
+}): Promise<Metadata> {
+  const note = await getNote(noteId);
+  const [first, second] = getFirstAndSecondLine(note.content ?? "");
+
+  return {
+    description: `${first}. ${second}`,
+    title: first,
+  };
+}
+
 const NotePage = async ({ params: { noteId } }: { params: { noteId: string } }) => {
   const notePromise = getNote(noteId);
-
   const [note] = await Promise.all([notePromise]);
 
   return (
