@@ -1,31 +1,11 @@
 import { type Metadata } from "next";
-import { notFound } from "next/navigation";
 
 import { NoteEditor } from "@/app/memo/[noteId]/_component/NoteIdContent/NoteEditor";
 import { NotePart } from "@/app/memo/[noteId]/_component/NoteIdNav/NotePart";
 import { getFirstAndSecondLine } from "@/lib/memo/getFirstAndSecondLine";
-import { createClient } from "@/lib/supabase/server";
+import { getNote } from "@/lib/supabase/note";
 
 export const revalidate = 60;
-
-const getNote = async (noteId: string) => {
-  const supabase = createClient();
-  const { data, error } = await supabase
-    .from("memo_notes")
-    .select("id, content, updated_at")
-    .eq("id", noteId)
-    .single();
-
-  if (!data) {
-    notFound();
-  }
-
-  if (error) {
-    throw new Error("メモ詳細の取得に失敗しました");
-  }
-
-  return data;
-};
 
 export async function generateMetadata({
   params: { noteId },

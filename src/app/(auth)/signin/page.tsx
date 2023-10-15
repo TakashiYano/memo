@@ -1,19 +1,14 @@
 import { redirect } from "next/navigation";
 
 import { Auth } from "@/app/(auth)/_component/AuthContent";
-import { createClient } from "@/lib/supabase/server";
+import { getSession } from "@/lib/supabase/user";
 
 export const metadata = {
   title: "SignIn",
 };
 
 const Signin = async () => {
-  const supabase = createClient();
-
-  // 認証している場合、リダイレクト
-  const {
-    data: { session },
-  } = await supabase.auth.getSession();
+  const session = await getSession();
   if (session) {
     redirect("/");
   }
