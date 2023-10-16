@@ -6,6 +6,7 @@ import { TagIcon, TrashIcon } from "@heroicons/react/24/outline";
 
 import { Button } from "@/component/Button";
 import { MenuDialog } from "@/component/Dialog/MenuDialog";
+import { MenuDialogList } from "@/component/Dialog/MenuDialogList";
 import { format_yyyyMd } from "@/lib/memo/date";
 import { getFirstAndSecondLine } from "@/lib/memo/getFirstAndSecondLine";
 import { type NoteDisplayType } from "@/lib/memo/type";
@@ -62,7 +63,7 @@ export const NoteListItem = (props: NoteListItemProps) => {
       </Link>
 
       <MenuDialog show={isShowMenuDialog} onClose={handleHideMenuDialog}>
-        <h1>Label</h1>
+        <MenuDialogList menu={[]} />
       </MenuDialog>
     </>
   );
