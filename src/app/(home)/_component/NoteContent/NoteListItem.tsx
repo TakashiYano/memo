@@ -31,10 +31,23 @@ export const NoteListItem = (props: NoteListItemProps) => {
 
   return (
     <>
-      <Link
-        href={`/memo/${note.id}`}
-        className="group relative block w-full rounded-xl bg-indigo-3 px-4 py-3 shadow hover:bg-indigo-4 dark:bg-indigodark-3 dark:hover:bg-indigodark-4 sm:px-6"
-      >
+      <div className="group relative">
+        <Link
+          href={`/memo/${note.id}`}
+          className="block w-full rounded-xl bg-indigo-3 px-4 py-3 shadow hover:bg-indigo-4 dark:bg-indigodark-3 dark:hover:bg-indigodark-4 sm:px-6"
+        >
+          <div>
+            <h1 className="truncate text-sm font-bold leading-relaxed sm:text-base">{first}</h1>
+            <p className="truncate text-sm leading-relaxed">{second}</p>
+          </div>
+
+          <div className="mt-4 flex h-6 items-end justify-between">
+            <time className="space-x-4 text-sm font-bold tracking-wide text-indigo-11 dark:text-indigodark-11">
+              {format_yyyyMd(note.updated_at ?? "")}
+            </time>
+          </div>
+        </Link>
+
         <div className="absolute -top-2.5 right-0 hidden rounded-xl border border-indigo-6 bg-indigo-4 shadow group-hover:inline-block dark:border-indigodark-6 dark:bg-indigodark-4">
           <ul className="flex justify-end gap-x-2 px-2 opacity-70">
             <li className="hover:bg-indigo-5 dark:hover:bg-indigodark-5">
@@ -49,18 +62,7 @@ export const NoteListItem = (props: NoteListItemProps) => {
             </li>
           </ul>
         </div>
-
-        <div>
-          <h1 className="truncate text-sm font-bold leading-relaxed sm:text-base">{first}</h1>
-          <p className="truncate text-sm leading-relaxed">{second}</p>
-        </div>
-
-        <div className="mt-4 flex h-6 items-end justify-between">
-          <time className="space-x-4 text-sm font-bold tracking-wide text-indigo-11 dark:text-indigodark-11">
-            {format_yyyyMd(note.updated_at ?? "")}
-          </time>
-        </div>
-      </Link>
+      </div>
 
       <MenuDialog show={isShowMenuDialog} onClose={handleHideMenuDialog}>
         <MenuDialogList menu={[]} />
