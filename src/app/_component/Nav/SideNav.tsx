@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 import { MagnifyingGlassIcon, PencilSquareIcon } from "@heroicons/react/24/outline";
 import { tv } from "tailwind-variants";
 
+import { Accordion } from "@/component/Accordion";
 import { Avatar } from "@/component/Avatar";
 import { Button } from "@/component/Button";
 import { useCreateNote } from "@/lib/memo/useCreateNote";
@@ -13,7 +14,7 @@ import { type ProfileAllType } from "@/lib/profile/type";
 
 const sideNav = tv({
   slots: {
-    base: "sticky top-0 hidden self-start bg-indigo-2 p-5 dark:bg-indigodark-2 md:inline",
+    base: "sticky top-0 hidden self-start bg-indigo-2 p-5 dark:bg-indigodark-2 md:inline w-[210px] max-w-[210px]",
     body: "text-lg",
     icon: "w-5 h-5 inline-block",
     title: "text-xl font-bold text-indigo-12 dark:text-indigodark-12",
@@ -82,11 +83,14 @@ export const SideNav = (props: ProfileAllType) => {
               variant="solid"
               onClick={handleCreateMemo}
               disabled={isCreatingNote}
-              className="flex w-full items-center gap-x-3 p-2 text-indigo-12 hover:bg-indigo-3 dark:text-indigodark-12 dark:hover:bg-indigodark-3"
+              className="flex w-full items-center gap-x-3 p-2 text-indigo-12 dark:text-indigodark-12"
             >
               <PencilSquareIcon className="h-5 w-5" />
               <p className={body()}>メモを書く</p>
             </Button>
+          </li>
+          <li className="ml-1">
+            <Accordion />
           </li>
         </ul>
       </nav>
