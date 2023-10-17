@@ -7,7 +7,7 @@ import { Inter } from "next/font/google";
 import { Footer } from "@/app/_component/Nav/Footer";
 import { SideNav } from "@/app/_component/Nav/SideNav";
 import { ToastProvider } from "@/app/_component/Provider/ToastProvider";
-import { createClient } from "@/lib/supabase/server";
+import { getProfile } from "@/lib/supabase/user";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -42,18 +42,6 @@ export const metadata = {
   verification: {
     google: "サーチコンソールのやつ",
   },
-};
-
-const getProfile = async () => {
-  const supabase = createClient();
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
-  if (user) {
-    const { data: profile } = await supabase.from("profiles").select().eq("id", user.id).single();
-    return profile;
-  }
-  return null;
 };
 
 const RootLayout = async ({ children }: { children: React.ReactNode }) => {
