@@ -24,7 +24,7 @@ export const useAuth = () => {
     try {
       await supabase.auth.signInWithOAuth({
         options: {
-          redirectTo: "http://localhost:3000/auth/callback",
+          redirectTo: "https://memo-note.vercel.app/auth/callback",
         },
         provider: "google",
       });
@@ -41,7 +41,7 @@ export const useAuth = () => {
         supabase.auth.signUp({
           email: parsed.email,
           options: {
-            emailRedirectTo: "http://localhost:3000/auth/callback",
+            emailRedirectTo: "https://memo-note.vercel.app/auth/callback",
           },
           password: parsed.password,
         }),

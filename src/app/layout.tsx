@@ -13,7 +13,7 @@ const inter = Inter({ subsets: ["latin"] });
 
 const siteName = "Memo";
 const description = "Memo pad app for constantly updated output";
-const url = "https://localhost:3000";
+const url = "https://memo-note.vercel.app/";
 
 export const metadata = {
   alternates: {
