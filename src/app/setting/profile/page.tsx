@@ -8,7 +8,7 @@ export const metadata = {
 };
 
 const ProfilePage = async () => {
-  const userPromise = await getUser();
+  const userPromise = getUser();
   const profilePromise = getProfile();
   const [user, profile] = await Promise.all([userPromise, profilePromise]);
 

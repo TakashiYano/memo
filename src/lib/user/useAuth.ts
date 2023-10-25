@@ -75,6 +75,10 @@ export const useAuth = () => {
           success: "ログインに成功しました",
         }
       );
+      await router.push("/");
+      startTransition(() => {
+        router.refresh();
+      });
     } catch (error) {
       console.error(error);
     }
@@ -83,6 +87,7 @@ export const useAuth = () => {
   // SignOut
   const handleSignOut = async () => {
     await supabase.auth.signOut();
+    await router.push("/signin");
     startTransition(() => {
       router.refresh();
     });
