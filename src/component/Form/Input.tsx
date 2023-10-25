@@ -13,10 +13,13 @@ export const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
   return (
     <div className="block">
       <label htmlFor={rest.id}>
-        <div className="ml-4 block text-sm font-bold text-indigo-12 dark:text-indigodark-12">
-          {label}
-          <div className="inline-block text-red-11 dark:text-reddark-11">{required && "*"}</div>
-        </div>
+        {label && (
+          <div className="ml-4 block text-sm font-bold text-indigo-12 dark:text-indigodark-12">
+            {label}
+            <div className="inline-block text-red-11 dark:text-reddark-11">{required && "*"}</div>
+          </div>
+        )}
+
         <div className="relative">
           {prefix ? (
             <span className="absolute left-5 flex h-full items-center font-bold">{prefix}</span>
