@@ -20,27 +20,9 @@ export const metadata = {
     canonical: url,
   },
   description,
-  openGraph: {
-    description,
-    locale: "ja_JP",
-    siteName,
-    title: siteName,
-    type: "website",
-    url,
-  },
   title: {
     default: siteName,
     template: `%s - ${siteName}`,
-  },
-  twitter: {
-    card: "summary_large_image",
-    creator: "@作者のTwitterID",
-    description,
-    site: "@サイト用アカウントのTwitterID",
-    title: siteName,
-  },
-  verification: {
-    google: "サーチコンソールのやつ",
   },
 };
 
