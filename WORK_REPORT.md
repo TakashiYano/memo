@@ -637,7 +637,7 @@ export const MenuDialog: FC<MenuDialogProps> = (props) => {
               leaveFrom="translate-y-0 sm:opacity-100 sm:scale-100"
               leaveTo="translate-y-full sm:translate-y-0 sm:opacity-0 sm:scale-95"
             >
-              <div className="bg-indigo-2 dark:bg-indigodark-2 relative rounded-t-3xl px-6 pb-12 pt-20 sm:rounded-2xl">
+              <div className="relative rounded-t-3xl bg-indigo-2 px-6 pb-12 pt-20 dark:bg-indigodark-2 sm:rounded-2xl">
                 <Button
                   ref={buttonRef}
                   variant="ghost"
@@ -670,7 +670,7 @@ Dialog 表示時の背景の表示
 - Dialog 表示時に背景を薄暗くするための設定
 
 ```tsx
-<div className="fixed inset-0 bg-black bg-opacity-25" />
+<div className="bg-black fixed inset-0 bg-opacity-25" />
 ```
 
 Transition
@@ -970,7 +970,7 @@ import { ThemeProviders } from "@/app/_component/Provider/ThemeProviders";
 const RootLayout = async ({ children }: { children: React.ReactNode }) => {
   return (
     <html lang="ja" suppressHydrationWarning>
-      <body className="bg-indigo-2 dark:bg-indigodark-2 min-h-screen md:mr-0 md:flex md:justify-center">
+      <body className="min-h-screen bg-indigo-2 dark:bg-indigodark-2 md:mr-0 md:flex md:justify-center">
         <ThemeProviders>
           <main>{children}</main>
         </ThemeProviders>{" "}
