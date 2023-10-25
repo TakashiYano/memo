@@ -60,7 +60,7 @@ export const MenuDialog: FC<MenuDialogProps> = (props) => {
                   <span className="sr-only">Close panel</span>
                   <XMarkIcon className="h-5 w-5" aria-hidden="true" />
                 </Button>
-                <div>{children}</div>
+                <div className="space-y-4">{children}</div>
               </div>
             </Transition.Child>
           </div>

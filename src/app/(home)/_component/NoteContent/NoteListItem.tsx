@@ -1,5 +1,6 @@
 "use client";
 
+import { useCallback } from "react";
 import Link from "next/link";
 
 import { TagIcon, TrashIcon } from "@heroicons/react/24/outline";
@@ -7,6 +8,7 @@ import { TagIcon, TrashIcon } from "@heroicons/react/24/outline";
 import { Button } from "@/component/Button";
 import { MenuDialog } from "@/component/Dialog/MenuDialog";
 import { MenuDialogList } from "@/component/Dialog/MenuDialogList";
+import { Input } from "@/component/Form/Input";
 import { format_yyyyMd } from "@/lib/memo/date";
 import { getFirstAndSecondLine } from "@/lib/memo/getFirstAndSecondLine";
 import { type NoteDisplayType } from "@/lib/memo/type";
@@ -28,6 +30,11 @@ export const NoteListItem = (props: NoteListItemProps) => {
   const handleHideMenuDialog = () => {
     dispatch({ type: "HIDE_MENU_DIALOG" });
   };
+
+  const handleSetLabel = useCallback(() => {
+    // TODO：対象のメモにラベルを追加する機能を実装予定
+    alert("対象のメモにラベルを追加する機能を実装予定");
+  }, []);
 
   return (
     <>
@@ -65,7 +72,18 @@ export const NoteListItem = (props: NoteListItemProps) => {
       </div>
 
       <MenuDialog show={isShowMenuDialog} onClose={handleHideMenuDialog}>
-        <MenuDialogList menu={[]} />
+        <Input placeholder="ラベルを追加" />
+        <MenuDialogList
+          menu={[
+            [{ label: { color: "#53ea8c", id: "React", name: "React" }, onClick: handleSetLabel }],
+            [
+              {
+                label: { color: "#ea546c", id: "TypeScript", name: "TypeScript" },
+                onClick: handleSetLabel,
+              },
+            ],
+          ]}
+        />
       </MenuDialog>
     </>
   );
