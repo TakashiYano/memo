@@ -3,8 +3,8 @@
 - [Deployed Preview here](https://memo-note.vercel.app/)
 
   - テストユーザー
-    - メールアドレス：test@example.com
-    - パスワード：password1
+    - メールアドレス：`test@example.com`
+    - パスワード：`password1`
 
 - [Work Report here](./WORK_REPORT.md)
 
