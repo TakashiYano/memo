@@ -10,7 +10,7 @@ type Props = {
   buttonColor: "blue" | "red";
   buttonText: string;
   description: string;
-  disabled: boolean;
+  disabled?: boolean;
   onClickOk: ComponentProps<"button">["onClick"];
   onClose: () => void;
   show: boolean;
@@ -25,7 +25,7 @@ export const ConfirmDialog: FC<Props> = (props) => {
     <Transition.Root show={show} as={Fragment}>
       <Dialog
         static
-        className="fixed inset-0 z-10 overflow-y-auto"
+        className="fixed inset-0 z-10 overflow-y-auto bg-indigodark-1/50 dark:bg-indigodark-1/50"
         open={show}
         onClose={onClose}
         initialFocus={buttonRef}

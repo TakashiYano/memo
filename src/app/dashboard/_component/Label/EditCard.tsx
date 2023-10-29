@@ -8,7 +8,7 @@ import { type Label } from "@/lib/label/type";
 
 const card = tv({
   slots: {
-    base: "border border-indigo-6 bg-indigo-3 dark:border-indigodark-6 dark:bg-indigodark-3",
+    base: "group-first:rounded-t-xl group-last:rounded-b-xl border border-indigo-6 bg-indigo-3 dark:border-indigodark-6 dark:bg-indigodark-3",
     buttonContainer: "flex justify-end gap-x-2",
     chipContainer: "mb-2",
     inputContainer: "space-y-2",
@@ -59,6 +59,7 @@ export const EditCard = (props: EditCardProps): JSX.Element => {
         )}
         <div className={inputContainer()}>
           <Input
+            id={label ? label.id : "newId"}
             type="text"
             value={nameInputText}
             onChange={(event) => {
