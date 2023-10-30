@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback } from "react";
+import { useRouter } from "next/navigation";
 
 import { toast } from "react-hot-toast";
 
@@ -13,6 +14,7 @@ type CreateLabelProps = ProfileIdType & Pick<Label, "color" | "name">;
 export const useCreateLabel = (props: CreateLabelProps) => {
   const { color, name, profile } = props;
   const supabase = createClient();
+  const router = useRouter();
 
   const handleCreateLabel = useCallback(async () => {
     try {
@@ -21,15 +23,15 @@ export const useCreateLabel = (props: CreateLabelProps) => {
         .insert({ color, name, user_id: profile.id })
         .select()
         .single();
-      console.log(data);
       if (!isLabelType(data)) {
         throw new Error("Failed to create label");
       }
+      router.refresh();
     } catch (error) {
       toast.error("ラベルの作成に失敗しました。時間を空けてから再度お試しください。");
       console.error(error);
     }
-  }, [color, name, profile.id, supabase]);
+  }, [color, name, profile.id, supabase, router]);
 
   return { handleCreateLabel };
 };

@@ -1,4 +1,5 @@
 import { LabelList } from "@/app/dashboard/_component/Label";
+import { getLabels } from "@/lib/supabase/label";
 import { getProfile } from "@/lib/supabase/user";
 
 export const metadata = {
@@ -11,7 +12,9 @@ const LabelPage = async () => {
     return null;
   }
 
-  return <LabelList profile={profile} />;
+  const labels = await getLabels();
+
+  return <LabelList profile={profile} labels={labels} />;
 };
 
 export default LabelPage;

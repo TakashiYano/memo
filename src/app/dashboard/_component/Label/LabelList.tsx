@@ -16,6 +16,8 @@ import { type ProfileAllType } from "@/lib/profile/type";
 const labelList = tv({
   slots: {
     base: "p-4",
+    body: "text-indigo-11 dark:text-indigodark-11",
+    bodyWrapper: "ml-4 mt-2",
     headerWrapper: "flex items-center justify-between",
     listContainer:
       "divide-y divide-indigo-6 rounded-xl border border-indigo-6 dark:divide-indigodark-6 dark:border-indigodark-6",
@@ -25,17 +27,14 @@ const labelList = tv({
   },
 });
 
-const labels = [
-  { color: "#ea546c", id: "TypeScript", name: "TypeScript" },
-  { color: "#53ea8c", id: "React", name: "React" },
-  { color: "#7BE4FF", id: "TailwindCSS", name: "TailwindCSS" },
-];
-
 type LabelColor = "#FF5D99" | "#7CFF7B" | "#FFD234" | "#7BE4FF" | "#CE88EF" | "#EF8C43" | "#000000";
 
-export const LabelList = (props: ProfileAllType) => {
-  const { base, headerWrapper, listContainer, listWrapper, title, wrapper } = labelList();
-  const { profile } = props;
+type LabelListProps = ProfileAllType & { labels: Label[] };
+
+export const LabelList = (props: LabelListProps) => {
+  const { base, body, bodyWrapper, headerWrapper, listContainer, listWrapper, title, wrapper } =
+    labelList();
+  const { labels, profile } = props;
   const [labelColorHex, setLabelColorHex] = useState("#000000");
   const [editingLabelId, setEditingLabelId] = useState<string | null>(null);
   const [nameInputText, setNameInputText] = useState<string>("");
@@ -51,7 +50,7 @@ export const LabelList = (props: ProfileAllType) => {
     return labels.sort((left: Label, right: Label) => {
       return left.name.localeCompare(right.name);
     });
-  }, []);
+  }, [labels]);
 
   const resetLabelState = () => {
     setIsCreateMode(false);
@@ -137,42 +136,48 @@ export const LabelList = (props: ProfileAllType) => {
               />
             ) : null}
           </>
-          <ul className={listContainer()}>
-            {sortedLabels
-              ? sortedLabels.map((label) => {
-                  const cardProps = {
-                    createLabel: createLabel,
-                    deleteLabel: deleteLabel,
-                    editingLabelId: editingLabelId,
-                    handleGenerateRandomColor: handleGenerateRandomColor,
-                    isCreateMode: isCreateMode,
-                    label: label,
-                    labelColorHex: labelColorHex,
-                    nameInputText: nameInputText,
-                    resetState: resetLabelState,
-                    setEditingLabelId: setEditingLabelId,
-                    setIsCreateMode: setIsCreateMode,
-                    setLabelColorHex: setLabelColorHex,
-                    setNameInputText: setNameInputText,
-                    updateLabel: updateLabel,
-                  };
+          {labels.length !== 0 ? (
+            <ul className={listContainer()}>
+              {sortedLabels
+                ? sortedLabels.map((label) => {
+                    const cardProps = {
+                      createLabel: createLabel,
+                      deleteLabel: deleteLabel,
+                      editingLabelId: editingLabelId,
+                      handleGenerateRandomColor: handleGenerateRandomColor,
+                      isCreateMode: isCreateMode,
+                      label: label,
+                      labelColorHex: labelColorHex,
+                      nameInputText: nameInputText,
+                      resetState: resetLabelState,
+                      setEditingLabelId: setEditingLabelId,
+                      setIsCreateMode: setIsCreateMode,
+                      setLabelColorHex: setLabelColorHex,
+                      setNameInputText: setNameInputText,
+                      updateLabel: updateLabel,
+                    };
 
-                  if (editingLabelId == label.id) {
+                    if (editingLabelId == label.id) {
+                      return (
+                        <li key={`edit-${label.id}`} className={listWrapper()}>
+                          <EditCard {...cardProps} />
+                        </li>
+                      );
+                    }
+
                     return (
-                      <li key={`edit-${label.id}`} className={listWrapper()}>
-                        <EditCard {...cardProps} />
+                      <li key={label.id} className={listWrapper()}>
+                        <LabelListItem {...cardProps} onEditPress={onEditPress} />
                       </li>
                     );
-                  }
-
-                  return (
-                    <li key={label.id} className={listWrapper()}>
-                      <LabelListItem {...cardProps} onEditPress={onEditPress} />
-                    </li>
-                  );
-                })
-              : null}
-          </ul>
+                  })
+                : null}
+            </ul>
+          ) : (
+            <div className={bodyWrapper()}>
+              <p className={body()}>ラベルがありません</p>
+            </div>
+          )}
         </div>
       </div>
 
