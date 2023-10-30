@@ -10,6 +10,8 @@ import { Button } from "@/component/Button";
 import { ConfirmDialog } from "@/component/Dialog/ConfirmDialog";
 import { labelColorObjects } from "@/lib/label/labelColorObjects";
 import { type Label } from "@/lib/label/type";
+import { useCreateLabel } from "@/lib/label/useCreateLabel";
+import { type ProfileAllType } from "@/lib/profile/type";
 
 const labelList = tv({
   slots: {
@@ -31,13 +33,19 @@ const labels = [
 
 type LabelColor = "#FF5D99" | "#7CFF7B" | "#FFD234" | "#7BE4FF" | "#CE88EF" | "#EF8C43" | "#000000";
 
-export const LabelList = () => {
+export const LabelList = (props: ProfileAllType) => {
   const { base, headerWrapper, listContainer, listWrapper, title, wrapper } = labelList();
+  const { profile } = props;
   const [labelColorHex, setLabelColorHex] = useState("#000000");
   const [editingLabelId, setEditingLabelId] = useState<string | null>(null);
   const [nameInputText, setNameInputText] = useState<string>("");
   const [isCreateMode, setIsCreateMode] = useState<boolean>(false);
   const [isShowConfirmDialog, setIsShowConfirmDialog] = useState<boolean>(false);
+  const { handleCreateLabel } = useCreateLabel({
+    color: labelColorHex,
+    name: nameInputText,
+    profile,
+  });
 
   const sortedLabels = useMemo(() => {
     return labels.sort((left: Label, right: Label) => {
@@ -53,8 +61,7 @@ export const LabelList = () => {
   };
 
   const createLabel = () => {
-    // TODO：ラベル作成処理
-    alert("ラベルを作成する");
+    handleCreateLabel();
     resetLabelState();
   };
 
