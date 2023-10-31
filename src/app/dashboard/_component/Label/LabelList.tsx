@@ -12,6 +12,7 @@ import { labelColorObjects } from "@/lib/label/labelColorObjects";
 import { type Label } from "@/lib/label/type";
 import { useCreateLabel } from "@/lib/label/useCreateLabel";
 import { useDeleteLabel } from "@/lib/label/useDeleteLabel";
+import { useUpdateLabel } from "@/lib/label/useUpdateLabel";
 import { type ProfileAllType } from "@/lib/profile/type";
 
 const labelList = tv({
@@ -48,6 +49,11 @@ export const LabelList = (props: LabelListProps) => {
     profile,
   });
   const { handleDeleteLabel } = useDeleteLabel({ id: deletingLabelId });
+  const { handleUpdateLabel } = useUpdateLabel({
+    color: labelColorHex,
+    id: editingLabelId ?? "",
+    name: nameInputText,
+  });
 
   const sortedLabels = useMemo(() => {
     return labels.sort((left: Label, right: Label) => {
@@ -68,8 +74,7 @@ export const LabelList = (props: LabelListProps) => {
   };
 
   const updateLabel = () => {
-    // TODO：ラベル更新処理
-    alert("ラベルを更新する");
+    handleUpdateLabel();
   };
 
   const onDeleteLabel = () => {
