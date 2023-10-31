@@ -11,6 +11,7 @@ import { ConfirmDialog } from "@/component/Dialog/ConfirmDialog";
 import { labelColorObjects } from "@/lib/label/labelColorObjects";
 import { type Label } from "@/lib/label/type";
 import { useCreateLabel } from "@/lib/label/useCreateLabel";
+import { useDeleteLabel } from "@/lib/label/useDeleteLabel";
 import { type ProfileAllType } from "@/lib/profile/type";
 
 const labelList = tv({
@@ -40,11 +41,13 @@ export const LabelList = (props: LabelListProps) => {
   const [nameInputText, setNameInputText] = useState<string>("");
   const [isCreateMode, setIsCreateMode] = useState<boolean>(false);
   const [isShowConfirmDialog, setIsShowConfirmDialog] = useState<boolean>(false);
+  const [deletingLabelId, setDeletingLabelId] = useState<string>("");
   const { handleCreateLabel } = useCreateLabel({
     color: labelColorHex,
     name: nameInputText,
     profile,
   });
+  const { handleDeleteLabel } = useDeleteLabel({ id: deletingLabelId });
 
   const sortedLabels = useMemo(() => {
     return labels.sort((left: Label, right: Label) => {
@@ -70,8 +73,7 @@ export const LabelList = (props: LabelListProps) => {
   };
 
   const onDeleteLabel = () => {
-    // TODO：ラベル削除処理
-    alert("ラベルを削除する");
+    handleDeleteLabel();
   };
 
   const onEditPress = (label: Label | null) => {
@@ -84,7 +86,8 @@ export const LabelList = (props: LabelListProps) => {
     }
   };
 
-  const deleteLabel = () => {
+  const deleteLabel = (id: string) => {
+    setDeletingLabelId(id);
     setIsShowConfirmDialog(true);
   };
 
