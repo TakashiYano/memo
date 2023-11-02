@@ -25,7 +25,7 @@ export const ConfirmDialog: FC<Props> = (props) => {
     <Transition.Root show={show} as={Fragment}>
       <Dialog
         static
-        className="fixed inset-0 z-10 overflow-y-auto bg-indigodark-1/50 dark:bg-indigodark-1/50"
+        className="fixed inset-0 z-10 overflow-y-auto bg-indigo-1/50 dark:bg-indigodark-1/50"
         open={show}
         onClose={onClose}
         initialFocus={buttonRef}

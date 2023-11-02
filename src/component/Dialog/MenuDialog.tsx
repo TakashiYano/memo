@@ -22,7 +22,7 @@ export const MenuDialog: FC<MenuDialogProps> = (props) => {
         open={show}
         onClose={onClose}
         initialFocus={buttonRef}
-        className="sm:fixed sm:inset-0 sm:z-10 sm:overflow-y-auto"
+        className="bg-indigo-1/50 dark:bg-indigodark-1/50 sm:fixed sm:inset-0 sm:z-10 sm:overflow-y-auto"
       >
         <div className="min-h-screen text-center">
           <Transition.Child
