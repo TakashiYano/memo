@@ -8,13 +8,13 @@ import { type Label } from "@/lib/label/type";
 export type LabelAction = "RESET" | "TEMP" | "SAVE";
 export type LabelsDispatcher = (action: { labels: Label[]; type: LabelAction }) => void;
 
-export const useSetPageLabels = (articleId?: string): [{ labels: Label[] }, LabelsDispatcher] => {
-  const saveLabels = (labels: Label[], articleId: string) => {
+export const useSetPageLabels = (noteId?: string): [{ labels: Label[] }, LabelsDispatcher] => {
+  const saveLabels = (labels: Label[], noteId: string) => {
     (async () => {
       const labelIds = labels.map((l) => {
         return l.id;
       });
-      if (articleId) {
+      if (noteId) {
         // TODO：ラベル保存処理
         console.log(labelIds);
       }
@@ -23,13 +23,13 @@ export const useSetPageLabels = (articleId?: string): [{ labels: Label[] }, Labe
 
   const labelsReducer = (
     state: {
-      articleId: string | undefined;
       labels: Label[];
-      throttledSave: (labels: Label[], articleId: string) => void;
+      noteId: string | undefined;
+      throttledSave: (labels: Label[], noteId: string) => void;
     },
     action: {
-      articleId?: string;
       labels: Label[];
+      noteId?: string;
       type: string;
     }
   ) => {
@@ -47,8 +47,8 @@ export const useSetPageLabels = (articleId?: string): [{ labels: Label[] }, Labe
         };
       }
       case "SAVE": {
-        if (state.articleId) {
-          state.throttledSave(action.labels, state.articleId);
+        if (state.noteId) {
+          state.throttledSave(action.labels, state.noteId);
         } else {
           toast.error("Unable to update labels");
         }
@@ -60,7 +60,7 @@ export const useSetPageLabels = (articleId?: string): [{ labels: Label[] }, Labe
       case "UPDATE_ARTICLE_ID": {
         return {
           ...state,
-          articleId: action.articleId,
+          noteId: action.noteId,
         };
       }
       default:
@@ -70,23 +70,23 @@ export const useSetPageLabels = (articleId?: string): [{ labels: Label[] }, Labe
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const debouncedSave = useCallback(
-    throttle((labels: Label[], articleId: string) => {
-      return saveLabels(labels, articleId);
+    throttle((labels: Label[], noteId: string) => {
+      return saveLabels(labels, noteId);
     }, 2000),
     []
   );
 
   useEffect(() => {
     dispatchLabels({
-      articleId: articleId,
       labels: [],
+      noteId: noteId,
       type: "UPDATE_ARTICLE_ID",
     });
-  }, [articleId]);
+  }, [noteId]);
 
   const [labels, dispatchLabels] = useReducer(labelsReducer, {
-    articleId: articleId,
     labels: [],
+    noteId: noteId,
     throttledSave: debouncedSave,
   });
 
