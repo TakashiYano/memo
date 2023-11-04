@@ -5,12 +5,13 @@ import { useMemo } from "react";
 import { type Label } from "@/lib/label/type";
 
 type EditLabelChipStackProps = {
+  isSelected?: boolean;
   labels: Label[];
   setExpanded: (expanded: boolean) => void;
 };
 
 export function EditLabelChipStack(props: EditLabelChipStackProps): JSX.Element {
-  const { labels, setExpanded } = props;
+  const { isSelected, labels, setExpanded } = props;
   const colors = useMemo(() => {
     const mapped = labels.map((l) => {
       return l.color;
@@ -23,22 +24,25 @@ export function EditLabelChipStack(props: EditLabelChipStackProps): JSX.Element 
   }, [labels]);
 
   return (
-    <button
+    <span
+      className={`m-0.5 inline-table cursor-pointer whitespace-nowrap rounded-xl border-indigo-6 bg-indigo-9 bg-clip-padding px-[7px] py-[1px] dark:border-indigodark-6 dark:bg-indigodark-9 ${
+        isSelected && "ring-2"
+      }`}
       onClick={(event) => {
         setExpanded(true);
         event.preventDefault();
       }}
     >
-      <ul>
+      <div className="flex flex-row items-center justify-center gap-2 pl-4">
         {colors.map((color, idx) => {
           return (
-            <li key={`label-color${idx}`}>
+            <span key={`label-color${idx}`} className="ml-[-15px] flex h-full">
               <div className="h-5 w-5 rounded-full" style={{ backgroundColor: `${color}` }} />
-            </li>
+            </span>
           );
         })}
-        <div>{`${labels.length} labels`}</div>
-      </ul>
-    </button>
+        <span>{`${labels.length} labels`}</span>
+      </div>
+    </span>
   );
 }
