@@ -45,6 +45,7 @@ export const LabelList = (props: LabelListProps) => {
   const [deletingLabelId, setDeletingLabelId] = useState<string>("");
   const { handleCreateLabel } = useCreateLabel({
     color: labelColorHex,
+    labels,
     name: nameInputText,
     profile,
   });
