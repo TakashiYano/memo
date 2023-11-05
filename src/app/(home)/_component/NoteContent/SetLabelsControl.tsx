@@ -6,11 +6,11 @@ import { CheckIcon, ExclamationCircleIcon, PlusIcon } from "@heroicons/react/20/
 import { toast } from "react-hot-toast";
 
 import { LabelsPicker } from "@/app/(home)/_component/NoteContent/LabelsPicker";
+import { randomLabelColorHex } from "@/lib/label/labelColorObjects";
 import { type Label } from "@/lib/label/type";
 import { type LabelsDispatcher } from "@/lib/label/useSetPageLabels";
-
-// TODO：ラベル取得結果
-const labels = [{ color: "#111111", id: "1", name: "test" }];
+import { type ProfileIdType } from "@/lib/profile/type";
+import { createClient } from "@/lib/supabase/browser";
 
 export interface LabelsProvider {
   labels?: Label[];
@@ -20,12 +20,13 @@ type SetLabelsControlProps = {
   clearInputState: () => void;
   deleteLastLabel: () => void;
   dispatchLabels: LabelsDispatcher;
-
   errorMessage?: string;
   footer?: React.ReactNode;
 
   highlightLastLabel: boolean;
   inputValue: string;
+
+  labels: Label[];
   selectedLabels: Label[];
   selectOrCreateLabel: (value: string) => void;
 
@@ -53,6 +54,7 @@ const Header = (props: HeaderProps): JSX.Element => {
     focused,
     highlightLastLabel,
     inputValue,
+    labels,
     resetFocusedIndex,
     selectedLabels,
     selectOrCreateLabel,
@@ -65,9 +67,10 @@ const Header = (props: HeaderProps): JSX.Element => {
   } = props;
 
   return (
-    <div>
-      <div>
+    <div className="my-0 flex w-full flex-col items-start justify-around">
+      <div className="mb-1.5 mt-3 w-full px-4">
         <LabelsPicker
+          labels={labels}
           focused={focused}
           inputValue={inputValue}
           setInputValue={setInputValue}
@@ -117,11 +120,20 @@ const LabelListItem = (props: LabelListItemProps): JSX.Element => {
         toggleLabel(label);
         ref.current?.blur();
       }}
+      className={`flex h-10 w-full justify-start p-4 hover:bg-indigo-4 active:bg-indigo-5 dark:hover:bg-indigodark-4 dark:active:bg-indigodark-5 ${
+        selected && "bg-indigo-5 dark:bg-indigodark-5"
+      }`}
     >
-      <input autoFocus={focused} hidden={true} type="checkbox" checked={selected} readOnly />
-      <div className="h-5 w-5 rounded-full" style={{ backgroundColor: `${label.color}` }} />
-      <span className="text-xs text-indigo-12 dark:text-indigodark-12">{label.name}</span>
-      {selected && <CheckIcon className="h-5 w-5" />}
+      <input autoFocus={focused} type="hidden" checked={selected} readOnly />
+      <div className="flex h-full w-8 items-center">
+        <div className="h-5 w-5 rounded-full" style={{ backgroundColor: `${label.color}` }} />
+      </div>
+      <div className="flex h-full items-center text-clip">
+        <p className="text-xs text-indigo-12 dark:text-indigodark-12">{label.name}</p>
+      </div>
+      <div className="ml-auto flex items-center pl-2.5">
+        {selected && <CheckIcon className="h-5 w-5" />}
+      </div>
     </label>
   );
 };
@@ -173,40 +185,45 @@ const Footer = (props: FooterProps): JSX.Element => {
   }, [filterText]);
 
   return (
-    <div ref={ref}>
+    <div ref={ref} className="flex h-10 w-full flex-row items-center justify-start">
       {trimmedLabelName.length > 0 ? (
-        <button
-          onClick={async () => {
-            switch (textMatch) {
-              case "available":
-                await selectEnteredLabel();
-                return;
-              case "none":
-                await createEnteredLabel();
-                return;
-            }
-          }}
-        >
-          {textMatch === "available" && (
-            <>
-              <CheckIcon className="h-5 w-5" />
-              Use Enter to add label &quot;{trimmedLabelName}&quot;
-            </>
-          )}
+        <button className="relative h-10 w-full border-t border-indigo-6 pl-6 hover:bg-indigo-4 active:bg-indigo-5 dark:border-indigodark-6 dark:hover:bg-indigodark-4 dark:active:bg-indigodark-5">
+          <div
+            className="flex cursor-pointer flex-row items-center justify-start gap-2 hover:bg-indigo-4 dark:hover:bg-indigodark-4"
+            onClick={async () => {
+              switch (textMatch) {
+                case "available":
+                  await selectEnteredLabel();
+                  return;
+                case "none":
+                  await createEnteredLabel();
+                  return;
+              }
+            }}
+          >
+            {textMatch === "available" && (
+              <>
+                <CheckIcon className="h-5 w-5" />
+                Use Enter to add label &quot;{trimmedLabelName}&quot;
+              </>
+            )}
 
-          {textMatch === "none" && (
-            <>
-              <PlusIcon className="h-5 w-5" />
-              Use Enter to create new label &quot;{trimmedLabelName}&quot;
-            </>
-          )}
+            {textMatch === "none" && (
+              <>
+                <PlusIcon className="h-5 w-5" />
+                Use Enter to create new label &quot;{trimmedLabelName}&quot;
+              </>
+            )}
+          </div>
         </button>
-      ) : null}
+      ) : (
+        <span className="flex gap-2 p-8" />
+      )}
     </div>
   );
 };
 
-export const SetLabelsControl = (props: SetLabelsControlProps): JSX.Element => {
+export const SetLabelsControl = (props: SetLabelsControlProps & ProfileIdType): JSX.Element => {
   const {
     clearInputState,
     deleteLastLabel,
@@ -215,6 +232,8 @@ export const SetLabelsControl = (props: SetLabelsControlProps): JSX.Element => {
     footer,
     highlightLastLabel,
     inputValue,
+    labels,
+    profile,
     selectedLabels,
     selectOrCreateLabel,
     setHighlightLastLabel,
@@ -273,14 +292,17 @@ export const SetLabelsControl = (props: SetLabelsControlProps): JSX.Element => {
       .sort((left: Label, right: Label) => {
         return left.name.localeCompare(right.name);
       });
-  }, [inputValue]);
+  }, [inputValue, labels]);
 
   const createLabelFromFilterText = useCallback(
     async (text: string) => {
+      const supabase = createClient();
       const trimmedLabelName = text.trim();
-      // ラベル作成処理
-      console.log(trimmedLabelName);
-      const label = { color: "#111111", id: "1", name: "test" };
+      const { data: label } = await supabase
+        .from("labels")
+        .insert({ color: randomLabelColorHex(), name: trimmedLabelName, user_id: profile.id })
+        .select()
+        .single();
       if (label) {
         toast.success(`Created label ${label.name}`, {});
         toggleLabel(label);
@@ -288,7 +310,7 @@ export const SetLabelsControl = (props: SetLabelsControlProps): JSX.Element => {
         toast.error("Failed to create label");
       }
     },
-    [toggleLabel]
+    [toggleLabel, profile.id]
   );
 
   const handleKeyDown = useCallback(
@@ -360,11 +382,12 @@ export const SetLabelsControl = (props: SetLabelsControlProps): JSX.Element => {
       return Promise.resolve();
     }
     return toggleLabel(label);
-  }, [inputValue, toggleLabel]);
+  }, [inputValue, toggleLabel, labels]);
 
   return (
-    <div onKeyDown={handleKeyDown}>
+    <div onKeyDown={handleKeyDown} className="flex w-full flex-col items-start justify-start p-0">
       <Header
+        labels={labels}
         focused={focusedIndex === undefined}
         resetFocusedIndex={() => {
           return setFocusedIndex(undefined);
@@ -383,7 +406,7 @@ export const SetLabelsControl = (props: SetLabelsControlProps): JSX.Element => {
         selectOrCreateLabel={selectOrCreateLabel}
         clearInputState={clearInputState}
       />
-      <div>
+      <div className="m-0 flex h-4 w-full items-center justify-end gap-1 pr-4 text-sm text-red-11 dark:text-reddark-11">
         {errorMessage && (
           <>
             {errorMessage}
@@ -391,7 +414,7 @@ export const SetLabelsControl = (props: SetLabelsControlProps): JSX.Element => {
           </>
         )}
       </div>
-      <div>
+      <div className="mt-2.5 flex h-[200px] w-full grow flex-col items-start justify-start overflow-y-scroll">
         {filteredLabels.map((label, idx) => {
           return (
             <LabelListItem

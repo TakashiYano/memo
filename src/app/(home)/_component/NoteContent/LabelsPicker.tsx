@@ -1,3 +1,5 @@
+"use client";
+
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 
 import AutosizeInput_, { type AutosizeInputProps } from "react-input-autosize";
@@ -6,9 +8,6 @@ import { EditLabelChip } from "@/app/(home)/_component/NoteContent/EditLabelChip
 import { EditLabelChipStack } from "@/app/(home)/_component/NoteContent/EditLabelChipStack";
 import { type Label } from "@/lib/label/type";
 import { type LabelsDispatcher } from "@/lib/label/useSetPageLabels";
-
-// TODO：ラベル取得結果
-const availableLabels = { labels: [{ name: "test" }] };
 
 const AutosizeInput = AutosizeInput_ as unknown as React.FunctionComponent<AutosizeInputProps>;
 
@@ -19,10 +18,12 @@ type LabelsPickerProps = {
   deleteLastLabel: () => void;
 
   dispatchLabels: LabelsDispatcher;
+
   focused: boolean;
   highlightLastLabel: boolean;
-
   inputValue: string;
+
+  labels: Label[];
   onFocus?: () => void;
 
   selectedLabels: Label[];
@@ -47,6 +48,7 @@ export const LabelsPicker = (props: LabelsPickerProps): JSX.Element => {
     focused,
     highlightLastLabel,
     inputValue,
+    labels,
     onFocus,
     selectedLabels,
     selectOrCreateLabel,
@@ -85,7 +87,7 @@ export const LabelsPicker = (props: LabelsPickerProps): JSX.Element => {
       setTabCount(_tabCount);
     }
 
-    const matches = availableLabels.labels.filter((l) => {
+    const matches = labels.filter((l) => {
       return l.name.toLowerCase().startsWith(_tabStartValue);
     });
 
@@ -95,7 +97,7 @@ export const LabelsPicker = (props: LabelsPickerProps): JSX.Element => {
       setTabCount(0);
       setInputValue(matches[0].name);
     }
-  }, [inputValue, tabCount, tabStartValue, setInputValue, setTabCount, setTabStartValue]);
+  }, [inputValue, tabCount, tabStartValue, setInputValue, setTabCount, setTabStartValue, labels]);
 
   const clearTabState = useCallback(() => {
     setTabCount(-1);
@@ -127,6 +129,7 @@ export const LabelsPicker = (props: LabelsPickerProps): JSX.Element => {
         inputRef.current?.setSelectionRange(0, inputRef.current?.value.length);
         event.preventDefault();
       }}
+      className="inline-block w-full cursor-text rounded-xl border-indigo-6 bg-indigo-3 p-1 text-left leading-loose dark:border-indigodark-6 dark:bg-indigodark-3 [&>span]:my-0"
     >
       {isStacked ? (
         <EditLabelChipStack
@@ -134,14 +137,16 @@ export const LabelsPicker = (props: LabelsPickerProps): JSX.Element => {
           setExpanded={() => {
             setIsStackExpanded(true);
           }}
+          isSelected={highlightLastLabel}
         />
       ) : (
-        selectedLabels.map((label) => {
+        selectedLabels.map((label, idx) => {
           return (
             <EditLabelChip
               key={label.id}
               text={label.name}
               color={label.color}
+              isSelected={highlightLastLabel && idx == selectedLabels.length - 1}
               xAction={() => {
                 const idx = selectedLabels.findIndex((l) => {
                   return l.id == label.id;
@@ -159,15 +164,19 @@ export const LabelsPicker = (props: LabelsPickerProps): JSX.Element => {
           );
         })
       )}
-      <div>
+      <span className="inline-flex h-6 -translate-y-1 pb-5">
         <AutosizeInput
           placeholder={isEmpty ? "Add Labels" : undefined}
           inputRef={(ref) => {
             inputRef.current = ref;
           }}
           inputStyle={{
+            all: "unset",
+            borderStyle: "none",
             fontSize: "16px",
+            marginLeft: "2px",
             minWidth: inputValue.length == 0 && selectedLabels.length == 0 ? "100px" : "2px",
+            outline: "none",
           }}
           onFocus={() => {
             if (onFocus) {
@@ -221,7 +230,7 @@ export const LabelsPicker = (props: LabelsPickerProps): JSX.Element => {
             setInputValue(event.target.value);
           }}
         />
-      </div>
+      </span>
     </div>
   );
 };

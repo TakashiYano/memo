@@ -53,3 +53,9 @@ export const labelColorObjects: LabelColorObjects = {
     text: "#A5A4A1",
   },
 };
+
+export const randomLabelColorHex = () => {
+  const colorHexes = Object.keys(labelColorObjects).slice(0, -1);
+  const randomColorHex = colorHexes[Math.floor(Math.random() * colorHexes.length)];
+  return randomColorHex;
+};
