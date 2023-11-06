@@ -8,6 +8,8 @@ import { Disclosure } from "@headlessui/react";
 import { ChevronUpIcon } from "@heroicons/react/20/solid";
 import { TagIcon } from "@heroicons/react/24/outline";
 
+import { type Label } from "@/lib/label/type";
+
 const NavigationLink = ({
   children,
   currentPath,
@@ -31,8 +33,12 @@ const NavigationLink = ({
   );
 };
 
-export const Accordion = () => {
+type AccordionProps = { labels: Label[] };
+
+export const Accordion = (props: AccordionProps) => {
+  const { labels } = props;
   const currentPath = usePathname();
+
   const handleSearchLabel = useCallback(() => {
     // TODO：選択したラベルでメモを検索する機能を実装予定
     alert("選択したラベルでメモを検索する機能を実装予定");
@@ -50,22 +56,24 @@ export const Accordion = () => {
               </Disclosure.Button>
               <Disclosure.Panel className="text-sm">
                 <ul>
-                  <li>
-                    <button
-                      onClick={handleSearchLabel}
-                      className="w-full p-2 text-left hover:bg-indigodark-3"
-                    >
-                      React
-                    </button>
-                  </li>
-                  <li>
-                    <button
-                      onClick={handleSearchLabel}
-                      className="w-full p-2 text-left hover:bg-indigodark-3"
-                    >
-                      TypeScript
-                    </button>
-                  </li>
+                  {labels.map((label) => {
+                    return (
+                      <li key={label.id}>
+                        <button
+                          onClick={handleSearchLabel}
+                          className="flex w-full items-center gap-2 p-2 text-left hover:bg-indigodark-3"
+                        >
+                          <div
+                            className="h-5 w-5 rounded-full"
+                            style={{ backgroundColor: `${label.color}` }}
+                          />
+                          <span className="text-xs text-indigo-12 dark:text-indigodark-12">
+                            {label.name}
+                          </span>
+                        </button>
+                      </li>
+                    );
+                  })}
                   <li className="pt-2">
                     <NavigationLink href="/dashboard/label" currentPath={currentPath}>
                       <TagIcon className="h-5 w-5" />

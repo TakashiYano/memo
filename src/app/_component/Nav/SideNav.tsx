@@ -9,6 +9,7 @@ import { tv } from "tailwind-variants";
 import { Accordion } from "@/component/Accordion";
 import { Avatar } from "@/component/Avatar";
 import { Button } from "@/component/Button";
+import { type Label } from "@/lib/label/type";
 import { useCreateNote } from "@/lib/memo/useCreateNote";
 import { type ProfileAllType } from "@/lib/profile/type";
 
@@ -44,8 +45,10 @@ const NavigationLink = ({
   );
 };
 
-export const SideNav = (props: ProfileAllType) => {
-  const { profile } = props;
+type SideNavProps = ProfileAllType & { labels: Label[] };
+
+export const SideNav = (props: SideNavProps) => {
+  const { labels, profile } = props;
   const { base, body, icon, title } = sideNav();
   const currentPath = usePathname();
   const { handleCreateMemo, isCreatingNote } = useCreateNote({ profile });
@@ -90,7 +93,7 @@ export const SideNav = (props: ProfileAllType) => {
             </Button>
           </li>
           <li className="ml-1">
-            <Accordion />
+            <Accordion labels={labels} />
           </li>
         </ul>
       </nav>
