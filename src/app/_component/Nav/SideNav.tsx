@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
@@ -45,6 +46,13 @@ const NavigationLink = ({
   );
 };
 
+type LibraryItemsQueryInput = {
+  cursor?: string;
+  limit: number;
+  searchQuery?: string;
+  sortDescending: boolean;
+};
+
 type SideNavProps = ProfileAllType & { labels: Label[] };
 
 export const SideNav = (props: SideNavProps) => {
@@ -52,6 +60,12 @@ export const SideNav = (props: SideNavProps) => {
   const { base, body, icon, title } = sideNav();
   const currentPath = usePathname();
   const { handleCreateMemo, isCreatingNote } = useCreateNote({ profile });
+  const defaultQuery = {
+    limit: 10,
+    searchQuery: undefined,
+    sortDescending: true,
+  };
+  const [queryInputs, setQueryInputs] = useState<LibraryItemsQueryInput>(defaultQuery);
 
   return (
     <div className={base()}>
@@ -93,7 +107,16 @@ export const SideNav = (props: SideNavProps) => {
             </Button>
           </li>
           <li className="ml-1">
-            <Accordion labels={labels} />
+            <Accordion
+              labels={labels}
+              searchTerm={queryInputs.searchQuery}
+              applySearchQuery={(searchQuery: string) => {
+                setQueryInputs({
+                  ...queryInputs,
+                  searchQuery,
+                });
+              }}
+            />
           </li>
         </ul>
       </nav>
