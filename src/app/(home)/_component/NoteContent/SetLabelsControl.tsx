@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useRouter } from "next/navigation";
 
 import { CheckIcon, ExclamationCircleIcon, PlusIcon } from "@heroicons/react/20/solid";
 import { toast } from "react-hot-toast";
@@ -8,7 +9,7 @@ import { toast } from "react-hot-toast";
 import { LabelsPicker } from "@/app/(home)/_component/NoteContent/LabelsPicker";
 import { randomLabelColorHex } from "@/lib/label/labelColorObjects";
 import { type Label } from "@/lib/label/type";
-import { type LabelsDispatcher } from "@/lib/label/useSetPageLabels";
+import { type NoteDisplayType } from "@/lib/memo/type";
 import { type ProfileIdType } from "@/lib/profile/type";
 import { createClient } from "@/lib/supabase/browser";
 
@@ -19,7 +20,6 @@ export interface LabelsProvider {
 type SetLabelsControlProps = {
   clearInputState: () => void;
   deleteLastLabel: () => void;
-  dispatchLabels: LabelsDispatcher;
   errorMessage?: string;
   footer?: React.ReactNode;
 
@@ -50,7 +50,6 @@ const Header = (props: HeaderProps): JSX.Element => {
   const {
     clearInputState,
     deleteLastLabel,
-    dispatchLabels,
     focused,
     highlightLastLabel,
     inputValue,
@@ -75,7 +74,6 @@ const Header = (props: HeaderProps): JSX.Element => {
           inputValue={inputValue}
           setInputValue={setInputValue}
           selectedLabels={selectedLabels}
-          dispatchLabels={dispatchLabels}
           tabCount={tabCount}
           setTabCount={setTabCount}
           tabStartValue={tabStartValue}
@@ -223,16 +221,18 @@ const Footer = (props: FooterProps): JSX.Element => {
   );
 };
 
-export const SetLabelsControl = (props: SetLabelsControlProps & ProfileIdType): JSX.Element => {
+export const SetLabelsControl = (
+  props: SetLabelsControlProps & ProfileIdType & { note: NoteDisplayType }
+): JSX.Element => {
   const {
     clearInputState,
     deleteLastLabel,
-    dispatchLabels,
     errorMessage,
     footer,
     highlightLastLabel,
     inputValue,
     labels,
+    note,
     profile,
     selectedLabels,
     selectOrCreateLabel,
@@ -243,6 +243,7 @@ export const SetLabelsControl = (props: SetLabelsControlProps & ProfileIdType): 
     tabCount,
     tabStartValue,
   } = props;
+  const router = useRouter();
   const [focusedIndex, setFocusedIndex] = useState<number | undefined>(0);
 
   useEffect(() => {
@@ -266,19 +267,16 @@ export const SetLabelsControl = (props: SetLabelsControlProps & ProfileIdType): 
 
   const toggleLabel = useCallback(
     async (label: Label) => {
-      let newSelectedLabels = [...selectedLabels];
+      const supabase = createClient();
       if (isSelected(label)) {
-        newSelectedLabels = selectedLabels.filter((other) => {
-          return other.id !== label.id;
-        });
+        await supabase.from("note_labels").delete().eq("label_id", label.id);
       } else {
-        newSelectedLabels = [...selectedLabels, label];
+        await supabase.from("note_labels").insert({ label_id: label.id, note_id: note.id });
       }
-      dispatchLabels({ labels: newSelectedLabels, type: "SAVE" });
-
+      router.refresh();
       clearInputState();
     },
-    [clearInputState, dispatchLabels, selectedLabels, isSelected]
+    [clearInputState, note, router, isSelected]
   );
 
   const filteredLabels = useMemo(() => {
@@ -395,7 +393,6 @@ export const SetLabelsControl = (props: SetLabelsControlProps & ProfileIdType): 
         inputValue={inputValue}
         setInputValue={setInputValue}
         selectedLabels={selectedLabels}
-        dispatchLabels={dispatchLabels}
         tabCount={tabCount}
         setTabCount={setTabCount}
         tabStartValue={tabStartValue}

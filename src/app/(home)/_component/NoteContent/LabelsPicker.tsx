@@ -1,13 +1,14 @@
 "use client";
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useRouter } from "next/navigation";
 
 import AutosizeInput_, { type AutosizeInputProps } from "react-input-autosize";
 
 import { EditLabelChip } from "@/app/(home)/_component/NoteContent/EditLabelChip";
 import { EditLabelChipStack } from "@/app/(home)/_component/NoteContent/EditLabelChipStack";
 import { type Label } from "@/lib/label/type";
-import { type LabelsDispatcher } from "@/lib/label/useSetPageLabels";
+import { createClient } from "@/lib/supabase/browser";
 
 const AutosizeInput = AutosizeInput_ as unknown as React.FunctionComponent<AutosizeInputProps>;
 
@@ -16,8 +17,6 @@ const MaxUnstackedLabels = 7;
 type LabelsPickerProps = {
   clearInputState: () => void;
   deleteLastLabel: () => void;
-
-  dispatchLabels: LabelsDispatcher;
 
   focused: boolean;
   highlightLastLabel: boolean;
@@ -39,12 +38,12 @@ type LabelsPickerProps = {
 };
 
 export const LabelsPicker = (props: LabelsPickerProps): JSX.Element => {
+  const router = useRouter();
   const inputRef = useRef<HTMLInputElement | null>();
   const [isStackExpanded, setIsStackExpanded] = useState(false);
   const {
     clearInputState,
     deleteLastLabel,
-    dispatchLabels,
     focused,
     highlightLastLabel,
     inputValue,
@@ -147,18 +146,10 @@ export const LabelsPicker = (props: LabelsPickerProps): JSX.Element => {
               text={label.name}
               color={label.color}
               isSelected={highlightLastLabel && idx == selectedLabels.length - 1}
-              xAction={() => {
-                const idx = selectedLabels.findIndex((l) => {
-                  return l.id == label.id;
-                });
-                if (idx !== -1) {
-                  const _selectedLabels = selectedLabels;
-                  _selectedLabels.splice(idx, 1);
-                  dispatchLabels({
-                    labels: [..._selectedLabels],
-                    type: "SAVE",
-                  });
-                }
+              xAction={async () => {
+                const supabase = createClient();
+                await supabase.from("note_labels").delete().eq("label_id", label.id);
+                router.refresh();
               }}
             />
           );
