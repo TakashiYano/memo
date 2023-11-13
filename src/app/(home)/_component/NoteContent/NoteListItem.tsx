@@ -55,17 +55,30 @@ export const NoteListItem = (props: NoteListItemProps) => {
       <div className="group relative">
         <Link
           href={`/memo/${note.id}`}
-          className="block w-full rounded-xl bg-indigo-3 px-4 py-3 shadow hover:bg-indigo-4 dark:bg-indigodark-3 dark:hover:bg-indigodark-4 sm:px-6"
+          className="block w-full rounded-xl bg-indigo-3 px-4 py-3 shadow hover:bg-indigo-4 dark:bg-indigodark-3 dark:hover:bg-indigodark-4"
         >
-          <div>
-            <h1 className="truncate text-sm font-bold leading-relaxed sm:text-base">{first}</h1>
-            <p className="truncate text-sm leading-relaxed">{second}</p>
-          </div>
-
-          <div className="mt-4 flex h-6 items-end justify-between">
-            <time className="space-x-4 text-sm font-bold tracking-wide text-indigo-11 dark:text-indigodark-11">
-              {format_yyyyMd(note.updated_at ?? "")}
-            </time>
+          <h1 className="truncate text-sm font-bold leading-relaxed sm:text-base">{first}</h1>
+          <p className="truncate text-sm leading-relaxed">{second}</p>
+          <time className="space-x-4 text-sm font-bold tracking-wide text-indigo-11 dark:text-indigodark-11">
+            {format_yyyyMd(note.updated_at ?? "")}
+          </time>
+          <div className="mt-2 flex flex-wrap gap-1.5">
+            {selectedLabels.map((label) => {
+              return (
+                <div
+                  key={label.id}
+                  className="flex flex-row items-center justify-around gap-1.5 rounded-xl border-indigo-6 bg-indigo-9 px-2 py-0.5 dark:border-indigodark-6 dark:bg-indigodark-9"
+                >
+                  <div
+                    className="h-5 w-5 rounded-full"
+                    style={{ backgroundColor: `${label.color}` }}
+                  />
+                  <span className="text-xs text-indigo-12 dark:text-indigodark-12">
+                    {label.name}
+                  </span>
+                </div>
+              );
+            })}
           </div>
         </Link>
 
