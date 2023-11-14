@@ -31,6 +31,7 @@
     "react-hot-toast": "^2.4.0",
     "react-input-autosize": "^3.0.0",
     "react-textarea-autosize": "^8.4.0",
+    "server-only": "^0.0.1",
     "tailwind-variants": "^0.1.14",
     "use-debounce": "^9.0.4",
     "uuid": "^9.0.1",
