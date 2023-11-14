@@ -1,3 +1,5 @@
+import "server-only";
+
 import { createClient } from "@/lib/supabase/server";
 
 export const getSession = async () => {

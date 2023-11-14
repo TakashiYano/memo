@@ -1,3 +1,5 @@
+import "server-only";
+
 import { type Label } from "@/lib/label/type";
 import { createClient } from "@/lib/supabase/server";
 

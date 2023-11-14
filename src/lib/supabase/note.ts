@@ -1,3 +1,5 @@
+import "server-only";
+
 import { notFound } from "next/navigation";
 
 import { type SearchPageProps } from "@/app/search/_component/type";
