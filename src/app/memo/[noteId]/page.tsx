@@ -5,8 +5,6 @@ import { NotePart } from "@/app/memo/[noteId]/_component/NoteIdNav/NotePart";
 import { getFirstAndSecondLine } from "@/lib/memo/getFirstAndSecondLine";
 import { getNote } from "@/lib/supabase/note";
 
-export const revalidate = 60;
-
 export async function generateMetadata({
   params: { noteId },
 }: {
@@ -20,6 +18,8 @@ export async function generateMetadata({
     title: first,
   };
 }
+
+export const revalidate = 60;
 
 const NotePage = async ({ params: { noteId } }: { params: { noteId: string } }) => {
   const notePromise = getNote(noteId);

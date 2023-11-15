@@ -6,6 +6,8 @@ export const metadata = {
   title: "Label",
 };
 
+export const fetchCache = "default-no-store";
+
 const LabelPage = async () => {
   const profile = await getProfile();
   if (!profile) {

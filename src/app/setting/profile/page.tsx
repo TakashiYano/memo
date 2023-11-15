@@ -7,6 +7,8 @@ export const metadata = {
   title: "Profile",
 };
 
+export const fetchCache = "default-no-store";
+
 const ProfilePage = async () => {
   const userPromise = getUser();
   const profilePromise = getProfile();

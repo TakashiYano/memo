@@ -8,6 +8,8 @@ export const metadata = {
   title: "Search",
 };
 
+export const fetchCache = "default-no-store";
+
 const SearchPage = async (props: SearchPageProps) => {
   const { searchParams } = props;
   const notes = await getSearchNotes({ searchParams });

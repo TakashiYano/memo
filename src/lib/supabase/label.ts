@@ -1,9 +1,11 @@
 import "server-only";
 
+import { cache } from "react";
+
 import { type Label } from "@/lib/label/type";
 import { createClient } from "@/lib/supabase/server";
 
-export const getLabels = async () => {
+export const getLabels = cache(async () => {
   const supabase = createClient();
   const { data, error } = await supabase.from("labels").select();
 
@@ -12,9 +14,9 @@ export const getLabels = async () => {
   }
 
   return data;
-};
+});
 
-export const getNoteLabels = async (noteId: string) => {
+export const getNoteLabels = cache(async (noteId: string) => {
   const supabase = createClient();
   const { data, error } = await supabase
     .from("note_labels")
@@ -28,4 +30,4 @@ export const getNoteLabels = async (noteId: string) => {
     return l.labels;
   });
   return labelIds as unknown as Label[];
-};
+});

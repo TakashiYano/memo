@@ -7,7 +7,7 @@ export const metadata = {
   title: "Home",
 };
 
-export const fetchCache = "only-no-store";
+export const fetchCache = "default-no-store";
 
 const Home = async () => {
   const notes = await getNotes();

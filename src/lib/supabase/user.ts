@@ -1,26 +1,28 @@
 import "server-only";
 
+import { cache } from "react";
+
 import { createClient } from "@/lib/supabase/server";
 
-export const getSession = async () => {
+export const getSession = cache(async () => {
   const supabase = createClient();
   const {
     data: { session },
   } = await supabase.auth.getSession();
 
   return session;
-};
+});
 
-export const getUser = async () => {
+export const getUser = cache(async () => {
   const supabase = createClient();
   const {
     data: { user },
   } = await supabase.auth.getUser();
 
   return user;
-};
+});
 
-export const getProfile = async () => {
+export const getProfile = cache(async () => {
   const supabase = createClient();
   const user = await getUser();
 
@@ -30,4 +32,4 @@ export const getProfile = async () => {
   }
 
   return null;
-};
+});

@@ -1,11 +1,12 @@
 import "server-only";
 
+import { cache } from "react";
 import { notFound } from "next/navigation";
 
 import { type SearchPageProps } from "@/app/search/_component/type";
 import { createClient } from "@/lib/supabase/server";
 
-export const getSearchNotes = async (props: SearchPageProps) => {
+export const getSearchNotes = cache(async (props: SearchPageProps) => {
   const { searchParams } = props;
   const supabase = createClient();
 
@@ -29,9 +30,9 @@ export const getSearchNotes = async (props: SearchPageProps) => {
     }
     return data;
   }
-};
+});
 
-export const getNotes = async () => {
+export const getNotes = cache(async () => {
   const supabase = createClient();
   const { data, error } = await supabase
     .from("memo_notes")
@@ -43,9 +44,9 @@ export const getNotes = async () => {
   }
 
   return data;
-};
+});
 
-export const getNote = async (noteId: string) => {
+export const getNote = cache(async (noteId: string) => {
   const supabase = createClient();
   const { data, error } = await supabase
     .from("memo_notes")
@@ -62,4 +63,4 @@ export const getNote = async (noteId: string) => {
   }
 
   return data;
-};
+});
