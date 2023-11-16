@@ -1,5 +1,3 @@
-"use client";
-
 import { useCallback, useTransition } from "react";
 import { useRouter } from "next/navigation";
 
@@ -33,7 +31,7 @@ export const useCreateNote = (props: ProfileIdType) => {
       toast.error("メモの作成に失敗しました。時間を空けてから再度お試しください。");
       console.error(error);
     }
-  }, [router, supabase, profile.id]);
+  }, [router, supabase, profile]);
 
   return { handleCreateMemo, isCreatingNote };
 };

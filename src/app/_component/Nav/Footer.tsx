@@ -1,89 +1,54 @@
-"use client";
-
-import Link from "next/link";
-import { usePathname } from "next/navigation";
-
-import { MagnifyingGlassIcon, PencilSquareIcon } from "@heroicons/react/24/outline";
+import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 import { tv } from "tailwind-variants";
 
+import { NavigationLink } from "@/app/_component/Part/FooterNavLink";
+import { NoteWriteButton } from "@/app/_component/Part/NoteWriteButton";
 import { Avatar } from "@/component/Avatar";
-import { Button } from "@/component/Button";
-import { useCreateNote } from "@/lib/memo/useCreateNote";
-import { type ProfileAllType } from "@/lib/profile/type";
+import { getProfile } from "@/lib/supabase/user";
 
-const footer = tv({
+const navigation = tv({
   slots: {
     base: "fixed bottom-0 w-full bg-indigo-2 py-2 dark:bg-indigodark-2 md:hidden",
-    image: "inline-block h-5 w-5",
-    li: "w-1/3",
-    text: "mt-1",
-    ul: "flex justify-between text-center items-center text-xs",
+    bodyContainer: "mt-1",
+    container: "flex justify-between text-center items-center text-xs",
+    icon: "w-5 h-5 inline-block",
+    listContainer: "w-1/3",
   },
 });
 
-const NavigationLink = ({
-  children,
-  currentPath,
-  href,
-}: {
-  children: React.ReactNode;
-  currentPath: string;
-  href: string;
-}) => {
-  return (
-    <Link
-      href={href}
-      className={`hover:text-indigo-11 dark:hover:text-indigodark-11 ${
-        currentPath === href
-          ? " text-indigo-11 dark:text-indigodark-11"
-          : "text-indigo-12 dark:text-indigodark-12"
-      }`}
-    >
-      {children}
-    </Link>
-  );
-};
-
-export const Footer = (props: ProfileAllType) => {
-  const { profile } = props;
-  const { base, image, li, text, ul } = footer();
-  const { handleCreateMemo, isCreatingNote } = useCreateNote({ profile });
-  const currentPath = usePathname();
+export const Footer = async () => {
+  const profile = await getProfile();
+  const { base, bodyContainer, container, icon, listContainer } = navigation();
 
   return (
     <footer className={base()}>
       <nav>
-        <ul className={ul()}>
-          <li className={li()}>
-            <NavigationLink href="/" currentPath={currentPath}>
-              <MagnifyingGlassIcon className={image()} />
-              <p className={text()}>メモを検索</p>
+        <ul className={container()}>
+          <li className={listContainer()}>
+            <NavigationLink href="/">
+              <MagnifyingGlassIcon className={icon()} />
+              <p className={bodyContainer()}>メモを検索</p>
             </NavigationLink>
           </li>
-          <li className={li()}>
-            <Button
-              type="button"
-              key="write memo"
-              variant="solid"
-              onClick={handleCreateMemo}
-              disabled={isCreatingNote}
-              className="w-full p-2 text-indigo-12 hover:bg-indigo-3 dark:text-indigodark-12 dark:hover:bg-indigodark-3"
-            >
-              <PencilSquareIcon className="h-5 w-5" />
-              <p className={text()}>メモを書く</p>
-            </Button>
+          <li className={listContainer()}>
+            {profile ? (
+              <NoteWriteButton
+                profile={profile}
+                className="p-2 hover:bg-indigo-3 dark:hover:bg-indigodark-3"
+              />
+            ) : null}
           </li>
-          <li className={li()}>
-            <NavigationLink href="/setting/account" currentPath={currentPath}>
+          <li className={listContainer()}>
+            <NavigationLink href="/setting/account">
               <Avatar
                 noDialog
-                src={profile.avatar_url ?? ""}
-                alt={profile.user_name}
+                src={profile?.avatar_url ?? ""}
+                alt={profile?.user_name}
                 width={96}
                 height={96}
-                className={image({ class: "overflow-hidden rounded-full" })}
+                className="inline-block h-5 w-5 overflow-hidden rounded-full"
               />
-              <p className={text()}>マイMemo</p>
+              <p className={bodyContainer()}>マイMemo</p>
             </NavigationLink>
           </li>
         </ul>

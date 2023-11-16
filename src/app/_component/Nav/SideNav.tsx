@@ -1,20 +1,14 @@
-"use client";
-
-import { useState } from "react";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
-
-import { MagnifyingGlassIcon, PencilSquareIcon } from "@heroicons/react/24/outline";
+import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 import { tv } from "tailwind-variants";
 
-import { Accordion } from "@/component/Accordion";
+import { LabelAccordion } from "@/app/_component/Part/LabelAccordion";
+import { NoteWriteButton } from "@/app/_component/Part/NoteWriteButton";
+import { NavigationLink } from "@/app/_component/Part/SideNavLink";
 import { Avatar } from "@/component/Avatar";
-import { Button } from "@/component/Button";
-import { type Label } from "@/lib/label/type";
-import { useCreateNote } from "@/lib/memo/useCreateNote";
-import { type ProfileAllType } from "@/lib/profile/type";
+import { getLabels } from "@/lib/supabase/label";
+import { getProfile } from "@/lib/supabase/user";
 
-const sideNav = tv({
+const navigation = tv({
   slots: {
     base: "sticky top-0 hidden self-start bg-indigo-2 p-5 dark:bg-indigodark-2 md:inline w-[210px] max-w-[210px]",
     body: "text-lg",
@@ -23,49 +17,11 @@ const sideNav = tv({
   },
 });
 
-const NavigationLink = ({
-  children,
-  currentPath,
-  href,
-}: {
-  children: React.ReactNode;
-  currentPath: string;
-  href: string;
-}) => {
-  return (
-    <Link
-      href={href}
-      className={`flex items-center gap-x-3 rounded-full p-2 hover:bg-indigo-3 dark:hover:bg-indigodark-3 ${
-        currentPath === href
-          ? " text-indigo-11 dark:text-indigodark-11"
-          : "text-indigo-12 dark:text-indigodark-12"
-      }`}
-    >
-      {children}
-    </Link>
-  );
-};
-
-type LibraryItemsQueryInput = {
-  cursor?: string;
-  limit: number;
-  searchQuery?: string;
-  sortDescending: boolean;
-};
-
-type SideNavProps = ProfileAllType & { labels: Label[] };
-
-export const SideNav = (props: SideNavProps) => {
-  const { labels, profile } = props;
-  const { base, body, icon, title } = sideNav();
-  const currentPath = usePathname();
-  const { handleCreateMemo, isCreatingNote } = useCreateNote({ profile });
-  const defaultQuery = {
-    limit: 10,
-    searchQuery: undefined,
-    sortDescending: true,
-  };
-  const [queryInputs, setQueryInputs] = useState<LibraryItemsQueryInput>(defaultQuery);
+export const SideNav = async () => {
+  const profilePromise = getProfile();
+  const labelsPromise = getLabels();
+  const [profile, labels] = await Promise.all([profilePromise, labelsPromise]);
+  const { base, body, icon, title } = navigation();
 
   return (
     <div className={base()}>
@@ -75,17 +31,17 @@ export const SideNav = (props: SideNavProps) => {
             <h1 className={title()}>Memo</h1>
           </li>
           <li className="ml-1">
-            <NavigationLink href="/" currentPath={currentPath}>
+            <NavigationLink href="/">
               <MagnifyingGlassIcon className={icon()} />
               <p className={body()}>メモを検索</p>
             </NavigationLink>
           </li>
           <li className="ml-1">
-            <NavigationLink href="/setting/account" currentPath={currentPath}>
+            <NavigationLink href="/setting/account">
               <Avatar
                 noDialog
-                src={profile.avatar_url ?? ""}
-                alt={profile.user_name}
+                src={profile?.avatar_url ?? ""}
+                alt={profile?.user_name}
                 width={96}
                 height={96}
                 className="h-5 w-5 overflow-hidden rounded-full"
@@ -94,29 +50,12 @@ export const SideNav = (props: SideNavProps) => {
             </NavigationLink>
           </li>
           <li className="ml-1">
-            <Button
-              type="button"
-              key="write memo"
-              variant="solid"
-              onClick={handleCreateMemo}
-              disabled={isCreatingNote}
-              className="flex w-full items-center gap-x-3 p-2 text-indigo-12 dark:text-indigodark-12"
-            >
-              <PencilSquareIcon className="h-5 w-5" />
-              <p className={body()}>メモを書く</p>
-            </Button>
+            {profile ? (
+              <NoteWriteButton profile={profile} className="flex items-center gap-x-3 p-2" />
+            ) : null}
           </li>
           <li className="ml-1">
-            <Accordion
-              labels={labels}
-              searchTerm={queryInputs.searchQuery}
-              applySearchQuery={(searchQuery: string) => {
-                setQueryInputs({
-                  ...queryInputs,
-                  searchQuery,
-                });
-              }}
-            />
+            <LabelAccordion labels={labels} />
           </li>
         </ul>
       </nav>
