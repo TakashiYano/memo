@@ -1,42 +1,27 @@
-"use client";
+import { tv } from "tailwind-variants";
 
-import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { ActiveLink } from "@/lib/next/ActiveLink";
 
-const NavigationLink = ({
-  children,
-  currentPath,
-  href,
-}: {
-  children: React.ReactNode;
-  currentPath: string;
-  href: string;
-}) => {
-  return (
-    <Link
-      href={href}
-      className={`block py-2.5 ${
-        currentPath === href
-          ? " border-b-[2px] border-indigo-6 font-bold text-indigo-11 dark:border-indigodark-6 dark:text-indigodark-11"
-          : "text-indigo-12 dark:text-indigodark-12"
-      }`}
-    >
-      {children}
-    </Link>
-  );
-};
+const navigation = tv({
+  slots: {
+    base: "border-b border-indigo-6 dark:border-indigodark-6",
+    bodyWrapper: "py-2 hover:text-indigo-11 dark:hover:text-indigodark-11",
+    list: "w-full",
+    listWrapper: "flex text-center",
+  },
+});
 
 export const DashboardNav = () => {
-  const currentPath = usePathname();
+  const { base, bodyWrapper, list, listWrapper } = navigation();
 
   return (
-    <div className="pt-4">
-      <nav className="border-b-[1px] border-indigo-6 dark:border-indigodark-6">
-        <ul className="flex">
-          <li className="w-full text-center text-[16px] ">
-            <NavigationLink href="/dashboard/label" currentPath={currentPath}>
-              ラベル
-            </NavigationLink>
+    <div className={base()}>
+      <nav>
+        <ul className={listWrapper()}>
+          <li className={list()}>
+            <ActiveLink href="/dashboard/label">
+              <p className={bodyWrapper()}>ラベル</p>
+            </ActiveLink>
           </li>
         </ul>
       </nav>

@@ -1,28 +1,32 @@
 import { tv } from "tailwind-variants";
 
-import { NavigationLink } from "@/app/setting/_component/Common/SettingNavLink";
+import { ActiveLink } from "@/lib/next/ActiveLink";
 
 const navigation = tv({
   slots: {
-    base: "pt-4",
-    list: "w-1/2 text-center text-[16px]",
-    listContainer: "flex",
-    navContainer: "border-b-[1px] border-indigo-6 dark:border-indigodark-6",
+    base: "border-b border-indigo-6 dark:border-indigodark-6",
+    bodyWrapper: "py-2 hover:text-indigo-11 dark:hover:text-indigodark-11",
+    list: "w-full",
+    listWrapper: "flex text-center",
   },
 });
 
 export const SettingNav = () => {
-  const { base, list, listContainer, navContainer } = navigation();
+  const { base, bodyWrapper, list, listWrapper } = navigation();
 
   return (
     <div className={base()}>
-      <nav className={navContainer()}>
-        <ul className={listContainer()}>
+      <nav>
+        <ul className={listWrapper()}>
           <li className={list()}>
-            <NavigationLink href="/setting/account">アカウント</NavigationLink>
+            <ActiveLink href="/setting/account">
+              <p className={bodyWrapper()}>アカウント</p>
+            </ActiveLink>
           </li>
           <li className={list()}>
-            <NavigationLink href="/setting/profile">プロフィール</NavigationLink>
+            <ActiveLink href="/setting/profile">
+              <p className={bodyWrapper()}>プロフィール</p>
+            </ActiveLink>
           </li>
         </ul>
       </nav>
