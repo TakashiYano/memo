@@ -1,8 +1,10 @@
 "use client";
 
+import { type FC } from "react";
+
 import { Toaster } from "react-hot-toast";
 
-export const ToastProvider = ({ children }: { children: React.ReactNode }) => {
+export const ToastProvider: FC<{ children: React.ReactNode }> = ({ children }) => {
   return (
     <>
       {children}

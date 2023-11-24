@@ -28,16 +28,16 @@ export const metadata = {
 const RootLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <html lang="ja" suppressHydrationWarning className={inter.className}>
-      <body className="min-h-screen bg-indigo-2 dark:bg-indigodark-2 md:mr-0 md:flex md:justify-center">
+      <body className="bg-indigo-2 dark:bg-indigodark-2 md:flex md:justify-center">
         <ThemeProviders>
           <ToastProvider>
             <SideNav />
-            <main className="relative block h-auto min-h-screen items-center bg-indigo-1 pb-14 dark:bg-indigodark-1 md:w-[480px]  md:max-w-[480px] md:border-x-[1px] md:border-indigo-6 md:pb-[8px] dark:md:border-indigodark-6 lg:mr-[241px]">
+            <main className="min-h-screen bg-indigo-1 pb-4 dark:bg-indigodark-1 md:w-[480px] md:max-w-[480px] md:border-x-2 md:border-indigo-6 md:pb-2 md:dark:border-indigodark-6 lg:mr-60">
               {children}
               <Footer />
             </main>
           </ToastProvider>
-        </ThemeProviders>{" "}
+        </ThemeProviders>
       </body>
     </html>
   );

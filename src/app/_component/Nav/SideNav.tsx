@@ -10,51 +10,54 @@ import { getProfile } from "@/lib/supabase/user";
 
 const navigation = tv({
   slots: {
-    base: "sticky top-0 hidden self-start bg-indigo-2 p-5 dark:bg-indigodark-2 md:inline w-[210px] max-w-[210px]",
-    body: "text-lg",
-    icon: "w-5 h-5 inline-block",
+    base: "bg-indigo-2 dark:bg-indigodark-2 p-5 w-[210px] max-w-[210px] hidden md:inline sticky top-0 self-start",
+    icon: "w-5 h-5",
+    listWrapper: "text-lg space-y-2",
     title: "text-xl font-bold text-indigo-12 dark:text-indigodark-12",
+    wrapper: "mt-10 space-y-5",
   },
 });
 
 export const SideNav = async () => {
+  const { base, icon, listWrapper, title, wrapper } = navigation();
   const profilePromise = getProfile();
   const labelsPromise = getLabels();
   const [profile, labels] = await Promise.all([profilePromise, labelsPromise]);
-  const { base, body, icon, title } = navigation();
+  if (!profile) {
+    return null;
+  }
 
   return (
     <div className={base()}>
-      <nav>
-        <ul className="space-y-2">
-          <li className="mb-10">
-            <h1 className={title()}>Memo</h1>
-          </li>
-          <li className="ml-1">
+      <h1 className={title()}>Memo</h1>
+      <nav className={wrapper()}>
+        <ul className={listWrapper()}>
+          <li>
             <NavigationLink href="/">
               <MagnifyingGlassIcon className={icon()} />
-              <p className={body()}>メモを検索</p>
+              <p>メモを検索</p>
             </NavigationLink>
           </li>
-          <li className="ml-1">
+          <li>
             <NavigationLink href="/setting/account">
               <Avatar
                 noDialog
-                src={profile?.avatar_url ?? ""}
-                alt={profile?.user_name}
+                src={profile.avatar_url ?? ""}
+                alt={profile.user_name}
                 width={96}
                 height={96}
                 className="h-5 w-5 overflow-hidden rounded-full"
               />
-              <p className={body()}>マイMemo</p>
+              <p>マイMemo</p>
             </NavigationLink>
           </li>
-          <li className="ml-1">
-            {profile ? (
-              <NoteWriteButton profile={profile} className="flex items-center gap-x-3 p-2" />
-            ) : null}
+        </ul>
+        <div className="border border-indigo-6 dark:border-indigodark-6" />
+        <ul className={listWrapper()}>
+          <li>
+            <NoteWriteButton profile={profile} className="flex items-center gap-x-3 p-2" />
           </li>
-          <li className="ml-1">
+          <li>
             <LabelAccordion labels={labels} />
           </li>
         </ul>

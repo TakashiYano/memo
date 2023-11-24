@@ -8,47 +8,52 @@ import { getProfile } from "@/lib/supabase/user";
 
 const navigation = tv({
   slots: {
-    base: "fixed bottom-0 w-full bg-indigo-2 py-2 dark:bg-indigodark-2 md:hidden",
-    bodyContainer: "mt-1",
-    container: "flex justify-between text-center items-center text-xs",
+    base: "fixed bottom-0 w-full bg-indigo-2 dark:bg-indigodark-2 py-2 md:hidden",
+    bodyWrapper: "space-y-1",
     icon: "w-5 h-5 inline-block",
-    listContainer: "w-1/3",
+    list: "w-full",
+    listWrapper: "flex justify-between text-center items-center text-xs",
   },
 });
 
 export const Footer = async () => {
+  const { base, bodyWrapper, icon, list, listWrapper } = navigation();
   const profile = await getProfile();
-  const { base, bodyContainer, container, icon, listContainer } = navigation();
+  if (!profile) {
+    return null;
+  }
 
   return (
     <footer className={base()}>
       <nav>
-        <ul className={container()}>
-          <li className={listContainer()}>
+        <ul className={listWrapper()}>
+          <li className={list()}>
             <NavigationLink href="/">
-              <MagnifyingGlassIcon className={icon()} />
-              <p className={bodyContainer()}>メモを検索</p>
+              <div className={bodyWrapper()}>
+                <MagnifyingGlassIcon className={icon()} />
+                <p>メモを検索</p>
+              </div>
             </NavigationLink>
           </li>
-          <li className={listContainer()}>
-            {profile ? (
-              <NoteWriteButton
-                profile={profile}
-                className="p-2 hover:bg-indigo-3 dark:hover:bg-indigodark-3"
-              />
-            ) : null}
+          <li className={list()}>
+            <NoteWriteButton
+              profile={profile}
+              className="p-2 hover:bg-indigo-3 dark:hover:bg-indigodark-3"
+            />
           </li>
-          <li className={listContainer()}>
+          <li className={list()}>
             <NavigationLink href="/setting/account">
-              <Avatar
-                noDialog
-                src={profile?.avatar_url ?? ""}
-                alt={profile?.user_name}
-                width={96}
-                height={96}
-                className="inline-block h-5 w-5 overflow-hidden rounded-full"
-              />
-              <p className={bodyContainer()}>マイMemo</p>
+              <div className={bodyWrapper()}>
+                <Avatar
+                  noDialog
+                  src={profile.avatar_url ?? ""}
+                  alt={profile.user_name}
+                  width={96}
+                  height={96}
+                  className="inline-block h-5 w-5 overflow-hidden rounded-full"
+                />
+                <p>マイMemo</p>
+              </div>
             </NavigationLink>
           </li>
         </ul>
