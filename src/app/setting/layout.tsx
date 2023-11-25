@@ -1,4 +1,4 @@
-import { SettingNav } from "@/app/setting/_component/Common";
+import { HeaderNav } from "@/app/_component/Nav/HeaderNav";
 import { getProfile } from "@/lib/supabase/user";
 
 const HomeLayout = async ({ children }: { children: React.ReactNode }) => {
@@ -6,7 +6,14 @@ const HomeLayout = async ({ children }: { children: React.ReactNode }) => {
 
   return (
     <>
-      {profile && <SettingNav />}
+      {profile && (
+        <HeaderNav
+          lists={[
+            { body: "アカウント", href: "/setting/account" },
+            { body: "プロフィール", href: "/setting/profile" },
+          ]}
+        />
+      )}
       {children}
     </>
   );

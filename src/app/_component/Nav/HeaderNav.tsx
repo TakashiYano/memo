@@ -11,18 +11,27 @@ const navigation = tv({
   },
 });
 
-export const DashboardNav = () => {
+type HeaderNavProps = {
+  lists: { body: string; href: string }[];
+};
+
+export const HeaderNav = (props: HeaderNavProps) => {
+  const { lists } = props;
   const { base, bodyWrapper, list, listWrapper } = navigation();
 
   return (
     <div className={base()}>
       <nav>
         <ul className={listWrapper()}>
-          <li className={list()}>
-            <ActiveLink href="/dashboard/label">
-              <p className={bodyWrapper()}>ラベル</p>
-            </ActiveLink>
-          </li>
+          {lists.map((l) => {
+            return (
+              <li key={l.href} className={list()}>
+                <ActiveLink href={l.href}>
+                  <p className={bodyWrapper()}>{l.body}</p>
+                </ActiveLink>
+              </li>
+            );
+          })}
         </ul>
       </nav>
     </div>

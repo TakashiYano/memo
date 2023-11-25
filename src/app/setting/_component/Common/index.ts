@@ -1,1 +1,0 @@
-export { SettingNav } from "./SettingNav";

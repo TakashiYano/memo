@@ -1,4 +1,4 @@
-import { DashboardNav } from "@/app/dashboard/_component/Common";
+import { HeaderNav } from "@/app/_component/Nav/HeaderNav";
 
 type DashboardLayoutProps = { children: React.ReactNode };
 
@@ -7,7 +7,7 @@ const DashboardLayout = (props: DashboardLayoutProps) => {
 
   return (
     <>
-      <DashboardNav />
+      <HeaderNav lists={[{ body: "ラベル", href: "/dashboard/label" }]} />
       {children}
     </>
   );
