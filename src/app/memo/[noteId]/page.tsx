@@ -3,7 +3,9 @@ import { type Metadata } from "next";
 import { NoteEditor } from "@/app/memo/[noteId]/_component/NoteIdContent/NoteEditor";
 import { NotePart } from "@/app/memo/[noteId]/_component/NoteIdNav/NotePart";
 import { getFirstAndSecondLine } from "@/lib/memo/getFirstAndSecondLine";
+import { getLabels, getNoteLabels } from "@/lib/supabase/label";
 import { getNote } from "@/lib/supabase/note";
+import { getProfile } from "@/lib/supabase/user";
 
 export async function generateMetadata({
   params: { noteId },
@@ -23,12 +25,28 @@ export const revalidate = 60;
 
 const NotePage = async ({ params: { noteId } }: { params: { noteId: string } }) => {
   const notePromise = getNote(noteId);
-  const [note] = await Promise.all([notePromise]);
+  const availableLabelsPromise = getLabels();
+  const profilePromise = getProfile();
+  const selectedLabelsPromise = await getNoteLabels(noteId);
+  const [note, availableLabels, profile, selectedLabels] = await Promise.all([
+    notePromise,
+    availableLabelsPromise,
+    profilePromise,
+    selectedLabelsPromise,
+  ]);
+  if (!profile) {
+    return null;
+  }
 
   return (
     <div className="space-y-4 pt-4">
-      <NotePart note={note} />
-      <NoteEditor note={note} />
+      <NotePart
+        note={note}
+        availableLabels={availableLabels}
+        profile={profile}
+        selectedLabels={selectedLabels}
+      />
+      <NoteEditor note={note} selectedLabels={selectedLabels} />
     </div>
   );
 };
