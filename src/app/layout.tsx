@@ -2,13 +2,10 @@ import { ThemeProviders } from "@/app/_component/Provider/ThemeProviders";
 
 import "./globals.css";
 
-import { Inter } from "next/font/google";
-
+import { inter } from "@/app/_component/fonts";
 import { Footer } from "@/app/_component/Nav/Footer";
 import { SideNav } from "@/app/_component/Nav/SideNav";
 import { ToastProvider } from "@/app/_component/Provider/ToastProvider";
-
-const inter = Inter({ subsets: ["latin"] });
 
 const siteName = "Memo";
 const description = "Memo pad app for constantly updated output";
@@ -27,8 +24,10 @@ export const metadata = {
 
 const RootLayout = ({ children }: { children: React.ReactNode }) => {
   return (
-    <html lang="ja" suppressHydrationWarning className={inter.className}>
-      <body className="bg-indigo-2 dark:bg-indigodark-2 md:flex md:justify-center">
+    <html lang="ja" suppressHydrationWarning>
+      <body
+        className={`${inter.className} bg-indigo-2 antialiased dark:bg-indigodark-2 md:flex md:justify-center`}
+      >
         <ThemeProviders>
           <ToastProvider>
             <SideNav />
